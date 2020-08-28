@@ -56,12 +56,11 @@ extern "C" {
 char* LatexIt(std::string a) {
 
 	
-	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	//std::string latexed = latexOne(postfixed);
-	//int retInt = std::stoi(a);
+	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	std::string latexed = latexOne(postfixed);
 	char* buf;
-	strcpy(buf, a.c_str());
+	strcpy(buf, latexed.c_str());
 	return buf;
 }
 
