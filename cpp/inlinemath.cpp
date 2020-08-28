@@ -3,6 +3,13 @@
 #include <emscripten/emscripten.h>
 #include "removeIdentities.cpp"
 
+
+EM_JS(void, console_log, (x), {
+  console.log(x);
+  throw 'all done';
+});
+
+
 extern "C" {
 
 void MakeLesson(char* aa) {
@@ -69,6 +76,7 @@ char* LatexIt(char* aa) {
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 	char* buf;
 	strcpy(buf, latexed.c_str());
+	console_log(duration);
 	return buf;
 }
 
