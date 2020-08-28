@@ -40,7 +40,7 @@ std::string solveArithmetic(std::string s){
 	clearRules();
 	std::vector<std::string> rows = createIdentities();
 	makeRulesNew(rows);
-	std::vector<std::string> rows = createArithmetic();
+	rows = createArithmetic();
 	makeRulesNew(rows);
 	
 
