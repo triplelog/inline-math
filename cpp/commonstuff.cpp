@@ -384,6 +384,8 @@ std::map<std::string,std::vector<Rule>> rules;
 std::map<int,Rule> ruleIndex;
 int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
+std::string maxDepth;
+std::string maxDepthn1;
 
 std::string removeBracketsOne(std::string input) {
 	std::map<int,int> operandToIndex;
@@ -606,8 +608,7 @@ bool firstCorrect;
 #include "rules/identities.cpp"
 #include "rules/arithmetic.cpp"
 #include "rules/canonical.cpp"
-std::string maxDepth;
-std::string maxDepthn1;
+
 
 void initialRun(){
 	prec['~'] = 101;
