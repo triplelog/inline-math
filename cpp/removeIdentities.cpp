@@ -1,4 +1,4 @@
-
+#include "graphing.cpp"
 
 std::string removeIdentities(std::string s){
 	
@@ -113,4 +113,6 @@ std::string toCanonical(std::string s){
 	}
 	return newPostfix;
 }
+
+
 

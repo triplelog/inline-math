@@ -56,11 +56,6 @@ void OneRule(char* aa) {
 }
 
 
-void GraphPoints(char* aa, double domainLeft, double domainRight) {
-	std::string a = std::string(aa);
-	std::string pointStr = getPoints(a,"x",domainLeft,domainRight);
-
-}
 
 
 
