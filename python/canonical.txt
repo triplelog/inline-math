@@ -2,6 +2,18 @@
 :name:Canonical
 
 ::: rule
+in: A*C^D+F+B*C^E
+out: B*C^E+F+A*C^D
+E>D
+ee
+:::
+::: rule
+in: F+A*C^D+B*C^E
+out: F+B*C^E+A*C^D
+E>D
+ee
+:::
+::: rule
 in: A*C^D+B*C^E
 out: B*C^E+A*C^D
 E>D
