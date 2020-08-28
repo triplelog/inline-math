@@ -4,6 +4,6 @@
 ::: rule
 in: A*C^D+B*C^E
 out: A*C^E+B*C^D
-ee
 E>D
+ee
 :::
