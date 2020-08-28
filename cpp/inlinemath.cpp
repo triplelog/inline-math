@@ -53,9 +53,9 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 extern "C" {
 
 
-char* LatexIt(std::string a) {
+char* LatexIt(int aa) {
 
-	
+	std::string a = "3+x^2";
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	//std::string latexed = latexOne(postfixed);
