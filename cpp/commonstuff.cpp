@@ -316,6 +316,7 @@ inline bool operator==(const Number& a, const Number& b){
 	}
 	return true;
 }
+
 flat_hash_map<std::string,Number> numbers;
 
 OperatorProxy operator<(const Dewey& a, const OperatorProxy& b){
