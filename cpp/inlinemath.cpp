@@ -56,10 +56,10 @@ void LatexIt(std::string a) {
 }
 
 
-void main() {
+int main() {
 	jsonmessage = "var rule = {};";
 	srand(time(NULL));
 	initialRun();
-
+	return 1;
 }
 
