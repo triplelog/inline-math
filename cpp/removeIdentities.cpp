@@ -40,7 +40,19 @@ std::string removeIdentities(std::string s){
 	//maxSteps = 5;
 	//getAnswerList(newPostfix,0);
 	maxSteps = 3;
-	getAnswerList(newPostfix,0);
+	bool foundNext = true;
+	while (foundNext){
+		foundNext = false;
+		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
+		if (someStrings.size()>0){
+			foundNext = true;
+			newPostfix = removeBracketsOne(someStrings[0].next);
+		}
+	}
+	return newPostfix;
+	//getAnswerList(newPostfix,0);
+	
+	
 	//maxSteps = 15;
 	//getAnswerList(newPostfix,0);
 	//std::cout << "\n\n\n\nCompleted the InCorrect Loop @$*&^@$*&^@*$&^@*$&^\n\n\n\n" << " and " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n\n";
