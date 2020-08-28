@@ -1,5 +1,5 @@
 initial = ['std::vector<std::string> createIdentities(){\nstd::vector<std::string> identities;\n']
-end = ['return identitites;\n}\n']
+end = ['return identities;\n}\n']
 file1 = open('../cpp/rules/identities.cpp', 'w')
 file1.writelines(initial) 
  
