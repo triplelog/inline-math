@@ -36,14 +36,28 @@ std::string removeIdentities(std::string s){
 }
 
 std::string solveArithmetic(std::string s){
-	
+	auto a1 = std::chrono::high_resolution_clock::now();
 	clearRules();
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	std::vector<std::string> rows = createIdentities();
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	makeRulesNew(rows);
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	rows = createArithmetic();
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	makeRulesNew(rows);
 	
-
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	
 	finishedAnswers.resize(0);
 	answerListMap.clear();
@@ -57,9 +71,16 @@ std::string solveArithmetic(std::string s){
 	foundOneAnswer = false;
 	startedWrong = false;
 	
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
 	
 	std::string newPostfix = removeBracketsOne(s);
-
+	
+	a2 = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	console_log(duration);
+	
 	bool foundNext = true;
 	while (foundNext){
 		foundNext = false;
@@ -68,6 +89,9 @@ std::string solveArithmetic(std::string s){
 			foundNext = true;
 			newPostfix = removeBracketsOne(someStrings[0].next);
 		}
+		a2 = std::chrono::high_resolution_clock::now();
+		duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+		console_log(duration);
 	}
 	return newPostfix;
 }

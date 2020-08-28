@@ -1,12 +1,15 @@
 
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
-#include "removeIdentities.cpp"
-
 
 EM_JS(void, console_log, (int x), {
   console.log(x);
 });
+
+#include "removeIdentities.cpp"
+
+
+
 
 
 extern "C" {
