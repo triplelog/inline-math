@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h> 
 #include <emscripten/emscripten.h>
 /*
 void MakeLesson(std::string a) {
