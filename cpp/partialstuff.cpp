@@ -19,7 +19,6 @@
 #include <array>
 #include <vector>
 #include <unistd.h>
-#include <thread>
 #include <future>
 #include "rapidcsv.h"
 #include "parallel_hashmap/phmap.h"
