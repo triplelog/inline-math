@@ -636,6 +636,7 @@ void initialRun(){
 	firstCorrect = false;
 	auto t1 = std::chrono::high_resolution_clock::now();
 	ridx = 0;
+	/*
 	makeRules("rules/derivatives.csv");
 	
 	std::ifstream file1("cpp/subjects/prealgebra.csv"); //file just has some sentences
@@ -671,6 +672,6 @@ void initialRun(){
 		rows.push_back(row);
 	}
 	makeRulesNew(rows);
-	
+	*/
 	auto t2 = std::chrono::high_resolution_clock::now();
 }
