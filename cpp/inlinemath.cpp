@@ -72,7 +72,7 @@ char* LatexIt(std::string a) {
 
 int main() {
 	//std::string jsonmessage = "var rule = {};";
-	srand(time(NULL));
+	//srand(time(NULL));
 	initialRun();
 	return 1;
 }
