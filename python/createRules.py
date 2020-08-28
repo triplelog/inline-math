@@ -1,4 +1,5 @@
-initial = ['std::string createIdentities(){\nstd::string identities = "";']
+initial = ['std::string createIdentities(){\nstd::string identities = "";\n']
+end = ['return identitites;\n}\n']
 file1 = open('../cpp/rules/identities.txt', 'w')
 file1.writelines(initial) 
  
@@ -10,8 +11,8 @@ lines = file2.readlines()
 count = 0
 # Strips the newline character 
 for line in lines:
-	line = 'identities += "'+line+'";'
+	line = 'identities += "'+line.strip()+'";\n'
 	file1.writelines([line])
-    
 
+file1.writelines(end)
 file1.close()
