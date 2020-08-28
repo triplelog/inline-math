@@ -20,6 +20,7 @@
 #include <vector>
 #include <unistd.h>
 #include <future>
+#include "rapidcsv.h"
 #include "parallel_hashmap/phmap.h"
 
 
@@ -31,9 +32,9 @@ using phmap::flat_hash_map;
 #include "solve.cpp"
 
 std::vector<std::vector<Step>> partialTree(std::string pfstr){
-	flat_hash_map<std::string,std::vector<std::string>> listMap;
-	flat_hash_map<int,int> operandMap;
-	flat_hash_map<int,std::string> originalMap;
+	map<std::string,std::vector<std::string>> listMap;
+	map<int,int> operandMap;
+	map<int,std::string> originalMap;
     std::vector<Step> returnStringsCorrect;
     std::vector<Step> returnStringsIncorrect;
 	int i; int ii; int iii;
