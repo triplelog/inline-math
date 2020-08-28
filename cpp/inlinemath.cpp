@@ -6,7 +6,6 @@
 
 EM_JS(void, console_log, (int x), {
   console.log(x);
-  throw 'all done';
 });
 
 

@@ -59,7 +59,7 @@ std::string removeIdentities(std::string s){
 	int longestAnswer = 0;
 	for (ii=0;ii<finishedAnswers.size();ii++){
 		////std::cout << "f: " << finishedAnswers[ii] << "\n";
-		if (doubleCheckAnswer(finishedAnswers[ii])){
+		if (2 == 2){
 			////std::cout << "cf: " << finishedAnswers[ii] << "\n";
 			std::vector<Step> v = makeSolutionList(finishedAnswers[ii],newPostfix);
 			int vsz = v.size();
