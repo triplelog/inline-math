@@ -20,7 +20,6 @@
 #include <vector>
 #include <unistd.h>
 #include <future>
-#include "rapidcsv.h"
 #include "parallel_hashmap/phmap.h"
 
 
