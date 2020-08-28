@@ -63,7 +63,7 @@ int LatexIt(char* aa) {
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 	char* buf;
 	strcpy(buf, latexed.c_str());
-	return int;
+	return duration;
 }
 
 
