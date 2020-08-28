@@ -1,6 +1,6 @@
 
 
-std::string RemoveIdentities(std::string s){
+std::string removeIdentities(std::string s){
 	
 	clearRules();
 	std::vector<std::string> rows = createIdentities();
