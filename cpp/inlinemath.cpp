@@ -1,24 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <algorithm>
-#include <math.h>
-#include <limits.h>
-#include <time.h>
-#include <string.h> 
-#include <ctype.h>
-#include <cmath>
-#include <iostream>
-#include <fstream>
-#include <variant>
-#include <map>
-#include <numeric>
-#include <chrono>
-#include <thread>
-#include <sstream>
-#include <array>
-#include <vector>
-#include <unistd.h>
-#include <future>
+
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
 /*
@@ -70,14 +50,22 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 */
 
 
-std::string LatexIt(std::string a) {
+extern "C" {
+
+
+char* LatexIt(std::string a) {
 
 	
 	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	//std::string latexed = latexOne(postfixed);
-	int retInt = std::stoi(a);
-	return a;
+	//int retInt = std::stoi(a);
+	char* buf;
+	strcpy(buf, a.c_str());
+	return buf;
+}
+
+
 }
 
 
