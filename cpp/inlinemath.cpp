@@ -60,7 +60,7 @@ int main() {
 	jsonmessage = "var rule = {};";
 	srand(time(NULL));
 	initialRun();
-	printf(LatexIt("3+x^12"));
+	std::cout << LatexIt("3+x^12") << "\n";
 	return 1;
 }
 
