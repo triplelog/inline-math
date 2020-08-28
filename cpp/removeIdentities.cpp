@@ -109,6 +109,7 @@ std::string toCanonical(std::string s){
 			foundNext = true;
 			newPostfix = removeBracketsOne(someStrings[0].next);
 		}
+		console_log(someStrings.size());
 	}
 	return newPostfix;
 }
