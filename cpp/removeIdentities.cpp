@@ -75,7 +75,7 @@ std::string solveArithmetic(std::string s){
 	return newPostfix;
 }
 
-std::string createCanonical(std::string s){
+std::string toCanonical(std::string s){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	clearRules();

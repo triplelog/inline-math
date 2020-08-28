@@ -75,7 +75,7 @@ char* LatexIt(char* aa) {
 	
 	//std::string noIdentities = solveArithmetic(postfixed);
 	
-	std::string noIdentities = createCanonical(postfixed);
+	std::string noIdentities = toCanonical(postfixed);
 	
 	std::string latexed = latexOne(noIdentities);
 	auto a2 = std::chrono::high_resolution_clock::now();
