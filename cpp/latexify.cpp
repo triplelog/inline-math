@@ -235,11 +235,11 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 	return s;
 }
 
-flat_hash_map<std::string,std::string> toLatex(std::vector<std::string> input){
+std::map<std::string,std::string> toLatex(std::vector<std::string> input){
 	int i; int ii;
-	flat_hash_map<std::string,std::string> latexMap;
-	flat_hash_map<std::string,char> lastOpMap;
-	flat_hash_map<std::string,std::vector<std::string>> childMap;
+	std::map<std::string,std::string> latexMap;
+	std::map<std::string,char> lastOpMap;
+	std::map<std::string,std::vector<std::string>> childMap;
 	childMap[""]={};
 	for (i=0;i<input.size()/3;i++){
 		//std::cout << input[i*3] << "\n";
@@ -307,12 +307,12 @@ flat_hash_map<std::string,std::string> toLatex(std::vector<std::string> input){
 	return latexMap;
 }
 
-std::string latexOne(std::string input,int startNode,flat_hash_map<int,bool> bMap) {
+std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 
 	int i; int ii; int iii; int idx = 0;
 	bool startOperands = false;
 	std::string currentOperator = "";
-	flat_hash_map<int,std::string> originalMap;
+	std::map<int,std::string> originalMap;
 	int iidx = 0;
 	std::string pfstr = input;
 	int startAt =0;
@@ -322,11 +322,11 @@ std::string latexOne(std::string input,int startNode,flat_hash_map<int,bool> bMa
 			startAt = i;
 		}
 		else if (pfstr.at(i) == '('){
-			flat_hash_map<int,int> m = removeParList({},pfstr);
+			std::map<int,int> m = removeParList({},pfstr);
 			pfstr = removeParOne(pfstr);
 			
 			int offset = 0;
-			flat_hash_map<int,bool> mm;
+			std::map<int,bool> mm;
 			for (iii=0;iii<startAt;iii++){
 				if (m.find(iii+offset) != m.end()){
 					offset += m[iii+offset]-1;
@@ -348,10 +348,10 @@ std::string latexOne(std::string input,int startNode,flat_hash_map<int,bool> bMa
 		}
 	}
 	
-	flat_hash_map<std::string,std::string> listMap;
-	flat_hash_map<std::string,char> lastOpMap;
+	std::map<std::string,std::string> listMap;
+	std::map<std::string,char> lastOpMap;
 	
-	flat_hash_map<int,std::string> operandMap;
+	std::map<int,std::string> operandMap;
 	std::string lastInput = "";
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){

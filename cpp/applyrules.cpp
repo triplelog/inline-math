@@ -1,5 +1,5 @@
-flat_hash_map<int,int> removeBracketsList(flat_hash_map<int,int> nodes, std::string input) {
-	flat_hash_map<int,int> operandToIndex;
+std::map<int,int> removeBracketsList(std::map<int,int> nodes, std::string input) {
+	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
 	bool foundAt = false;
@@ -61,8 +61,8 @@ flat_hash_map<int,int> removeBracketsList(flat_hash_map<int,int> nodes, std::str
 	
 }
 
-flat_hash_map<int,int> removeParList(flat_hash_map<int,int> nodes, std::string input) {
-	flat_hash_map<int,int> operandToIndex;
+std::map<int,int> removeParList(std::map<int,int> nodes, std::string input) {
+	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
 	bool foundAt = false;
@@ -168,7 +168,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 			
 			
 			std::string currentOperand = "";
-			flat_hash_map<char,std::string> partMap;
+			std::map<char,std::string> partMap;
 			std::vector<std::string> userOperands;
 			std::vector<std::string> ruleOperands;
 			newPostfix = "";
@@ -460,7 +460,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 
 
 				if (tempTemp != userFullString){
-					flat_hash_map<int,int> m;
+					std::map<int,int> m;
 					m = removeBracketsList(m,tempTemp);
 					
 					Step step;

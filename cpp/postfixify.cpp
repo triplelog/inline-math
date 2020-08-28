@@ -177,20 +177,20 @@ std::string makePost(char infixexpr[]) {
 }
 
 std::string replaceFunctions(std::string input_str){
-	flat_hash_map<std::string,std::string> replacements2;
-	flat_hash_map<std::string,std::string> replacements3;
-	flat_hash_map<std::string,std::string> replacements4;
-	flat_hash_map<std::string,std::string> replacements5;
-	flat_hash_map<std::string,std::string> replacements6;
-	flat_hash_map<std::string,std::string> replacements7;
-	flat_hash_map<std::string,std::string> replacements8;
+	std::map<std::string,std::string> replacements2;
+	std::map<std::string,std::string> replacements3;
+	std::map<std::string,std::string> replacements4;
+	std::map<std::string,std::string> replacements5;
+	std::map<std::string,std::string> replacements6;
+	std::map<std::string,std::string> replacements7;
+	std::map<std::string,std::string> replacements8;
 	
-	flat_hash_map<std::string,std::string> query7;
-	flat_hash_map<std::string,std::string> query6;
-	flat_hash_map<std::string,std::string> query5;
-	flat_hash_map<std::string,std::string> query4;
-	flat_hash_map<std::string,std::string> query3;
-	flat_hash_map<std::string,std::string> query2;
+	std::map<std::string,std::string> query7;
+	std::map<std::string,std::string> query6;
+	std::map<std::string,std::string> query5;
+	std::map<std::string,std::string> query4;
+	std::map<std::string,std::string> query3;
+	std::map<std::string,std::string> query2;
 	
 	char ddx{-69};
 	char idx{-85};
@@ -839,7 +839,7 @@ std::string postfixify(std::string input_str) {
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
 
 	input_str = replaceFunctions(input_str);
-	flat_hash_map<std::string,std::string> repMap;
+	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
 	if (checkComputations){
 		char repl = 'A';

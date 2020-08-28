@@ -70,14 +70,14 @@ int autoDistance(std::string ss, std::string control) {
 
 void inputify() {
 	int i; int ii; int iii;
-	flat_hash_map<std::string,std::string> listMap;
-	flat_hash_map<std::string,char> lastOpMap;
-	for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+	std::map<std::string,std::string> listMap;
+	std::map<std::string,char> lastOpMap;
+	for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 		std::string pfstr = iter->first;
 		int idx = 0;
 		bool startOperands = false;
 		std::string currentOperator = "";
-		flat_hash_map<int,std::string> originalMap;
+		std::map<int,std::string> originalMap;
 		int iidx = 0;
 		if (listMap.find(pfstr) != listMap.end()){
 			answerMap[pfstr].input = listMap[pfstr];
@@ -102,7 +102,7 @@ void inputify() {
 	
 	
 	
-		flat_hash_map<int,std::string> operandMap;
+		std::map<int,std::string> operandMap;
 		std::string lastInput = "";
 		std::string soFarLeft = "";
 		std::string soFarRight = "";
@@ -455,7 +455,7 @@ std::vector<std::string> autocomplete(std::string newPostfix,std::string rawAnsw
 	std::vector<Autocomplete> shortAnswers;
 	int i;
 	int ias = 0;
-	for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+	for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 		
 		ias++;
 	}
@@ -464,7 +464,7 @@ std::vector<std::string> autocomplete(std::string newPostfix,std::string rawAnsw
 	//shortAnswers.resize(ias);
 	
 	i = 0;
-	for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+	for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 	
 		
 		std::string ca = iter->second.input;

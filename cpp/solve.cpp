@@ -1156,7 +1156,7 @@ Number sqrtOne(const Number numA){
 	return rootNth(numbers["2"],numA);
 }
 
-flat_hash_map<std::string,Number> solvedPostfixMap;
+std::map<std::string,Number> solvedPostfixMap;
 Number solvePostfix(std::string postfix) {
 	if (solvedPostfixMap.find(postfix) != solvedPostfixMap.end()){
 		return solvedPostfixMap[postfix];
@@ -1382,7 +1382,7 @@ std::vector<std::string> factorList(std::string input) {
 	list.push_back(input);
 	return list;
 }
-flat_hash_map<std::string,std::string> conditionalPostfixList;
+std::map<std::string,std::string> conditionalPostfixList;
 
 std::string solveConditionalPostfix(std::string var){
 	if (conditionalPostfixList.find(var) != conditionalPostfixList.end()){

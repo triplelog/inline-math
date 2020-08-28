@@ -23,11 +23,9 @@
 #include <future>
 #include "rapidcsv.h"
 #include "ctpl/ctpl_stl.h"
-#include "parallel_hashmap/phmap.h"
 
 
 using namespace std::chrono;
-using phmap::flat_hash_map;
 
 #include "commonstuff.cpp"
 
@@ -44,16 +42,16 @@ std::string outputTree(Step stepS,Step stepE){
 	//}
 	//std::cout << "\n";
 	std::vector<std::string> treeOptions;
-	flat_hash_map<std::string,std::vector<std::string>> listMap;
-	flat_hash_map<int,std::string> operandMap;
-	flat_hash_map<int,std::string> originalMap;
+	std::map<std::string,std::vector<std::string>> listMap;
+	std::map<int,std::string> operandMap;
+	std::map<int,std::string> originalMap;
 	std::vector<std::string> finalList;
 	std::vector<std::string> orderedKeyList;
-	flat_hash_map<std::string,std::vector<std::string>> nodeList;
+	std::map<std::string,std::vector<std::string>> nodeList;
 	std::string startNode = "";
 	std::string endNode = "";
-	flat_hash_map<std::string,bool> startNodes;
-	flat_hash_map<std::string,bool> endNodes;
+	std::map<std::string,bool> startNodes;
+	std::map<std::string,bool> endNodes;
 	
     
     
@@ -185,7 +183,7 @@ std::string outputTree(Step stepS,Step stepE){
 				
 				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*') ){
 					std::vector<std::string> revList;
-					for (flat_hash_map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 						if (iter->second[1] == nodeList[nodeText][0]){
 							nodeList[iter->first][1] = pname;
 							revList.push_back(iter->first);
@@ -212,7 +210,7 @@ std::string outputTree(Step stepS,Step stepE){
 				treeIdx++;
 				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
 					std::vector<std::string> revList;
-					for (flat_hash_map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 						if (iter->second[1] == name){
 							nodeList[iter->first][1] = pname;
 							revList.push_back(iter->first);
@@ -240,7 +238,7 @@ std::string outputTree(Step stepS,Step stepE){
 				if (nodeList.find(nodeText) != nodeList.end()){
 					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
 						std::vector<std::string> revList;
-						for (flat_hash_map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 							if (iter->second[1] == nodeList[nodeText][0]){
 								nodeList[iter->first][1] = pname;
 								revList.push_back(iter->first);
@@ -266,7 +264,7 @@ std::string outputTree(Step stepS,Step stepE){
 					treeIdx++;
 					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
 						std::vector<std::string> revList;
-						for (flat_hash_map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 							if (iter->second[1] == name){
 								nodeList[iter->first][1] = pname;
 								revList.push_back(iter->first);
@@ -327,17 +325,17 @@ std::string outputTree(Step stepS,Step stepE){
 	//std::cout << "\n\n---start Original-----\n";
 	int iiii;
 	
-	//for (flat_hash_map<int,std::string>::iterator iter = originalMap.begin(); iter != originalMap.end(); ++iter){
+	//for (std::map<int,std::string>::iterator iter = originalMap.begin(); iter != originalMap.end(); ++iter){
 	//	std::cout << iter->first << " and " << iter->second << '\n';
 	//}
 	
 
 	//std::cout << " ENd bracketless\n";
-	//for (flat_hash_map<int,std::string>::iterator iter = bracketlessMap.begin(); iter != bracketlessMap.end(); ++iter){
+	//for (std::map<int,std::string>::iterator iter = bracketlessMap.begin(); iter != bracketlessMap.end(); ++iter){
 	//	std::cout << iter->first << " and " << iter->second << '\n';
 	//}
 	
-	flat_hash_map<std::string,std::string> skipList;
+	std::map<std::string,std::string> skipList;
 	std::string nodes = "{";
 	std::string allNodes = "[";
 	//std::cout << "-DOJS-\nnodes = {};\n";
@@ -363,7 +361,7 @@ std::string outputTree(Step stepS,Step stepE){
 		
 		
 	}
-	flat_hash_map<std::string,std::string> latexMap =toLatex(forLatex);
+	std::map<std::string,std::string> latexMap =toLatex(forLatex);
 	
 	
 	skipList.clear();
@@ -430,8 +428,8 @@ std::string outputTree(Step stepS,Step stepE){
 
 
 
-flat_hash_map<std::string,Answer> answerMap;
-flat_hash_map<std::string,std::vector<int>> answerListMapF;
+std::map<std::string,Answer> answerMap;
+std::map<std::string,std::vector<int>> answerListMapF;
 int maxFound;
 int maxSteps;
 
@@ -458,7 +456,7 @@ int probCorrect(){
 	long probc = 1;
 	long probt = 2;
 	int ii; int iii;
-	for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+	for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 		if (iter->second.correct && iter->second.finished){
 			int p = 100;
 			std::vector<Step> v;
@@ -640,16 +638,16 @@ void CheckAnswer(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 	
 	
 
-		flat_hash_map<int,std::vector<int>> branches;
-		flat_hash_map<int,std::vector<bool>> userData;
+		std::map<int,std::vector<int>> branches;
+		std::map<int,std::vector<bool>> userData;
 		for (ii=0;ii<ridx;ii++){
 			userData[ii]={false,false};
 		}
 		std::vector<Step> v;
 		v = userAnswer.solution;
 
-		flat_hash_map<int,bool> alreadyApp;
-		flat_hash_map<int,bool> alreadyOpp;
+		std::map<int,bool> alreadyApp;
+		std::map<int,bool> alreadyOpp;
 		for (iii=0;iii<v.size();iii++){
 			if (v[iii].rule >= 0){
 				if (ruleIndex[v[iii].rule].type == "e"){
@@ -689,12 +687,12 @@ void CheckAnswer(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 		}
 
 
-		for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+		for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 			if (iter->second.finished){
 				std::vector<Step> v = iter->second.solution;
 		
-				flat_hash_map<int,bool> alreadyApp;
-				flat_hash_map<int,bool> alreadyOpp;
+				std::map<int,bool> alreadyApp;
+				std::map<int,bool> alreadyOpp;
 				for (iii=0;iii<v.size();iii++){
 					if (answerListMapF.find(v[iii].next)== answerListMapF.end()){
 						std::cout << "missing??????222222\n";
@@ -726,7 +724,7 @@ void CheckAnswer(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 				}
 			}
 		}
-		for (flat_hash_map<int,std::vector<int>>::iterator iter = branches.begin(); iter != branches.end(); ++iter){
+		for (std::map<int,std::vector<int>>::iterator iter = branches.begin(); iter != branches.end(); ++iter){
 			int rr = (branches[iter->first][0]*2 + 1)*100/(branches[iter->first][1]*2+2);
 
 			if (rr < 1){
@@ -842,7 +840,7 @@ void GetSolution(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 	std::vector<Step> bestSolution;
 	bool foundSolution = false;
 	
-	for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+	for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 
 		if (iter->first == pfstr && iter->second.correct && iter->second.finished){
 			std::cout << "match: " << pfstr << " and " << iter->first << "\n";
@@ -864,7 +862,7 @@ void GetSolution(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 		foundSolution = true;
 		std::vector<Step> oldBest = bestSolution;
 		bestSolution.resize(0);
-		for (flat_hash_map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
+		for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
 			if (iter->second.correct && iter->second.finished){
 				std::vector<Step> v = iter->second.solution;
 				for (ii=0;ii<v.size();ii++){

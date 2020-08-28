@@ -8,7 +8,7 @@ bool solveConstraintFix(std::string input){
 	std::string secondExp = "";
 	char lastOp = '=';
 	bool inBrackets = false;
-	flat_hash_map<std::string,bool> expressionMap;
+	std::map<std::string,bool> expressionMap;
 	std::vector<std::string> operandList;
 	std::string currentOperand ="";
 	expressionMap["#"]=true;

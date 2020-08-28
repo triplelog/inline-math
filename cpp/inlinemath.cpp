@@ -14,10 +14,10 @@ void OneRule(std::string a) {
 	std::vector<std::vector<Step>> steps = partialTree(postfixed);
 	std::string jsonmessage = "[";
 	int i;
-	flat_hash_map<std::string,bool> uniqueSteps;
+	std::map<std::string,bool> uniqueSteps;
 	int idx = 0;
 	for (i=0;i<steps[0].size();i++){
-		flat_hash_map<char,std::string> partMap = steps[0][i].partMap;
+		std::map<char,std::string> partMap = steps[0][i].partMap;
 		if (steps[0][i].rule < 0){
 			continue;
 		}

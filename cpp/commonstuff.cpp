@@ -1,11 +1,11 @@
 bool checkAnswer(std::string answer);
 std::string makeInt(std::string input);
-flat_hash_map<char,int> prec;
+std::map<char,int> prec;
 
-flat_hash_map<std::string,std::vector<int>> constraintsMet;
-//flat_hash_map<std::string,std::vector<std::string>> allListMapFull;
-//flat_hash_map<std::string,std::vector<std::vector<std::string>>> allListMapBottom;
-flat_hash_map<std::string,bool> constraintMap;
+std::map<std::string,std::vector<int>> constraintsMet;
+//std::map<std::string,std::vector<std::string>> allListMapFull;
+//std::map<std::string,std::vector<std::vector<std::string>>> allListMapBottom;
+std::map<std::string,bool> constraintMap;
 
 std::string jsonmessage;
 int duration1;
@@ -17,7 +17,7 @@ int mapSave;
 int mapMake;
 int overallScore;
 bool answerIsFinished;
-flat_hash_map<int,int> eloMap;
+std::map<int,int> eloMap;
 
 
 
@@ -30,7 +30,7 @@ struct Dewey {
 struct RawQuestion {
 	std::string qH = "";
 	std::string qC = "";
-	flat_hash_map<char,std::string> rangeMap;
+	std::map<char,std::string> rangeMap;
 	std::vector<std::vector<std::string>> rawRules;
 	Dewey dewey;
 };
@@ -59,7 +59,7 @@ struct Step {
 	int endNode;
 	std::vector<int> endNodes;
 	std::vector<int> startNodes;
-	flat_hash_map<char,std::string> partMap;
+	std::map<char,std::string> partMap;
 	
 };
 struct Answer {
@@ -317,7 +317,7 @@ inline bool operator==(const Number& a, const Number& b){
 	return true;
 }
 
-flat_hash_map<std::string,Number> numbers;
+std::map<std::string,Number> numbers;
 
 OperatorProxy operator<(const Dewey& a, const OperatorProxy& b){
 	OperatorProxy c;
@@ -380,13 +380,13 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 Question currentQuestion;
 
 
-flat_hash_map<std::string,std::vector<Rule>> rules;
-flat_hash_map<int,Rule> ruleIndex;
+std::map<std::string,std::vector<Rule>> rules;
+std::map<int,Rule> ruleIndex;
 int ridx;
-flat_hash_map<std::string,std::vector<Rule>> answerConstraints;
+std::map<std::string,std::vector<Rule>> answerConstraints;
 
 std::string removeBracketsOne(std::string input) {
-	flat_hash_map<int,int> operandToIndex;
+	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
 	bool foundAt = false;
@@ -448,7 +448,7 @@ std::string removeBracketsOne(std::string input) {
 }
 
 std::string removeParOne(std::string input) {
-	flat_hash_map<int,int> operandToIndex;
+	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
 	bool foundAt = false;
@@ -520,7 +520,7 @@ std::string removeParOne(std::string input) {
 	
 }
 
-std::string fromOriginal(std::string input,flat_hash_map<int,std::string> originalMap) {
+std::string fromOriginal(std::string input,std::map<int,std::string> originalMap) {
 	int i;
 	bool startOperands = false;
 	std::vector<std::string> indexes;
@@ -550,7 +550,7 @@ std::string fromOriginal(std::string input,flat_hash_map<int,std::string> origin
 	return input;
 }
 
-flat_hash_map<int,int> removeParList(flat_hash_map<int,int> nodes, std::string input);
+std::map<int,int> removeParList(std::map<int,int> nodes, std::string input);
 
 #include "latexify.cpp"
 
@@ -565,7 +565,7 @@ flat_hash_map<int,int> removeParList(flat_hash_map<int,int> nodes, std::string i
 #include "makenumbers.cpp"
 
 std::string displayOne(Step step,std::string start,std::string end){
-	flat_hash_map<char,std::string> partMap = step.partMap;
+	std::map<char,std::string> partMap = step.partMap;
 	if (step.rule < 0){
 		return "";
 	}
@@ -574,7 +574,7 @@ std::string displayOne(Step step,std::string start,std::string end){
 	
 	oneStep += "\"input\":\""+latexOne(oldString)+"\",\"map\":[";
 
-	for (flat_hash_map<char,std::string>::iterator iter = partMap.begin(); iter != partMap.end(); ++iter){
+	for (std::map<char,std::string>::iterator iter = partMap.begin(); iter != partMap.end(); ++iter){
 		std::string s(1,iter->first);
 		std::string sec = iter->second;
 		if (sec.length()>0 && sec.at(0) == '{'){

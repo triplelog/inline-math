@@ -1,4 +1,4 @@
-std::string replaceVars(std::string q, flat_hash_map<char,std::string> varMap){
+std::string replaceVars(std::string q, std::map<char,std::string> varMap){
 	bool pastKey = false;
 	std::string newQ = "";
 	std::string currentOperand = "";
@@ -112,10 +112,10 @@ std::string solveInsideQuestion(std::string input) {
 	}
 	return removeBracketsOne(newPostfix);
 }
-Question makeQuestion(std::string qRow, std::string qText,flat_hash_map<char,std::string> rangeMap){
+Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::string> rangeMap){
 	Question question;
-	flat_hash_map<char,std::string> varMap;
-	for (flat_hash_map<char,std::string>::iterator iter = rangeMap.begin(); iter != rangeMap.end(); ++iter){
+	std::map<char,std::string> varMap;
+	for (std::map<char,std::string>::iterator iter = rangeMap.begin(); iter != rangeMap.end(); ++iter){
 		varMap[iter->first]=makeInt(iter->second);	
 		//std::cout << "if: " << iter->first << " is: " << iter->second << " and " << makeInt(iter->second) << "\n";
 	}
@@ -293,7 +293,7 @@ std::vector<RawQuestion> makeQuestions(Dewey qDewey, std::string fileName){
 		}
 		oldIdx = startIdx;
 
-		flat_hash_map<char,std::string> rangeMap;
+		std::map<char,std::string> rangeMap;
 		for (i=startIdx+5;i<nRows;i++){
 			std::vector<std::string> rawRule = doc.GetRow<std::string>(i);
 			if (rawRule.size() == 1 && rawRule[0] == ""){
@@ -551,7 +551,7 @@ std::vector<RawQuestion> makeQuestionsNew(Dewey qDewey, std::string input){
 		}
 		oldIdx = startIdx;
 
-		flat_hash_map<char,std::string> rangeMap;
+		std::map<char,std::string> rangeMap;
 		RawQuestion q;
 		
 		std::vector<std::string> currentRawRule;
@@ -882,7 +882,7 @@ Question previewQuestion(std::string input){
 	}
 	oldIdx = startIdx;
 
-	flat_hash_map<char,std::string> rangeMap;
+	std::map<char,std::string> rangeMap;
 	for (i=startIdx+5;i<nRows;i++){
 		std::vector<std::string> rawRule = doc.GetRow<std::string>(i);
 		if (rawRule.size() == 1 && rawRule[0] == ""){

@@ -22,11 +22,9 @@
 #include <thread>
 #include <future>
 #include "rapidcsv.h"
-#include "parallel_hashmap/phmap.h"
 
 
 using namespace std::chrono;
-using phmap::flat_hash_map;
 
 #include "commonstuff.cpp"
 
