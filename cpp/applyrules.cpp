@@ -379,7 +379,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 			}
 			for (iiii=0;iiii<newPostfix.length();iiii++){
 				if (newPostfix.at(iiii) == -95){
-					std::cout << newPostfix << " askdjfhaskdf3333 " << userString << "\n";
+					//std::cout << newPostfix << " askdjfhaskdf3333 " << userString << "\n";
 				}
 			}
 			//std::cout << newPostfix << " was npf\n";

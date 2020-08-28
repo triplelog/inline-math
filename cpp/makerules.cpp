@@ -19,7 +19,7 @@ void makeRulesNew(std::vector<std::string> rows){
 	int nRows = rows.size();
 	
 	
-	std::cout << "RowsNew: " << nRows << "\n";
+	//std::cout << "RowsNew: " << nRows << "\n";
 	
 	std::vector<std::string> currentRawRule;
 	currentRawRule.resize(0);

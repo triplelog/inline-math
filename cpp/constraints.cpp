@@ -1,7 +1,7 @@
 bool solveConstraintFix(std::string input){
 	int i; int ii; int iii;
 	bool postKey = false;
-	std::cout << "check con1: " << input << "\n";
+	//std::cout << "check con1: " << input << "\n";
 	std::string firstPart = "";
 	std::string secondPart = "";
 	std::string firstExp = "";
@@ -84,7 +84,7 @@ bool solveConstraintFix(std::string input){
 			return false;
 		}
 	}
-	std::cout << "check con2: " << input << "\n";
+	//std::cout << "check con2: " << input << "\n";
 	firstExp = firstPart + "@";
 	int idx = 0;
 	for (i=0;i<firstPart.length();i++){
@@ -104,7 +104,7 @@ bool solveConstraintFix(std::string input){
 	firstExp = removeBracketsOne(firstExp);
 	secondExp = removeBracketsOne(secondExp);
 	
-	std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";
+	//std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";
 
 	if (lastOp == -94){ //does not contain--secondExp must be single operand
 		currentOperand = "";
@@ -130,7 +130,7 @@ bool solveConstraintFix(std::string input){
 			
 			}
 		}
-		std::cout << "was true" << "\n";
+		//std::cout << "was true" << "\n";
 		return true;
 	}
 	else if (lastOp == -87){ //contains--secondExp must be single operand
@@ -172,7 +172,7 @@ bool solveConstraintFix(std::string input){
 			numberType(operandList[0]);
 		}
 		Number a = numbers[operandList[0]];
-		std::cout << "at: " << a.type << " and " << operandList[firstIdx] << " and " << operandList[0] << "\n";
+		//std::cout << "at: " << a.type << " and " << operandList[firstIdx] << " and " << operandList[0] << "\n";
 		if (a.type == std::stoi(operandList[firstIdx])){
 			return true;
 		}
@@ -221,7 +221,7 @@ std::string constraintify(std::string input){
 	char dncc{-94};
 	std::string dnc = "";
 	dnc += dncc;
-	std::cout << "contraintify: "<< input << "\n";
+	//std::cout << "contraintify: "<< input << "\n";
 	for (i=0;i<input.length();i++){
 		tempStr += input.at(i);
 		tempStr.replace(0,1,"");
@@ -297,6 +297,6 @@ std::string constraintify(std::string input){
 		}
 	}
 	
-	std::cout << "contraintified: " << input << "\n";
+	//std::cout << "contraintified: " << input << "\n";
 	return input;
 }

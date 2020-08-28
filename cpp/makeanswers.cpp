@@ -128,8 +128,8 @@ Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::str
 	//std::cout << "q: " << q << "\n";
 	std::string newQ = solveInsideQuestion(q);
 	//std::cout << "nq: " << newQ << "\n";
-	std::cout << "question for computer: " << newQ << "\n\n";
-	std::cout << "question for human: " << qText << "\n\n";
+	//std::cout << "question for computer: " << newQ << "\n\n";
+	//std::cout << "question for human: " << qText << "\n\n";
 	question.comp = newQ;
 
 	bool isMath = false;
@@ -139,18 +139,18 @@ Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::str
 		if (qText.at(i)== '$'){
 			if (isMath){
 				isMath = false;
-				std::cout << "cm: " << currentMath << "\n";
+				//std::cout << "cm: " << currentMath << "\n";
 				//std::string pf = postfixify(currentMath);
 				std::vector<std::string> pv = postfixifyVector(currentMath,true);
 				std::string pvv = replaceVars(pv[0] + "@"+pv[1],varMap);
 				std::string pf = solveInsideQuestion(pvv);
 				//std::cout << "pf: " << pf << "\n";
 				//std::cout << "pvv: " << pvv << "\n";
-				std::cout << "pf: " << pf << "\n";
+				//std::cout << "pf: " << pf << "\n";
 				//pf = replaceVars(pf,varMap);
 				//std::cout << "pf: " << pf << "\n";
 				pf = latexOne(pf);
-				std::cout << "pf: " << pf << "\n";
+				//std::cout << "pf: " << pf << "\n";
 				
 				newText += "$" + pf + "$";
 				currentMath = "";
@@ -167,7 +167,7 @@ Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::str
 			newText += qText.at(i);
 		}
 	}
-	std::cout << "question for human: " << newText << "\n\n";
+	//std::cout << "question for human: " << newText << "\n\n";
 	question.text = newText;
 	return question;
 }
@@ -297,7 +297,7 @@ std::vector<RawQuestion> makeQuestionsNew(Dewey qDewey, std::string input){
 				dewey.id = current;
 			}
 		}
-		std::cout << "dewey: " << dewey.topic << "\n";
+		//std::cout << "dewey: " << dewey.topic << "\n";
 		if (dewey <minEq> qDewey){
 		}
 		else {
@@ -559,9 +559,9 @@ std::vector<RawQuestion> makeQuestionsNew(Dewey qDewey, std::string input){
 		questions.push_back(q);
 		auto a2 = std::chrono::high_resolution_clock::now();
 		int dd1 = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-		std::cout << "time to makeQuestion(): " << dd1 << "\n";
+		//std::cout << "time to makeQuestion(): " << dd1 << "\n";
 		int dd2 = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a0 ).count();
-		std::cout << "time after csv: " << dd2 << "\n";
+		//std::cout << "time after csv: " << dd2 << "\n";
 		if (startIdx == oldIdx){
 			break;
 		}

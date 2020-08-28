@@ -8,7 +8,6 @@
 #include <string.h> 
 #include <ctype.h>
 #include <cmath>
-#include <iostream>
 #include <variant>
 #include <map>
 #include <numeric>
@@ -141,7 +140,7 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 					break;
 				}
 				if (ii==i-1){
-					std::cout << "No match 1\n";
+					//std::cout << "No match 1\n";
 				}
 			}
 			
@@ -198,7 +197,7 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 						break;
 					}
 					if (ii==maxi-1){
-						std::cout << "No match 2\n";
+						//std::cout << "No match 2\n";
 					}
 				}
 				
@@ -707,7 +706,7 @@ std::string getPoints(std::string fn, std::string indVar,double domainLeft,doubl
 		out += std::to_string(x) + ","+outputNumber(y)+";";
 	}
 	auto a2 = std::chrono::high_resolution_clock::now();
-	std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n";
+	//std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n";
 	
 	return out;
 }

@@ -312,11 +312,11 @@ std::string replaceFunctions(std::string input_str){
 			input_str.replace(i-3,4,query4[fourChars]);
 			fourChars = "....";
 			i += -3;
-			std::cout << i << " : " << input_str << " char: " << element << '\n';
+			//std::cout << i << " : " << input_str << " char: " << element << '\n';
 			
 		}
 		else if (input_str.at(i+1) == '('){
-			std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
+			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
 			if (replacements8.find(eightChars) != replacements8.end()){
 				input_str.replace(i-7,8,replacements8[eightChars]);
 				eightChars = "........";
@@ -552,7 +552,7 @@ std::string replaceFunctions(std::string input_str){
 		else if (query4.find(fourChars) != query4.end() && input_str.length() > i+2 && input_str.at(i+1)!='-' && input_str.at(i+2)!='-'){
 			
 			if (input_str.at(i)=='^'){ //is trig function to a power--unless add more
-				std::cout << i << " : " << input_str << " 4chars: " << fourChars << '\n';
+				//std::cout << i << " : " << input_str << " 4chars: " << fourChars << '\n';
 				std::string inside = "";
 				std::string var = "";
 				int openPar = 0;
@@ -581,7 +581,7 @@ std::string replaceFunctions(std::string input_str){
 				input_str.replace(i-3,repLen,"("+query4[fourChars]+"("+inside+"))^("+var+")");
 				fourChars = "....";
 				i += -4;
-				std::cout << i << " : " << input_str << " char: " << query4[fourChars] << '\n';
+				//std::cout << i << " : " << input_str << " char: " << query4[fourChars] << '\n';
 			}
 			
 		
@@ -633,7 +633,7 @@ std::string replaceFunctions(std::string input_str){
 					input_str.replace(i-2,repLen,"(e"+query3[threeChars]+"("+inside+"))^("+var+")");
 					fourChars = "....";
 					i += -3;
-					std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
 				}
 				else if (input_str.at(i+1)=='_'){
 					std::string inside = "";
@@ -664,7 +664,7 @@ std::string replaceFunctions(std::string input_str){
 					input_str.replace(i-2,repLen,var+query3[threeChars]+"("+inside+")");
 					threeChars = "...";
 					i += -3;
-					std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
 				}
 				else if (input_str.length()>i+3 && input_str.at(i+1) == 'l' && input_str.at(i+2) == 'o' && input_str.at(i+3) == 'g'){
 					std::string inside = "";
@@ -673,7 +673,7 @@ std::string replaceFunctions(std::string input_str){
 					bool isVar = false;
 					bool isInside = false;
 					int repLen = 3;
-					std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
 					for (ii=i+1;ii<input_str.length();ii++){
 						repLen++;
 						inside += input_str.at(ii);
@@ -697,12 +697,12 @@ std::string replaceFunctions(std::string input_str){
 							break;
 						}
 					}
-					std::cout << var << " : " << inside << " char: " << query3[threeChars] << '\n';
+					//std::cout << var << " : " << inside << " char: " << query3[threeChars] << '\n';
 					if (var == ""){var = "e";}
 					input_str.replace(i-2,repLen,var+log+"("+inside+")");
 					threeChars = "...";
 					i += -3;
-					std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
 				}
 				else {
 					std::string inside = "";
@@ -733,7 +733,7 @@ std::string replaceFunctions(std::string input_str){
 					input_str.replace(i-2,repLen,var+query3[threeChars]+"("+inside+")");
 					threeChars = "...";
 					i += -3;
-					std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query3[threeChars] << '\n';
 				}
 			}
 		}
@@ -768,7 +768,7 @@ std::string replaceFunctions(std::string input_str){
 					input_str.replace(i-1,repLen,"(e"+query2[twoChars]+"("+inside+"))^("+var+")");
 					twoChars = "..";
 					i += -2;
-					std::cout << i << " : " << input_str << " char: " << query2[twoChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query2[twoChars] << '\n';
 				}
 				else if (input_str.length()>i+2 && input_str.at(i+1) == 'l' && input_str.at(i+2) == 'n'){
 					std::string inside = "";
@@ -800,7 +800,7 @@ std::string replaceFunctions(std::string input_str){
 					input_str.replace(i-1,repLen,"e" + query2[twoChars] +"("+inside+")");
 					twoChars = "..";
 					i += -2;
-					std::cout << i << " : " << input_str << " char: " << query2[twoChars] << '\n';
+					//std::cout << i << " : " << input_str << " char: " << query2[twoChars] << '\n';
 				}
 			}
 			

@@ -27,7 +27,7 @@ std::string numberType(std::string input){
 		n.top = "1";
 		n.bottom = "pi";
 		numbers[input]=n;
-		std::cout << "n1: " << outputNumber(n) << "\n";
+		//std::cout << "n1: " << outputNumber(n) << "\n";
 		return "num";
 	}
 	else if (input.length()>2 && input.at(input.length()-2) == 'p' && input.at(input.length()-1) == 'i'){
@@ -38,7 +38,7 @@ std::string numberType(std::string input){
 		n.top = outputNumber(numbers[input.substr(0,input.length()-2)]);
 		n.bottom = "pi";
 		numbers[input]=n;
-		std::cout << "n2: " << outputNumber(n) << "\n";
+		//std::cout << "n2: " << outputNumber(n) << "\n";
 		return "num";
 	}
 	
@@ -960,12 +960,12 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		a = std::stod(numA.top) / std::stod(numA.bottom);
 	}
 	else if (numA.type == 11){
-		std::cout << "n3: " << outputNumber(numA) << " and " << numA.top << " and " << numA.bottom << "\n";
+		//std::cout << "n3: " << outputNumber(numA) << " and " << numA.top << " and " << numA.bottom << "\n";
 		if (numA.bottom == "pi"){
 			n = numbers[numA.top];
 			if (n.type == 1 || n.type == -1){
 				if (fn == -64){
-					std::cout << "n4: " << outputNumber(numbers["0"]) << "\n";
+					//std::cout << "n4: " << outputNumber(numbers["0"]) << "\n";
 					return numbers["0"];
 				}
 			}
@@ -1597,18 +1597,18 @@ std::string substitute(std::string input){
 				right2 += input.at(i);
 			}
 		}
-		std::cout << "l: " << left << " and " << right << "\n";
-		std::cout << "l2: " << left2 << " and " << right2 << "\n";
+		//std::cout << "l: " << left << " and " << right << "\n";
+		//std::cout << "l2: " << left2 << " and " << right2 << "\n";
 		var = solveConditionalPostfix(left + "@" + right);
 		if (var == "##@"){
-			std::cout << "fin: nothing" << "\n";
+			//std::cout << "fin: nothing" << "\n";
 			return returnStr;
 		}
 		char sub{-102};
 		std::string substr = "";
 		substr += sub;
 		input = "##"+substr+"@{"+var+"}_{"+left2+"@"+right2+"}_";
-		std::cout << "fin: "<< input << "\n";
+		//std::cout << "fin: "<< input << "\n";
 	}
 	var = "";
 	std::string expression = "";
@@ -1683,7 +1683,7 @@ std::string substitute(std::string input){
 	}
 	//std::cout << "newPostfix: " << newPostfix << "\n";
 	if (newPostfix != input){
-		std::cout << input << " andand " << newPostfix << "\n";
+		//std::cout << input << " andand " << newPostfix << "\n";
 	}
 	return "("+newPostfix+")";
 }

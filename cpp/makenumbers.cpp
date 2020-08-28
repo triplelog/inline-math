@@ -350,19 +350,19 @@ Range makeRange(std::string input){
 		}
 		if (numbers.find(left) == numbers.end()){
 			if (numberType(left) == "string"){
-				std::cout << "is string: " << left << "\n";
+				//std::cout << "is string: " << left << "\n";
 			}
 		}
 		if (numbers.find(left) == numbers.end()){
-			std::cout << "is string: " << left << "\n";
+			//std::cout << "is string: " << left << "\n";
 		}
 		if (numbers.find(right) == numbers.end()){
 			if (numberType(right) == "string"){
-				std::cout << "is string: " << right << "\n";
+				//std::cout << "is string: " << right << "\n";
 			}
 		}
 		if (numbers.find(right) == numbers.end()){
-			std::cout << "is string: " << right << "\n";
+			//std::cout << "is string: " << right << "\n";
 		}
 		r.left.push_back(numbers[left]);
 		r.right.push_back(numbers[right]);
@@ -394,12 +394,12 @@ std::string makeInt(std::string input){
 		else if (outRange.incexc[i] ==0){
 			n--;
 		}
-		std::cout << outRange.left[i].top << " and " << outRange.right[i].top << " and " << outRange.incexc[i] << "\n";
+		//std::cout << outRange.left[i].top << " and " << outRange.right[i].top << " and " << outRange.incexc[i] << "\n";
 	}
 	std::string out = "";
 	//for (ii=0;ii<100;ii++){
 		int x = rand() % n;
-		std::cout << "x: " << x << " and n: " << n << "\n";
+		//std::cout << "x: " << x << " and n: " << n << "\n";
 		int nn = 0;
 		int nnn = 0;
 		for (i=0;i<outRange.left.size();i++){
