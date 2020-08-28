@@ -70,7 +70,7 @@ char* LatexIt(char* aa) {
 	
 	//std::string noIdentities = removeIdentities(postfixed);
 	
-	std::string noIdentities = solveArithemtic(postfixed);
+	std::string noIdentities = solveArithmetic(postfixed);
 	
 	std::string latexed = latexOne(noIdentities);
 	auto a2 = std::chrono::high_resolution_clock::now();
