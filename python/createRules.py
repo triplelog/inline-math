@@ -16,3 +16,22 @@ for line in lines:
 
 file1.writelines(end)
 file1.close()
+
+initial = ['std::vector<std::string> createArithmetic(){\nstd::vector<std::string> arithmetic;\n']
+end = ['return arithmetic;\n}\n']
+file1 = open('../cpp/rules/arithmetic.cpp', 'w')
+file1.writelines(initial) 
+ 
+  
+# Using readlines() 
+file2 = open('arithmetic.txt', 'r') 
+lines = file2.readlines() 
+  
+count = 0
+# Strips the newline character 
+for line in lines:
+	line = 'arithmetic.push_back("'+line.strip()+'");\n'
+	file1.writelines([line])
+
+file1.writelines(end)
+file1.close()

@@ -604,6 +604,7 @@ std::string displayOne(Step step,std::string start,std::string end){
 
 bool firstCorrect;
 #include "rules/identities.cpp"
+#include "rules/arithmetic.cpp"
 
 void initialRun(){
 	prec['~'] = 101;
@@ -643,29 +644,8 @@ void initialRun(){
 	ridx = 0;
 	std::vector<std::string> rows = createIdentities();
 	makeRulesNew(rows);
-	/*
-	std::ifstream file2("cpp/subjects/precalculus.csv"); //file just has some sentences
-	if (!file2) {
-		std::cout << "unable to open file";
-	}
-	rows.resize(0);
-	while (getline(file2, row)) {
-		rows.push_back(row);
-	}
+	rows = createArithmetic();
 	makeRulesNew(rows);
-	
 
-	makeRules("subjects/algebraold.csv");
-	
-	std::ifstream file3("cpp/subjects/calculus.csv"); //file just has some sentences
-	if (!file3) {
-		std::cout << "unable to open file";
-	}
-	rows.resize(0);
-	while (getline(file3, row)) {
-		rows.push_back(row);
-	}
-	makeRulesNew(rows);
-	*/
 	auto t2 = std::chrono::high_resolution_clock::now();
 }

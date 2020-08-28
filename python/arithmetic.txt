@@ -1,0 +1,63 @@
+:subtople:prealgebra.arithmetic.addition
+:name:Addition
+
+::: rule
+in: A+B
+out: =(A+B)
+ee
+:::
+
+:subtople:prealgebra.arithmetic.multiplication
+:name:Multiplication
+
+::: rule
+in: A*B
+out: =(A*B)
+ee
+:::
+
+:subtople:prealgebra.arithmetic.division
+:name:Division
+
+::: rule
+in: A/B
+out: =(A/B)
+ee
+:::
+
+:subtople:prealgebra.arithmetic.subtraction
+:name:Subtraction
+
+::: rule
+in: A-B
+out: =(A-B)
+ee
+:::
+::: rule
+in: -A
+out: =(0-A)
+ee
+:::
+
+:subtople:prealgebra.exponents.exponents
+:name:Exponents
+
+::: rule
+in: A^B
+out: =(A^B)
+ee
+:::
+
+:subtople:prealgebra.exponents.logarithms
+:name:Logarithms
+
+::: rule
+in: log_B(A)
+out: =(log_B(A))
+ee
+:::
+::: rule
+in: log(A)
+out: =(log(A))
+ee
+:::

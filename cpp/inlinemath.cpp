@@ -68,7 +68,9 @@ char* LatexIt(char* aa) {
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	
-	std::string noIdentities = removeIdentities(postfixed);
+	//std::string noIdentities = removeIdentities(postfixed);
+	
+	std::string noIdentities = solveArithemtic(postfixed);
 	
 	std::string latexed = latexOne(noIdentities);
 	auto a2 = std::chrono::high_resolution_clock::now();
