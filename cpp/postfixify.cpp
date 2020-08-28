@@ -177,6 +177,7 @@ std::string makePost(char infixexpr[]) {
 }
 
 std::string replaceFunctions(std::string input_str){
+	return "string";
 	flat_hash_map<std::string,std::string> replacements2;
 	flat_hash_map<std::string,std::string> replacements3;
 	flat_hash_map<std::string,std::string> replacements4;
@@ -191,7 +192,7 @@ std::string replaceFunctions(std::string input_str){
 	flat_hash_map<std::string,std::string> query4;
 	flat_hash_map<std::string,std::string> query3;
 	flat_hash_map<std::string,std::string> query2;
-	
+	return "string";
 	char ddx{-69};
 	char idx{-85};
 	char sub{-102};
@@ -837,11 +838,11 @@ std::string postfixify(std::string input_str) {
 }
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
-	std::vector<std::string> ret;
-	return ret;
+	
 	
 	input_str = replaceFunctions(input_str);
-	
+	std::vector<std::string> ret;
+	return ret;
 	flat_hash_map<std::string,std::string> repMap;
 
 	//std::cout <<"pv: "<< input_str << "\n";
