@@ -40,7 +40,7 @@ bool foundOneAnswer;
 bool startedWrong;
 
 
-std::vector<std::vector<Step>> makeTree(std::string pfstr){
+std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 	std::map<std::string,std::vector<std::string>> listMap;
 	std::map<int,int> operandMap;
 	std::map<int,std::string> originalMap;
@@ -353,6 +353,9 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr){
 						int iiiiii;
 						for (iiiiii=0;iiiiii<someStringsC.size();iiiiii++){
 							returnStringsCorrect.push_back(someStringsC[iiiiii]);
+							if (returnStringsCorrect.size()>= maxList){
+								return {returnStringsCorrect,returnStringsIncorrect};
+							}
 						}
 						for (iiiiii=0;iiiiii<someStringsI.size();iiiiii++){
 							returnStringsIncorrect.push_back(someStringsI[iiiiii]);
@@ -534,6 +537,9 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr){
 					int iiiiii;
 					for (iiiiii=0;iiiiii<someStringsC.size();iiiiii++){
 						returnStringsCorrect.push_back(someStringsC[iiiiii]);
+						if (returnStringsCorrect.size()>= maxList){
+							return {returnStringsCorrect,returnStringsIncorrect};
+						}
 					}
 					for (iiiiii=0;iiiiii<someStringsI.size();iiiiii++){
 						returnStringsIncorrect.push_back(someStringsI[iiiiii]);
@@ -1410,7 +1416,7 @@ bool getAnswerList(std::string s, int nSteps) {
 	
 	////std::cout << s << " before pl\n";
 	auto a1 = std::chrono::high_resolution_clock::now();
-	std::vector<std::vector<Step>> someStrings = makeTree(newPostfix);
+	std::vector<std::vector<Step>> someStrings = makeTree(newPostfix,1);
 	////std::cout << "npf3: "<< newPostfix << "\n";
 	
 	if (answerListMap.find(newPostfix) == answerListMap.end()){
@@ -1898,7 +1904,7 @@ bool getOneAnswer(std::string s, int nSteps, std::string oquestion) {
 	
 	////std::cout << s << " before pl\n";
 	auto a1 = std::chrono::high_resolution_clock::now();
-	std::vector<std::vector<Step>> someStrings = makeTree(newPostfix);
+	std::vector<std::vector<Step>> someStrings = makeTree(newPostfix,1);
 	
 	if (answerIsFinished){
 		if (doubleCheckAnswer(newPostfix)){

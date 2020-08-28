@@ -19,7 +19,6 @@ std::string removeIdentities(std::string s){
 	unfinishedOptions.clear();
 	foundOneAnswer = false;
 	startedWrong = false;
-	maxSteps = 25;
 	
 	auto a1 = std::chrono::high_resolution_clock::now();
 	maxFound = 0;
@@ -40,7 +39,7 @@ std::string removeIdentities(std::string s){
 	
 	//maxSteps = 5;
 	//getAnswerList(newPostfix,0);
-	maxSteps = 15;
+	maxSteps = 2;
 	getAnswerList(newPostfix,0);
 	//maxSteps = 15;
 	//getAnswerList(newPostfix,0);
