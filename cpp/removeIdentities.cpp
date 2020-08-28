@@ -55,7 +55,8 @@ std::string RemoveIdentities(std::string s){
 	
 
 	unfinishedOptions.clear();
-	
+	std::string finalAnswer = "";
+	int longestAnswer = 0;
 	for (ii=0;ii<finishedAnswers.size();ii++){
 		////std::cout << "f: " << finishedAnswers[ii] << "\n";
 		if (doubleCheckAnswer(finishedAnswers[ii])){
@@ -67,6 +68,10 @@ std::string RemoveIdentities(std::string s){
 				Answer answer;
 				answer.finished = true;
 				answer.correct = true;
+				if (vsz > longestAnswer){
+					longestAnswer = vsz;
+					finalAnswer = finishedAnswers[ii];
+				}
 				if (vsz > 1){
 					answer.next = v[vsz-2].next;
 				}
@@ -89,77 +94,5 @@ std::string RemoveIdentities(std::string s){
 			}
 		}
 	}
-	int uos = 0;
-	for (std::map<std::string,bool>::iterator iter = unfinishedOptions.begin(); iter != unfinishedOptions.end(); ++iter){
-		if (answerMap.find(iter->first) != answerMap.end()){
-			continue;
-		}
-		uos++;
-		
-		std::vector<Step> v = makeSolutionList(iter->first,newPostfix);
-		int vsz = v.size();
-		if (vsz > 0){
-			Answer answer;
-			answer.finished = false;
-			answer.correct = true;
-			if (vsz > 1){
-				answer.next = v[vsz-2].next;
-			}
-			answer.solution = v;
-			answerMap[iter->first]=answer;
-		}
-		else {
-			std::vector<Step> vv = makeIncorrectSolutionList(iter->first,newPostfix);
-			vsz = vv.size();
-			if (vsz > 0){
-				
-				Answer answer;
-				answer.finished = false;
-				answer.correct = false;
-				if (vsz > 1){
-					answer.next = vv[vsz-2].next;
-				}
-				answer.solution = v;
-				answerMap[iter->first]=answer;
-			}
-			else {
-				//std::cout << "no solution found? " << iter->first << "\n";
-			}
-		}
-
-		
-	}
-	
-	//std::cout << "unfinished answers: " << uos << "\n";
-
-	
-
-	
-	
-	
-	//for (std::map<std::string,std::vector<std::string>>::iterator iter = reverseMapCorrect.begin(); iter != reverseMapCorrect.end(); ++iter){
-	//	//std::cout << "rm: " << iter->first << " and " << iter->second.size() << "\n";		
-	//}
-	
-	
-	a2 = std::chrono::high_resolution_clock::now();
-	//std::cout << "time to find correct answers: " << " and " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n\n";
-	
-	std::string error = "Don't know.";
-	int ui = 0;
-	
-	
-	
-	
-	//for (std::map<std::string,Answer>::iterator iter = answerMap.begin(); iter != answerMap.end(); ++iter){
-	//	inputArray.push_back(inputify(iter->first));
-	//}
-	auto a3 = std::chrono::high_resolution_clock::now();
-	//std::cout << "time to inputify answers: " << " and " << std::chrono::duration_cast<std::chrono::microseconds>( a3 - a2 ).count() << "\n\n\n";
-	
-	
-	
-	
-
-	return error;
+	return finalAnswer;
 }

@@ -59,9 +59,12 @@ void GraphPoints(char* aa, double domainLeft, double domainRight) {
 int LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
-	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	std::string latexed = latexOne(postfixed);
+	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	
+	std::string noIdentities = removeIdentities(a);
+	
+	std::string latexed = latexOne(noIdentities);
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 	char* buf;
