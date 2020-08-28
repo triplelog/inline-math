@@ -72,14 +72,14 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 extern "C" {
 #endif
 
-int LatexIt(std::string a) {
+std::string LatexIt(std::string a) {
 
 	
 	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	//std::string latexed = latexOne(postfixed);
 	int retInt = std::stoi(a);
-	return retInt;
+	return a;
 }
 
 #ifdef __cplusplus
