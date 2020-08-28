@@ -202,7 +202,7 @@ std::string replaceFunctions(std::string input_str){
 	int i; int ii;
 	replacements3["ddx"]="x";
 	replacements3["ddx"]+=ddx;
-	return "string";
+
 	query3["dd?"]="";
 	query3["dd?"]+=ddx;
 	query3["der"]="";
@@ -224,7 +224,7 @@ std::string replaceFunctions(std::string input_str){
 	trigFunctions.push_back("csc");
 	trigFunctions.push_back("sec");
 	trigFunctions.push_back("cot");
-
+	
 	for (i=0;i<6;i++){
 		char c{-64};
 		c += i;
@@ -291,7 +291,7 @@ std::string replaceFunctions(std::string input_str){
 	std::string sixChars = "......";
 	std::string sevenChars = ".......";
 	std::string eightChars = "........";
-	
+	return "string";
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
 		twoChars += input_str.at(i);
