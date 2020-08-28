@@ -177,7 +177,7 @@ std::string makePost(char infixexpr[]) {
 }
 
 std::string replaceFunctions(std::string input_str){
-	return "string";
+
 	flat_hash_map<std::string,std::string> replacements2;
 	flat_hash_map<std::string,std::string> replacements3;
 	flat_hash_map<std::string,std::string> replacements4;
