@@ -1,7 +1,7 @@
 
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
-
+#include "removeIdentities.cpp"
 
 extern "C" {
 
@@ -52,6 +52,7 @@ void GraphPoints(char* aa, double domainLeft, double domainRight) {
 	std::string pointStr = getPoints(a,"x",domainLeft,domainRight);
 
 }
+
 
 
 
