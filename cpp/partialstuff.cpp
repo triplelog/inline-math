@@ -22,7 +22,6 @@
 #include <thread>
 #include <future>
 #include "rapidcsv.h"
-#include "ctpl/ctpl_stl.h"
 #include "parallel_hashmap/phmap.h"
 
 
