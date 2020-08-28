@@ -19,6 +19,7 @@
 #include <vector>
 #include <unistd.h>
 #include <future>
+#include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
 /*
 void MakeLesson(std::string a) {
