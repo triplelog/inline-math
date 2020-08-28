@@ -69,7 +69,6 @@ int main() {
 	jsonmessage = "var rule = {};";
 	srand(time(NULL));
 	initialRun();
-	std::cout << LatexIt("3+x^12") << "\n";
 	return 1;
 }
 
