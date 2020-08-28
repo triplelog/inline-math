@@ -840,7 +840,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 
 	input_str = replaceFunctions(input_str);
 	std::vector<std::string> ret;
-	
+	return ret;
 	flat_hash_map<std::string,std::string> repMap;
 	return ret;
 	//std::cout <<"pv: "<< input_str << "\n";
