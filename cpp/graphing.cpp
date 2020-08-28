@@ -66,10 +66,10 @@ std::string makeGraph(std::string fn){
 			
 			if (i%5 == 0 && i != 0){
 				svg += "<circle cx=\""+convertX(i,left,right,0)+"\" cy=\""+convertY(0,bottom,top,3)+"\" r=\"4px\" fill=\"white\"/>";
-				svg += "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\""+convertX(i,left,right)+"\" y=\""+convertY(0,bottom,top,1)+"\">&nbsp;"+i+"&nbsp;</text>";
+				svg += "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\""+convertX(i,left,right,0)+"\" y=\""+convertY(0,bottom,top,1)+"\">&nbsp;"+i+"&nbsp;</text>";
 			}
 		}
-		for (var ii=floor(bottom)+1;ii<floor(top)+1;ii++){
+		for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
 			if (ii%5 == 0 && ii != 0){
 				svg += "<circle cx=\""+convertX(0,left,right,-3)+"\" cy=\""+convertY(ii,bottom,top,0)+"\" r=\"4px\" fill=\"white\"/>";
 				svg += "<text font-size=\"6px\" text-anchor=\"end\" dominant-baseline=\"middle\" x=\""+convertX(0,left,right,-1)+"\" y=\""+convertY(ii,bottom,top,1)+"\">"+ii+"</text>";
@@ -80,7 +80,6 @@ std::string makeGraph(std::string fn){
 	
 	
 	std::string path = "M";
-	console_log(fn);
 	
 	std::vector<double> points = getPoints(fn,"x",left,right);
 	//console.log(outStr);
