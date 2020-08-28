@@ -192,7 +192,7 @@ std::string replaceFunctions(std::string input_str){
 	flat_hash_map<std::string,std::string> query4;
 	flat_hash_map<std::string,std::string> query3;
 	flat_hash_map<std::string,std::string> query2;
-	return "string";
+
 	char ddx{-69};
 	char idx{-85};
 	char sub{-102};
@@ -202,7 +202,7 @@ std::string replaceFunctions(std::string input_str){
 	int i; int ii;
 	replacements3["ddx"]="x";
 	replacements3["ddx"]+=ddx;
-
+	return "string";
 	query3["dd?"]="";
 	query3["dd?"]+=ddx;
 	query3["der"]="";
