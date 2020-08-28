@@ -68,9 +68,7 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 
 }
 */
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 
 std::string LatexIt(std::string a) {
 
@@ -82,9 +80,7 @@ std::string LatexIt(std::string a) {
 	return a;
 }
 
-#ifdef __cplusplus
-}
-#endif
+
 
 
 int main() {
