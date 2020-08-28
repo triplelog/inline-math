@@ -45,8 +45,12 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 	std::string pointStr = getPoints(a,"x",domainLeft,domainRight);
 
 }
-	
-std::string LatexIt(std::string a) {
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+std::string EMSCRIPTEN_KEEPALIVE LatexIt(std::string a) {
 
 	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
@@ -54,6 +58,10 @@ std::string LatexIt(std::string a) {
 	std::string latexed = latexOne(postfixed);
 	return latexed;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 
 int main() {
