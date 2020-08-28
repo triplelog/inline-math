@@ -53,9 +53,9 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 extern "C" {
 
 
-char* LatexIt(int aa) {
+char* LatexIt(char* aa) {
 
-	std::string a = "3+x^12";
+	std::string a = std::string(aa);
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	std::string latexed = latexOne(postfixed);
@@ -72,7 +72,7 @@ char* LatexIt(int aa) {
 
 int main() {
 	//std::string jsonmessage = "var rule = {};";
-	//srand(time(NULL));
+	srand(time(NULL));
 	initialRun();
 	return 1;
 }
