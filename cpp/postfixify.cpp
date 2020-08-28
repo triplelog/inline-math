@@ -294,6 +294,7 @@ std::string replaceFunctions(std::string input_str){
 	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
+		return "string";
 		twoChars += input_str.at(i);
 		threeChars.replace(0,1,"");
 		threeChars += input_str.at(i);
@@ -307,7 +308,7 @@ std::string replaceFunctions(std::string input_str){
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
-		return "string";
+		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
 			input_str.replace(i-3,4,query4[fourChars]);
