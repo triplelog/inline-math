@@ -39,7 +39,7 @@ std::string removeIdentities(std::string s){
 	
 	//maxSteps = 5;
 	//getAnswerList(newPostfix,0);
-	maxSteps = 2;
+	maxSteps = 3;
 	getAnswerList(newPostfix,0);
 	//maxSteps = 15;
 	//getAnswerList(newPostfix,0);
