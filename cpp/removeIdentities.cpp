@@ -1,4 +1,4 @@
-#include "makequestions.cpp"
+
 
 std::string RemoveIdentities(std::string s){
 	
