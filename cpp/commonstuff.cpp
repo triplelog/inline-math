@@ -558,9 +558,9 @@ std::map<int,int> removeParList(std::map<int,int> nodes, std::string input);
 
 //#include "makerules.cpp"
 
-#include "makeanswers.cpp"
+//#include "makeanswers.cpp"
 
-#include "applyrules.cpp"
+//#include "applyrules.cpp"
 
 #include "makenumbers.cpp"
 
