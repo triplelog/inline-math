@@ -51,13 +51,13 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 extern "C" {
 #endif
 
-std::string EMSCRIPTEN_KEEPALIVE LatexIt(std::string a) {
+int EMSCRIPTEN_KEEPALIVE LatexIt(std::string a) {
 
 	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	std::string latexed = latexOne(postfixed);
-	return latexed;
+	return 1;
 }
 
 #ifdef __cplusplus
