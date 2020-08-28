@@ -21,7 +21,6 @@
 using namespace std::chrono;
 
 
-#include "solve.cpp"
 
 std::map<std::string,int> answerListMap;
 std::map<std::string,std::vector<int>> answerListMapF;
