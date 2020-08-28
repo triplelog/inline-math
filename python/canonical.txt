@@ -3,7 +3,56 @@
 
 ::: rule
 in: A*C^D+B*C^E
-out: A*C^E+B*C^D
+out: B*C^E+A*C^D
 E>D
+ee
+:::
+::: rule
+in: C^D+B*C^E
+out: B*C^E+C^D
+E>D
+ee
+:::
+::: rule
+in: A*C^D+C^E
+out: C^E+A*C^D
+E>D
+ee
+:::
+::: rule
+in: C^D+C^E
+out: C^E+C^D
+E>D
+ee
+:::
+::: rule
+in: A*C+B*C^E
+out: B*C^E+A*C
+E>1
+ee
+:::
+::: rule
+in: C+B*C^E
+out: B*C^E+C
+E>1
+ee
+:::
+::: rule
+in: A*C+C^E
+out: C^E+A*C
+E>1
+ee
+:::
+::: rule
+in: C+C^E
+out: C^E+C
+E>1
+ee
+:::
+::: rule
+in: A*B
+out: B*A
+B is 9
+A is not 9
 ee
 :::

@@ -176,7 +176,7 @@ bool solveConstraintFix(std::string input){
 		if (a.type == std::stoi(operandList[firstIdx])){
 			return true;
 		}
-		else if (a.type != 0 && std::stoi(operandList[firstIdx]) == 9){
+		else if (a.type > 0 && a.type < 9 && std::stoi(operandList[firstIdx]) == 9){
 			return true;
 		}
 		else if (a.type > 10 && std::stoi(operandList[firstIdx]) == 10){
@@ -200,7 +200,7 @@ bool solveConstraintFix(std::string input){
 		if (a.type == std::stoi(operandList[firstIdx])){
 			return false;
 		}
-		else if (a.type != 0 && std::stoi(operandList[firstIdx]) == 9){
+		else if (a.type > 0 && a.type < 9 && std::stoi(operandList[firstIdx]) == 9){
 			return false;
 		}
 		else if (a.type > 10 && std::stoi(operandList[firstIdx]) == 10){
@@ -300,3 +300,5 @@ std::string constraintify(std::string input){
 	//std::cout << "contraintified: " << input << "\n";
 	return input;
 }
+
+

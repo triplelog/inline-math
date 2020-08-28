@@ -287,21 +287,21 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 				
 				for (ii=0;ii<fss;ii++){
 					nFirst = listMap[firstListMapKey][ii*5+2];
-					if (nFirst=="4"){
+					if (nFirst== maxDepth){
 						continue;
 					}
 					
 					for (iii=0;iii<sss;iii++){
 				
 						nSecond = listMap[secondListMapKey][iii*5+2];
-						if (nSecond=="4"){
+						if (nSecond== maxDepth){
 							continue;
 						}
 						
 						//2 ms
 						
 						
-						if (nSecond=="3" || nFirst=="3"){
+						if (nSecond==maxDepthn1 || nFirst==maxDepthn1){
 							
 							continue;
 						}
@@ -392,7 +392,19 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 						ftSz++;
 						fullTrees[ftSz] = firstT[ii] + secondT[iii];
 						ftSz++;
-						if (nSecond=="2" || nFirst=="2"){
+						if (nSecond==maxDepth || nFirst==maxDepth){
+							fullTrees[ftSz] = maxDepth;
+							ftSz++;
+						}
+						else if (nSecond=="4" || nFirst=="4"){
+							fullTrees[ftSz] = "5";
+							ftSz++;
+						}
+						else if (nSecond=="3" || nFirst=="3"){
+							fullTrees[ftSz] = "4";
+							ftSz++;
+						}
+						else if (nSecond=="2" || nFirst=="2"){
 							fullTrees[ftSz] = "3";
 							ftSz++;
 						}
@@ -409,41 +421,7 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 						fullTrees[ftSz] = firstTBL[ii] + secondTBL[iii];
 						ftSz++;
 						
-						//18 ms to here from recent continue
 						
-				
-						/*
-						if (pfstr.at(i) == '+' || pfstr.at(i) == '*'){
-							fullTrees[ftSz] = secondS[iii] + firstS[ii]  + pfstr.at(i);
-							ftSz++;
-							fullTrees[ftSz] = secondT[iii] + firstT[ii];
-							ftSz++;
-							if (nSecond=="2" || nFirst=="2"){
-								fullTrees[ftSz] = "3";
-								ftSz++;
-							}
-							else if (nSecond=="1" || nFirst=="1"){
-								fullTrees[ftSz] = "2";
-								ftSz++;
-							}
-							else {
-								fullTrees[ftSz] = "1";
-								ftSz++;
-							}
-							fullTrees[ftSz] = secondSBL[iii] + firstSBL[ii]  + pfstr.at(i);
-							ftSz++;
-							fullTrees[ftSz] = secondTBL[iii] + firstTBL[ii];
-							ftSz++;
-					
-					
-
-							std::vector<std::string> someStrings = applyRulesVectorOnePart(secondS[iii] + firstS[ii]  + pfstr.at(i) + '@' + secondT[iii] + firstT[ii],{startLeftIndex,i+1-startLeftIndex,startRightIndex,rightLength},pfstr,isCorrect);
-							int iiiiii;
-							for (iiiiii=0;iiiiii<someStrings.size();iiiiii++){
-								returnStrings.push_back(someStrings[iiiiii]);
-							}
-						}*/
-						//62 ms to here from the 18 ms marker
 						
 					}
 					
@@ -476,7 +454,7 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 				
 				for (iii=0;iii<secondS.size();iii++){
 				
-					if (listMap[secondListMapKey][iii*5+2]=="4"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepth){
 						continue;
 					}
 				
@@ -487,7 +465,7 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 				
 				
 				
-					if (listMap[secondListMapKey][iii*5+2]=="3"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepthn1){
 						continue;
 					}
 					
@@ -566,7 +544,19 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 					ftSz++;
 					fullTrees[ftSz] = secondT[iii];
 					ftSz++;
-					if (listMap[secondListMapKey][iii*5+2]=="2"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepth){
+						fullTrees[ftSz] = maxDepth;
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="4"){
+						fullTrees[ftSz] = "5";
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="3"){
+						fullTrees[ftSz] = "4";
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="2"){
 						fullTrees[ftSz] = "3";
 						ftSz++;
 					}
@@ -1063,7 +1053,7 @@ bool doubleCheckAnswer(std::string pfstr){
 				
 				for (ii=0;ii<fss;ii++){
 					nFirst = listMap[firstListMapKey][ii*5+2];
-					if (nFirst=="4"){
+					if (nFirst==maxDepth){
 						continue;
 					}
 					
@@ -1071,14 +1061,14 @@ bool doubleCheckAnswer(std::string pfstr){
 					for (iii=0;iii<sss;iii++){
 				
 						nSecond = listMap[secondListMapKey][iii*5+2];
-						if (nSecond=="4"){
+						if (nSecond==maxDepth){
 							continue;
 						}
 						
 						//2 ms
 						
 						
-						if (nSecond=="3" || nFirst=="3"){
+						if (nSecond==maxDepthn1 || nFirst==maxDepthn1){
 							
 							continue;
 						}
@@ -1140,7 +1130,19 @@ bool doubleCheckAnswer(std::string pfstr){
 						ftSz++;
 						fullTrees[ftSz] = firstT[ii] + secondT[iii];
 						ftSz++;
-						if (nSecond=="2" || nFirst=="2"){
+						if (nSecond==maxDepth || nFirst==maxDepth){
+							fullTrees[ftSz] = maxDepth;
+							ftSz++;
+						}
+						else if (nSecond=="4" || nFirst=="4"){
+							fullTrees[ftSz] = "5";
+							ftSz++;
+						}
+						else if (nSecond=="3" || nFirst=="3"){
+							fullTrees[ftSz] = "4";
+							ftSz++;
+						}
+						else if (nSecond=="2" || nFirst=="2"){
 							fullTrees[ftSz] = "3";
 							ftSz++;
 						}
@@ -1169,7 +1171,19 @@ bool doubleCheckAnswer(std::string pfstr){
 							ftSz++;
 							fullTrees[ftSz] = secondT[iii] + firstT[ii];
 							ftSz++;
-							if (nSecond=="2" || nFirst=="2"){
+							if (nSecond==maxDepth || nFirst==maxDepth){
+								fullTrees[ftSz] = maxDepth;
+								ftSz++;
+							}
+							else if (nSecond=="4" || nFirst=="4"){
+								fullTrees[ftSz] = "5";
+								ftSz++;
+							}
+							else if (nSecond=="3" || nFirst=="3"){
+								fullTrees[ftSz] = "4";
+								ftSz++;
+							}
+							else if (nSecond=="2" || nFirst=="2"){
 								fullTrees[ftSz] = "3";
 								ftSz++;
 							}
@@ -1222,7 +1236,7 @@ bool doubleCheckAnswer(std::string pfstr){
 				
 				for (iii=0;iii<secondS.size();iii++){
 				
-					if (listMap[secondListMapKey][iii*5+2]=="4"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepth){
 						continue;
 					}
 				
@@ -1233,7 +1247,7 @@ bool doubleCheckAnswer(std::string pfstr){
 				
 				
 				
-					if (listMap[secondListMapKey][iii*5+2]=="3"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepthn1){
 						continue;
 					}
 					
@@ -1285,7 +1299,19 @@ bool doubleCheckAnswer(std::string pfstr){
 					ftSz++;
 					fullTrees[ftSz] = secondT[iii];
 					ftSz++;
-					if (listMap[secondListMapKey][iii*5+2]=="2"){
+					if (listMap[secondListMapKey][iii*5+2]==maxDepth){
+						fullTrees[ftSz] = maxDepth;
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="4"){
+						fullTrees[ftSz] = "5";
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="3"){
+						fullTrees[ftSz] = "4";
+						ftSz++;
+					}
+					else if (listMap[secondListMapKey][iii*5+2]=="2"){
 						fullTrees[ftSz] = "3";
 						ftSz++;
 					}
