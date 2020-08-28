@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <algorithm>
+#include <math.h>
+#include <limits.h>
+#include <time.h>
 #include <string.h> 
+#include <ctype.h>
 #include <emscripten/emscripten.h>
 /*
 void MakeLesson(std::string a) {
