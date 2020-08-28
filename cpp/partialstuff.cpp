@@ -8,11 +8,14 @@
 #include <string.h> 
 #include <ctype.h>
 #include <cmath>
+#include <iostream>
+#include <fstream>
 #include <variant>
 #include <map>
 #include <numeric>
 #include <chrono>
 #include <thread>
+#include <sstream>
 #include <array>
 #include <vector>
 #include <unistd.h>
