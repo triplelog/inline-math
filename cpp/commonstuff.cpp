@@ -556,7 +556,7 @@ std::map<int,int> removeParList(std::map<int,int> nodes, std::string input);
 
 #include "postfixify.cpp"
 
-//#include "makerules.cpp"
+#include "makerules.cpp"
 
 //#include "makeanswers.cpp"
 
