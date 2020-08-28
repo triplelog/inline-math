@@ -837,12 +837,13 @@ std::string postfixify(std::string input_str) {
 }
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
-
-	input_str = replaceFunctions(input_str);
 	std::vector<std::string> ret;
 	return ret;
+	
+	input_str = replaceFunctions(input_str);
+	
 	flat_hash_map<std::string,std::string> repMap;
-	return ret;
+
 	//std::cout <<"pv: "<< input_str << "\n";
 	if (checkComputations){
 		char repl = 'A';
