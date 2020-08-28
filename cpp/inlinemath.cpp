@@ -1,14 +1,18 @@
 
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
-/*
-void MakeLesson(std::string a) {
+
+
+extern "C" {
+
+void MakeLesson(char* aa) {
+	std::string a = std::string(aa);
 	clearRules();
 	oneLesson(a);
 }
 
-void OneRule(std::string a) {
-
+void OneRule(char* aa) {
+	std::string a = std::string(aa);
 
 	std::string postfixed = postfixify(a);
 	std::vector<std::vector<Step>> steps = partialTree(postfixed);
@@ -43,14 +47,12 @@ void OneRule(std::string a) {
 }
 
 
-void GraphPoints(std::string a, double domainLeft, double domainRight) {
+void GraphPoints(char* aa, double domainLeft, double domainRight) {
+	std::string a = std::string(aa);
 	std::string pointStr = getPoints(a,"x",domainLeft,domainRight);
 
 }
-*/
 
-
-extern "C" {
 
 
 int LatexIt(char* aa) {

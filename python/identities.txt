@@ -1,0 +1,26 @@
+:subtople:prealgebra.identities.one
+:name:One
+
+::: rule
+in: A*1
+out: A
+ee
+Multiplication by 1 returns itself.
+:::
+::: rule
+in: A^1
+out: A
+ee
+Raising something to the first power yields itself.
+:::
+::: rule
+in: A/1
+out: A
+ee
+Dividing by 1 returns itself.
+:::
+::: examples
+x*1
+x^1
+x/1
+:::
