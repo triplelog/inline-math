@@ -177,7 +177,6 @@ std::string makePost(char infixexpr[]) {
 }
 
 std::string replaceFunctions(std::string input_str){
-
 	flat_hash_map<std::string,std::string> replacements2;
 	flat_hash_map<std::string,std::string> replacements3;
 	flat_hash_map<std::string,std::string> replacements4;
@@ -192,7 +191,7 @@ std::string replaceFunctions(std::string input_str){
 	flat_hash_map<std::string,std::string> query4;
 	flat_hash_map<std::string,std::string> query3;
 	flat_hash_map<std::string,std::string> query2;
-
+	
 	char ddx{-69};
 	char idx{-85};
 	char sub{-102};
@@ -224,7 +223,7 @@ std::string replaceFunctions(std::string input_str){
 	trigFunctions.push_back("csc");
 	trigFunctions.push_back("sec");
 	trigFunctions.push_back("cot");
-	
+
 	for (i=0;i<6;i++){
 		char c{-64};
 		c += i;
@@ -295,7 +294,6 @@ std::string replaceFunctions(std::string input_str){
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
 		twoChars += input_str.at(i);
-		return "string";
 		threeChars.replace(0,1,"");
 		threeChars += input_str.at(i);
 		fourChars.replace(0,1,"");
@@ -808,7 +806,6 @@ std::string replaceFunctions(std::string input_str){
 			
 		}
 	}
-	
 	return input_str;
 }
 
@@ -840,13 +837,9 @@ std::string postfixify(std::string input_str) {
 }
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
-	
-	
-	input_str = replaceFunctions(input_str);
-	std::vector<std::string> ret;
-	return ret;
-	flat_hash_map<std::string,std::string> repMap;
 
+	input_str = replaceFunctions(input_str);
+	flat_hash_map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
 	if (checkComputations){
 		char repl = 'A';
