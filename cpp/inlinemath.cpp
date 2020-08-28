@@ -51,7 +51,7 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 extern "C" {
 #endif
 
-int EMSCRIPTEN_KEEPALIVE LatexIt(std::string a) {
+int LatexIt(std::string a) {
 
 	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
