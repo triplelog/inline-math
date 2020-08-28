@@ -78,7 +78,8 @@ int LatexIt(std::string a) {
 	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	//std::string latexed = latexOne(postfixed);
-	return 1;
+	int retInt = std::stoi(a);
+	return retInt;
 }
 
 #ifdef __cplusplus
