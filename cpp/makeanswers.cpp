@@ -812,6 +812,7 @@ std::vector<RawQuestion> makeQuestionsNew(Dewey qDewey, std::string input){
 	return questions;
 }
 
+/*
 Question previewQuestion(std::string input){
 	
 	RawQuestion q;
@@ -984,4 +985,4 @@ Question previewQuestion(std::string input){
 	
 	return qq;
 }
-
+*/
