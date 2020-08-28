@@ -294,7 +294,7 @@ std::string replaceFunctions(std::string input_str){
 	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
-		twoChars.push_back(input_str.at(i));
+		twoChars.insert(1, 1,input_str.at(i));
 		return "string";
 		threeChars.replace(0,1,"");
 		threeChars += input_str.at(i);
