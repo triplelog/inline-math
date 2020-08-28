@@ -307,7 +307,7 @@ std::string replaceFunctions(std::string input_str){
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
-		
+		return "string";
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
 			input_str.replace(i-3,4,query4[fourChars]);
@@ -807,7 +807,7 @@ std::string replaceFunctions(std::string input_str){
 			
 		}
 	}
-	return "string";
+	
 	return input_str;
 }
 
