@@ -601,6 +601,8 @@ std::string displayOne(Step step,std::string start,std::string end){
 }
 
 bool firstCorrect;
+#include "rules/identities.cpp"
+
 void initialRun(){
 	prec['~'] = 101;
 	prec['#'] = 100;
@@ -637,20 +639,9 @@ void initialRun(){
 	firstCorrect = false;
 	auto t1 = std::chrono::high_resolution_clock::now();
 	ridx = 0;
-	/*
-	makeRules("rules/derivatives.csv");
-	
-	std::ifstream file1("cpp/subjects/prealgebra.csv"); //file just has some sentences
-	if (!file1) {
-		std::cout << "unable to open file";
-	}
-	std::string row;
-	std::vector<std::string> rows;
-	while (getline(file1, row)) {
-		rows.push_back(row);
-	}
+	std::vector<std::string> rows = createIdentities();
 	makeRulesNew(rows);
-	
+	/*
 	std::ifstream file2("cpp/subjects/precalculus.csv"); //file just has some sentences
 	if (!file2) {
 		std::cout << "unable to open file";
