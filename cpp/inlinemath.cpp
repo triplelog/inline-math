@@ -1,6 +1,6 @@
-#include "partialstuff.cpp"
-#include <emscripten/emscripten.h>
 
+#include <emscripten/emscripten.h>
+/*
 void MakeLesson(std::string a) {
 	clearRules();
 	oneLesson(a);
@@ -46,7 +46,7 @@ void GraphPoints(std::string a, double domainLeft, double domainRight) {
 	std::string pointStr = getPoints(a,"x",domainLeft,domainRight);
 
 }
-
+*/
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -54,9 +54,9 @@ extern "C" {
 int LatexIt(std::string a) {
 
 	
-	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	std::string latexed = latexOne(postfixed);
+	//std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	//std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	//std::string latexed = latexOne(postfixed);
 	return 1;
 }
 
@@ -66,9 +66,9 @@ int LatexIt(std::string a) {
 
 
 int main() {
-	jsonmessage = "var rule = {};";
-	srand(time(NULL));
-	initialRun();
+	//std::string jsonmessage = "var rule = {};";
+	//srand(time(NULL));
+	//initialRun();
 	return 1;
 }
 
