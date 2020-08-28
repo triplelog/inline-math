@@ -291,7 +291,7 @@ std::string replaceFunctions(std::string input_str){
 	std::string sixChars = "......";
 	std::string sevenChars = ".......";
 	std::string eightChars = "........";
-	return "string";
+	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
 		twoChars += input_str.at(i);
@@ -807,6 +807,7 @@ std::string replaceFunctions(std::string input_str){
 			
 		}
 	}
+	return "string";
 	return input_str;
 }
 
