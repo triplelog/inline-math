@@ -605,6 +605,7 @@ std::string displayOne(Step step,std::string start,std::string end){
 bool firstCorrect;
 #include "rules/identities.cpp"
 #include "rules/arithmetic.cpp"
+#include "rules/canonical.cpp"
 
 void initialRun(){
 	prec['~'] = 101;
