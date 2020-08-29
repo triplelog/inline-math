@@ -89,8 +89,11 @@ void PlotIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
 	
-	makeGraph(a);
-
+	std::string plot = makeGraph(a);
+	char* buf;
+	plot += "\0";
+	strcpy(buf, plot.c_str());
+	graph_svg(buf);
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 

@@ -40,7 +40,7 @@ std::string convertY(double y,double bottom,double top,double shift){
 	}
 }
 
-void makeGraph(std::string fn){
+std::string makeGraph(std::string fn){
 	double left = -20;
 	double right = 20;
 	double bottom = -20;
@@ -83,10 +83,8 @@ void makeGraph(std::string fn){
 			}	
 		}
 	}
-	svg += "\0";
-	strcpy(buf, svg.c_str());graph_svg(buf);
 	
-	svg = "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
+	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
 
 	
 	
@@ -100,6 +98,6 @@ void makeGraph(std::string fn){
 	
 	svg += "</svg>";
 	svg += "\0";
-	strcpy(buf, svg.c_str());graph_svg(buf);
+	return svg;
 
 }
