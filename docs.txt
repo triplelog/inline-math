@@ -1,1 +1,1 @@
-~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1
+~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_PlotIt","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1

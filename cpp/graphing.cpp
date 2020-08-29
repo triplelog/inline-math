@@ -83,7 +83,7 @@ std::string makeGraph(std::string fn){
 	
 	std::vector<double> points = getPoints(fn,"x",left,right);
 	//console.log(outStr);
-	for (i=0;i<1001;i++){
+	for (i=0;i<101;i++){
 		path += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
 	}
 	svg += "<path d=\"" + path + "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";

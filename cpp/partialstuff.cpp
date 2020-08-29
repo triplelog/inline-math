@@ -693,9 +693,9 @@ std::vector<double> getPoints(std::string fn, std::string indVar,double domainLe
 		}
 	}
 	auto a1 = std::chrono::high_resolution_clock::now();
-	
-	for (i=0;i<1001;i++){
-		double x = domainLeft + i*(domainRight-domainLeft)/1000.0;
+	out.resize(202);
+	for (i=0;i<101;i++){
+		double x = domainLeft + i*(domainRight-domainLeft)/100.0;
 		std::string solvableR = postfixedV[1];
 		for (ii=xIdx.size()-1;ii>=0;ii--){
 			solvableR.replace(xIdx[ii]-indVar.length(),indVar.length(),std::to_string(x));
@@ -704,8 +704,8 @@ std::vector<double> getPoints(std::string fn, std::string indVar,double domainLe
 		//std::cout << "solvable: " << solvable << "\n";
 		Number y = solvePostfix(solvable);
 		
-		out.push_back(x);
-		out.push_back(std::stod(outputNumber(y)));
+		out[i*2]=x;
+		out[i*2+1]=std::stod(outputNumber(y));
 	}
 	auto a2 = std::chrono::high_resolution_clock::now();
 	//std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n";
