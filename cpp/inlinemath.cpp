@@ -6,7 +6,7 @@ EM_JS(void, console_log, (int x), {
   console.log(x);
 });
 
-EM_JS(void, graph_svg, (const char* x), {
+EM_JS(void, graph_svg, (const char x), {
   addSVG(UTF8ToString(x));
 });
 
@@ -85,13 +85,14 @@ char* LatexIt(char* aa) {
 	return buf;
 }
 
-char* PlotIt(char* aa) {
+void PlotIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
 	
 	std::string plot = makeGraph(a);
 	char* buf;
 	plot += "\0";
+	graph_svg('d');
 	strcpy(buf, plot.c_str());
 	//graph_svg(buf);
 	//free(buf);
@@ -100,7 +101,6 @@ char* PlotIt(char* aa) {
 
 	
 	console_log(duration);
-	return buf;
 }
 
 }
