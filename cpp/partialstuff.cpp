@@ -675,7 +675,24 @@ void oneLesson(std::string s){
 
 std::vector<double> getPoints(std::string fn, std::string indVar,double domainLeft,double domainRight, int n) {
 	std::string depVar = "y";
-	fn = fn.substr(2,fn.length()-2);
+	std::vector<double> out;
+	if (fn.length()>2){
+		if (fn.at(0)=='y' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+		}
+		else if (fn.at(0)=='x' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+			depVar = "x";
+			indVar = "y";
+		}
+		else {
+			return out;
+		}
+	}
+	else {
+		return out;
+	}
+	
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
 	std::vector<int> xIdx;
 	std::vector<double> out;
@@ -704,9 +721,15 @@ std::vector<double> getPoints(std::string fn, std::string indVar,double domainLe
 		//std::cout << "solvable: " << solvable << "\n";
 		Number y = solvePostfix(solvable);
 		
-		out[i*2]=x;
-		//TODO: add a check for outputNumber
-		out[i*2+1]=std::stod(outputNumber(y));
+		if (depVar == "y"){
+			out[i*2]=x;
+			out[i*2+1]=std::stod(outputNumber(y));
+		}
+		else if (depVar == "x"){
+			out[i*2+1]=x;
+			out[i*2]=std::stod(outputNumber(y));
+		}
+		
 	}
 	auto a2 = std::chrono::high_resolution_clock::now();
 	//std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n";
