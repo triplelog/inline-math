@@ -6,7 +6,7 @@ EM_JS(void, console_log, (int x), {
   console.log(x);
 });
 
-EM_JS(void, graph_svg, (std::string x), {
+EM_JS(void, graph_svg, (char* x), {
   console.log(x);
 });
 
@@ -93,7 +93,10 @@ void PlotIt(char* aa) {
 
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	graph_svg(plotSVG);
+	std::string testStr = "askdjfhasljdhf";
+	char* buf;
+	strcpy(buf, testStr.c_str());
+	graph_svg(buf);
 	console_log(duration);
 }
 
