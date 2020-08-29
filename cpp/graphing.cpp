@@ -39,12 +39,15 @@ std::string convertY(double y,double bottom,double top,double shift){
 		return "";
 	}
 }
-std::string makeGraph(std::string fn){
+
+void makeGraph(std::string fn){
 	double left = -20;
 	double right = 20;
 	double bottom = -20;
 	double top = 20;
+	char* buf;
 	std::string svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
+	strcpy(buf, svg.c_str());graph_svg(buf);
 	int i; int ii;
 	if (right-left>5){
 		for (i=floor(left)+1;i<floor(right)+1;i++){
@@ -52,42 +55,53 @@ std::string makeGraph(std::string fn){
 			if (top-bottom>5){
 				for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
 					if (i%5==0 && ii%5 == 0){
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
+						svg = "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
+						strcpy(buf, svg.c_str());graph_svg(buf);
 					}
 					else if (i%5==0 || ii%5 == 0){
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
+						svg = "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
+						strcpy(buf, svg.c_str());graph_svg(buf);
 					}
 					else {
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
+						svg = "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
+						strcpy(buf, svg.c_str());graph_svg(buf);
 					}
 					
 				}
 			}
 			
 			if (i%5 == 0 && i != 0){
-				svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(0,bottom,top,3) + "\" r=\"4px\" fill=\"white\"/>";
-				svg += "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\"" + convertX(i,left,right,0) + "\" y=\"" + convertY(0,bottom,top,1) + "\">" + std::to_string(i) + "</text>";
+				svg = "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(0,bottom,top,3) + "\" r=\"4px\" fill=\"white\"/>";
+				strcpy(buf, svg.c_str());graph_svg(buf);
+				svg = "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\"" + convertX(i,left,right,0) + "\" y=\"" + convertY(0,bottom,top,1) + "\">" + std::to_string(i) + "</text>";
+				strcpy(buf, svg.c_str());graph_svg(buf);
 			}
 		}
 		for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
 			if (ii%5 == 0 && ii != 0){
-				svg += "<circle cx=\"" + convertX(0,left,right,-3) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\"4px\" fill=\"white\"/>";
-				svg += "<text font-size=\"6px\" text-anchor=\"end\" dominant-baseline=\"middle\" x=\"" + convertX(0,left,right,-1) + "\" y=\"" + convertY(ii,bottom,top,1) + "\">" + std::to_string(ii) + "</text>";
+				svg = "<circle cx=\"" + convertX(0,left,right,-3) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\"4px\" fill=\"white\"/>";
+				strcpy(buf, svg.c_str());graph_svg(buf);
+				svg = "<text font-size=\"6px\" text-anchor=\"end\" dominant-baseline=\"middle\" x=\"" + convertX(0,left,right,-1) + "\" y=\"" + convertY(ii,bottom,top,1) + "\">" + std::to_string(ii) + "</text>";
+				strcpy(buf, svg.c_str());graph_svg(buf);
 			}	
 		}
 	}
-	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
+	svg = "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
+	strcpy(buf, svg.c_str());graph_svg(buf);
 	
-	
-	std::string path = "M";
 	
 	std::vector<double> points = getPoints(fn,"x",left,right);
 	//console.log(outStr);
+	svg = "<path d=\"M";
+	strcpy(buf, svg.c_str());graph_svg(buf);
 	for (i=0;i<101;i++){
-		path += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+		svg = convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+		strcpy(buf, svg.c_str());graph_svg(buf);
 	}
-	svg += "<path d=\"" + path + "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";
+	svg = "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";
+	strcpy(buf, svg.c_str());graph_svg(buf);
 	
-	svg += "</svg>";
-	return svg;
+	svg = "</svg>";
+	strcpy(buf, svg.c_str());graph_svg(buf);
+
 }

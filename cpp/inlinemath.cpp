@@ -7,7 +7,7 @@ EM_JS(void, console_log, (int x), {
 });
 
 EM_JS(void, graph_svg, (const char* x), {
-  console.log(UTF8ToString(x));
+  addSVG(UTF8ToString(x));
 });
 
 #include "removeIdentities.cpp"
@@ -89,14 +89,12 @@ void PlotIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
 	
-	std::string plotSVG = makeGraph(a);
+	makeGraph(a);
 
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	std::string testStr = "askdjfhasljdhf";
-	char* buf;
-	strcpy(buf, testStr.c_str());
-	graph_svg(buf);
+
+	
 	console_log(duration);
 }
 
