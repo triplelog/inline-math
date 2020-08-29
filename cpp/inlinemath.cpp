@@ -90,10 +90,11 @@ void PlotIt(char* aa) {
 	std::string a = std::string(aa);
 	
 	std::string plot = makeGraph(a);
-	char* buf;
+	//char* buf;
 	plot += "\0";
 	graph_svg('d');
-	strcpy(buf, plot.c_str());
+	//strcpy(buf, plot.c_str());
+	plot = "\0";
 	//graph_svg(buf);
 	//free(buf);
 	auto a2 = std::chrono::high_resolution_clock::now();
