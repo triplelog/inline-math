@@ -1,43 +1,52 @@
 std::string convertCoordinates(double x,double  y,double left, double right,double bottom,double top){
-	if (x>=left && x<=right){
-		std::string xstr = std::to_string(100*(x-left)/(right-left));
-		if (xstr.at(0) == '-'){xstr = xstr.substr(0,6);}
-		else{xstr = xstr.substr(0,5);}
-		if (y>=bottom && y<=top){
-			std::string ystr = std::to_string(100-100*(y-bottom)/(top-bottom));
-			if (ystr.at(0) == '-'){ystr = ystr.substr(0,6);}
-			else{ystr = ystr.substr(0,5);}
-			return xstr + " " + ystr;
-		}
-		else {
-			return "";
-		}
+	if (x<left){
+		x = left-1;
 	}
-	else {
-		return "";
+	if (x>right){
+		x = right+1;
 	}
+	if (y<bottom){
+		y = bottom-1;
+	}
+	if (y>top){
+		y = top+1;
+	}
+	std::string xstr = std::to_string(100*(x-left)/(right-left));
+	if (xstr.at(0) == '-'){xstr = xstr.substr(0,6);}
+	else{xstr = xstr.substr(0,5);}
+	
+	std::string ystr = std::to_string(100-100*(y-bottom)/(top-bottom));
+	if (ystr.at(0) == '-'){ystr = ystr.substr(0,6);}
+	else{ystr = ystr.substr(0,5);}
+	return xstr + " " + ystr;
+
+
 }
 std::string convertX(double x,double left, double right,double shift){
-	if (x>=left && x<=right){
-		std::string xstr = std::to_string(100*(x-left)/(right-left));
-		if (xstr.at(0) == '-'){xstr = xstr.substr(0,6);}
-		else{xstr = xstr.substr(0,5);}
-		return xstr;
+	if (x<left){
+		x = left-1;
 	}
-	else {
-		return "";
+	if (x>right){
+		x = right+1;
 	}
+	std::string xstr = std::to_string(100*(x-left)/(right-left));
+	if (xstr.at(0) == '-'){xstr = xstr.substr(0,6);}
+	else{xstr = xstr.substr(0,5);}
+	return xstr;
+
 }
 std::string convertY(double y,double bottom,double top,double shift){
-	if (y>=bottom && y<=top){
-		std::string ystr = std::to_string(100-100*(y-bottom)/(top-bottom));
-		if (ystr.at(0) == '-'){ystr = ystr.substr(0,6);}
-		else{ystr = ystr.substr(0,5);}
-		return ystr;
+	if (y<bottom){
+		y = bottom-1;
 	}
-	else {
-		return "";
+	if (y>top){
+		y = top+1;
 	}
+	std::string ystr = std::to_string(100-100*(y-bottom)/(top-bottom));
+	if (ystr.at(0) == '-'){ystr = ystr.substr(0,6);}
+	else{ystr = ystr.substr(0,5);}
+	return ystr;
+
 }
 
 std::string makeGraph(std::string fn,double left, double right,double bottom,double top){
