@@ -6,8 +6,8 @@ EM_JS(void, console_log, (int x), {
   console.log(x);
 });
 
-EM_JS(void, graph_svg, (char* x), {
-  console.log(x);
+EM_JS(void, graph_svg, (const char* x), {
+  console.log(UTF8ToString(x));
 });
 
 #include "removeIdentities.cpp"
