@@ -57,7 +57,11 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	int i; int ii;
 	int xMinor = 1;
 	int xMajor = 1;
-	if (right-left>30){
+	if (right-left>50){
+		xMajor = 10;
+		xMinor = 2;
+	}
+	else if (right-left>30){
 		xMajor = 5;
 	}
 	else if (right-left>20){
@@ -76,7 +80,7 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 				if (i%xMajor==0 && ii%5 == 0){
 					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
 				}
-				else if (i%5==0 || ii%5 == 0){
+				else if (i%xMajor==0 || ii%5 == 0){
 					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
 				}
 				else {
