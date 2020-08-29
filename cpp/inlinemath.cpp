@@ -88,15 +88,14 @@ char* LatexIt(char* aa) {
 void PlotIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
-	
-	std::string plot = makeGraph(a);
-	//char* buf;
+	double left = -25;
+	double right = 25;
+	double bottom = -20;
+	double top = 20;
+	std::string plot = makeGraph(a,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());
-	//strcpy(buf, plot.c_str());
 	plot = "\0";
-	//graph_svg(buf);
-	//free(buf);
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 

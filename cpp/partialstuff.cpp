@@ -673,7 +673,7 @@ void oneLesson(std::string s){
 	makeRulesNew(rows);
 }
 
-std::vector<double> getPoints(std::string fn, std::string indVar,double domainLeft,double domainRight) {
+std::vector<double> getPoints(std::string fn, std::string indVar,double domainLeft,double domainRight, int n) {
 	std::string depVar = "y";
 	fn = fn.substr(2,fn.length()-2);
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
@@ -693,9 +693,9 @@ std::vector<double> getPoints(std::string fn, std::string indVar,double domainLe
 		}
 	}
 	auto a1 = std::chrono::high_resolution_clock::now();
-	out.resize(202);
-	for (i=0;i<101;i++){
-		double x = domainLeft + i*(domainRight-domainLeft)/100.0;
+	out.resize(2*n+2);
+	for (i=0;i<n+1;i++){
+		double x = domainLeft + i*(domainRight-domainLeft)/n;
 		std::string solvableR = postfixedV[1];
 		for (ii=xIdx.size()-1;ii>=0;ii--){
 			solvableR.replace(xIdx[ii]-indVar.length(),indVar.length(),std::to_string(x));
