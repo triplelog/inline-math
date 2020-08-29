@@ -673,25 +673,10 @@ void oneLesson(std::string s){
 	makeRulesNew(rows);
 }
 
-std::vector<double> getPoints(std::string fn, std::string indVar,double domainLeft,double domainRight, int n) {
-	std::string depVar = "y";
+std::vector<double> getPoints(std::string fn, std::string indVar, std::string depVar,double domainLeft,double domainRight, int n) {
+
 	std::vector<double> out;
-	if (fn.length()>2){
-		if (fn.at(0)=='y' && fn.at(1) == '='){
-			fn = fn.substr(2,fn.length()-2);
-		}
-		else if (fn.at(0)=='x' && fn.at(1) == '='){
-			fn = fn.substr(2,fn.length()-2);
-			depVar = "x";
-			indVar = "y";
-		}
-		else {
-			return out;
-		}
-	}
-	else {
-		return out;
-	}
+	
 	
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
 	std::vector<int> xIdx;

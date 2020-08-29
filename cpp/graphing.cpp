@@ -110,12 +110,30 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 
 	
 	int n = 500;
-	std::vector<double> points = getPoints(fn,"x",left,right,n);
+	std::vector<double> points;
+	if (fn.length()>2){
+		if (fn.at(0)=='y' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+			points = getPoints(fn,"x","y",left,right,n);
+		}
+		else if (fn.at(0)=='x' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+			points = getPoints(fn,"y","x",bottom,top,n);
+		}
+	}
 	//console.log(outStr);
 	svg += "<path d=\"M";
-	for (i=0;i<n+1;i++){
-		svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+	if (points.size()<2*n+2){
+		for (i=0;i<points.size()/2;i++){
+			svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+		}
 	}
+	else {
+		for (i=0;i<n+1;i++){
+			svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+		}
+	}
+	
 	svg += "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";
 	
 	svg += "</svg>";
