@@ -85,14 +85,14 @@ char* LatexIt(char* aa) {
 	return buf;
 }
 
-void PlotIt(char* aa) {
+char* PlotIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
 	
 	std::string plot = makeGraph(a);
-	//char* buf;
+	char* buf;
 	plot += "\0";
-	//strcpy(buf, plot.c_str());
+	strcpy(buf, plot.c_str());
 	//graph_svg(buf);
 	//free(buf);
 	auto a2 = std::chrono::high_resolution_clock::now();
@@ -100,6 +100,7 @@ void PlotIt(char* aa) {
 
 	
 	console_log(duration);
+	return buf;
 }
 
 }
