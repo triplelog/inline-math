@@ -73,7 +73,7 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	else if (right-left>5){
 		xMajor = 1;
 	}
-	for (i=floor(left)+1;i<floor(right)+1;i+=xMinor){
+	for (i=floor(left/xMinor)*xMinor+xMinor;i<floor(right)+xMinor;i+=xMinor){
 		
 		if (top-bottom>5){
 			for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
