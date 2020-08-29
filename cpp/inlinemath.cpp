@@ -85,12 +85,10 @@ char* LatexIt(char* aa) {
 	return buf;
 }
 
-void PlotIt(char* aa,double left) {
+void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
-	double right = 25;
-	double bottom = -20;
-	double top = 20;
+
 	std::string plot = makeGraph(a,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());

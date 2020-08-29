@@ -84,7 +84,7 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
 
 	
-	int n = 1000;
+	int n = 300;
 	std::vector<double> points = getPoints(fn,"x",left,right,n);
 	//console.log(outStr);
 	svg += "<path d=\"M";
