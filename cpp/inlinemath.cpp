@@ -94,6 +94,7 @@ void PlotIt(char* aa) {
 	plot += "\0";
 	strcpy(buf, plot.c_str());
 	graph_svg(buf);
+	free(buf);
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 
