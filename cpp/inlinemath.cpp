@@ -81,6 +81,19 @@ char* LatexIt(char* aa) {
 	return buf;
 }
 
+char* PlotIt(char* aa) {
+	auto a1 = std::chrono::high_resolution_clock::now();
+	std::string a = std::string(aa);
+	
+	std::string plotSVG = makeGraph(a);
+	console_log(plotSVG);
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	char* buf;
+	strcpy(buf, plotSVG.c_str());
+	console_log(duration);
+	return buf;
+}
 
 }
 
