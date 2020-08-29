@@ -55,45 +55,57 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	std::string svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
 
 	int i; int ii;
-	if (right-left>5){
-		for (i=floor(left)+1;i<floor(right)+1;i++){
-			
-			if (top-bottom>5){
-				for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
-					if (i%5==0 && ii%5 == 0){
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
-					}
-					else if (i%5==0 || ii%5 == 0){
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
-					}
-					else {
-						svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
-					}
-					
+	int xMinor = 1;
+	int xMajor = 1;
+	if (right-left>30){
+		xMajor = 5;
+	}
+	else if (right-left>20){
+		xMajor = 3;
+	}
+	else if (right-left>10){
+		xMajor = 2;
+	}
+	else if (right-left>5){
+		xMajor = 1;
+	}
+	for (i=floor(left)+1;i<floor(right)+1;i+=xMinor){
+		
+		if (top-bottom>5){
+			for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
+				if (i%xMajor==0 && ii%5 == 0){
+					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
 				}
-			}
-			
-			if (i%5 == 0 && i != 0){
-				svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(0,bottom,top,3) + "\" r=\"4px\" fill=\"white\"/>";
-
-				svg += "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\"" + convertX(i,left,right,0) + "\" y=\"" + convertY(0,bottom,top,1) + "\">" + std::to_string(i) + "</text>";
-
+				else if (i%5==0 || ii%5 == 0){
+					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
+				}
+				else {
+					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
+				}
+				
 			}
 		}
-		for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
-			if (ii%5 == 0 && ii != 0){
-				svg += "<circle cx=\"" + convertX(0,left,right,-3) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\"4px\" fill=\"white\"/>";
+		
+		if (i%xMajor == 0 && i != 0){
+			svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(0,bottom,top,3) + "\" r=\"4px\" fill=\"white\"/>";
 
-				svg += "<text font-size=\"6px\" text-anchor=\"end\" dominant-baseline=\"middle\" x=\"" + convertX(0,left,right,-1) + "\" y=\"" + convertY(ii,bottom,top,1) + "\">" + std::to_string(ii) + "</text>";
+			svg += "<text fill=\"black\" font-size=\"6px\" text-anchor=\"middle\" dominant-baseline=\"hanging\" x=\"" + convertX(i,left,right,0) + "\" y=\"" + convertY(0,bottom,top,1) + "\">" + std::to_string(i) + "</text>";
 
-			}	
 		}
+	}
+	for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
+		if (ii%5 == 0 && ii != 0){
+			svg += "<circle cx=\"" + convertX(0,left,right,-3) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\"4px\" fill=\"white\"/>";
+
+			svg += "<text font-size=\"6px\" text-anchor=\"end\" dominant-baseline=\"middle\" x=\"" + convertX(0,left,right,-1) + "\" y=\"" + convertY(ii,bottom,top,1) + "\">" + std::to_string(ii) + "</text>";
+
+		}	
 	}
 	
 	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
 
 	
-	int n = 300;
+	int n = 500;
 	std::vector<double> points = getPoints(fn,"x",left,right,n);
 	//console.log(outStr);
 	svg += "<path d=\"M";
