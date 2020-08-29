@@ -705,6 +705,7 @@ std::vector<double> getPoints(std::string fn, std::string indVar,double domainLe
 		Number y = solvePostfix(solvable);
 		
 		out[i*2]=x;
+		//TODO: add a check for outputNumber
 		out[i*2+1]=std::stod(outputNumber(y));
 	}
 	auto a2 = std::chrono::high_resolution_clock::now();

@@ -85,10 +85,9 @@ char* LatexIt(char* aa) {
 	return buf;
 }
 
-void PlotIt(char* aa) {
+void PlotIt(char* aa,double left) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
-	double left = -25;
 	double right = 25;
 	double bottom = -20;
 	double top = 20;
