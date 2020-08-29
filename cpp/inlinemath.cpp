@@ -7,7 +7,7 @@ EM_JS(void, console_log, (int x), {
 });
 
 EM_JS(void, graph_svg, (std::string x), {
-  setSVG(x);
+  console.log(x);
 });
 
 #include "removeIdentities.cpp"
