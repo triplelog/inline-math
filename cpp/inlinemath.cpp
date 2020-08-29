@@ -6,7 +6,7 @@ EM_JS(void, console_log, (int x), {
   console.log(x);
 });
 
-EM_JS(void, graph_svg, (const char x), {
+EM_JS(void, graph_svg, (const char* x), {
   addSVG(UTF8ToString(x));
 });
 
@@ -92,7 +92,7 @@ void PlotIt(char* aa) {
 	std::string plot = makeGraph(a);
 	//char* buf;
 	plot += "\0";
-	graph_svg('d');
+	graph_svg(plot.c_str());
 	//strcpy(buf, plot.c_str());
 	plot = "\0";
 	//graph_svg(buf);
