@@ -707,12 +707,25 @@ std::vector<double> getPoints(std::string fn, std::string indVar, std::string de
 		Number y = solvePostfix(solvable);
 		
 		if (depVar == "y"){
-			out[i*2]=x;
-			out[i*2+1]=std::stod(outputNumber(y));
+			if (y.type == 0){
+				out[i*2]=-10001;
+				out[i*2+1]=-10001;
+			}
+			else {
+				out[i*2]=x;
+				out[i*2+1]=std::stod(outputNumber(y));
+			}
+			
 		}
 		else if (depVar == "x"){
-			out[i*2+1]=x;
-			out[i*2]=std::stod(outputNumber(y));
+			if (y.type == 0){
+				out[i*2]=-10001;
+				out[i*2]=-10001;
+			}
+			else {
+				out[i*2+1]=x;
+				out[i*2]=std::stod(outputNumber(y));
+			}
 		}
 		
 	}

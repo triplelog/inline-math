@@ -125,12 +125,17 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	svg += "<path d=\"M";
 	if (points.size()<2*n+2){
 		for (i=0;i<points.size()/2;i++){
-			svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+			if (points[i*2]!=-10001 || points[i*2+1]!=-10001){
+				svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+			}
+			
 		}
 	}
 	else {
 		for (i=0;i<n+1;i++){
-			svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+			if (points[i*2]!=-10001 || points[i*2+1]!=-10001){
+				svg += convertCoordinates(points[i*2],points[i*2+1],left,right,bottom,top)+ " ";
+			}
 		}
 	}
 	
