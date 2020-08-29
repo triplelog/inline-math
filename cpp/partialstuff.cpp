@@ -680,7 +680,7 @@ std::vector<double> getPoints(std::string fn, std::string indVar, std::string de
 	
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
 	std::vector<int> xIdx;
-	std::vector<double> out;
+	
 	int i; int ii;
 	std::string currentOperand = "";
 	for (i=0;i<postfixedV[1].length();i++){
