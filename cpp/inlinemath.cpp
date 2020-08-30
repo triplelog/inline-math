@@ -10,6 +10,10 @@ EM_JS(void, graph_svg, (const char* x), {
   addSVG(UTF8ToString(x));
 });
 
+EM_JS(void, output_latex, (const char* x), {
+  addLatex(UTF8ToString(x));
+});
+
 #include "removeIdentities.cpp"
 
 
@@ -64,7 +68,7 @@ void OneRule(char* aa) {
 
 
 
-char* LatexIt(char* aa) {
+void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
@@ -75,14 +79,15 @@ char* LatexIt(char* aa) {
 	//std::string noIdentities = solveArithmetic(postfixed);
 	
 	std::string noIdentities = toCanonical(postfixed);
-	
+	postfixed = "\0";
 	std::string latexed = latexOne(noIdentities);
+	noIdentities = "\0";
 	latexed += "\0";
+	output_latex(latexed);
+	latexed = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	char* buf;
-	strcpy(buf, latexed.c_str());
-	latexed = "\0";
+
 	console_log(duration);
 	return buf;
 }
