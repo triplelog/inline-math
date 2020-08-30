@@ -382,6 +382,10 @@ Question currentQuestion;
 
 std::map<std::string,std::vector<Rule>> rules;
 std::map<int,Rule> ruleIndex;
+
+std::map<std::string,std::map<std::string,std::vector<Rule>>> rulesMap;
+std::map<std::string,std::map<int,Rule>> ruleIndexMap;
+
 int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;
@@ -649,8 +653,13 @@ void initialRun(){
 	ridx = 0;
 	std::vector<std::string> rows = createIdentities();
 	makeRulesNew(rows);
+	rulesMap["identities"]=rules;
+	ruleIndexMap["identities"]=ruleIndex;
+	
 	rows = createArithmetic();
 	makeRulesNew(rows);
+	rulesMap["arithmetic"]=rules;
+	ruleIndexMap["arithmetic"]=ruleIndex;
 
 	auto t2 = std::chrono::high_resolution_clock::now();
 }

@@ -3,8 +3,10 @@
 std::string removeIdentities(std::string s){
 	
 	clearRules();
-	std::vector<std::string> rows = createIdentities();
-	makeRulesNew(rows);
+	rules = rulesMap["identities"];
+	ruleIndex = ruleIndexMap["identities"];
+	//std::vector<std::string> rows = createIdentities();
+	//makeRulesNew(rows);
 	
 
 	
@@ -39,10 +41,12 @@ std::string solveArithmetic(std::string s){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	clearRules();
-	std::vector<std::string> rows = createIdentities();
-	makeRulesNew(rows);
-	rows = createArithmetic();
-	makeRulesNew(rows);
+	rules = rulesMap["arithmetic"];
+	ruleIndex = ruleIndexMap["arithmetic"];
+	//std::vector<std::string> rows = createIdentities();
+	//makeRulesNew(rows);
+	//rows = createArithmetic();
+	//makeRulesNew(rows);
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();

@@ -155,4 +155,5 @@ void makeRulesNew(std::vector<std::string> rows){
 		
 		
 	}
+	
 }
