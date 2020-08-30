@@ -120,8 +120,6 @@ std::string toCanonical(std::string s){
 		if (someStrings.size()>0){
 			foundNext = true;
 			newPostfix = removeBracketsOne(someStrings[0].next);
-			maxDepth = "4";
-			maxDepthn1 = "3";
 		}
 		else if (maxDepth == "4"){
 			maxDepth = "5";
