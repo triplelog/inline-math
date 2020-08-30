@@ -77,10 +77,12 @@ char* LatexIt(char* aa) {
 	std::string noIdentities = toCanonical(postfixed);
 	
 	std::string latexed = latexOne(noIdentities);
+	latexed += "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 	char* buf;
 	strcpy(buf, latexed.c_str());
+	latexed = "\0";
 	console_log(duration);
 	return buf;
 }
