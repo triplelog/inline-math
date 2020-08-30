@@ -83,7 +83,7 @@ void LatexIt(char* aa) {
 	std::string latexed = latexOne(noIdentities);
 	noIdentities = "\0";
 	latexed += "\0";
-	output_latex(latexed);
+	output_latex(latexed.c_str());
 	latexed = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
