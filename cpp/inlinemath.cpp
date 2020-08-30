@@ -89,7 +89,6 @@ void LatexIt(char* aa) {
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 
 	console_log(duration);
-	return buf;
 }
 
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
