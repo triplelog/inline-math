@@ -87,8 +87,8 @@ std::string toCanonical(std::string s){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	clearRules();
-	rules = rulesMap["arithmetic"];
-	ruleIndex = ruleIndexMap["arithmetic"];
+	rules = rulesMap["canonical"];
+	ruleIndex = ruleIndexMap["canonical"];
 	maxDepth = "4";
 	maxDepthn1 = "3";
 	//std::vector<std::string> rows = createCanonical();
