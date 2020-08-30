@@ -651,15 +651,23 @@ void initialRun(){
 	firstCorrect = false;
 	auto t1 = std::chrono::high_resolution_clock::now();
 	ridx = 0;
-	std::vector<std::string> rows = createIdentities();
-	makeRulesNew(rows);
+	std::vector<std::string> rows1 = createIdentities();
+	makeRulesNew(rows1);
 	rulesMap["identities"]=rules;
 	ruleIndexMap["identities"]=ruleIndex;
-	
-	rows = createArithmetic();
-	makeRulesNew(rows);
+
+	std::vector<std::string> rows2 = createArithmetic();
+	makeRulesNew(rows2);
 	rulesMap["arithmetic"]=rules;
 	ruleIndexMap["arithmetic"]=ruleIndex;
+	
+	rules.clear();
+	ruleIndex.clear();
+	makeRulesNew(rows1);
+	std::vector<std::string> rows3 = createCanonical();
+	makeRulesNew(rows3);
+	rulesMap["canonical"]=rules;
+	ruleIndexMap["canonical"]=ruleIndex;
 
 	auto t2 = std::chrono::high_resolution_clock::now();
 }

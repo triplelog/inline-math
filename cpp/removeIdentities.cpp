@@ -5,6 +5,8 @@ std::string removeIdentities(std::string s){
 	clearRules();
 	rules = rulesMap["identities"];
 	ruleIndex = ruleIndexMap["identities"];
+	maxDepth = "4";
+	maxDepthn1 = "3";
 	//std::vector<std::string> rows = createIdentities();
 	//makeRulesNew(rows);
 	
@@ -43,6 +45,8 @@ std::string solveArithmetic(std::string s){
 	clearRules();
 	rules = rulesMap["arithmetic"];
 	ruleIndex = ruleIndexMap["arithmetic"];
+	maxDepth = "4";
+	maxDepthn1 = "3";
 	//std::vector<std::string> rows = createIdentities();
 	//makeRulesNew(rows);
 	//rows = createArithmetic();
@@ -83,8 +87,12 @@ std::string toCanonical(std::string s){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	clearRules();
-	std::vector<std::string> rows = createCanonical();
-	makeRulesNew(rows);
+	rules = rulesMap["arithmetic"];
+	ruleIndex = ruleIndexMap["arithmetic"];
+	maxDepth = "4";
+	maxDepthn1 = "3";
+	//std::vector<std::string> rows = createCanonical();
+	//makeRulesNew(rows);
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
@@ -112,8 +120,14 @@ std::string toCanonical(std::string s){
 		if (someStrings.size()>0){
 			foundNext = true;
 			newPostfix = removeBracketsOne(someStrings[0].next);
+			maxDepth = "4";
+			maxDepthn1 = "3";
 		}
-		console_log(someStrings.size());
+		else if (maxDepth == "4"){
+			maxDepth = "5";
+			maxDepthn1 = "4";
+			foundNext = true;
+		}
 	}
 	return newPostfix;
 }
