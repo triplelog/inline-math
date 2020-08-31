@@ -112,7 +112,22 @@ void AddRules(char* aa,char* bb) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	std::string ruleType = std::string(aa);
-	std::string ruleText = std::string(bb);
+	int i;
+	std::vector<std::string> ruleText;
+	std::string oneLine = "";
+	for (i =0;bb[i] != '\0';i++){
+		if (bb[i] == '\n'){
+			ruleText.push_back(oneLine);
+			oneLine = "";
+		}
+		else {
+			oneLine += bb[i];
+		}
+	}
+	if (oneLine != ""){
+		ruleText.push_back(oneLine);
+		oneLine = "";
+	}
 	
 	if (ruleType == "identities"){
 		rules.clear();
