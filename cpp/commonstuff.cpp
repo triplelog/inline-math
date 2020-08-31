@@ -612,6 +612,7 @@ bool firstCorrect;
 #include "rules/identities.cpp"
 #include "rules/arithmetic.cpp"
 #include "rules/canonical.cpp"
+#include "rules/calculus.cpp"
 
 
 void initialRun(){
