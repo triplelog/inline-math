@@ -130,11 +130,9 @@ void AddRules(char* aa,char* bb) {
 	}
 	
 	if (ruleType == "identities"){
-		rules.clear();
-		ruleIndex.clear();
-		ridx = 0;
-		std::vector<std::string> rows1 = createIdentities();
-		makeRulesNew(rows1);
+		rules = rulesMap["identities"];
+		ruleIndex = ruleIndexMap["identities"];
+		ridx = rules.size();
 		makeRulesNew(ruleText);
 		rulesMap["identities"]=rules;
 		ruleIndexMap["identities"]=ruleIndex;
