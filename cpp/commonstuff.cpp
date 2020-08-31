@@ -664,6 +664,7 @@ void initialRun(){
 	
 	rules.clear();
 	ruleIndex.clear();
+	ridx = 0;
 	makeRulesNew(rows1);
 	std::vector<std::string> rows3 = createCanonical();
 	makeRulesNew(rows3);
@@ -672,6 +673,7 @@ void initialRun(){
 	
 	rules.clear();
 	ruleIndex.clear();
+	ridx = 0;
 	makeRulesNew(rows1);
 	makeRulesNew(rows2);
 	std::vector<std::string> rows4 = createCalculus();
