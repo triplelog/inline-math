@@ -668,6 +668,16 @@ void initialRun(){
 	makeRulesNew(rows3);
 	rulesMap["canonical"]=rules;
 	ruleIndexMap["canonical"]=ruleIndex;
+	
+	rules.clear();
+	ruleIndex.clear();
+	makeRulesNew(rows1);
+	makeRulesNew(rows2);
+	std::vector<std::string> rows4 = createCalculus();
+	makeRulesNew(rows4);
+	rulesMap["calculus"]=rules;
+	ruleIndexMap["calculus"]=ruleIndex;
 
 	auto t2 = std::chrono::high_resolution_clock::now();
 }
+

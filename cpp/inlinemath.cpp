@@ -78,7 +78,9 @@ void LatexIt(char* aa) {
 	
 	//std::string noIdentities = solveArithmetic(postfixed);
 	
-	std::string noIdentities = toCanonical(postfixed);
+	//std::string noIdentities = toCanonical(postfixed);
+	
+	std::string noIdentities = doCalculus(postfixed);
 	postfixed = "\0";
 	std::string latexed = latexOne(noIdentities);
 	noIdentities = "\0";

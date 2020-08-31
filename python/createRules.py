@@ -55,3 +55,21 @@ for line in lines:
 file1.writelines(end)
 file1.close()
 
+initial = ['std::vector<std::string> createCalculus(){\nstd::vector<std::string> calculus;\n']
+end = ['return calculus;\n}\n']
+file1 = open('../cpp/rules/calculus.cpp', 'w')
+file1.writelines(initial) 
+ 
+  
+# Using readlines() 
+file2 = open('calculus.txt', 'r') 
+lines = file2.readlines() 
+  
+count = 0
+# Strips the newline character 
+for line in lines:
+	line = 'calculus.push_back("'+line.strip()+'");\n'
+	file1.writelines([line])
+
+file1.writelines(end)
+file1.close()
