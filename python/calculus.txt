@@ -1,0 +1,71 @@
+:subtople:algebra.calculus.derivatives
+:name:Derivatives
+
+::: rule
+in: ddx(x^A)
+out: A*x^(A-1)
+A does not contain x
+ee
+:::
+::: rule
+in: ddx(x)
+out: 1
+ee
+:::
+::: rule
+in: ddx(A)
+out: 0
+A does not contain x
+ee
+:::
+::: rule
+in: ddx(A*B)
+out: ddx(A)*B+A*ddx(B)
+ee
+:::
+::: rule
+in: ddx(A/B)
+out: (B*ddx(A)-A*ddx(B))/B^2
+ee
+:::
+::: rule
+in: ddx(A+B)
+out: ddx(A)+ddx(B)
+ee
+:::
+::: rule
+in: ddx(A^B)
+out: B*A^(B-1)*ddx(A)
+B does not contain x
+ee
+:::
+
+::: rule
+in: ddx(ln(A))
+out: ddx(A)/A
+ee
+:::
+
+::: rule
+in: ddx(e^A)
+out: e^A*ddx(A)
+ee
+:::
+
+::: rule
+in: ddx(A^B)
+out: A^B*ln(A)*ddx(B)
+A does not contain x
+ee
+:::
+
+::: rule
+in: ddx(cos(A))
+out: -sin(A)*ddx(A)
+ee
+:::
+::: rule
+in: ddx(sin(A))
+out: cos(A)*ddx(A)
+ee
+:::
