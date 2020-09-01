@@ -47,6 +47,7 @@
 	  math(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match) {
+			console.log("matched math");
 		  return {
 			type: 'math',
 			raw: match[0],
@@ -63,7 +64,6 @@
 	
 	console.log(marked("this is $x^12$"));
 	
-  	console.log(marked.Lexer.tokenizer.rules.inline);
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
