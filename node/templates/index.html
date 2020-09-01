@@ -1,0 +1,329 @@
+{% extends "templates/base.html" %}
+
+{% block borderRadius %}
+	--border-radius: 1.25rem;
+	
+{% endblock %}
+	
+
+
+{% block titleCSS %}
+
+
+.title:hover .titleBG {
+  	background-position: 350px 0px;
+  	transition: all 2s linear;
+}
+.titleBG {
+  	background-position: -50px 0px;
+  	transition: all 2s linear;
+}
+.content-11 .title {
+  	transition: opacity 1s linear;
+  	background: hsl(3,19%,19%);
+}
+.content-11 .content {
+	text-align: center;
+}
+.content-11 .title:hover {
+  	opacity: 1;
+  	transition: opacity 1s linear;
+}
+.content-13 .title {
+	transition: opacity 1s linear;
+  	background: rgb(228,242,228);
+	background-image: url("../sudokubannercolor.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position-x: 50%;
+}
+.content-31 .title {
+	background-image: url("../img/pencilscrop.jpg");
+  	background-size: auto 100%;
+  	background-repeat: repeat;
+}
+.content-31 .titleBG {
+	background-image: url("../img/pencilscrop.jpg");
+  	background-size: auto 100%;
+  	background-repeat: repeat;
+}
+.content-33 .title {
+	background-image: url("../img/baseballbg.jpg");
+  	background-size: 100% 100%;
+  	background-repeat: no-repeat;
+}
+.content-33 .titleBG {
+	background-image: url("../img/baseballfg.png");
+  	background-size: auto 100%;
+  	background-repeat: no-repeat;
+  	width: 100%;
+  	height: 100%;
+}
+div:Not(.content-22) > .content {
+	overflow-y: auto;
+	overflow-x: auto;
+	overflow: auto;
+	padding: calc(.75 * var(--border-radius));
+	font-size: 1.1rem;
+	line-height: 1.5rem;
+	text-align: center;
+}
+
+.logoDiv img {
+	width:12rem;
+	left:-1.5rem;
+	position:absolute;
+	top:-1rem;
+}
+.logoText {
+	width:12rem;
+	left:-1.5rem;
+	position:relative;
+	top:2.5rem;
+	display: inline-block;
+	 height: 4rem; 
+	 line-height: 4rem; 
+	 color: white;
+	 font-size: 3.14rem; 
+	 text-align: center;
+	 text-shadow: 0px 0px 5px black, 0px 0px 10px rgb(64,64,64), 0px 0px 20px gray;
+	 font-family: Tahoma, Geneva, sans-serif;
+	 letter-spacing: 2px;
+}
+div.container .titleRight i {
+	top: 0rem;
+}
+
+@media screen and (max-width: 959px) {
+	.logoDiv img {
+		width:9.5rem;
+		top: -1.25rem;
+		left:-1.25rem;
+	}
+	.logoText {
+		width:14rem;
+		left:-3.5rem;
+		top:1.5rem;
+		font-size:2.5rem;
+	}
+	.title {
+		font-size: 1.2rem;
+	}
+}
+@media screen and (max-width: 719px) {
+
+	.logoDiv {
+		margin:auto;
+	}
+	.logoDiv {
+		height: 9rem;
+		width: 12rem;
+		
+	}
+	div.logoDiv img {
+		width:8rem;
+		left:2.5rem;
+		position: absolute;
+	}
+	span.logoText {
+		width:12rem;
+		left:0rem;
+		position: relative;
+		top:2rem;
+	}
+	.title {
+		font-size: 1rem;
+	}
+	div:Not(.content-22) > .content {
+		font-size: 1rem;
+	}
+	div.container .titleRight i {
+		top: 0rem;
+	}
+	.centerLinks {
+		display: none;
+		
+	}
+	.content-22 .content {
+		text-align: center;
+	}
+}
+
+
+@media screen and (max-width: 599px) {
+
+	.logoDiv img {
+		width:8.5rem;
+		left:-3.5rem;
+	}
+	.logoText {
+		width:12rem;
+		left:-1.5rem;
+		top:3rem;
+	}
+	div:Not(.content-22) > .content {
+		font-size: 1rem;
+	}
+}
+div.content-11 {
+	overflow: unset;
+}
+{% endblock %}
+
+
+{% block moreCSS %}
+
+
+
+{% endblock %}
+
+
+{% block title11 %}
+<div class="title">
+	<div class="titleBG">
+	</div>
+	<span class="titleLeft">
+		
+	</span>
+	<span class="titleCenter">
+		What is CSShole?
+	</span>
+	<span class="titleRight">
+		<label for="radio11-1"><i class="fas fa-compress-alt"></i></label>
+		<label for="radio11-2"><i class="fas fa-expand-alt"></i></label>
+		<label for="radio11-3"><i class="fas fa-expand"></i></label>
+	</span>
+</div>
+{% endblock %}
+{% block content11 %}
+<input type="checkbox" id="footnote" style="display:none;"></input>
+
+CSShole tests the limits of what is possible without javascript<sup><label for="footnote" id="footnoteLabel">*</label></sup><div id="footnoteDiv">Warning:<br />Replacing javascript with CSS makes some elements slow (Firefox seems to work much better than other browsers).</div> or server-side scripting.
+Each page mimics interactive elements with just HTML and CSS.
+
+{% endblock %}	
+
+{% block title13 %}
+<div class="title">
+	<div class="titleBG">
+	</div>
+	<span class="titleLeft">
+	
+	</span>
+	<span class="titleCenter">
+		<a href="../sudoku.html">Sudoku</a>
+	</span>
+	<span class="titleRight">
+		<label for="radio13-3"><i class="fas fa-expand"></i></label>
+		<label for="radio13-2"><i class="fas fa-expand-alt"></i></label>
+		<label for="radio13-1"><i class="fas fa-compress-alt"></i></label>
+	
+	
+	</span>
+	
+</div>
+{% endblock %}
+{% block content13 %}
+Choose a difficulty level:
+<div>
+	<a href="../sudoku.html?l=easy1" class="basic">Easy</a>
+	<a href="../sudoku.html?l=medium1" class="basic">Medium</a>
+	<a href="../sudoku.html?l=hard1" class="basic">Hard</a>
+	<a href="../sudoku.html?l=expert1" class="basic">Expert</a>
+</div>
+Or play our <a href="../sudoku.html">Sudoku of the day</a>.<br />
+For more of a challenge, try <a href="../sudokufarm.html">Sudoku Farm</a>.
+{% endblock %}	
+
+{% block title31 %}
+<div class="title">
+	<div class="titleBG">
+	</div>
+	<span class="titleLeft">
+	
+	</span>
+	<span class="titleCenter">
+		<a href="../mathquiz.html">Quiz</a>
+	</span>
+	<span class="titleRight">
+		<label for="radio31-1"><i class="fas fa-compress-alt"></i></label>
+		<label for="radio31-2"><i class="fas fa-expand-alt"></i></label>
+		<label for="radio31-3"><i class="fas fa-expand"></i></label>
+	</span>
+	
+</div>
+{% endblock %}
+{% block content31 %}
+Test your knowledge of <a href="../mathquiz.html">Trigonometric values</a>.
+{% endblock %}
+
+{% block title33 %}
+<div class="title">
+	<div class="titleBG">
+	</div>
+	<span class="titleLeft">
+	
+	</span>
+	<span class="titleCenter">
+		<a href="../sortable.html">Tables</a>
+	</span>
+	<span class="titleRight">
+		<label for="radio33-1"><i class="fas fa-compress-alt"></i></label>
+		<label for="radio33-2"><i class="fas fa-expand-alt"></i></label>
+		<label for="radio33-3"><i class="fas fa-expand"></i></label>
+	</span>
+	
+</div>
+{% endblock %}
+{% block content33 %}
+Sortable stats for each MLB season since 1871.
+<form  action="../sortable.html" method="get">
+	<div>
+		<select name="p">
+			<option value="false">Batters</option>
+			<option value="true">Pitchers</option>
+		</select>
+		Year: <input name="y" type="number" min="1871" max="2019" value="2019"></input>
+	</div>
+	<div>
+		<button type="submit" class="basic">Submit</button>
+	</div>
+</form>
+{% endblock %}
+
+
+{% block content22 %}
+	<div class="logoDiv">
+		<picture>
+		  <source srcset="../chlogosmall.webp" type="image/webp">
+		  <source srcset="../chlogosmall.png" type="image/png"> 
+		  <img src="../chlogosmall.png" alt="Logo">
+		</picture>
+		<span class="logoText">CSShole</span>
+	</div>
+	<div class="centerLinks">
+		<div class="centerLink">
+			<button class="basic" onclick="window.location.href='../about';">About</button>
+		</div>
+	</div>
+
+
+{% endblock %}
+
+{% block footer %}
+	<button class="basic" onclick="window.location.href='../about';">About</button>
+
+{% endblock %}
+
+
+
+
+{% block bodyStart %}
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
+

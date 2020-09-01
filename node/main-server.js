@@ -71,4 +71,16 @@ app.get('/wasm',
 	}
 );
 
+app.get(['/','/index','/index.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/index.html',{
+
+		}));
+		res.end();
+	}
+);
+
+
 
