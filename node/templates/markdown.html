@@ -46,9 +46,11 @@
 	const tokenizer = {
 	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
-		if (match && match.index == 0) {
+		if (match) {
 			console.log("matched math");
 			console.log(match);
+			console.log(match[3]);
+			console.log(match.index);
 		  return {
 			type: 'text',
 			raw: match[0],
