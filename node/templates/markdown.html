@@ -14,10 +14,9 @@
 <body>
   <div class="main">
   		<div style="width:45%; height: 60vh; display: inline-block;">
-	  		<textarea rows="20" id="inline-rules" style="width: 100%"></textarea>
-	  		<button onclick="rulesChange()">Submit</button>
+	  		<textarea rows="20" id="inline-math" style="width: 100%"></textarea>
 	  	</div>
-	  	<div style="width:45%; height: 60vh; border: 1px solid black; display: inline-block;" id="output-markdown">
+	  	<div style="width:45%; height: 60vh; border: 1px solid black; display: inline-block;" id="output-math">
 	  		
 	  	</div>
   </div>
@@ -80,20 +79,20 @@
 	marked.use({ renderer });
 	
 
-	document.getElementById('output-markdown').innerHTML = marked("this is $ x^{12} $\n and no math");
+	
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
 		if (e.data[0] == "latex"){
 			if (autoNow == e.data[1]){
 				var latex = e.data[2];
-				var html = katex.renderToString(latex, {throwOnError: false});
+				var html = marked("This is the output: $ "+latex+" $ now.");
   				autoComplete[e.data[1]] = html;
   				chgAuto(e.data[1]);
 			}
 			else {
 				var latex = e.data[2];
-				var html = katex.renderToString(latex, {throwOnError: false});
+				var html = marked("This is the output: $ "+latex+" $ now.");
   				autoComplete[e.data[1]] = html;
 			}
 		}
