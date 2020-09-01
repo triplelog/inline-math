@@ -17,7 +17,7 @@
 	  		<textarea rows="20" id="inline-rules" style="width: 100%"></textarea>
 	  		<button onclick="rulesChange()">Submit</button>
 	  	</div>
-	  	<div style="width:45%; height: 60vh; border: 1px solid black; display: inline-block;">
+	  	<div style="width:45%; height: 60vh; border: 1px solid black; display: inline-block;" id="output-markdown">
 	  		
 	  	</div>
   </div>
@@ -79,7 +79,8 @@
 	marked.use({ tokenizer });
 	marked.use({ renderer });
 	
-	console.log(marked("this is $ x^12 $\n and no math"));
+
+	document.getElementById('output-markdown').innerHTML = marked("this is $ x^12 $\n and no math");
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
