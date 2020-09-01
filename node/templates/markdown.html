@@ -44,25 +44,25 @@
   	
   	// Override function
 	const tokenizer = {
-	  math(src) {
+	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match) {
 			console.log("matched math");
 		  return {
-			type: 'math',
+			type: 'inlineText',
 			raw: match[0],
 			text: match[1].trim()
 		  };
 		}
 
-		// return false to use original codespan tokenizer
+		// return false to use original inlineText tokenizer
 		return false;
 	  }
 	};
 
 	marked.use({ tokenizer });
 	
-	console.log(marked("this is $x^12$"));
+	console.log(marked("this is $ x^12 $"));
 	
   	var myWorker = new Worker('js/wasmworker.js');
   	
