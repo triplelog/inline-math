@@ -1,4 +1,4 @@
-importScripts('js/wasmhello.js');
+importScripts('wasmhello.js');
 
 var l = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number"]);
