@@ -36,12 +36,11 @@
 	
   <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
   <script src="js/autosize.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it@11.0.0/index.min.js"></script>
-  <script src="mathdocs/markdown-it-math.js"></script>
+  <script src="js/marked.js"></script>
+  <!--<script src="mathdocs/markdown-it-math.js"></script>-->
   <script>
   	autosize(document.getElementById('inline-rules'));
-  	var md = window.markdownit();
-  	md.use(markdownitmath);
+  	console.log(marked("this is **text**"));
   	
   	var myWorker = new Worker('js/wasmworker.js');
   	

@@ -1,6 +1,5 @@
 
 var md = window.markdownit();
-const assert = require('assert');
 
 markdownitmath = function(tokens,idx,latex=false) {
 	var input = tokens[idx].content;
