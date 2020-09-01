@@ -42,7 +42,7 @@
   	autosize(document.getElementById('inline-rules'));
   	console.log(marked("this is **text**"));
   	var lexer = new marked.Lexer();
-  	console.log(lexer.tokenizer.rules.inline);
+  	console.log(lexer.tokenizer.rules.inline.escape);
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
