@@ -51,9 +51,9 @@
 			console.log(match);
 			console.log(src);
 		  return {
-			type: 'math',
+			type: 'text',
 			raw: match[0],
-			text: match[1].trim()
+			text: "$|$"+match[1].trim()
 		  };
 		}
 		else if (match) {
@@ -71,9 +71,12 @@
 	  }
 	};
 	const renderer = {
-	  math(text) {
+	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-		console.log("render math",text);
+		if (text.substr(0,3) == "$|$"){
+			console.log("render math",text);
+		}
+		
 		return `${text}`;
 	  }
 	};
