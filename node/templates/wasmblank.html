@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  
+</head>
+
+<body>
+  
+  <textarea id="inline-rules"></textarea>
+  <button onclick="rulesChange()">Submit</button>
+  
+  
+  <input type="text" id="inline-math"></input>
+  <div id="output-math"></div>	
+  
+  <input type="text" id="inline-graph"></input>
+  <button onclick="plotChange()">Submit</button>
+  <div id="output-graph"></div>	
+  
+	
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <!--<script src="wasmhello.js"></script>-->
+  <script>
+  	var myWorker = new Worker('wasmworker.js');
+  	
+  	myWorker.onmessage = function(e) {
+		if (e.data[0] == "latex"){
+			if (autoNow == e.data[1]){
+				var latex = e.data[2];
+				var html = katex.renderToString(latex, {throwOnError: false});
+  				autoComplete[e.data[1]] = html;
+  				chgAuto(e.data[1]);
+			}
+			else {
+				var latex = e.data[2];
+				var html = katex.renderToString(latex, {throwOnError: false});
+  				autoComplete[e.data[1]] = html;
+			}
+		}
+		else if (e.data[0] == "svg"){
+			//if (autoNow == e.data[1]){
+				var svg = e.data[2];
+				document.getElementById("output-graph").innerHTML = svg;
+				document.getElementById("domainSlider").addEventListener('change',plotChange);
+			//}
+			//else {
+			//	var latex = e.data[2];
+			//	var html = katex.renderToString(latex, {throwOnError: false});
+  			//	autoComplete[e.data[1]] = html;
+			//}
+		}
+		else if (e.data[0] == "rules"){
+			console.log(e.data[1]);
+		}
+	}
+
+  	function chgAuto(input) {
+		var el = document.getElementById('output-math');
+		el.innerHTML = autoComplete[input];
+	}
+  	function answerDown(evt) {
+		var key = evt.key;
+		if (key != 'Shift'){
+			var answer = document.getElementById("inline-math").value;
+			autoComplete[answer+key] = "in-progress";
+			myWorker.postMessage(["latex",answer+key]);
+		}
+		
+	}
+	function answerChange(evt) {
+		var answer = document.getElementById("inline-math").value;
+		if (autoComplete[answer] == "in-progress"){
+			autoNow = answer;
+		}
+		else if (autoComplete[answer]){
+			chgAuto(answer);
+		}
+		else {
+			myWorker.postMessage(["latex",answer]);
+			autoNow = answer;
+		}
+		
+	}
+	var autoComplete = {};
+	var autoNow = "";
+	var answerEl = document.getElementById('inline-math');
+	answerEl.addEventListener('keydown',answerDown);
+	answerEl.addEventListener('input',answerChange);
+	
+	function plotChange(evt) {
+		var left = -10;
+		var right = 10;
+		var spread = 20;
+		var bottom = -10;
+		var top = 10;
+		if (evt){
+			spread = evt.target.value;
+			left = -.5*spread;
+			right = .5*spread;
+		}
+		else if (document.getElementById("domainSlider")){
+			spread = document.getElementById("domainSlider").value;
+			left = -.5*spread;
+			right = .5*spread;
+		}
+		var input = document.getElementById("inline-graph").value;
+		myWorker.postMessage(["plot",input,left,right,bottom,top,spread]);
+		
+	}
+	function rulesChange(){
+		var ruleText = document.getElementById("inline-rules").value;
+		console.log(ruleText);
+		myWorker.postMessage(["rules","identities",ruleText]);
+	}
+  </script>
+</body>
+
+</html>
