@@ -46,7 +46,7 @@
 	const tokenizer = {
 	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
-		if (match) {
+		if (match && match.index == 0) {
 			console.log("matched math");
 			console.log(match);
 			console.log(src);
@@ -56,16 +56,24 @@
 			text: match[1].trim()
 		  };
 		}
-
+		else if (match) {
+			console.log("matched line");
+			console.log(match);
+			console.log(src);
+		  return {
+			type: 'text',
+			raw: match[0],
+			text: src
+		  };
+		}
 		// return false to use original inlineText tokenizer
 		return false;
 	  }
 	};
 	const renderer = {
-	  text(text,raw) {
+	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		console.log("render math",text);
-		console.log("render math raw",raw);
 		return `${text}`;
 	  }
 	};
@@ -73,7 +81,7 @@
 	marked.use({ tokenizer });
 	marked.use({ renderer });
 	
-	console.log(marked("this is $ x^12 $"));
+	console.log(marked("this is $ x^12 $\n and no math"));
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
