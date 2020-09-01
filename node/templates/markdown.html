@@ -73,7 +73,7 @@
 	marked.use({ renderer });
 	
 	console.log(marked("this is $ x^12 $"));
-	
+	console.log(marked.Lexer().tokenizer);
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
