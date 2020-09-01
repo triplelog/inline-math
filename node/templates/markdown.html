@@ -52,7 +52,7 @@
 			var first = text.substr(0,match.index);
 			var second = match[1].trim();
 			console.log(second);
-			var third = text.substr(match.index+match[1].length+1);
+			var third = text.substr(match.index+match[1].length+2);
 			var k = katex.renderToString(second, {throwOnError: false});
 			text = first+k+third;
 			match = third.match(/\$+([^\$\n]+?)\$+/);
