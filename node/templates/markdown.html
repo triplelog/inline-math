@@ -44,7 +44,7 @@
   	
   	// Override function
 	const tokenizer = {
-	  inlineMath(src) {
+	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match) {
 			console.log("matched math");
@@ -62,9 +62,10 @@
 	  }
 	};
 	const renderer = {
-	  text(text) {
+	  text(text,raw) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		console.log("render math",text);
+		console.log("render math raw",raw);
 		return `${text}`;
 	  }
 	};
@@ -73,7 +74,6 @@
 	marked.use({ renderer });
 	
 	console.log(marked("this is $ x^12 $"));
-	console.log(marked.lexer());
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
