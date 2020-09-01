@@ -40,7 +40,7 @@
   <!--<script src="mathdocs/markdown-it-math.js"></script>-->
   <script>
   	autosize(document.getElementById('inline-rules'));
-  	console.log(marked("this is $x^12$"));
+  	
   	
   	// Override function
 	const tokenizer = {
@@ -60,8 +60,10 @@
 	};
 
 	marked.use({ tokenizer });
-
-  	console.log(marked.Lexer.rules.inline);
+	
+	console.log(marked("this is $x^12$"));
+	
+  	console.log(marked.Lexer.tokenizer.rules.inline);
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
