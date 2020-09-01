@@ -47,9 +47,6 @@
 	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match && match.index == 0) {
-			console.log("matched math");
-			console.log(match);
-			console.log(src);
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -57,9 +54,6 @@
 		  };
 		}
 		else if (match) {
-			console.log("matched line");
-			console.log(match);
-			console.log(src);
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -74,10 +68,11 @@
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		if (text.substr(0,3) == "$|$"){
-			console.log("render math",text);
+			return katex.renderToString(text.substr(3), {throwOnError: false});
 		}
-		
-		return `${text}`;
+		else {
+			return `${text}`;
+		}
 	  }
 	};
 
