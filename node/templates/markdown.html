@@ -40,9 +40,28 @@
   <!--<script src="mathdocs/markdown-it-math.js"></script>-->
   <script>
   	autosize(document.getElementById('inline-rules'));
-  	console.log(marked("this is **text**"));
-  	var lexer = new marked.Lexer();
-  	console.log(lexer.tokenizer.rules.inline.em);
+  	console.log(marked("this is $x^12$"));
+  	
+  	// Override function
+	const tokenizer = {
+	  math(src) {
+		const match = src.match(/\$+([^\$\n]+?)\$+/);
+		if (match) {
+		  return {
+			type: 'math',
+			raw: match[0],
+			text: match[1].trim()
+		  };
+		}
+
+		// return false to use original codespan tokenizer
+		return false;
+	  }
+	};
+
+	marked.use({ tokenizer });
+
+  	console.log(marked.Lexer.rules.inline);
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
