@@ -46,6 +46,7 @@
 	  inlineText(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match && match.index == 0) {
+			console.log("m1: ",src,match.index);
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -53,12 +54,14 @@
 		  };
 		}
 		else if (match) {
+			console.log("m2: ",src,match.index);
 		  return {
 			type: 'text',
 			raw: match[0],
 			text: src.substr(0,match.index)
 		  };
 		}
+		console.log("m3: ",src);
 		// return false to use original inlineText tokenizer
 		return false;
 	  }
