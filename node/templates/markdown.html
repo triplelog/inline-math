@@ -51,7 +51,7 @@
 			console.log(match);
 			console.log(src);
 		  return {
-			type: 'text',
+			type: 'math',
 			raw: match[0],
 			text: match[1].trim()
 		  };
@@ -71,7 +71,7 @@
 	  }
 	};
 	const renderer = {
-	  text(text) {
+	  math(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		console.log("render math",text);
 		return `${text}`;
