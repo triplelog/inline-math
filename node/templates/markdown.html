@@ -45,7 +45,7 @@
 	const renderer = {
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-		const match = text.match(/\$+([^\$\n]+?)\$+/);
+		var match = text.match(/\$+([^\$\n]+?)\$+/);
 		console.log(text);
 		while (match){
 			var first = text.substr(0,match.index);
