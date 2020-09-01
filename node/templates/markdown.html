@@ -45,7 +45,7 @@
   	// Override function
 	const tokenizer = {
 	  inlineText(src) {
-		const match = src.match(/^\$+([^\$\n]+?)\$+/);
+		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match) {
 			console.log("matched math");
 			console.log(match[0]);
@@ -64,7 +64,7 @@
 	const renderer = {
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-		console.log("render math");
+		console.log("render math",text);
 		return `${text}`;
 	  }
 	};
