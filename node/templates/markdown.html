@@ -48,6 +48,8 @@
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		if (match) {
 			console.log("matched math");
+			console.log(match[0]);
+			console.log(match[1]);
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -62,7 +64,7 @@
 	const renderer = {
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
+		console.log("render math");
 		return `${text}`;
 	  }
 	};
