@@ -52,12 +52,12 @@
 			var first = text.substr(0,match.index);
 			var second = match[1].trim();
 			console.log(second);
-			var third = text.substr(match.index+match[1].length);
+			var third = text.substr(match.index+match[1].length+1);
 			var k = katex.renderToString(second, {throwOnError: false});
-			text = first+second+third;
+			text = first+k+third;
 			match = third.match(/\$+([^\$\n]+?)\$+/);
 			if (match){
-				match.index += first.length+second.length; 
+				match.index += first.length+k.length; 
 			}
 			console.log(text);
 		}
