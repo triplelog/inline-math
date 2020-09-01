@@ -71,6 +71,17 @@ app.get('/wasm',
 	}
 );
 
+app.get('/markdown',
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/markdown.html',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		
