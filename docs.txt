@@ -30,7 +30,7 @@ cd inline-math
 sudo chown -R rwilcox:rwilcox /etc/letsencrypt
 sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash - (to install npm)
 sudo apt-get install -y nodejs
-npm install -s nunjucks express express-session
+npm install -s ws nunjucks express express-session
 
 
 
