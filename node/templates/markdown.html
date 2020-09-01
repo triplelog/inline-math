@@ -41,44 +41,28 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	
-  	// Override function
-	const tokenizer = {
-	  inlineText(src) {
-		const match = src.match(/\$+([^\$\n]+?)\$+/);
-		if (match && match.index == 0) {
-			console.log("m1: ",src,match.index);
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: "$|$"+match[1].trim()
-		  };
-		}
-		else if (match) {
-			console.log("m2: ",src,match.index);
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: src.substr(0,match.index)
-		  };
-		}
-		console.log("m3: ",src);
-		// return false to use original inlineText tokenizer
-		return false;
-	  }
-	};
+
 	const renderer = {
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-		if (text.substr(0,3) == "$|$"){
-			return katex.renderToString(text.substr(3), {throwOnError: false});
+		const match = text.match(/\$+([^\$\n]+?)\$+/);
+		console.log(text);
+		while (match){
+			var first = text.substr(0,match.index);
+			var second = match[1].trim();
+			var third = text.substr(match.index+match[1].length);
+			var k = katex.renderToString(second, {throwOnError: false});
+			text = first+second+third;
+			match = third.match(/\$+([^\$\n]+?)\$+/);
+			if (match){
+				match.index += first.length+second.length; 
+			}
+			console.log(text);
 		}
-		else {
-			return `${text}`;
-		}
+		return `${text}`;
 	  }
 	};
 
-	marked.use({ tokenizer });
 	marked.use({ renderer });
 	
 
