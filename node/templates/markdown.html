@@ -45,7 +45,7 @@
   	// Override function
 	const tokenizer = {
 	  inlineText(src) {
-		const match = src.match(/\$+([^\$\n]+?)\$+/);
+		const match = src.match(/^\$+([^\$\n]+?)\$+/);
 		if (match) {
 			console.log("matched math");
 			console.log(match[0]);
