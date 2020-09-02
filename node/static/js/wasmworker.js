@@ -50,8 +50,9 @@ onmessage = function(e) {
 	if (message[0] == "markdown"){
 		var markdown = message[1];
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
+		console.log(markdown);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$`p+/g,'$&`'.replace('`p`','p`'));
-
+		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
