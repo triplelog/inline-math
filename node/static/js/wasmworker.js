@@ -24,7 +24,7 @@ const renderer = {
 	if (matchPlot && matchPlot.index == 0){
 		svg = "";
 		p(match[1].trim(),-10,10,-10,10);
-		svg += '<input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+message[6]+'"></input>';
+		svg += '<input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
 		return svg;
 	}
 	else if (match && match.index == 0){
