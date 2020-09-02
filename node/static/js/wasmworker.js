@@ -54,6 +54,9 @@ const renderer = {
 	}
 	else {
 		console.log('text:',text);
+		for (var i=0;i<text.length;i++){
+			console.log(text[i]);
+		}
 		return '<pre><code class="language-js">'+text+'</code></pre>';
 	}
 	
