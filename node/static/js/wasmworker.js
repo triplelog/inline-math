@@ -15,6 +15,21 @@ function addSVG(x) {
 }
 
 importScripts('marked.js');
+const tokenizer = {
+  codespan(src) {
+    const match = src.match(/\$+([^\$\n]+?)\$+/);
+    if (match) {
+      return {
+        type: 'codespan',
+        raw: match[0],
+        text: "$"+match[1].trim()+"$"
+      };
+    }
+
+    // return false to use original codespan tokenizer
+    return false;
+  }
+};
 const renderer = {
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
@@ -31,6 +46,7 @@ const renderer = {
 	
   }
 };
+marked.use({ tokenizer });
 marked.use({ renderer });
 	
 
