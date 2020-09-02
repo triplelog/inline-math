@@ -69,7 +69,7 @@ const renderer = {
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
 	if (matchLower && matchLower.index == 0){
 		console.log(matchLower);
-		if (matchLower[0].search('$p')>0){
+		if (matchLower[0].search(/\$p/)>0){
 			svg = "<span>";
 			console.log(match[1].trim());
 			p(match[1].trim(),-10,10,-10,10);
@@ -78,7 +78,7 @@ const renderer = {
 
 			return svg;
 		}
-		else if (matchLower[0].search('$i')>0){
+		else if (matchLower[0].search(/\$i/)>0){
 			var html = '<input type="text" id="inline-A">';
 			html += match[1].trim();
 			html += '</input>';
@@ -92,8 +92,9 @@ const renderer = {
 	}
 	else if (matchUpper && matchUpper.index == 0){
 		var varName = matchUpper[0][matchUpper[0].length-2];
-		currentV[varName]='this';
+		
 		var input = match[1].trim();
+		currentV[varName]=input;
 		k = mapOrNew(input);
 		return k;
 	}
