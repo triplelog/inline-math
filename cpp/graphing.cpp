@@ -120,6 +120,10 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 			fn = fn.substr(2,fn.length()-2);
 			points = getPoints(fn,"y","x",bottom,top,n);
 		}
+		else {
+			fn = fn;
+			points = getPoints(fn,"x","y",bottom,top,n);
+		}
 	}
 	//console.log(outStr);
 	svg += "<path d=\"M";

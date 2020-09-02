@@ -25,9 +25,9 @@ const renderer = {
 	var matchPlot = text.match(/\$+([^\$\n]+?)\$p+/);
 	var matchInput = text.match(/\$+([^\$\n]+?)\$i+/);
 	if (matchPlot && matchPlot.index == 0){
-		svg = "<span><div>";
+		svg = "<span>";
 		p(match[1].trim(),-10,10,-10,10);
-		svg += '</div><div><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input></div>';
+		svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
 		svg += '</span>';
 
 		return svg;

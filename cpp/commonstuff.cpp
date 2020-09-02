@@ -386,6 +386,7 @@ std::map<int,Rule> ruleIndex;
 std::map<std::string,std::map<std::string,std::vector<Rule>>> rulesMap;
 std::map<std::string,std::map<int,Rule>> ruleIndexMap;
 
+std::vector<char> dependentChars;
 int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;
@@ -451,6 +452,34 @@ std::string removeBracketsOne(std::string input) {
 	
 	
 	
+}
+
+std::vector<char> getDependents(std::string second){
+	int i;
+	std::string currentOperand = "";
+	std::vector<char> dependents;
+	for (i=0;i<second.length();i++){
+		if (second.at(i) == '_'){
+			if (currentOperand.length() == 1 && currentOperand.at(0) >= 'A' && currentOperand.at(0) <= 'Z'){
+				bool foundMatch = false; int ii;
+				for (ii=0;ii<dependents.size();ii++){
+					if (dependents[ii] == currentOperand.at(0)){
+						foundMatch = true;
+						break;
+					}
+				}
+				if (!foundMatch){
+					dependents.push_back(currentOperand.at(0));
+				}
+				
+			}
+			currentOperand = "";
+		}
+		else {
+			currentOperand += second.at(i);
+		}
+	}
+	return dependents;
 }
 
 std::string removeParOne(std::string input) {

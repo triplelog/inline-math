@@ -71,9 +71,12 @@ void OneRule(char* aa) {
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
+	dependentChars.clear();
+
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	
+	dependentChars = getDependents(postfixedV[1]);
+	console_log(dependentChars.size());
 	std::string noIdentities = removeIdentities(postfixed);
 	
 	//std::string noIdentities = solveArithmetic(postfixed);
@@ -96,7 +99,7 @@ void LatexIt(char* aa) {
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
-
+	
 	std::string plot = makeGraph(a,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());
