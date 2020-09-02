@@ -387,6 +387,7 @@ std::map<std::string,std::map<std::string,std::vector<Rule>>> rulesMap;
 std::map<std::string,std::map<int,Rule>> ruleIndexMap;
 
 std::vector<char> dependentChars;
+std::map<char,std::string> currentV;
 int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;

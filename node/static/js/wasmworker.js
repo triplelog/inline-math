@@ -24,7 +24,7 @@ var currentV = {};
 
 importScripts('marked.js');
 
-function mapOrNew(input){
+function mapOrNew(input,varName=""){
 	latex = "";
 	
 	var foundMatch = false;
@@ -44,7 +44,13 @@ function mapOrNew(input){
 		k = latexedInputs[input].output;
 	}
 	else{
-		l(input);
+		if (varName != ""){
+			l("|"+varName+":="+input);
+		}
+		else {
+			l(input);
+		}
+		
 		k = katex.renderToString(latex, {throwOnError: false});
 		latexedInputs[input]={dependents:{},output:k};
 		for (var i=0;i<dependents.length;i++){
@@ -94,8 +100,9 @@ const renderer = {
 		var varName = matchUpper[0][matchUpper[0].length-2];
 		
 		var input = match[1].trim();
-		currentV[varName]=input;
-		k = mapOrNew(input);
+		
+		k = mapOrNew(input,varName);
+		currentV[varName]=k;
 		return k;
 	}
 	else if (match && match.index == 0){

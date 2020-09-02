@@ -18,6 +18,7 @@ EM_JS(void, output_dependents, (const char* x), {
   setDependents(UTF8ToString(x));
 });
 
+
 #include "removeIdentities.cpp"
 
 
@@ -75,10 +76,20 @@ void OneRule(char* aa) {
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	std::string a = std::string(aa);
+	char varName = ' ';
+	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
+		a = a.substr(4,a.length()-4);
+		varName = a.at(1);
+	}
+	
 	dependentChars.clear();
 
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	if (varName >= 'A' && varName <= 'Z'){
+		currentV[varName]=postfixed;
+	}
+	
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
 	int i;
@@ -88,6 +99,9 @@ void LatexIt(char* aa) {
 	}
 	dc[sz]='\0';
 	output_dependents(dc);
+	
+	//TODO: replace dependents
+	
 	//console_log(sz);
 	std::string noIdentities = removeIdentities(postfixed);
 	
