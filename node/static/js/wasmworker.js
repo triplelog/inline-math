@@ -1,4 +1,5 @@
 importScripts('wasmhello.js');
+importScripts('katex.min.js');
 var l = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number"]);
 var a = Module.cwrap("AddRules","string",["string","string"]);
