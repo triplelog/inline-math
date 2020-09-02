@@ -43,14 +43,11 @@ var z = 3*7/4;
   
   <!--<script src="js/marked.js"></script>-->
   <!--<script src="mathdocs/markdown-it-math.js"></script>-->
-  <script src="js/prism.js"></script>
+  
   <script>
   	autosize(document.getElementById('inline-rules'));
   	
-  	Prism.hooks.add('complete', function(env) {
-		var formEl = document.querySelector('.token.formula');
-		myWorker.postMessage(["code",formEl.textContent]);
-	});
+  	
 	
 	
   	var myWorker = new Worker('js/wasmworker.js');
@@ -150,6 +147,16 @@ var z = 3*7/4;
 		console.log(ruleText);
 		myWorker.postMessage(["rules","identities",ruleText]);
 	}
+	
+	
+  </script>
+  <script src="js/prism.js"></script>
+  <script>
+  	Prism.hooks.add('complete', function(env) {
+		var formEl = document.querySelector('.token.formula');
+		console.log(formEl.textContent);
+		myWorker.postMessage(["code",formEl.textContent]);
+	});
   </script>
   
 </body>

@@ -79,7 +79,9 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "code"){
 		latex = "";
+		console.log(message[1]);
 		l(message[1]);
+		console.log(latex);
 		result = ["code",message[1],latex];
 	}
 	else if (message[0] == "latex"){
