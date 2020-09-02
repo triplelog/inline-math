@@ -48,10 +48,7 @@ var z = 3*7/4;
   	autosize(document.getElementById('inline-rules'));
   	
   	Prism.hooks.add('complete', function(env) {
-		if (env.type === 'formula') {
-			console.log(env.content);
-		}
-		console.log(env);
+		var formEl = document.querySelector('.token.formula');
 	});
 	
 	
