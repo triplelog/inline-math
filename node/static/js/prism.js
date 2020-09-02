@@ -608,7 +608,33 @@ var _ = {
 		};
 		_.hooks.run('before-tokenize', env);
 		env.tokens = _.tokenize(env.code, env.grammar);
-		console.log(env.tokens);
+		var formulaStart = 0;
+		var isFormula = false;
+		for (var i=0;i<env.tokens.length;i++){
+			
+			if (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'function' ){
+				if (formulaStart < i && isFormula){
+					var formula = "";
+					for (var ii=formulaStart;ii<i;ii++){
+						if (env.tokens[ii].type){
+							formula += env.tokens[ii].content;
+						}
+						else {
+							formula += env.tokens[ii];
+						}
+					}
+					console.log(formula);
+				}
+				formulaStart = i+1;
+				isFormula = false;
+			}
+			else {
+				if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
+					isFormula = true;
+				}
+				
+			}
+		}
 		_.hooks.run('after-tokenize', env);
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
