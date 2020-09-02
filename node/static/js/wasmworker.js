@@ -19,13 +19,14 @@ function setDependents(x) {
 	dependents = x;
 }
 
-var varMap = {};
+var latexedInputs = {};
+var currentV = {};
 
 importScripts('marked.js');
 
 const renderer = {
   code(code, infostring, escaped) {
-  	console.log(code);
+  	console.log(infostring);
   	return '<pre><code class="language-js">'+code+'</code></pre>';
   },
   codespan(text) {
@@ -51,9 +52,34 @@ const renderer = {
 	}
 	else if (match && match.index == 0){
 		latex = "";
-		l(match[1].trim());
+		var input = match[1].trim();
+		var foundMatch = false;
+		if (latexedInputs[input]){
+			foundMatch = true;
+			if (latexedInputs[input].dependents){
+				for (var i in latexedInputs[input].dependents){
+					if (latexedInputs[input].dependents[i] != currentV[i]){
+						foundMatch = false;
+						break;
+					}
+				}
+			}
+		}
+		var k;
+		if (foundMatch){
+			latex = latexedInputs[input].output;
+			k = katex.renderToString(latex, {throwOnError: false});
+		}
+		else{
+			l(input);
+			latexedInputs[input]={dependents:{},output:k};
+			for (var i=0;i<dependents.length;i++){
+				latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
+			}
+			k = katex.renderToString(latex, {throwOnError: false});
+		}
+		
 		console.log(dependents);
-		var k = katex.renderToString(latex, {throwOnError: false});
 		return k;
 	}
 	else {
@@ -64,6 +90,11 @@ const renderer = {
 };
 marked.use({ renderer });
 	
+var  y=\cos(\frac{x\cdot 180}{3.14})y=cos( 
+3.14
+x⋅180
+​	
+ );
 
 
 
