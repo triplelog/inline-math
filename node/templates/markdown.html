@@ -65,12 +65,12 @@
 		// return false to use original inlineText tokenizer
 		return false;
 	  }
-	};*/
+	};
 	const tokenizer = {
 	  escape(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		console.log(src);
-		/*if (match) {
+		if (match) {
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -83,13 +83,13 @@
 			raw: match[0],
 			text: src.substr(0,match.index)
 		  };
-		}*/
+		}
 		// return false to use original inlineText tokenizer
 		return false;
 	  }
-	};
+	};*/
 	const renderer = {
-	  text(text) {
+	  codespan(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
 		console.log(text);
@@ -110,7 +110,7 @@
 		return `${text}`;
 	  }
 	};
-	marked.use({ tokenizer });
+	//marked.use({ tokenizer });
 	marked.use({ renderer });
 	
 
@@ -123,13 +123,13 @@
 				var latex = e.data[2];
 				const tokens = marked.lexer("This is the output: $ "+latex+" $ now.");
 				console.log(tokens);
-				var html = marked("This is the output: $ "+latex+" $ now.");
+				var html = marked("This is the output: `$ "+latex+" $` now.");
   				autoComplete[e.data[1]] = html;
   				chgAuto(e.data[1]);
 			}
 			else {
 				var latex = e.data[2];
-				var html = marked("This is the output: $ "+latex+" $ now.");
+				var html = marked("This is the output: `$ "+latex+" $` now.");
   				autoComplete[e.data[1]] = html;
 			}
 		}
