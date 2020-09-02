@@ -76,7 +76,8 @@ void LatexIt(char* aa) {
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	dependentChars = getDependents(postfixedV[1]);
-	console_log(dependentChars.size());
+	int sz = dependentChars.size();
+	console_log(sz);
 	std::string noIdentities = removeIdentities(postfixed);
 	
 	//std::string noIdentities = solveArithmetic(postfixed);

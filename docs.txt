@@ -33,6 +33,23 @@ sudo apt-get install -y nodejs
 npm install -s ws nunjucks express express-session
 
 
+# Install emscripten
+sudo apt-get install python3 cmake
+from ~:
+git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+git pull
+./emsdk install latest
+./emsdk activate latest
+source ./emsdk_env.sh
+from ~/inline-math/cpp:
+mkdir rules
+mkdir js
+from ~/inline-math/python:
+python3 createRules.py
+from ~/inline-math/cpp:
+~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o js/wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_PlotIt","_AddRules","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s INITIAL_MEMORY=512MB -s TOTAL_STACK=256MB
+cp js/wasmhello.js ../node/static/js/wasmhello.js; cp js/wasmhello.wasm ../node/static/js/wasmhello.wasm
 
 mkdir robots (from triplelogch/static directory)
 pip3 install robohash (only need natsort and pillow -- I think im using custom robohash)
@@ -58,7 +75,3 @@ redo certbot
 
 
 
-
-
-~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_PlotIt","_AddRules","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s INITIAL_MEMORY=512MB -s TOTAL_STACK=256MB
-cp wasmhello.js ../../math-errors/static/wasmhello.js; cp wasmhello.wasm ../../math-errors/static/wasmhello.wasm
