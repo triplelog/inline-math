@@ -533,7 +533,7 @@ std::string removeBORP(std::string input){
 	int len = input.length();
 	int iii;
 	for (iii=0;iii<len;iii++){
-		mychar = input.at(iii);
+		char mychar = input.at(iii);
 		if (mychar == '{'){
 			std::string newInput = removeBracketsOne(input);
 			return removeBORP(newInput);
