@@ -86,6 +86,7 @@ void LatexIt(char* aa) {
 	for (i=0;i<sz;i++){
 		dc[i]=dependentChars[i];
 	}
+	dc[sz]='\0';
 	output_dependents(dc);
 	//console_log(sz);
 	std::string noIdentities = removeIdentities(postfixed);
