@@ -92,7 +92,7 @@
 	  codespan(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
-		if (match.index == 0){
+		if (match && match.index == 0){
 			var k = katex.renderToString(match[1].trim(), {throwOnError: false});
 			return k;
 		}
