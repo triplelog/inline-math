@@ -1,7 +1,7 @@
 importScripts('wasmhello.js');
 importScripts('katex.min.js');
 var l = Module.cwrap("LatexIt","string",["string"]);
-var p = Module.cwrap("PlotIt","string",["string","number","number","number"]);
+var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var a = Module.cwrap("AddRules","string",["string","string"]);
 
 var latex = "";
@@ -20,7 +20,14 @@ const renderer = {
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
-	if (match && match.index == 0){
+	var matchPlot = text.match(/\$+([^\$\n]+?)\$p+/);
+	if (matchPlot && matchPlot.index == 0){
+		svg = "";
+		p(match[1].trim(),-10,10,-10,10);
+		svg += '<input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+message[6]+'"></input>';
+		return svg;
+	}
+	else if (match && match.index == 0){
 		latex = "";
 		l(match[1].trim());
 		var k = katex.renderToString(latex, {throwOnError: false});
@@ -42,6 +49,7 @@ onmessage = function(e) {
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$p+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 
 		var html = marked(markdown);
