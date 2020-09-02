@@ -106,10 +106,12 @@ onmessage = function(e) {
 		var markdown = message[1];
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$i+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$p+/g,'`$&`');
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$t+/g,'`$&`');//tree output
+		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
-		markdown = markdown.replace(/\$`p`/g,'$p`');
-		markdown = markdown.replace(/\$`i`/g,'$i`');
+		markdown = markdown.replace(/\$`[a-z]`/g,'$&'.replace('$`','$'));
+		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
