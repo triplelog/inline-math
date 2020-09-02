@@ -630,6 +630,7 @@ var _ = {
 					console.log(formula);
 					var formulaToken = {type:"operator",alias:undefined,content: formula,length: formula.length};
 					env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
+					console.log(env.tokens);
 					i = formulaStart;
 				}
 				formulaStart = i+1;
