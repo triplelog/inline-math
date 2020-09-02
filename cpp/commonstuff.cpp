@@ -475,6 +475,9 @@ std::vector<char> getDependents(std::string second){
 			}
 			currentOperand = "";
 		}
+		else if (second.at(i) == '{' || second.at(i) == '}' || second.at(i) == '(' || second.at(i) == ')'){
+			//skip these
+		}
 		else {
 			currentOperand += second.at(i);
 		}
