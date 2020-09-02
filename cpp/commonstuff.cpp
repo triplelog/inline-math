@@ -579,7 +579,7 @@ std::vector<char> getDependents(std::string second){
 	}
 	return dependents;
 }
-std::vector<char> removeDependents(std::string second){
+std::string removeDependents(std::string second){
 	int i;
 	std::string currentOperand = "";
 	std::vector<char> dependents;
