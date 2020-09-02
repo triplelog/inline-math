@@ -1623,3 +1623,5 @@ Prism.languages.python['string-interpolation'].inside['interpolation'].inside.re
 
 Prism.languages.py = Prism.languages.python;
 
+var formEl = document.querySelector('.token.formula');
+console.log(formEl);
