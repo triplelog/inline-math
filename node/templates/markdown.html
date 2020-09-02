@@ -20,11 +20,7 @@
 	  		
 	  	</div>
 	  	<button onclick="highlightCode()">Submit</button>
-	  	<pre><code class="language-js">
-var y=x^12;
-var x=3*y+7;
-var z=3*7/4;
-</code></pre>
+
   </div>
   <!--
   <textarea id="inline-rules"></textarea>
@@ -158,6 +154,7 @@ var z=3*7/4;
   		var pid = 0;
 		var formEls = document.querySelectorAll('.token.formula');
 		for (pid=0;pid<formEls.length;pid++){
+			console.log(formEls[pid].textContent);
 			formEls[pid].id = "pid-"+pid;
 			myWorker.postMessage(["code",formEls[pid].textContent,pid]);
 		}
