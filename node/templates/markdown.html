@@ -42,12 +42,34 @@
   	
   	
 	// Override function
-	const tokenizer = {
+	/*const tokenizer = {
 	  text(src,tokens) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		console.log(src);
 		console.log(tokens);
 		console.log(match);
+		if (match) {
+		  return {
+			type: 'text',
+			raw: match[0],
+			text: "$|$"+match[1].trim()
+		  };
+		}
+		else if (match) {
+		  return {
+			type: 'text',
+			raw: match[0],
+			text: src.substr(0,match.index)
+		  };
+		}
+		// return false to use original inlineText tokenizer
+		return false;
+	  }
+	};*/
+	const tokenizer = {
+	  escape(src) {
+		const match = src.match(/\$+([^\$\n]+?)\$+/);
+		console.log(src);
 		if (match) {
 		  return {
 			type: 'text',
