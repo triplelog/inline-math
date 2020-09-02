@@ -611,7 +611,8 @@ var _ = {
 		console.log(env.tokens);
 		var formulaStart = 0;
 		var isFormula = false;
-		for (var i=0;i<env.tokens.length;i++){
+		var i = 0;
+		for (i=0;i<env.tokens.length;i++){
 			
 			if (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'function' ){
 				if (env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')') ){
@@ -643,6 +644,20 @@ var _ = {
 				
 			}
 		}
+		if (formulaStart < i && isFormula){
+			var formula = "";
+			for (var ii=formulaStart;ii<i;ii++){
+				if (env.tokens[ii].type){
+					formula += env.tokens[ii].content;
+				}
+				else {
+					formula += env.tokens[ii];
+				}
+			}
+			var formulaToken = new Token("formula", _.util.encode(formula), undefined);
+			env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
+		}
+		
 		_.hooks.run('after-tokenize', env);
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
