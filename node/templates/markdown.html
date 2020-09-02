@@ -92,22 +92,14 @@
 	  codespan(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
-		console.log(text);
-		while (match){
-			//console.log(match);
-			var first = text.substr(0,match.index);
-			var second = match[1].trim();
-			console.log(second);
-			var third = text.substr(match.index+match[1].length+2);
-			var k = katex.renderToString(second, {throwOnError: false});
-			text = first+k+third;
-			match = third.match(/\$+([^\$\n]+?)\$+/);
-			if (match){
-				match.index += first.length+k.length; 
-			}
-			//console.log(text);
+		if (match.index == 0){
+			var k = katex.renderToString(match[1].trim(), {throwOnError: false});
+			return k;
 		}
-		return `${text}`;
+		else {
+			return false;
+		}
+		
 	  }
 	};
 	//marked.use({ tokenizer });
@@ -121,15 +113,13 @@
 		if (e.data[0] == "latex"){
 			if (autoNow == e.data[1]){
 				var latex = e.data[2];
-				const tokens = marked.lexer("This is the output: $ "+latex+" $ now.");
-				console.log(tokens);
-				var html = marked("This is the output: `$ "+latex+" $` now.");
+				var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
   				autoComplete[e.data[1]] = html;
   				chgAuto(e.data[1]);
 			}
 			else {
 				var latex = e.data[2];
-				var html = marked("This is the output: `$ "+latex+" $` now.");
+				var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
   				autoComplete[e.data[1]] = html;
 			}
 		}
