@@ -41,7 +41,30 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	
-
+	// Override function
+	const tokenizer = {
+	  inlineText(src) {
+		const match = src.match(/\$+([^\$\n]+?)\$+/);
+		console.log(src);
+		console.log(match);
+		if (match) {
+		  return {
+			type: 'text',
+			raw: match[0],
+			text: "$|$"+match[1].trim()
+		  };
+		}
+		else if (match) {
+		  return {
+			type: 'text',
+			raw: match[0],
+			text: src.substr(0,match.index)
+		  };
+		}
+		// return false to use original inlineText tokenizer
+		return false;
+	  }
+	};
 	const renderer = {
 	  text(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
