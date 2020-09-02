@@ -47,7 +47,7 @@
   	
   	myWorker.onmessage = function(e) {
 		if (e.data[0] == "markdown"){
-			var latex = e.data[2];
+			var html = e.data[2];
 			autoComplete[e.data[1]] = html;
 			if (autoNow == e.data[1]){
   				chgAuto(e.data[1]);
