@@ -67,8 +67,7 @@ const renderer = {
 		}
 		var k;
 		if (foundMatch){
-			latex = latexedInputs[input].output;
-			k = katex.renderToString(latex, {throwOnError: false});
+			k = latexedInputs[input].output;
 		}
 		else{
 			l(input);
