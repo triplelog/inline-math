@@ -628,7 +628,8 @@ var _ = {
 						}
 					}
 					console.log(formula);
-					env.tokens.splice(formulaStart,i-formulaStart,formula);
+					var formulaToken = {type:"formula",alias:undefined,content: formula,length: formula.length};
+					env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
 					i = formulaStart;
 				}
 				formulaStart = i+1;
