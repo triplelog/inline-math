@@ -14,6 +14,11 @@ function addSVG(x) {
 	svg += x;
 }
 
+var dependents = "";
+function setDependents(x) {
+	dependents = x;
+}
+
 var varMap = {};
 
 importScripts('marked.js');
@@ -43,6 +48,7 @@ const renderer = {
 	else if (match && match.index == 0){
 		latex = "";
 		l(match[1].trim());
+		console.log(dependents);
 		var k = katex.renderToString(latex, {throwOnError: false});
 		return k;
 	}

@@ -14,6 +14,10 @@ EM_JS(void, output_latex, (const char* x), {
   addLatex(UTF8ToString(x));
 });
 
+EM_JS(void, output_dependents, (const char* x), {
+  setDependents(UTF8ToString(x));
+});
+
 #include "removeIdentities.cpp"
 
 
@@ -77,7 +81,13 @@ void LatexIt(char* aa) {
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
-	console_log(sz);
+	int i;
+	char* dc = new char[sz];
+	for (i=0;i<sz;i++){
+		dc[i]=dependentChars[i];
+	}
+	output_dependents(dc);
+	//console_log(sz);
 	std::string noIdentities = removeIdentities(postfixed);
 	
 	//std::string noIdentities = solveArithmetic(postfixed);
