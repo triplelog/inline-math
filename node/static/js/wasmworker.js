@@ -42,8 +42,8 @@ onmessage = function(e) {
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
-		var match = markdown.match(/\$+([^\$\n]+?)\$+/g);
-		console.log(match);
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
+
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
