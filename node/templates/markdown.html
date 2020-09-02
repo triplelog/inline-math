@@ -63,8 +63,8 @@ var z=3*7/4;
 		}
 		else if (e.data[0] == "code"){
 			var html = e.data[2];
-			var formEl = document.querySelector('.token.formula');
-			formEl.innerHTML = html;
+			var formEl = document.querySelector('#pid-'+e.data[3]);
+			formEl.innerHTML = " "+html;
 		}
 		else if (e.data[0] == "latex"){
 			var latex = e.data[2];
@@ -155,8 +155,13 @@ var z=3*7/4;
   <script src="js/prism.js"></script>
   <script>
   	Prism.hooks.add('complete', function(env) {
-		var formEl = document.querySelector('.token.formula');
-		myWorker.postMessage(["code",formEl.textContent]);
+  		var pid = 0;
+		var formEls = document.querySelectorAll('.token.formula');
+		for (pid=0;pid<formEls.length;pid++){
+			formEls[pid].id = "pid-"+pid;
+			myWorker.postMessage(["code",formEls[pid].textContent,pid]);
+		}
+		
 	});
 	function highlightCode(){
 		Prism.highlightAll();

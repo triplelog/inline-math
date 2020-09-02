@@ -81,7 +81,7 @@ onmessage = function(e) {
 		latex = "";
 		l(message[1]);
 		var k = katex.renderToString(latex, {throwOnError: false});
-		result = ["code",message[1],k];
+		result = ["code",message[1],k,message[2]];
 	}
 	else if (message[0] == "latex"){
 		latex = "";
