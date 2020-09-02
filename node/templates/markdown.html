@@ -156,7 +156,6 @@ var z=3*7/4;
   <script>
   	Prism.hooks.add('complete', function(env) {
 		var formEl = document.querySelector('.token.formula');
-		console.log(formEl.textContent);
 		myWorker.postMessage(["code",formEl.textContent]);
 	});
 	function highlightCode(){
