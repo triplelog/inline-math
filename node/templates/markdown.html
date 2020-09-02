@@ -64,7 +64,7 @@
 		if (e.data[0] == "latex"){
 			var latex = e.data[2];
 			var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
-			html += '<script>alert("hi")</script>';
+			html += "";
 			autoComplete[e.data[1]] = html;
 			if (autoNow == e.data[1]){
   				chgAuto(e.data[1]);
