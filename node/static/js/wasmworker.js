@@ -77,6 +77,11 @@ onmessage = function(e) {
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
+	else if (message[0] == "code"){
+		latex = "";
+		l(message[1]);
+		result = ["code",message[1],latex];
+	}
 	else if (message[0] == "latex"){
 		latex = "";
 		l(message[1]);
