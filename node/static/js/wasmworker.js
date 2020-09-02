@@ -90,11 +90,6 @@ const renderer = {
 };
 marked.use({ renderer });
 	
-var  y=\cos(\frac{x\cdot 180}{3.14})y=cos( 
-3.14
-x⋅180
-​	
- );
 
 
 
