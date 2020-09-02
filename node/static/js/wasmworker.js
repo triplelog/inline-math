@@ -24,7 +24,10 @@ var varMap = {};
 importScripts('marked.js');
 
 const renderer = {
-  
+  code(string code, string infostring, boolean escaped) {
+  	console.log(code);
+  	return '<pre><code class="language-js">'+code+'</code></pre>';
+  },
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
@@ -54,10 +57,6 @@ const renderer = {
 		return k;
 	}
 	else {
-		console.log('text:',text);
-		for (var i=0;i<text.length;i++){
-			console.log(text[i]);
-		}
 		return '<pre><code class="language-js">'+text+'</code></pre>';
 	}
 	
