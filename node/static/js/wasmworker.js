@@ -55,6 +55,8 @@ onmessage = function(e) {
 		console.log(markdown);
 		markdown = markdown.replace(/``\$/g,'`$');
 		console.log(markdown);
+		markdown = markdown.replace(/\$`p`/g,'$p`');
+		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
