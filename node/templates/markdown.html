@@ -67,7 +67,7 @@
 	  }
 	};*/
 	const tokenizer = {
-	  escape(src) {
+	  paragraph(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		console.log(src);
 		if (match) {
