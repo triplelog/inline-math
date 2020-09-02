@@ -627,10 +627,10 @@ var _ = {
 							formula += env.tokens[ii];
 						}
 					}
-					console.log(formula);
+					//console.log(formula);
 					var formulaToken = new Token("formula", _.util.encode(formula), undefined);
 					env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
-					console.log(env.tokens);
+					//console.log(env.tokens);
 					i = formulaStart;
 				}
 				formulaStart = i+1;
@@ -858,6 +858,7 @@ Token.stringify = function stringify(o, language) {
 	}
 
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
+
 };
 
 /**
@@ -1623,5 +1624,3 @@ Prism.languages.python['string-interpolation'].inside['interpolation'].inside.re
 
 Prism.languages.py = Prism.languages.python;
 
-var formEl = document.querySelector('.token.formula');
-console.log(formEl);

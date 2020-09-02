@@ -40,12 +40,18 @@ var z = 3*7/4;
 	
   <!--<script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>-->
   <script src="js/autosize.js"></script>
-  <script src="js/prism.js"></script>
+  
   <!--<script src="js/marked.js"></script>-->
   <!--<script src="mathdocs/markdown-it-math.js"></script>-->
+  <script src="js/prism.js"></script>
   <script>
   	autosize(document.getElementById('inline-rules'));
   	
+  	Prism.hooks.add('wrap', function(env) {
+		if (env.type === 'formula') {
+			console.log(env.content);
+		}
+	});
 	
 	
   	var myWorker = new Worker('js/wasmworker.js');
@@ -141,6 +147,7 @@ var z = 3*7/4;
 		myWorker.postMessage(["rules","identities",ruleText]);
 	}
   </script>
+  
 </body>
 
 </html>
