@@ -98,7 +98,12 @@ marked.use({ renderer });
 	
 
 
-
+function replacer(match){
+	console.log(match);
+	match = match.replace('$`','$');
+	console.log(match);
+	return match;
+}
 onmessage = function(e) {
 	var message = e.data;
 	var result = [];
@@ -110,7 +115,7 @@ onmessage = function(e) {
 		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
-		markdown = markdown.replace(/\$`[a-z]`/g,'$&'.replace(/\$\`/g,'$'));
+		markdown = markdown.replace(/\$`[a-z]`/g,replacer);
 		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
