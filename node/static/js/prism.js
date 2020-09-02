@@ -628,7 +628,7 @@ var _ = {
 						}
 					}
 					console.log(formula);
-					var formulaToken = {type:"formula",alias:undefined,content: formula,length: formula.length};
+					var formulaToken = {type:"operator",alias:undefined,content: formula,length: formula.length};
 					env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
 					i = formulaStart;
 				}
