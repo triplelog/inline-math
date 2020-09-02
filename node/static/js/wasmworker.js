@@ -71,11 +71,12 @@ const renderer = {
 		}
 		else{
 			l(input);
+			k = katex.renderToString(latex, {throwOnError: false});
 			latexedInputs[input]={dependents:{},output:k};
 			for (var i=0;i<dependents.length;i++){
 				latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 			}
-			k = katex.renderToString(latex, {throwOnError: false});
+			
 		}
 		
 		console.log(dependents);
