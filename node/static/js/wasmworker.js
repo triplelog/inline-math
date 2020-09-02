@@ -53,7 +53,8 @@ const renderer = {
 		return k;
 	}
 	else {
-		return false;
+		console.log('text:',text);
+		return '<pre><code class="language-js">${text}</code></pre>';
 	}
 	
   }
