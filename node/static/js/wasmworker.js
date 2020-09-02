@@ -39,8 +39,10 @@ onmessage = function(e) {
 	var message = e.data;
 	var result = [];
 	if (message[0] == "markdown"){
+		console.log(message);
 		var html = marked(message[1]);
-		result = ["latex",message[1],html];
+		console.log(html);
+		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "latex"){
 		latex = "";
