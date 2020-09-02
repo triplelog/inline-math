@@ -393,6 +393,7 @@ std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;
 std::string maxDepthn1;
 
+
 std::string removeBracketsOne(std::string input) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
@@ -453,40 +454,6 @@ std::string removeBracketsOne(std::string input) {
 	
 	
 	
-}
-
-std::vector<char> getDependents(std::string second){
-	int i;
-	std::string currentOperand = "";
-	std::vector<char> dependents;
-	for (i=0;i<second.length();i++){
-		if (second.at(i) == '_'){
-			if (currentOperand.length() == 1 && currentOperand.at(0) >= 'A' && currentOperand.at(0) <= 'Z'){
-				bool foundMatch = false; int ii;
-				for (ii=0;ii<dependents.size();ii++){
-					if (dependents[ii] == currentOperand.at(0)){
-						foundMatch = true;
-						break;
-					}
-				}
-				if (!foundMatch){
-					dependents.push_back(currentOperand.at(0));
-				}
-				
-			}
-			currentOperand = "";
-		}
-		else if (second.at(i) == '{' || second.at(i) == '}' || second.at(i) == '(' || second.at(i) == ')'){
-			//skip these
-		}
-		else if (second.at(i) == '@'){
-			currentOperand = "";
-		}
-		else {
-			currentOperand += second.at(i);
-		}
-	}
-	return dependents;
 }
 
 std::string removeParOne(std::string input) {
@@ -560,6 +527,88 @@ std::string removeParOne(std::string input) {
 	
 	
 	
+}
+
+std::string removeBORP(std::string input){
+	int len = input.length();
+	int iii;
+	for (iii=0;iii<len;iii++){
+		mychar = input.at(iii);
+		if (mychar == '{'){
+			std::string newInput = removeBracketsOne(input);
+			return removeBORP(newInput);
+		}
+		else if (mychar == '('){
+			std::string newInput = removeParOne(input);
+			return removeBORP(newInput);
+		}
+	}
+	return input;
+}
+
+std::vector<char> getDependents(std::string second){
+	int i;
+	std::string currentOperand = "";
+	std::vector<char> dependents;
+	for (i=0;i<second.length();i++){
+		if (second.at(i) == '_'){
+			if (currentOperand.length() == 1 && currentOperand.at(0) >= 'A' && currentOperand.at(0) <= 'Z'){
+				bool foundMatch = false; int ii;
+				for (ii=0;ii<dependents.size();ii++){
+					if (dependents[ii] == currentOperand.at(0)){
+						foundMatch = true;
+						break;
+					}
+				}
+				if (!foundMatch){
+					dependents.push_back(currentOperand.at(0));
+				}
+				
+			}
+			currentOperand = "";
+		}
+		else if (second.at(i) == '{' || second.at(i) == '}' || second.at(i) == '(' || second.at(i) == ')'){
+			//skip these
+		}
+		else if (second.at(i) == '@'){
+			currentOperand = "";
+		}
+		else {
+			currentOperand += second.at(i);
+		}
+	}
+	return dependents;
+}
+std::vector<char> removeDependents(std::string second){
+	int i;
+	std::string currentOperand = "";
+	std::vector<char> dependents;
+	std::string newsecond = "";
+	for (i=0;i<second.length();i++){
+		if (second.at(i) == '_'){
+			if (currentOperand.length() == 1 && currentOperand.at(0) >= 'A' && currentOperand.at(0) <= 'Z'){
+				if (currentV.find(currentOperand.at(0)) != currentV.end()){
+					newsecond += "{"+currentV[currentOperand.at(0)]+"}_";
+				}
+				else {
+					newsecond += currentOperand+"_";
+				}
+				
+			}
+			else {
+				newsecond += currentOperand+"_";
+			}
+			currentOperand = "";
+		}
+		else if (second.at(i) == '@'){
+			newsecond += currentOperand+"@";
+			currentOperand = "";
+		}
+		else {
+			currentOperand += second.at(i);
+		}
+	}
+	return newsecond;
 }
 
 std::string fromOriginal(std::string input,std::map<int,std::string> originalMap) {

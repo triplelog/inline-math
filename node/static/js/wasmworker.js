@@ -74,10 +74,8 @@ const renderer = {
 	var matchLower = text.match(/\$+([^\$\n]+?)\$[a-z]+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
 	if (matchLower && matchLower.index == 0){
-		console.log(matchLower);
 		if (matchLower[0].search(/\$p/)>0){
 			svg = "<span>";
-			console.log(match[1].trim());
 			p(match[1].trim(),-10,10,-10,10);
 			svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
 			svg += '</span>';
