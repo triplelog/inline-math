@@ -628,7 +628,7 @@ var _ = {
 						}
 					}
 					console.log(formula);
-					var formulaToken = new Token("operator", encode(formula), undefined);
+					var formulaToken = new Token("operator", _.util.encode(formula), undefined);
 					env.tokens.splice(formulaStart,i-formulaStart,formulaToken);
 					console.log(env.tokens);
 					i = formulaStart;
