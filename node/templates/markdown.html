@@ -70,7 +70,7 @@
 	  paragraph(src) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		console.log(src);
-		if (match) {
+		/*if (match) {
 		  return {
 			type: 'text',
 			raw: match[0],
@@ -83,7 +83,7 @@
 			raw: match[0],
 			text: src.substr(0,match.index)
 		  };
-		}
+		}*/
 		// return false to use original inlineText tokenizer
 		return false;
 	  }
