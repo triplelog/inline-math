@@ -89,6 +89,7 @@
   	function chgAuto(input) {
 		var el = document.getElementById('output-math');
 		el.innerHTML = autoComplete[input];
+		Prism.highlightAll();
 	}
   	function answerDown(evt) {
 		var key = evt.key;
