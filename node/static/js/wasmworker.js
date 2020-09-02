@@ -24,6 +24,13 @@ var varMap = {};
 importScripts('marked.js');
 
 const renderer = {
+  code(code, infostring, escaped) {
+    console.log(code);
+    console.log(infostring);
+    console.log(escaped);
+    return false;
+  }
+  /*
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
@@ -61,6 +68,7 @@ const renderer = {
 	}
 	
   }
+  */
 };
 marked.use({ renderer });
 	
