@@ -24,6 +24,39 @@ var currentV = {};
 
 importScripts('marked.js');
 
+function mapOrNew(input){
+	latex = "";
+	
+	var foundMatch = false;
+	if (latexedInputs[input]){
+		foundMatch = true;
+		if (latexedInputs[input].dependents){
+			for (var i in latexedInputs[input].dependents){
+				if (latexedInputs[input].dependents[i] != currentV[i]){
+					foundMatch = false;
+					break;
+				}
+			}
+		}
+	}
+	var k;
+	if (foundMatch){
+		k = latexedInputs[input].output;
+	}
+	else{
+		l(input);
+		k = katex.renderToString(latex, {throwOnError: false});
+		latexedInputs[input]={dependents:{},output:k};
+		for (var i=0;i<dependents.length;i++){
+			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
+		}
+		
+	}
+	
+	console.log(dependents);
+	return k;
+}
+
 const renderer = {
   code(code, infostring, escaped) {
   	console.log(infostring);
@@ -51,35 +84,8 @@ const renderer = {
 		return html;
 	}
 	else if (match && match.index == 0){
-		latex = "";
 		var input = match[1].trim();
-		var foundMatch = false;
-		if (latexedInputs[input]){
-			foundMatch = true;
-			if (latexedInputs[input].dependents){
-				for (var i in latexedInputs[input].dependents){
-					if (latexedInputs[input].dependents[i] != currentV[i]){
-						foundMatch = false;
-						break;
-					}
-				}
-			}
-		}
-		var k;
-		if (foundMatch){
-			k = latexedInputs[input].output;
-		}
-		else{
-			l(input);
-			k = katex.renderToString(latex, {throwOnError: false});
-			latexedInputs[input]={dependents:{},output:k};
-			for (var i=0;i<dependents.length;i++){
-				latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
-			}
-			
-		}
-		
-		console.log(dependents);
+		k = mapOrNew(input);
 		return k;
 	}
 	else {
@@ -108,15 +114,14 @@ onmessage = function(e) {
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
-		latex = "";
-		l(message[1]);
-		var k = katex.renderToString(latex, {throwOnError: false});
+		var input = message[1];
+		k = mapOrNew(input);
 		result = ["code",message[1],k,message[2]];
 	}
 	else if (message[0] == "latex"){
-		latex = "";
-		l(message[1]);
-		result = ["latex",message[1],latex];
+		var input = message[1];
+		k = mapOrNew(input);
+		result = ["latex",message[1],k];
 	}
 	else if (message[0] == "plot"){
 		svg = "";
