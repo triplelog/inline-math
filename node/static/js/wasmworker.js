@@ -54,7 +54,7 @@ const renderer = {
 	}
 	else {
 		console.log('text:',text);
-		return '<pre><code class="language-js">${text}</code></pre>';
+		return '<pre><code class="language-js">'+text+'</code></pre>';
 	}
 	
   }
