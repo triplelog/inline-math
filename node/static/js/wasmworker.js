@@ -1,5 +1,4 @@
 importScripts('wasmhello.js');
-
 var l = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number"]);
 var a = Module.cwrap("AddRules","string",["string","string"]);
@@ -14,11 +13,36 @@ function addSVG(x) {
 	svg += x;
 }
 
+importScripts('marked.js');
+const renderer = {
+  codespan(text) {
+	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+	var match = text.match(/\$+([^\$\n]+?)\$+/);
+	if (match && match.index == 0){
+		latex = "";
+		l(match[1].trim();
+		var k = katex.renderToString(latex, {throwOnError: false});
+		return k;
+	}
+	else {
+		return false;
+	}
+	
+  }
+};
+marked.use({ renderer });
+	
+
+
 
 onmessage = function(e) {
 	var message = e.data;
 	var result = [];
-	if (message[0] == "latex"){
+	if (message[0] == "markdown"){
+		var html = marked(message[1]);
+		result = ["latex",message[1],html];
+	}
+	else if (message[0] == "latex"){
 		latex = "";
 		l(message[1]);
 		result = ["latex",message[1],latex];
