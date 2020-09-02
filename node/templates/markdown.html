@@ -40,54 +40,6 @@
   <script>
   	autosize(document.getElementById('inline-rules'));
   	
-  	
-	// Override function
-	/*const tokenizer = {
-	  text(src,tokens) {
-		const match = src.match(/\$+([^\$\n]+?)\$+/);
-		console.log(src);
-		console.log(tokens);
-		console.log(match);
-		if (match) {
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: "$|$"+match[1].trim()
-		  };
-		}
-		else if (match) {
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: src.substr(0,match.index)
-		  };
-		}
-		// return false to use original inlineText tokenizer
-		return false;
-	  }
-	};
-	const tokenizer = {
-	  escape(src) {
-		const match = src.match(/\$+([^\$\n]+?)\$+/);
-		console.log(src);
-		if (match) {
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: "$|$"+match[1].trim()
-		  };
-		}
-		else if (match) {
-		  return {
-			type: 'text',
-			raw: match[0],
-			text: src.substr(0,match.index)
-		  };
-		}
-		// return false to use original inlineText tokenizer
-		return false;
-	  }
-	};*/
 	const renderer = {
 	  codespan(text) {
 		//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
@@ -102,7 +54,6 @@
 		
 	  }
 	};
-	//marked.use({ tokenizer });
 	marked.use({ renderer });
 	
 
@@ -111,16 +62,12 @@
   	
   	myWorker.onmessage = function(e) {
 		if (e.data[0] == "latex"){
+			var latex = e.data[2];
+			var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
+			html += '<script>alert("hi")</script>';
+			autoComplete[e.data[1]] = html;
 			if (autoNow == e.data[1]){
-				var latex = e.data[2];
-				var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
-  				autoComplete[e.data[1]] = html;
   				chgAuto(e.data[1]);
-			}
-			else {
-				var latex = e.data[2];
-				var html = marked("This is the output: `$ "+latex+" $` now and `x=3` and `var py;` and `$x^{47}$`.");
-  				autoComplete[e.data[1]] = html;
 			}
 		}
 		else if (e.data[0] == "svg"){
