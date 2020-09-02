@@ -43,9 +43,10 @@
   	
 	// Override function
 	const tokenizer = {
-	  inlineText(src) {
+	  text(src,tokens) {
 		const match = src.match(/\$+([^\$\n]+?)\$+/);
 		console.log(src);
+		console.log(tokens);
 		console.log(match);
 		if (match) {
 		  return {
