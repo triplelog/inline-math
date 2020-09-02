@@ -65,23 +65,34 @@ const renderer = {
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
-	var matchPlot = text.match(/\$+([^\$\n]+?)\$p+/);
-	var matchInput = text.match(/\$+([^\$\n]+?)\$i+/);
-	if (matchPlot && matchPlot.index == 0){
-		svg = "<span>";
-		p(match[1].trim(),-10,10,-10,10);
-		svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
-		svg += '</span>';
-
-		return svg;
-	}
-	else if (matchInput && matchInput.index == 0){
-		var html = '<input type="text" id="inline-A">';
-		html += match[1].trim();
-		html += '</input>';
-		html += '<script>document.getElementById("inline-A").addEventListener();</script>';
+	var matchLower = text.match(/\$+([^\$\n]+?)\$[a-z]+/);
+	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
+	if (matchLower && matchLower.index == 0){
 		
-		return html;
+		if (matchLower[1].find('$p')>0){
+			svg = "<span>";
+			p(match[1].trim(),-10,10,-10,10);
+			svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
+			svg += '</span>';
+
+			return svg;
+		}
+		else if (matchLower[1].find('$i')>0){
+			var html = '<input type="text" id="inline-A">';
+			html += match[1].trim();
+			html += '</input>';
+			html += '<script>document.getElementById("inline-A").addEventListener();</script>';
+		
+			return html;
+		}
+		else {
+		
+		}
+	}
+	else if (matchUpper && matchUpper.index == 0){
+		var varName = matchUpper[1][matchUpper[1].length-2];
+		console.log(varName);
+		return false;
 	}
 	else if (match && match.index == 0){
 		var input = match[1].trim();
@@ -109,13 +120,12 @@ onmessage = function(e) {
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$i+/g,'`$&`');
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$p+/g,'`$&`');
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$t+/g,'`$&`');//tree output
-		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$[a-z]+/g,'`$&`');
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$`[a-z]`/g,replacer);
+		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
 		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
