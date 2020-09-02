@@ -47,7 +47,7 @@ var z = 3*7/4;
   <script>
   	autosize(document.getElementById('inline-rules'));
   	
-  	Prism.hooks.add('wrap', function(env) {
+  	Prism.hooks.add('complete', function(env) {
 		if (env.type === 'formula') {
 			console.log(env.content);
 		}
