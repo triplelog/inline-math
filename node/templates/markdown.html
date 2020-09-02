@@ -99,6 +99,8 @@
 		if (e.data[0] == "latex"){
 			if (autoNow == e.data[1]){
 				var latex = e.data[2];
+				const tokens = marked.lexer("This is the output: $ "+latex+" $ now.");
+				console.log(tokens);
 				var html = marked("This is the output: $ "+latex+" $ now.");
   				autoComplete[e.data[1]] = html;
   				chgAuto(e.data[1]);
