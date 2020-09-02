@@ -53,7 +53,7 @@ onmessage = function(e) {
 		console.log(markdown);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		console.log(markdown);
-		markdown = markdown.replace(/``\$+([^\$\n]+?)\$`p`+/g,'$&'.replace('`p`','p`').replace('``','`'));
+		markdown = markdown.replace(/``\$/g,'`$');
 		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
