@@ -15,21 +15,7 @@ function addSVG(x) {
 }
 
 importScripts('marked.js');
-const tokenizer = {
-  codespan(src) {
-    const match = src.match(/\$+([^\$\n]+?)\$+/);
-    if (match) {
-      return {
-        type: 'codespan',
-        raw: "$"+match[1]+"$",
-        text: "$"+match[1]+"$"
-      };
-    }
 
-    // return false to use original codespan tokenizer
-    return false;
-  }
-};
 const renderer = {
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
@@ -46,7 +32,6 @@ const renderer = {
 	
   }
 };
-marked.use({ tokenizer });
 marked.use({ renderer });
 	
 
@@ -56,9 +41,10 @@ onmessage = function(e) {
 	var message = e.data;
 	var result = [];
 	if (message[0] == "markdown"){
-		console.log(message);
-		var html = marked(message[1]);
-		console.log(html);
+		var markdown = message[1];
+		var match = markdown.match(/\$+([^\$\n]+?)\$+/);
+		console.log(match);
+		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "latex"){
