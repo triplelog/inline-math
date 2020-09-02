@@ -110,7 +110,7 @@ onmessage = function(e) {
 		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
-		markdown = markdown.replace(/\$`[a-z]`/g,'$&'.replace(/\$`/g,'$'));
+		markdown = markdown.replace(/\$`[a-z]`/g,'$&'.replace(/\$\`/g,'$'));
 		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
