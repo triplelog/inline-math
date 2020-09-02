@@ -478,6 +478,9 @@ std::vector<char> getDependents(std::string second){
 		else if (second.at(i) == '{' || second.at(i) == '}' || second.at(i) == '(' || second.at(i) == ')'){
 			//skip these
 		}
+		else if (second.at(i) == '@'){
+			currentOperand = "";
+		}
 		else {
 			currentOperand += second.at(i);
 		}
