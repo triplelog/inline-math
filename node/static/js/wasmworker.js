@@ -20,7 +20,7 @@ const renderer = {
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	if (match && match.index == 0){
 		latex = "";
-		l(match[1].trim();
+		l(match[1].trim());
 		var k = katex.renderToString(latex, {throwOnError: false});
 		return k;
 	}
