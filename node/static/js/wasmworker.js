@@ -21,8 +21,8 @@ const tokenizer = {
     if (match) {
       return {
         type: 'codespan',
-        raw: match[0],
-        text: "$"+match[1].trim()+"$"
+        raw: "$"+match[1]+"$",
+        text: "$"+match[1]+"$"
       };
     }
 
