@@ -24,7 +24,7 @@ var varMap = {};
 importScripts('marked.js');
 
 const renderer = {
-  code(string code, string infostring, boolean escaped) {
+  code(code, infostring, escaped) {
   	console.log(code);
   	return '<pre><code class="language-js">'+code+'</code></pre>';
   },
