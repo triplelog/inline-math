@@ -69,7 +69,6 @@ function mapOrNew(input,varName=""){
 		
 	}
 	
-	console.log(dependents);
 	return k;
 }
 

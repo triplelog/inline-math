@@ -167,8 +167,11 @@
 				break;
 			}
 			else {
+				console.log(currentAnchor);
 				currentAnchor = currentAnchor.parentElement;
 				currentFocus = currentFocus.parentElement;
+				if (!currentAnchor){break;}
+				if (!currentFocus){break;}
 				anchorParents.push(currentAnchor);
 				focusParents.push(currentFocus);
 			}
