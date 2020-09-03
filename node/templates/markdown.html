@@ -167,8 +167,8 @@
 				break;
 			}
 			else {
-				console.log(currentAnchor);
-				console.log(currentFocus);
+				//console.log(currentAnchor);
+				//console.log(currentFocus);
 				currentAnchor = currentAnchor.parentElement;
 				currentFocus = currentFocus.parentElement;
 				if (!currentAnchor){break;}
@@ -180,8 +180,22 @@
 		console.log(commonParent);
 		
 		//if common node is katex or child of katex: copy that node
+		var katexParent = false;
+		var superParent = commonParent;
+		while (superParent){
+			if (superParent.classList.contains('katex')){
+				katexParent = superParent;
+				break;
+			}
+			superParent = superParent.parentElement;
+		}
+		if (katexParent){
+			console.log(katexParent);
+		}
+		else {
+			console.log(commonParent);
+		}
 		//else: traverse valid children and get string
-		console.log(commonParent);
 	}
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
