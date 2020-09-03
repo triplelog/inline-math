@@ -87,8 +87,6 @@ void LatexIt(char* aa) {
 		char* out = new char[1];
 		out[0] = varName;
 		out[1] = '\0';
-		string_log(a.c_str());
-		string_log(out);
 		a = a.substr(4,a.length()-4);
 	}
 	
@@ -106,15 +104,11 @@ void LatexIt(char* aa) {
 	dc[sz]='\0';
 	output_dependents(dc);
 	
-	//TODO: replace dependents
-	if (currentV.find('A') != currentV.end()){
-		string_log(currentV['A'].c_str());
-	}
+
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	if (varName >= 'A' && varName <= 'Z'){
-		string_log(postfixed.c_str());
 		currentV[varName]=postfixed;
 	}
 	

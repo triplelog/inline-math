@@ -41,17 +41,23 @@ function mapOrNew(input,varName=""){
 	}
 	var k;
 	if (foundMatch){
+		console.log(input);
 		k = latexedInputs[input].output;
+		console.log(k);
 	}
 	else{
+		
 		if (varName != ""){
+			console.log(input);
 			l("|"+varName+":="+input);
 		}
 		else {
+			console.log(input);
 			l(input);
 		}
 		
 		k = katex.renderToString(latex, {throwOnError: false});
+		console.log(k);
 		latexedInputs[input]={dependents:{},output:k};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
