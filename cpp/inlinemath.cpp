@@ -114,9 +114,6 @@ void LatexIt(char* aa) {
 	
 	
 	
-	
-	
-	
 	//console_log(sz);
 	std::string noIdentities = removeIdentities(postfixed);
 	
