@@ -87,15 +87,20 @@
 			console.log(e.data[1]);
 		}
 	}
-
-  	function chgAuto(input) {
-		var el = document.getElementById('output-math');
-		el.innerHTML = autoComplete[input];
-		Prism.highlightAll();
+	function updateInputValue(evt){
 		var els = document.querySelectorAll('input.inline-radio:checked');
 		for (var i=0;i<els.length;i++){
 			console.log(els[i].getAttribute('name'));
 			console.log(els[i].value);
+		}
+	}
+  	function chgAuto(input) {
+		var el = document.getElementById('output-math');
+		el.innerHTML = autoComplete[input];
+		Prism.highlightAll();
+		var els = document.querySelectorAll('input.inline-radio');
+		for (var i=0;i<els.length;i++){
+			els[i].addEventListener('click',updateInputValue);
 		}
 	}
   	function answerDown(evt) {
