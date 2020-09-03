@@ -78,45 +78,46 @@ const renderer = {
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
-	var matchLower = text.match(/\$+([^\$\n]+?)\$[a-z]+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
-	if (matchLower && matchLower.index == 0){
-		if (matchLower[0].search(/\$p/)>0){
-			svg = "<span>";
-			p(match[1].trim(),-10,10,-10,10);
-			svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
-			svg += '</span>';
-
-			return svg;
-		}
-		else if (matchLower[0].search(/\$i/)>0){
-			var html = '<input type="text" id="inline-A">';
-			html += match[1].trim();
-			html += '</input>';
-			html += '<script>document.getElementById("inline-A").addEventListener();</script>';
-		
-			return html;
-		}
-		else {
-		
-		}
+	var varName = "";
+	if (matchUpper && matchUpper.index == 0){
+		varName = matchUpper[0][matchUpper[0].length-2];
 	}
-	else if (matchUpper && matchUpper.index == 0){
-		var varName = matchUpper[0][matchUpper[0].length-2];
-		
-		var input = match[1].trim();
-		
-		k = mapOrNew(input,varName);
-		currentV[varName]=k;
-		return k;
-	}
-	else if (match && match.index == 0){
-		var input = match[1].trim();
-		k = mapOrNew(input);
-		return k;
+	
+	if (match && match.index == 0){
+	
 	}
 	else {
 		return '<pre><code class="language-js">'+text+'</code></pre>';
+	}
+	
+	var input = match[1].trim();
+	if (input.search(/plot\(/)==0){
+		input = input.replace('plot(','');
+		input = input.substr(0,input.length-1);
+		svg = "<span>";
+		p(input,-10,10,-10,10);
+		svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
+		svg += '</span>';
+
+		return svg;
+	}
+	else if (input.search(/checkbox\(/)==0){
+		input = input.replace('checkbox(','');
+		input = input.substr(0,input.length-1);
+		var html = '<input type="text" id="inline-A">';
+		html += input;
+		html += '</input>';
+		html += '<script>document.getElementById("inline-A").addEventListener();</script>';
+	
+		return html;
+	}
+	else {
+		k = mapOrNew(input,varName);
+		if (varName != ""){
+			currentV[varName]=k;
+		}
+		return k;
 	}
 	
   }
@@ -134,11 +135,9 @@ onmessage = function(e) {
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$[a-z]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
-		markdown = markdown.replace(/\$`[a-z]`/g,replacer);
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
