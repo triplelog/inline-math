@@ -71,6 +71,37 @@ function mapOrNew(input,varName=""){
 	return k;
 }
 
+function createInputs(input,varName) {
+	var html = "";
+	if (input.search(/checkbox\(/)==0){
+		input = input.replace('checkbox(','');
+		input = input.substr(0,input.length-1);
+		var options = input.split(',');
+		
+		for (var i=0;i<options.length;i++){
+			if (options[i] != ""){
+				k = mapOrNew(options[i],"");
+				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
+				html += '<input type="checkbox" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
+			}
+		}
+	}
+	else if (input.search(/radio\(/)==0){
+		input = input.replace('radio(','');
+		input = input.substr(0,input.length-1);
+		var options = input.split(',');
+		
+		for (var i=0;i<options.length;i++){
+			if (options[i] != ""){
+				k = mapOrNew(options[i],"");
+				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
+				html += '<input type="radio" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
+			}
+		}
+	}
+	return html;
+}
+
 const renderer = {
   code(code, infostring, escaped) {
   	console.log(infostring);
@@ -103,18 +134,8 @@ const renderer = {
 
 		return svg;
 	}
-	else if (input.search(/checkbox\(/)==0){
-		input = input.replace('checkbox(','');
-		input = input.substr(0,input.length-1);
-		var options = input.split(',');
-		var html = "";
-		for (var i=0;i<options.length;i++){
-			if (options[i] != ""){
-				k = mapOrNew(options[i],"");
-				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="checkbox" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
-			}
-		}
+	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0){
+		var html = createInputs(input,varName);
 		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
 		return html;
