@@ -91,13 +91,20 @@ void LatexIt(char* aa) {
 	}
 	
 	dependentChars.clear();
-	string_log(a.c_str());
+	int i;
+	for (i=0;i<a.length();i++){
+		if (a.at(i) == '{'){
+			a[i] = '(';
+		}
+		else if (a.at(i) == '}'){
+			a[i] = ')';
+		}
+	}
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	string_log(postfixedV[0].c_str());
 	string_log(postfixedV[1].c_str());
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
-	int i;
 	char* dc = new char[sz];
 	for (i=0;i<sz;i++){
 		dc[i]=dependentChars[i];
