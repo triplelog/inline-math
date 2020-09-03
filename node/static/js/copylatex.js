@@ -32,8 +32,10 @@ function getLatex(parent,parents) {
 		}
 		else {
 			var child = children[i];
+			console.log(child);
 			if (!child.classList || !child.classList.contains('katex')){
 				fullLatex += getLatex(child,parents);
+				console.log(child.classList);
 			}
 			else{
 				fullLatex += child.getAttribute('data-latex');
