@@ -91,9 +91,10 @@ void LatexIt(char* aa) {
 	}
 	
 	dependentChars.clear();
-
+	string_log(a.c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	
+	string_log(postfixedV[0].c_str());
+	string_log(postfixedV[1].c_str());
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
 	int i;
