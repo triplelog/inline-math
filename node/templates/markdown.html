@@ -148,8 +148,8 @@
 	}
 	function getCopied() {
 		var selected = window.getSelection();
-		console.log(selected.anchorNode);
-		console.log(selected.focusNode);
+		console.log(selected.anchorNode.parentElement);
+		console.log(selected.focusNode.parentElement);
 	}
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
