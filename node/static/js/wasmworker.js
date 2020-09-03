@@ -51,7 +51,7 @@ function mapOrNew(input,varName=""){
 		k = latexedInputs[input].output;
 	}
 	else{
-		
+		console.log(varName, input);
 		if (varName != ""){
 			l("|"+varName+":="+input);
 		}
