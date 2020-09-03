@@ -91,7 +91,7 @@
 		//TODO: restrct to radios of same name as event
 		var els = document.querySelectorAll('input.inline-radio:checked');
 		for (var i=0;i<els.length;i++){
-			var varName = els[i].getAttribute('name').substr(8);
+			var varName = els[i].getAttribute('name').substr(7);
 			myWorker.postMessage(["inputValue",varName,els[i].value]);
 		}
 	}
