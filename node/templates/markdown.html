@@ -159,7 +159,7 @@
 		while (codeParent.parentElement){
 			codeParent = codeParent.parentElement;
 			if (codeParent.tagName == 'CODE'){
-				getCopied();
+				codeParent.parentElement.style.background = "red";
 			}
 		}
 	};
