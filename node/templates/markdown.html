@@ -92,6 +92,11 @@
 		var el = document.getElementById('output-math');
 		el.innerHTML = autoComplete[input];
 		Prism.highlightAll();
+		var els = document.querySelectorAll('input.inline-radio:checked');
+		for (var i=0;i<els.length;i++){
+			console.log(els[i].getAttribute('name'));
+			console.log(els[i].value);
+		}
 	}
   	function answerDown(evt) {
 		var key = evt.key;
@@ -194,6 +199,8 @@
 			}
 		}
 	};
+	
+
   </script>
   <script src="js/prism.js"></script>
   <script>

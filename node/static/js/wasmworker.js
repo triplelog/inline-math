@@ -22,10 +22,10 @@ function setDependents(x) {
 
 var latexedInputs = {};
 var currentV = {};
-
+var inputV = {};
 importScripts('marked.js');
 
-function mapOrNew(input,varName,visible=true){
+function mapOrNew(input,varName){
 	latex = "";
 	
 	var foundMatch = false;
@@ -46,20 +46,16 @@ function mapOrNew(input,varName,visible=true){
 	}
 	var k;
 	if (foundMatch){
-		console.log(input);
-		console.log(latexedInputs[input]);
 		latex = latexedInputs[input].latex;
 		k = latexedInputs[input].output;
 	}
 	else{
-		console.log(varName, input);
 		if (varName != ""){
 			l("|"+varName+":="+input);
 		}
 		else {
 			l(input);
 		}
-		console.log(latex);
 		k = katex.renderToString(latex, {throwOnError: false});
 		latexedInputs[input]={dependents:{},output:k,varName:varName,latex:latex};
 		for (var i=0;i<dependents.length;i++){
@@ -67,23 +63,22 @@ function mapOrNew(input,varName,visible=true){
 		}
 		
 	}
-	if (!visible){k = "";}
 	return k;
 }
 
 function createInputs(input,varName) {
 	var html = "";
-	var valSet = "";
+	var defaultValue = "";
 	if (input.search(/checkbox\(/)==0){
 		input = input.replace('checkbox(','');
 		input = input.substr(0,input.length-1);
 		var options = input.split(',');
-		valSet = options[0];
+		defaultValue = options[0];
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
 				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="checkbox" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
+				html += '<input type="checkbox" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'"></input>';
 			}
 		}
 	}
@@ -91,17 +86,25 @@ function createInputs(input,varName) {
 		input = input.replace('radio(','');
 		input = input.substr(0,input.length-1);
 		var options = input.split(',');
-		valSet = options[0];
+		defaultValue = options[0];
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
 				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="radio" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
+				html += '<input type="radio" class="inline-radio" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'"></input>';
 			}
 		}
 	}
 	if (varName != ""){
-		console.log(valSet);
+		if (!inputV[varName]){
+			inputV[varName]=defaultValue;
+			var j = mapOrNew(defaultValue,varName,false);
+			currentV[varName]=j;
+		}
+		else {
+			var j = mapOrNew(inputV[varName],varName,false);
+			currentV[varName]=j;
+		}
 		mapOrNew(valSet,varName,false);
 	}
 	return html;
@@ -194,6 +197,9 @@ onmessage = function(e) {
 	else if (message[0] == "rules"){
 		a(message[1],message[2]);
 		result = ["rules",message[1],"done"];
+	}
+	else if (message[0] == "inputValue"){
+		console.log(message);
 	}
 	postMessage(result);
 }
