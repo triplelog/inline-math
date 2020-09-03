@@ -6,6 +6,10 @@ EM_JS(void, console_log, (int x), {
   console.log(x);
 });
 
+EM_JS(void, string_log, (const char* x), {
+  console.log(x);
+});
+
 EM_JS(void, graph_svg, (const char* x), {
   addSVG(UTF8ToString(x));
 });
@@ -97,10 +101,14 @@ void LatexIt(char* aa) {
 	output_dependents(dc);
 	
 	//TODO: replace dependents
+	if (currentV.find('A') != currentV.end()){
+		string_log(currentV['A'].c_str());
+	}
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
 	if (varName >= 'A' && varName <= 'Z'){
+		string_log(postfixed.c_str());
 		currentV[varName]=postfixed;
 	}
 	
