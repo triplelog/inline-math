@@ -35,8 +35,6 @@ function getLatex(parent,parents) {
 		else {
 			var child = children[i];
 			if (!child.classList || !child.classList.contains('katex')){
-				console.log(fullLatex);
-				console.log(getLatex(child,"all"));
 				if (isParent){
 					fullLatex += getLatex(child,parents);
 				}
@@ -46,8 +44,6 @@ function getLatex(parent,parents) {
 				
 			}
 			else{
-				console.log(fullLatex);
-				console.log(child.getAttribute('data-latex').trim());
 				fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
 			}
 			if (isParent){
@@ -203,6 +199,7 @@ function getCopied(evt) {
 	else {
 		if (output == 'latex'){
 			var fL = getLatex(commonParent,parents);
+			console.log(fL);
 			el.value = fL;
 		}
 		else if (output == 'code'){
