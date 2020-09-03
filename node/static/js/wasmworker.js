@@ -25,7 +25,7 @@ var currentV = {};
 
 importScripts('marked.js');
 
-function mapOrNew(input,varName=""){
+function mapOrNew(input,varName,visible=true){
 	latex = "";
 	
 	var foundMatch = false;
@@ -67,17 +67,18 @@ function mapOrNew(input,varName=""){
 		}
 		
 	}
-	
+	if (!visible){k = "";}
 	return k;
 }
 
 function createInputs(input,varName) {
 	var html = "";
+	var valSet = "";
 	if (input.search(/checkbox\(/)==0){
 		input = input.replace('checkbox(','');
 		input = input.substr(0,input.length-1);
 		var options = input.split(',');
-		
+		valSet = options[0];
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
@@ -90,7 +91,7 @@ function createInputs(input,varName) {
 		input = input.replace('radio(','');
 		input = input.substr(0,input.length-1);
 		var options = input.split(',');
-		
+		valSet = options[0];
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
@@ -98,6 +99,10 @@ function createInputs(input,varName) {
 				html += '<input type="radio" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
 			}
 		}
+	}
+	if (varName != ""){
+		console.log(valSet);
+		mapOrNew(valSet,varName,false);
 	}
 	return html;
 }
@@ -172,12 +177,12 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "code"){
 		var input = jsToMath(message[1]);
-		k = mapOrNew(input);
+		k = mapOrNew(input,"");
 		result = ["code",message[1],k,message[2],latex];
 	}
 	else if (message[0] == "latex"){
 		var input = message[1];
-		k = mapOrNew(input);
+		k = mapOrNew(input,"");
 		result = ["latex",message[1],k];
 	}
 	else if (message[0] == "plot"){
