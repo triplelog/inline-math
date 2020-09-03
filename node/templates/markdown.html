@@ -61,7 +61,9 @@
 		else if (e.data[0] == "code"){
 			var html = e.data[2];
 			var formEl = document.querySelector('#pid-'+e.data[3]);
+			formEl.setAttribute('data-input',e.data[1]);
 			formEl.innerHTML = " "+html;
+			formEl.querySelector('.katex').setAttribute('data-latex',e.data[4]);
 		}
 		else if (e.data[0] == "latex"){
 			var latex = e.data[2];
@@ -190,7 +192,7 @@
 			superParent = superParent.parentElement;
 		}
 		if (katexParent){
-			console.log(katexParent);
+			console.log(katexParent.getAttribute('data-latex'));
 		}
 		else {
 			console.log(commonParent);

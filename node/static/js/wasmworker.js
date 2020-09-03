@@ -45,6 +45,7 @@ function mapOrNew(input,varName=""){
 	}
 	var k;
 	if (foundMatch){
+		latex = latexedInputs[input].latex;
 		k = latexedInputs[input].output;
 	}
 	else{
@@ -57,7 +58,7 @@ function mapOrNew(input,varName=""){
 		}
 		
 		k = katex.renderToString(latex, {throwOnError: false});
-		latexedInputs[input]={dependents:{},output:k,varName:varName};
+		latexedInputs[input]={dependents:{},output:k,varName:varName,latex:latex};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
@@ -143,7 +144,7 @@ onmessage = function(e) {
 	else if (message[0] == "code"){
 		var input = message[1];
 		k = mapOrNew(input);
-		result = ["code",message[1],k,message[2]];
+		result = ["code",message[1],k,message[2],latex];
 	}
 	else if (message[0] == "latex"){
 		var input = message[1];
