@@ -30,7 +30,10 @@ function mapOrNew(input,varName=""){
 	var foundMatch = false;
 	if (latexedInputs[input]){
 		foundMatch = true;
-		if (latexedInputs[input].dependents){
+		if (latexedInputs[input].varName != varName){
+			foundMatch = false;
+		}
+		else if (latexedInputs[input].dependents){
 			for (var i in latexedInputs[input].dependents){
 				if (latexedInputs[input].dependents[i] != currentV[i]){
 					foundMatch = false;
@@ -38,6 +41,7 @@ function mapOrNew(input,varName=""){
 				}
 			}
 		}
+		
 	}
 	var k;
 	if (foundMatch){
@@ -58,7 +62,7 @@ function mapOrNew(input,varName=""){
 		
 		k = katex.renderToString(latex, {throwOnError: false});
 		console.log(k);
-		latexedInputs[input]={dependents:{},output:k};
+		latexedInputs[input]={dependents:{},output:k,varName:varName};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
