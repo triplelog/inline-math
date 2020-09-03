@@ -94,6 +94,9 @@
 			var varName = els[i].getAttribute('name').substr(7);
 			myWorker.postMessage(["inputValue",varName,els[i].value]);
 		}
+		var answer = document.getElementById("inline-math").value;
+		myWorker.postMessage(["markdown",answer]);
+		autoNow = answer;
 	}
   	function chgAuto(input) {
 		var el = document.getElementById('output-math');
