@@ -109,6 +109,18 @@ function createInputs(input,varName) {
 			}
 		}
 	}
+	else if (input.search(/input\(/)==0){
+		input = input.replace('input(','');
+		input = input.substr(0,input.length-1);
+		defaultValue = input;
+		
+		if (inputV[varName]){
+			defaultValue = inputV[varName];
+		}
+		html += '<label for="inline-'+varName+'-'+i+'"></label>';
+		html += '<input type="text" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
+
+	}
 	if (varName != ""){
 		if (!inputV[varName]){
 			inputV[varName]=defaultValue;
@@ -212,7 +224,6 @@ onmessage = function(e) {
 		result = ["rules",message[1],"done"];
 	}
 	else if (message[0] == "inputValue"){
-		console.log(message);
 		inputV[message[1]]=message[2];
 	}
 	postMessage(result);

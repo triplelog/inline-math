@@ -94,6 +94,11 @@
 			var varName = els[i].getAttribute('name').substr(7);
 			myWorker.postMessage(["inputValue",varName,els[i].value]);
 		}
+		var els = document.querySelectorAll('input.inline-input');
+		for (var i=0;i<els.length;i++){
+			var varName = els[i].getAttribute('name').substr(7);
+			myWorker.postMessage(["inputValue",varName,els[i].value]);
+		}
 		var answer = document.getElementById("inline-math").value;
 		myWorker.postMessage(["markdown",answer]);
 		autoNow = answer;
@@ -105,6 +110,11 @@
 		var els = document.querySelectorAll('input.inline-radio');
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('click',updateInputValue);
+		}
+		els = document.querySelectorAll('input.inline-input');
+		for (var i=0;i<els.length;i++){
+			els[i].addEventListener('change',updateInputValue);
+			els[i].addEventListener('input',updateInputValue);
 		}
 	}
   	function answerDown(evt) {
