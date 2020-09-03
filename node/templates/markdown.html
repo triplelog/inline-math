@@ -152,6 +152,7 @@
 	window.Prism.manual = true;
 	
 	document.onselectionchange = function() {
+		console.log("change");
 		var els = document.querySelectorAll('pre');
 		for (var i=0;i<els.length;i++){
 			if (els[i].querySelector('div')){
@@ -175,8 +176,13 @@
 			}
 			else {
 				var div = document.createElement('div');
-				div.innerHTML = '<button onclick="getCopied(\'latex\')">Copy Latex</button><button onclick="getCopied(\'code\')">Copy Code</button>';
+				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
 				codeParent.parentElement.appendChild(div);
+				div.addEventListener('click',getCopied);
+				var ta = document.createElement('textarea');
+				//ta.style.display = 'none';
+				codeParent.parentElement.appendChild(ta);
+				
 			}
 		}
 	};

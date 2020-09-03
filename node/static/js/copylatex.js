@@ -154,7 +154,17 @@ function getParents() {
 	return [commonParent,parents];
 }
 
-function getCopied(output) {
+function getCopied(evt) {
+	var el = evt.target;
+	var output = 'latex';
+	while (el.tagName != 'BUTTON' && el.parentElement){
+		el = el.parentElement;
+	}
+	if (el.classList && el.classList.contains('copy-code')){
+		output = 'code';
+	}
+	var el = el.parentElement.querySelector('textarea');
+
 	var p = getParents();
 	var commonParent = p[0];
 	var parents = p[1];
@@ -173,30 +183,35 @@ function getCopied(output) {
 	}
 	if (katexParent){
 		if (output == 'latex'){
-			console.log(katexParent.getAttribute('data-latex'));
+			var fL = katexParent.getAttribute('data-latex');
+			el.value = fL;
 		}
 		else if (output == 'code'){
-			console.log(katexParent.getAttribute('data-input'));
+			var fI = katexParent.getAttribute('data-input');
+			el.value = fI;
 		}
 		else {
-			console.log(katexParent.getAttribute('data-latex'));
+			var fL = katexParent.getAttribute('data-latex');
+			el.value = fL;
 		}
 		
 	}
 	else {
 		if (output == 'latex'){
 			var fL = getLatex(commonParent,parents);
-			console.log(fL);
+			el.value = fL;
 		}
 		else if (output == 'code'){
 			var fI = getInput(commonParent,parents);
-			console.log(fI);
+			el.value = fI;
 		}
 		else {
 			var fL = getLatex(commonParent,parents);
-			console.log(fL);
+			el.value = fL;
 		}
 		
 		
 	}
+	el.select();
+	document.execCommand('copy');
 }
