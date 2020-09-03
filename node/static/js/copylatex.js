@@ -154,7 +154,7 @@ function getParents() {
 	return [commonParent,parents];
 }
 
-function getCopied() {
+function getCopied(output) {
 	var p = getParents();
 	var commonParent = p[0];
 	var parents = p[1];
@@ -172,12 +172,31 @@ function getCopied() {
 		superParent = superParent.parentElement;
 	}
 	if (katexParent){
-		console.log(katexParent.getAttribute('data-latex'));
+		if (output == 'latex'){
+			console.log(katexParent.getAttribute('data-latex'));
+		}
+		else if (output == 'code'){
+			console.log(katexParent.getAttribute('data-input'));
+		}
+		else {
+			console.log(katexParent.getAttribute('data-latex'));
+		}
+		
 	}
 	else {
-		var fL = getLatex(commonParent,parents);
-		console.log(fL);
-		var fI = getInput(commonParent,parents);
-		console.log(fI);
+		if (output == 'latex'){
+			var fL = getLatex(commonParent,parents);
+			console.log(fL);
+		}
+		else if (output == 'code'){
+			var fI = getInput(commonParent,parents);
+			console.log(fI);
+		}
+		else {
+			var fL = getLatex(commonParent,parents);
+			console.log(fL);
+		}
+		
+		
 	}
 }
