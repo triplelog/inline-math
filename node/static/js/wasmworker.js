@@ -77,8 +77,15 @@ function createInputs(input,varName) {
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
+				var selected = "";
+				if (inputV[varName]){
+					if (inputV[varName] == options[i]){selected = "selected";}
+				}
+				else {
+					if (defaultValue == options[i]){selected = "selected";}
+				}
 				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="checkbox" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'"></input>';
+				html += '<input type="checkbox" class="inline-checkbox" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'" '+selected+'></input>';
 			}
 		}
 	}
@@ -90,8 +97,15 @@ function createInputs(input,varName) {
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"");
+				var selected = "";
+				if (inputV[varName]){
+					if (inputV[varName] == options[i]){selected = "selected";}
+				}
+				else {
+					if (defaultValue == options[i]){selected = "selected";}
+				}
 				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="radio" class="inline-radio" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'"></input>';
+				html += '<input type="radio" class="inline-radio" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'" '+selected+'></input>';
 			}
 		}
 	}
