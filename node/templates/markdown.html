@@ -154,7 +154,9 @@
 	document.onselectionchange = function() {
 		var els = document.querySelectorAll('pre');
 		for (var i=0;i<els.length;i++){
-			els[i].style.background = "blue";
+			if (els[i].querySelector('div')){
+				els[i].querySelector('div').style.display = 'none';
+			}
 		}
 		var codeParent = getParents()[0];
 		if (codeParent.tagName == 'CODE'){
@@ -168,7 +170,14 @@
 			}
 		}
 		if (codeParent.parentElement){
-			codeParent.parentElement.style.background = "red";
+			if (codeParent.parentElement.querySelector('div')){
+				codeParent.parentElement.querySelector('div').style.display = 'block';
+			}
+			else {
+				var div = document.createElement('div');
+				div.innerHTML = "Hello World";
+				codeParent.parentElement.appendChild(div);
+			}
 		}
 	};
   </script>
