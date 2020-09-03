@@ -2,15 +2,23 @@ function getLatex(parent,parents) {
 	var children = parent.childNodes;
 	var startCopy = false;
 	for (var i=0;i<children.length;i++){
+		var isParent = false;
+		for (var ii in parents){
+			if (ii == children[i]){
+				isParent = true;
+				break;
+			}
+		}
 		if (!startCopy){
-			if (parents[children[i]]){
+			
+			if (isParent){
 				startCopy = true;
 				console.log(children[i]);
 			}
 		}
 		else {
 			console.log(children[i]);
-			if (parents[children[i]]){
+			if (isParent){
 				startCopy = false;
 			}
 		}
@@ -20,9 +28,7 @@ function getLatex(parent,parents) {
 
 function getCopied() {
 	var selected = window.getSelection();
-	var parents = {};
-	parents[selected.anchorNode]='anchor';
-	parents[selected.focusNode]='focus';
+	var parents = [selected.anchorNode,selected.focusNode];
 	var commonParent = false;
 	var currentAnchor = selected.anchorNode;
 	var currentFocus = selected.focusNode;
@@ -40,7 +46,7 @@ function getCopied() {
 					break;
 				}
 			}
-			parents[currentAnchor]='anchor';
+			parents.push(currentAnchor);
 		}
 		if (currentFocus.parentElement){
 			currentFocus = currentFocus.parentElement;
@@ -51,7 +57,7 @@ function getCopied() {
 					break;
 				}
 			}
-			parents[currentFocus]='focus';
+			parents(currentFocus);
 		}
 		if (commonParent){
 			break;
