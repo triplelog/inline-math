@@ -158,13 +158,17 @@
 		}
 		var codeParent = getParents()[0];
 		if (codeParent.tagName == 'CODE'){
-			//getCopied();
 		}
-		while (codeParent.parentElement){
-			codeParent = codeParent.parentElement;
-			if (codeParent.tagName == 'CODE'){
-				codeParent.parentElement.style.background = "red";
+		else {
+			while (codeParent.parentElement){
+				codeParent = codeParent.parentElement;
+				if (codeParent.tagName == 'CODE'){
+					break;
+				}
 			}
+		}
+		if (codeParent.parentElement){
+			codeParent.parentElement.style.background = "red";
 		}
 	};
   </script>
