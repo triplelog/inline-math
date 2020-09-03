@@ -608,7 +608,6 @@ var _ = {
 		};
 		_.hooks.run('before-tokenize', env);
 		env.tokens = _.tokenize(env.code, env.grammar);
-		console.log(env.tokens);
 		var formulaStart = 0;
 		var isFormula = false;
 		var i = 0;

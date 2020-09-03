@@ -45,6 +45,7 @@ function mapOrNew(input,varName=""){
 	}
 	var k;
 	if (foundMatch){
+		console.log(latex);
 		latex = latexedInputs[input].latex;
 		k = latexedInputs[input].output;
 	}
