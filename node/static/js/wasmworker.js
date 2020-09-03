@@ -58,7 +58,7 @@ function mapOrNew(input,varName=""){
 		else {
 			l(input);
 		}
-		
+		console.log(latex);
 		k = katex.renderToString(latex, {throwOnError: false});
 		latexedInputs[input]={dependents:{},output:k,varName:varName,latex:latex};
 		for (var i=0;i<dependents.length;i++){
