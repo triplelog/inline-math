@@ -1,6 +1,11 @@
 function getLatex(parent,parents) {
 	var children = parent.childNodes;
 	var startCopy = false;
+	var fullLatex = "";
+	if (!children || children.length == 0){
+		fullLatex += parent.textContent;
+		return fullLatex;
+	}
 	for (var i=0;i<children.length;i++){
 		var isParent = false;
 		for (var ii in parents){
@@ -14,17 +19,33 @@ function getLatex(parent,parents) {
 			
 			if (isParent){
 				startCopy = true;
-				console.log(children[i]);
+				
+				var child = children[i];
+				if (child.classList.contains('katex')){
+					fullLatex += child.getAttribute('data-latex');
+					console.log(child.getAttribute('data-latex'));
+				}
+				else {
+					fullLatex += getLatex(child,parents);
+				}
 			}
 		}
 		else {
-			console.log(children[i]);
+			var child = children[i];
+			if (child.classList.contains('katex')){
+				fullLatex += child.getAttribute('data-latex');
+				console.log(child.getAttribute('data-latex'));
+			}
+			else {
+				fullLatex += getLatex(child,parents);
+			}
 			if (isParent){
 				startCopy = false;
 			}
 		}
 		
 	}
+	return fullLatex;
 }
 
 function getCopied() {
@@ -78,7 +99,8 @@ function getCopied() {
 		console.log(katexParent.getAttribute('data-latex'));
 	}
 	else {
-		getLatex(commonParent,parents);
+		var fL = getLatex(commonParent,parents);
+		console.log(fL);
 	}
 	//else: traverse valid children and get string
 }
