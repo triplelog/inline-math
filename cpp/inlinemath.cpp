@@ -7,7 +7,7 @@ EM_JS(void, console_log, (int x), {
 });
 
 EM_JS(void, string_log, (const char* x), {
-  console.log(x);
+  console.log(UTF8ToString(x));
 });
 
 EM_JS(void, graph_svg, (const char* x), {
@@ -84,7 +84,11 @@ void LatexIt(char* aa) {
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
 		a = a.substr(4,a.length()-4);
 		varName = a.at(1);
+		char* out = new char[1];
+		out[0] = varName;
+		out[1] = '\0';
 		string_log(a.c_str());
+		string_log(out);
 	}
 	
 	dependentChars.clear();
