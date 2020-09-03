@@ -1,5 +1,6 @@
 importScripts('wasmhello.js');
 importScripts('katex.min.js');
+importScripts('conversions.js');
 var l = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var a = Module.cwrap("AddRules","string",["string","string"]);
@@ -149,7 +150,7 @@ onmessage = function(e) {
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
-		var input = message[1];
+		var input = jsToMath(message[1]);
 		k = mapOrNew(input);
 		result = ["code",message[1],k,message[2],latex];
 	}
