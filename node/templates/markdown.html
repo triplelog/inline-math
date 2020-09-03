@@ -20,6 +20,7 @@
 	  		
 	  	</div>
 	  	<button onclick="highlightCode()">Submit</button>
+	  	<button onclick="getCopied()">Copy</button>
 
   </div>
   <!--
@@ -144,6 +145,11 @@
 		var ruleText = document.getElementById("inline-rules").value;
 		console.log(ruleText);
 		myWorker.postMessage(["rules","identities",ruleText]);
+	}
+	function getCopied() {
+		var selected = window.getSelection();
+		console.log(selected.anchorNode);
+		console.log(selected.focusNode);
 	}
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
