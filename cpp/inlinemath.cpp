@@ -99,6 +99,12 @@ void LatexIt(char* aa) {
 		else if (a.at(i) == '}'){
 			a[i] = ')';
 		}
+		else if (a.at(i) < 0){
+			return;
+		}
+		else if (a.at(i) == '\\'){
+			return;
+		}
 	}
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	string_log(postfixedV[0].c_str());
