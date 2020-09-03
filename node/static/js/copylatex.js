@@ -35,6 +35,8 @@ function getLatex(parent,parents) {
 		else {
 			var child = children[i];
 			if (!child.classList || !child.classList.contains('katex')){
+				console.log(fullLatex);
+				console.log(getLatex(child,"all"));
 				if (isParent){
 					fullLatex += getLatex(child,parents);
 				}

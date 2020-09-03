@@ -160,11 +160,17 @@
 			}
 		}
 		var codeParent = getParents()[0];
+		if (codeParent.style.display == 'none'){
+			return;
+		}
 		if (codeParent.tagName == 'CODE'){
 		}
 		else {
 			while (codeParent.parentElement){
 				codeParent = codeParent.parentElement;
+				if (codeParent.style.display == 'none'){
+					return;
+				}
 				if (codeParent.tagName == 'CODE'){
 					break;
 				}
