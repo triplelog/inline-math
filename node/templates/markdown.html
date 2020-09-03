@@ -177,11 +177,13 @@
 			else {
 				var div = document.createElement('div');
 				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
-				codeParent.parentElement.appendChild(div);
-				div.addEventListener('click',getCopied);
 				var ta = document.createElement('textarea');
 				//ta.style.display = 'none';
-				codeParent.parentElement.appendChild(ta);
+				div.parentElement.appendChild(ta);
+				codeParent.parentElement.appendChild(div);
+				div.querySelector('button.copy-latex').addEventListener('click',getCopied);
+				div.querySelector('button.copy-code').addEventListener('click',getCopied);
+				
 				
 			}
 		}
