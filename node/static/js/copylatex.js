@@ -114,6 +114,9 @@ function getInput(parent,parents) {
 
 function getParents() {
 	var selected = window.getSelection();
+	if (!selected.anchorNode || !selected.focusNode){
+		return [false,[]];
+	}
 	var parents = [selected.anchorNode,selected.focusNode];
 	var commonParent = false;
 	var currentAnchor = selected.anchorNode;
@@ -155,7 +158,9 @@ function getCopied() {
 	var p = getParents();
 	var commonParent = p[0];
 	var parents = p[1];
-
+	if (!commonParent){
+		return;
+	}
 
 	var katexParent = false;
 	var superParent = commonParent;
