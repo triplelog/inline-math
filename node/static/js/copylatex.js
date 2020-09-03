@@ -152,8 +152,9 @@ function getParents() {
 }
 
 function getCopied() {
-
-	var commonParent, parents = getParents();
+	var p = getParents();
+	var commonParent = p[0];
+	var parents = p[1];
 
 
 	var katexParent = false;
