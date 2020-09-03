@@ -109,7 +109,8 @@ const renderer = {
 		var html = "";
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
-				html += '<label for="inline-'+varName+'-'+i+'">'+options[i]+'</label>';
+				k = mapOrNew(options[i],"");
+				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
 				html += '<input type="checkbox" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
 			}
 		}
