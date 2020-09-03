@@ -179,7 +179,7 @@
 				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
 				var ta = document.createElement('textarea');
 				//ta.style.display = 'none';
-				div.parentElement.appendChild(ta);
+				div.appendChild(ta);
 				codeParent.parentElement.appendChild(div);
 				div.querySelector('button.copy-latex').addEventListener('click',getCopied);
 				div.querySelector('button.copy-code').addEventListener('click',getCopied);
