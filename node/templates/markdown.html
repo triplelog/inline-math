@@ -38,7 +38,7 @@
 	
   <!--<script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>-->
   <script src="js/autosize.js"></script>
-  
+  <script src="js/copylatex.js"></script>
   <!--<script src="js/marked.js"></script>-->
   <!--<script src="mathdocs/markdown-it-math.js"></script>-->
   
@@ -61,8 +61,8 @@
 		else if (e.data[0] == "code"){
 			var html = e.data[2];
 			var formEl = document.querySelector('#pid-'+e.data[3]);
-			formEl.setAttribute('data-input',e.data[1]);
 			formEl.innerHTML = " "+html;
+			formEl.querySelector('.katex').setAttribute('data-input',e.data[1]);
 			formEl.querySelector('.katex').setAttribute('data-latex',e.data[4]);
 		}
 		else if (e.data[0] == "latex"){
@@ -148,57 +148,7 @@
 		console.log(ruleText);
 		myWorker.postMessage(["rules","identities",ruleText]);
 	}
-	function getCopied() {
-		var selected = window.getSelection();
-		var anchorParents = [selected.anchorNode];
-		var focusParents = [selected.focusNode];
-		var commonParent = false;
-		var currentAnchor = selected.anchorNode;
-		var currentFocus = selected.focusNode;
-		for (var i=0;i<100;i++){
-			for (var ii=0;ii<i+1;ii++){
-				for (var iii=0;iii<i+1;iii++){
-					if (anchorParents[ii] == focusParents[iii]){
-						commonParent = focusParents[iii];
-						i =100; ii=101;
-						break;
-					}
-				}
-			}
-			if (commonParent){
-				break;
-			}
-			else {
-				//console.log(currentAnchor);
-				//console.log(currentFocus);
-				currentAnchor = currentAnchor.parentElement;
-				currentFocus = currentFocus.parentElement;
-				if (!currentAnchor){break;}
-				if (!currentFocus){break;}
-				anchorParents.push(currentAnchor);
-				focusParents.push(currentFocus);
-			}
-		}
-		console.log(commonParent);
-		
-		//if common node is katex or child of katex: copy that node
-		var katexParent = false;
-		var superParent = commonParent;
-		while (superParent){
-			if (superParent.classList.contains('katex')){
-				katexParent = superParent;
-				break;
-			}
-			superParent = superParent.parentElement;
-		}
-		if (katexParent){
-			console.log(katexParent.getAttribute('data-latex'));
-		}
-		else {
-			console.log(commonParent);
-		}
-		//else: traverse valid children and get string
-	}
+	
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
 	
