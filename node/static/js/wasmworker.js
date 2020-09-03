@@ -105,10 +105,15 @@ const renderer = {
 	else if (input.search(/checkbox\(/)==0){
 		input = input.replace('checkbox(','');
 		input = input.substr(0,input.length-1);
-		var html = '<input type="text" id="inline-A">';
-		html += input;
-		html += '</input>';
-		html += '<script>document.getElementById("inline-A").addEventListener();</script>';
+		var options = input.split(',');
+		var html = "";
+		for (var i=0;i<options.length;i++){
+			if (options[i] != ""){
+				html += '<label for="inline-'+varName+'-'+i+'">'+options[i]+'</label>';
+				html += '<input type="checkbox" name="inline-'+varName+'" id="inline-'+varName+'-'+i+'"></input>';
+			}
+		}
+		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
 		return html;
 	}
