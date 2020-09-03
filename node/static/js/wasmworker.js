@@ -119,9 +119,7 @@ marked.use({ renderer });
 
 
 function replacer(match){
-	console.log(match);
 	match = match.replace('$`','$');
-	console.log(match);
 	return match;
 }
 onmessage = function(e) {
@@ -135,7 +133,6 @@ onmessage = function(e) {
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$`[a-z]`/g,replacer);
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
-		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}

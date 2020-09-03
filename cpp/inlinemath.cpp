@@ -84,6 +84,7 @@ void LatexIt(char* aa) {
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
 		a = a.substr(4,a.length()-4);
 		varName = a.at(1);
+		string_log(a.c_str());
 	}
 	
 	dependentChars.clear();
