@@ -199,6 +199,7 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "inputValue"){
 		console.log(message);
+		inputV[message[1]]=message[2];
 	}
 	postMessage(result);
 }

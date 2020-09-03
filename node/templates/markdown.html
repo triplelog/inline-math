@@ -88,10 +88,11 @@
 		}
 	}
 	function updateInputValue(evt){
+		//TODO: restrct to radios of same name as event
 		var els = document.querySelectorAll('input.inline-radio:checked');
 		for (var i=0;i<els.length;i++){
-			console.log(els[i].getAttribute('name'));
-			console.log(els[i].value);
+			var varName = els[i].getAttribute('name').substr(8);
+			myWorker.postMessage(["inputValue",varName,els[i].value]);
 		}
 	}
   	function chgAuto(input) {
