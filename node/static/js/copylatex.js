@@ -31,6 +31,7 @@ function getCopied() {
 			currentAnchor = currentAnchor.parentElement;
 			for (var ii in parents){
 				console.log(ii);
+				console.log(currentAnchor);
 				if (ii == currentAnchor){
 					commonParent = ii;
 					i = 100;
