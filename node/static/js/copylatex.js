@@ -33,6 +33,8 @@ function getCopied() {
 				console.log(ii);
 				console.log(currentAnchor);
 				if (ii == currentAnchor){
+					console.log(ii);
+					console.log(currentAnchor);
 					commonParent = ii;
 					i = 100;
 					break;
