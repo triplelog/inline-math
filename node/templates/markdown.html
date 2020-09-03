@@ -20,7 +20,6 @@
 	  		
 	  	</div>
 	  	<button onclick="highlightCode()">Submit</button>
-	  	<button onclick="getCopied()">Copy</button>
 
   </div>
   <!--
@@ -152,6 +151,18 @@
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
 	
+	document.onselectionchange = function() {
+		var codeParent = getCopied();
+		if (codeParent.tagName == 'CODE'){
+			alert("code");
+		}
+		while (codeParent.parentElement){
+			codeParent = codeParent.parentElement;
+			if (codeParent.tagName == 'CODE'){
+				alert("code");
+			}
+		}
+	};
   </script>
   <script src="js/prism.js"></script>
   <script>
