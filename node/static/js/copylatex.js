@@ -30,13 +30,11 @@ function getLatex(parent,parents) {
 				}
 				else{
 					fullLatex += child.getAttribute('data-latex');
-					console.log(child.getAttribute('data-latex'));
 				}
 			}
 		}
 		else {
 			var child = children[i];
-			console.log(child);
 			if (!child.classList || !child.classList.contains('katex')){
 				if (isParent){
 					fullLatex += getLatex(child,parents);
@@ -45,11 +43,9 @@ function getLatex(parent,parents) {
 					fullLatex += getLatex(child,"all");
 				}
 				
-				console.log(child.classList);
 			}
 			else{
 				fullLatex += child.getAttribute('data-latex');
-				console.log(child.getAttribute('data-latex'));
 			}
 			if (isParent){
 				startCopy = false;
@@ -58,6 +54,64 @@ function getLatex(parent,parents) {
 		
 	}
 	return fullLatex;
+}
+
+function getInput(parent,parents) {
+	console.log(parent);
+	var children = parent.childNodes;
+	var startCopy = false;
+	if (parents == "all"){
+		startCopy = true;
+	}
+	var fullInput = "";
+	if (!children || children.length == 0){
+		fullInput += parent.textContent;
+		return fullInput;
+	}
+	for (var i=0;i<children.length;i++){
+		var isParent = false;
+		for (var ii in parents){
+			var p = parents[ii];
+			if (p == children[i]){
+				isParent = true;
+				break;
+			}
+		}
+		if (!startCopy){
+			
+			if (isParent){
+				startCopy = true;
+				
+				var child = children[i];
+				if (!child.classList || !child.classList.contains('katex')){
+					fullInput += getInput(child,parents);
+				}
+				else{
+					fullInput += child.getAttribute('data-input');
+				}
+			}
+		}
+		else {
+			var child = children[i];
+			if (!child.classList || !child.classList.contains('katex')){
+				if (isParent){
+					fullInput += getInput(child,parents);
+				}
+				else {
+					fullInput += getInput(child,"all");
+				}
+				
+			}
+			else{
+				fullInput += child.getAttribute('data-input');
+			}
+			if (isParent){
+				startCopy = false;
+			}
+		}
+		
+	}
+	return fullInput;
 }
 
 function getCopied() {
@@ -113,6 +167,8 @@ function getCopied() {
 	else {
 		var fL = getLatex(commonParent,parents);
 		console.log(fL);
+		var fI = getInput(commonParent,parents);
+		console.log(fI);
 	}
 	//else: traverse valid children and get string
 }
