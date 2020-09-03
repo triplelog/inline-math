@@ -184,7 +184,7 @@
 				var div = document.createElement('div');
 				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
 				var ta = document.createElement('textarea');
-				ta.style.display = 'none';
+				ta.style.visibility = 'hidden';
 				div.appendChild(ta);
 				codeParent.parentElement.appendChild(div);
 				div.querySelector('button.copy-latex').addEventListener('click',getCopied);
