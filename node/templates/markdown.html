@@ -152,14 +152,14 @@
 	window.Prism.manual = true;
 	
 	document.onselectionchange = function() {
-		var codeParent = getCopied();
+		var codeParent = getParents()[0];
 		if (codeParent.tagName == 'CODE'){
-			alert("code");
+			getCopied();
 		}
 		while (codeParent.parentElement){
 			codeParent = codeParent.parentElement;
 			if (codeParent.tagName == 'CODE'){
-				alert("code");
+				getCopied();
 			}
 		}
 	};

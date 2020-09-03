@@ -112,7 +112,7 @@ function getInput(parent,parents) {
 	return fullInput;
 }
 
-function getCopied() {
+function getParents() {
 	var selected = window.getSelection();
 	var parents = [selected.anchorNode,selected.focusNode];
 	var commonParent = false;
@@ -148,6 +148,13 @@ function getCopied() {
 		}
 	}
 	
+	return [commonParent,parents];
+}
+
+function getCopied() {
+
+	var commonParent, parents = getParents();
+
 
 	var katexParent = false;
 	var superParent = commonParent;
@@ -167,5 +174,4 @@ function getCopied() {
 		var fI = getInput(commonParent,parents);
 		console.log(fI);
 	}
-	return commonParent;
 }
