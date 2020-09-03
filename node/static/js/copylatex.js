@@ -44,6 +44,8 @@ function getLatex(parent,parents) {
 				
 			}
 			else{
+				console.log(fullLatex);
+				console.log(child.getAttribute('data-latex').trim());
 				fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
 			}
 			if (isParent){
@@ -215,3 +217,4 @@ function getCopied(evt) {
 	el.select();
 	document.execCommand('copy');
 }
+
