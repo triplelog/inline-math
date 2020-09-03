@@ -21,23 +21,23 @@ function getLatex(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (child.classList.contains('katex')){
+				if (!child.classList || !child.classList.contains('katex')){
+					fullLatex += getLatex(child,parents);
+				}
+				else{
 					fullLatex += child.getAttribute('data-latex');
 					console.log(child.getAttribute('data-latex'));
-				}
-				else {
-					fullLatex += getLatex(child,parents);
 				}
 			}
 		}
 		else {
 			var child = children[i];
-			if (child.classList.contains('katex')){
+			if (!child.classList || !child.classList.contains('katex')){
+				fullLatex += getLatex(child,parents);
+			}
+			else{
 				fullLatex += child.getAttribute('data-latex');
 				console.log(child.getAttribute('data-latex'));
-			}
-			else {
-				fullLatex += getLatex(child,parents);
 			}
 			if (isParent){
 				startCopy = false;
