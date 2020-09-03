@@ -1,6 +1,10 @@
 function getLatex(parent,parents) {
+	console.log(parent);
 	var children = parent.childNodes;
 	var startCopy = false;
+	if (parents == "all"){
+		startCopy = true;
+	}
 	var fullLatex = "";
 	if (!children || children.length == 0){
 		fullLatex += parent.textContent;
@@ -34,7 +38,13 @@ function getLatex(parent,parents) {
 			var child = children[i];
 			console.log(child);
 			if (!child.classList || !child.classList.contains('katex')){
-				fullLatex += getLatex(child,parents);
+				if (isParent){
+					fullLatex += getLatex(child,parents);
+				}
+				else {
+					fullLatex += getLatex(child,"all");
+				}
+				
 				console.log(child.classList);
 			}
 			else{
