@@ -148,8 +148,36 @@
 	}
 	function getCopied() {
 		var selected = window.getSelection();
-		console.log(selected.anchorNode.parentElement);
-		console.log(selected.focusNode.parentElement);
+		var anchorParents = [selected.anchorNode];
+		var focusParents = [selected.focusNode];
+		var commonParent = false;
+		var currentAnchor = selected.anchorNode;
+		var currentFocus = selected.focusNode;
+		for (var i=0;i<100;i++){
+			for (var ii=0;ii<i+1;ii++){
+				for (var iii=0;iii<i+1;iii++){
+					if (anchorParents[iii] === focusParents[iii]){
+						commonParent = focusParents[iii];
+						i =100; ii=101;
+						break;
+					}
+				}
+			}
+			if (commonParent){
+				break;
+			}
+			else {
+				currentAnchor = currentAnchor.parentElement;
+				currentFocus = currentFocus.parentElement;
+				anchorParents.push(currentAnchor);
+				focusParents.push(currentFocus);
+			}
+		}
+		console.log(commonParent);
+		
+		//if common node is katex or child of katex: copy that node
+		//else: traverse valid children and get string
+		console.log(commonParent);
 	}
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
