@@ -152,6 +152,10 @@
 	window.Prism.manual = true;
 	
 	document.onselectionchange = function() {
+		var els = document.querySelectorAll('pre');
+		for (var i=0;i<els.length;i++){
+			els[i].style.background = "blue";
+		}
 		var codeParent = getParents()[0];
 		if (codeParent.tagName == 'CODE'){
 			getCopied();
