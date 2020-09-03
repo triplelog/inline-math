@@ -160,7 +160,7 @@
 			}
 		}
 		var codeParent = getParents()[0];
-		if (codeParent.style.display == 'none'){
+		if (codeParent.style && codeParent.style.display == 'none'){
 			return;
 		}
 		if (codeParent.tagName == 'CODE'){
@@ -168,7 +168,7 @@
 		else {
 			while (codeParent.parentElement){
 				codeParent = codeParent.parentElement;
-				if (codeParent.style.display == 'none'){
+				if (codeParent.style && codeParent.style.display == 'none'){
 					return;
 				}
 				if (codeParent.tagName == 'CODE'){
@@ -184,7 +184,7 @@
 				var div = document.createElement('div');
 				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
 				var ta = document.createElement('textarea');
-				ta.style.display = 'none';
+				//ta.style.display = 'none';
 				div.appendChild(ta);
 				codeParent.parentElement.appendChild(div);
 				div.querySelector('button.copy-latex').addEventListener('click',getCopied);
