@@ -167,7 +167,7 @@ const renderer = {
 
 		return svg;
 	}
-	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0){
+	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0){
 		var html = createInputs(input,varName);
 		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
