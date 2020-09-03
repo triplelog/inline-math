@@ -4,7 +4,8 @@ function getLatex(parent,parents) {
 	for (var i=0;i<children.length;i++){
 		var isParent = false;
 		for (var ii in parents){
-			if (ii == children[i]){
+			var p = parents[ii];
+			if (p == children[i]){
 				isParent = true;
 				break;
 			}
@@ -36,12 +37,9 @@ function getCopied() {
 		if (currentAnchor.parentElement){
 			currentAnchor = currentAnchor.parentElement;
 			for (var ii in parents){
-				console.log(ii);
-				console.log(currentAnchor);
-				if (ii == currentAnchor){
-					console.log(ii);
-					console.log(currentAnchor);
-					commonParent = ii;
+				var p = parents[ii];
+				if (p == currentAnchor){
+					commonParent = p;
 					i = 100;
 					break;
 				}
@@ -51,13 +49,14 @@ function getCopied() {
 		if (currentFocus.parentElement){
 			currentFocus = currentFocus.parentElement;
 			for (var ii in parents){
-				if (ii == currentFocus){
-					commonParent = ii;
+				var p = parents[ii];
+				if (p == currentFocus){
+					commonParent = p;
 					i = 100;
 					break;
 				}
 			}
-			parents(currentFocus);
+			parents.push(currentFocus);
 		}
 		if (commonParent){
 			break;
