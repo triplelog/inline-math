@@ -105,7 +105,6 @@ function createInputs(input,varName) {
 			var j = mapOrNew(inputV[varName],varName,false);
 			currentV[varName]=j;
 		}
-		mapOrNew(valSet,varName,false);
 	}
 	return html;
 }
