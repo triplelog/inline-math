@@ -592,17 +592,17 @@ std::string removeSolves(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
-	string_log(bracketStrings[0].c_str());
-	string_log(bracketStrings[1].c_str());
+	//string_log(bracketStrings[0].c_str());
+	//string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
 	char solveType = '0';
 	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
 		solveType = bracketStrings[0].at(0);
 		oldPostfix.replace(0,1,"");
 	}
-	string_log(oldPostfix.c_str());
+	//string_log(oldPostfix.c_str());
 	oldPostfix = removeBracketsOne(oldPostfix);
-	string_log(oldPostfix.c_str());
+	//string_log(oldPostfix.c_str());
 	if (solveType == 'A'){
 		oldPostfix = solveArithmetic(oldPostfix);
 	}
@@ -615,7 +615,7 @@ std::string removeSolves(std::string input) {
 	else if (solveType == 'S'){
 		oldPostfix = doCalculus(oldPostfix);
 	}
-	string_log(oldPostfix.c_str());
+	//string_log(oldPostfix.c_str());
 	
 	std::string newLeft = "";
 	std::string newRight = "";
