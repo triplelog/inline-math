@@ -86,11 +86,12 @@ Calculator
 
 Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
 
-$x==(3*x^2+4*x^3)[C]$
+$3*x^2+4*x^3==(3*x^2+4*x^3)[C]$
 
-$x==(3+4-1)[A]$
+$3+4-1==(3+4-1)[A]$
 
-$=(ddx(1*x^2))[I]==(ddx(1*x^2))[S]$
+$input()$[K]
+$=(K)[I]==(K)[S]$
 {% endblock %}
 
 
