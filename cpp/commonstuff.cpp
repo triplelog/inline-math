@@ -564,6 +564,7 @@ std::string removeSolves(std::string input) {
 	char mychar;
 	int len = input.length();
 	bool interiorBrackets = false;
+	string_log(input.c_str());
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '('){
@@ -613,8 +614,9 @@ std::string removeSolves(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
-	//string_log(bracketStrings[0].c_str());
-	//string_log(bracketStrings[1].c_str());
+	string_log("aaaa".c_str());
+	string_log(bracketStrings[0].c_str());
+	string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
 	char solveType = '0';
 	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
