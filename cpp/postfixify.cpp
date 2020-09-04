@@ -89,7 +89,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '/' || firstChar == '-' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|') {
 			p = prec[firstChar];
 			if (firstChar == '-' && !previousOperand){
-				p = 101;
+				p = prec['~'];
 			}
 			while ((osidx > 0) && (prec[opStack[osidx-1]] >= p)){
 				topToken = opStack[osidx-1];
