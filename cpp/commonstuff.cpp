@@ -614,7 +614,7 @@ std::string removeSolves(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
-	string_log("aaaa".c_str());
+	string_log("aaaa");
 	string_log(bracketStrings[0].c_str());
 	string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
