@@ -125,7 +125,8 @@ void LatexIt(char* aa) {
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-
+	
+	string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
 		currentV[varName]=removeBORP(postfixed);
 	}
@@ -149,7 +150,7 @@ void LatexIt(char* aa) {
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 
-	console_log(duration);
+	//console_log(duration);
 }
 
 void PlotIt(char* aa,double left,double right, double bottom, double top) {

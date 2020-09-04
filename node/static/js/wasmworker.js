@@ -192,7 +192,6 @@ function createInputs(input,varName) {
 
 const renderer = {
   code(code, infostring, escaped) {
-  	console.log(infostring);
   	return '<pre><code class="language-js">'+code+'</code></pre>';
   },
   codespan(text) {
