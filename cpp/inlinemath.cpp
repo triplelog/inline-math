@@ -1,4 +1,4 @@
-
+std::string solveArithmetic(std::string s);
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
 
