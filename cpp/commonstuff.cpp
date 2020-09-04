@@ -815,11 +815,11 @@ bool firstCorrect;
 
 
 void initialRun(){
-	prec['~'] = 4;
+	prec['~'] = 6;
 	prec['#'] = 100;
 	int i;
 	for (i=-128;i<0;i++){
-		prec[i]=6;
+		prec[i]=7;
 	}
     prec['^'] = 5;
 	prec['*'] = 4;
