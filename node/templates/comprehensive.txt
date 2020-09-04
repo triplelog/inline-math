@@ -1,5 +1,19 @@
 {% extends "templates/testshell.html" %}
-{% block markdown %}	  			
+{% block markdown %}	  	
+Comprehensive Test Suite
+========================
+
+The following examples showcase almost every feature of Inline Math. The markdown on the left can be edited to see how something works.
+
+Mathematical Expressions
+------------------------
+
+Math can be included by wrapping an expression inside a pair of dollar signs like $x^12$. Expressions will be converted into postfix notation and then LaTeX that is passed to katex. Most basic mathematical expressions should work including exponents: $x^12$, fractions: $1/2$, trig: $sin(0)$, constants like $pi$ and $e$.
+
+**Calculus**
+
+$ddx(x)$
+		
 ```
 var x = math.cos(2);
 var x = Math.sin(2);
