@@ -142,6 +142,8 @@ function createInputs(input,varName) {
 			currentV[varName]=j;
 		}
 		else {
+			console.log(varName);
+			console.log(inputV[varName]);
 			var j = mapOrNew(inputV[varName],varName,false);
 			currentV[varName]=j;
 		}
@@ -239,8 +241,6 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];
-		console.log(message[1]);
-		console.log(inputV[message[1]]);
 	}
 	postMessage(result);
 }
