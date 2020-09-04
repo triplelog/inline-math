@@ -529,6 +529,96 @@ std::string removeParOne(std::string input) {
 	
 }
 
+std::string removeSolves(std::string input) {
+	std::map<int,int> operandToIndex;
+	int iii; int iiii;
+	bool foundBracket = false;
+	bool foundAt = false;
+	int idx = 0;
+	int iidx = 0;
+	std::vector<std::string> bracketStrings;
+	std::string tempString = "";
+	int bracketLength = 0;
+	int secondIndex;
+	char mychar;
+	int len = input.length();
+	bool interiorBrackets = false;
+	for (iii=0;iii<len;iii++){
+		mychar = input.at(iii);
+		if (mychar == '('){
+			foundBracket = true;
+			bracketLength = 1;
+			secondIndex = iii;
+		}
+		else if (mychar == ')') {
+			bracketStrings.push_back(tempString);
+			bracketLength++;
+			break;
+		}
+		else if (mychar == '{'){ //Must always be inside of a par
+			interiorBrackets = true;
+			tempString += mychar;
+			bracketLength++;
+		}
+		else if (mychar == '}') {
+			interiorBrackets = false;
+			tempString += mychar;
+			bracketLength++;
+		}
+		else if (mychar == '#' && !foundBracket && !interiorBrackets) {
+			operandToIndex[idx]=iii;
+			idx++;
+		}
+		else if (mychar == '_' && !foundBracket && !interiorBrackets) {
+			iidx++;
+		}
+		else if (mychar == '@' && !foundBracket && !interiorBrackets) {
+			foundAt = true;
+		}
+		else if (mychar == '@' && foundBracket && !interiorBrackets) {
+			//tempString += input.at(iii);
+			bracketStrings.push_back(tempString);
+			tempString = "";
+			bracketLength++;
+		}
+		else if (foundBracket){
+			tempString += mychar;
+			bracketLength++;
+		}
+	}
+	if (!foundBracket){
+		return input;
+	}
+	
+	int firstIndex = operandToIndex[iidx];
+	//std::cout << input << " --a\n";
+	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
+	oldPostfix = removeBracketsOne(oldPostfix);
+	oldPostfix = solveArithmetic(oldPostfix);
+	std::string newLeft = "";
+	std::string newRight = "";
+	bool pastKey = false;
+	for (iii=0;iii<oldPostfix.length;iii++){
+		if (oldPostfix.at(iii)=='@'){
+			pastKey = true;
+		}
+		else if (pastKey){
+			newRight += oldPostfix.at(iii);
+		}
+		else {
+			newLeft += oldPostfix.at(iii);
+		}
+	}
+	input.replace(secondIndex,bracketLength+1,newRight);
+	//std::cout << input << " --b\n";
+	input.replace(firstIndex,1,newLeft);
+	//std::cout << input << " --c\n";
+	return removeSolves(input);
+	
+	
+	
+}
+
 std::string removeBORP(std::string input){
 	int len = input.length();
 	int iii;

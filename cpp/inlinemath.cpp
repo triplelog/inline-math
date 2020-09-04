@@ -149,6 +149,7 @@ void LatexIt(char* aa) {
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	postfixed = removeSolves(postfixed);
 	
 	string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
