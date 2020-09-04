@@ -565,6 +565,7 @@ std::string removeSolves(std::string input) {
 	int len = input.length();
 	bool interiorBrackets = false;
 	string_log(input.c_str());
+	console_log(len);
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '('){
