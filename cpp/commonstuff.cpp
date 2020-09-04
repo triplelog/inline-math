@@ -609,6 +609,12 @@ std::string removeSolves(std::string input) {
 	else if (solveType == 'I'){
 		oldPostfix = removeIdentities(oldPostfix);
 	}
+	else if (solveType == 'C'){
+		oldPostfix = toCanonical(oldPostfix);
+	}
+	else if (solveType == 'S'){
+		oldPostfix = doCalculus(oldPostfix);
+	}
 	string_log(oldPostfix.c_str());
 	
 	std::string newLeft = "";
