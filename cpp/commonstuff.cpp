@@ -606,6 +606,8 @@ std::string removeSolves(std::string input) {
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			std::string tempPFF = "||aa||:"+tempString;
+			string_log(tempPFF.c_str());
 			bracketLength++;
 		}
 	}
