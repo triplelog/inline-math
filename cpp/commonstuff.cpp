@@ -420,6 +420,10 @@ std::string removeBracketsOne(std::string input) {
 		else if (mychar == '}') {
 			bracketStrings.push_back(tempString);
 			bracketLength++;
+			if (bracketStrings.size()>1){
+				string_log(bracketStrings[0].c_str());
+				string_log(bracketStrings[1].c_str());
+			}
 			break;
 		}
 		else if (mychar == '#' && !foundBracket) {
@@ -444,8 +448,10 @@ std::string removeBracketsOne(std::string input) {
 		}
 		std::string tempPFF = "__ts__:"+tempString;
 		string_log(tempPFF.c_str());
-		console_log(bracketLength);
-		console_log(bracketStrings.size());
+		if (bracketStrings.size()>0){
+			string_log(bracketStrings[0].c_str());
+		}
+		
 	}
 	if (!foundBracket){
 		return input;
