@@ -23,7 +23,6 @@ using namespace std::chrono;
 std::string solveArithmetic(std::string s);
 std::string removeIdentities(std::string s);
 
-#include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
 
 EM_JS(void, console_log, (int x), {
@@ -49,6 +48,9 @@ EM_JS(void, output_dependents, (const char* x), {
 EM_JS(void, send_ready, (), {
   cpp_ready();
 });
+
+#include "partialstuff.cpp"
+
 
 #include "removeIdentities.cpp"
 
