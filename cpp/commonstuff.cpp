@@ -598,7 +598,7 @@ std::string removeSolves(std::string input) {
 	std::string newLeft = "";
 	std::string newRight = "";
 	bool pastKey = false;
-	for (iii=0;iii<oldPostfix.length;iii++){
+	for (iii=0;iii<oldPostfix.length();iii++){
 		if (oldPostfix.at(iii)=='@'){
 			pastKey = true;
 		}
