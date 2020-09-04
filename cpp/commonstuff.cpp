@@ -600,9 +600,11 @@ std::string removeSolves(std::string input) {
 		solveType = bracketStrings[0].at(0);
 		oldPostfix.replace(0,1,"");
 	}
-	//string_log(oldPostfix.c_str());
+	std::string tempPFF = "||||:"+oldPostfix;
+	string_log(tempPFF.c_str());
 	oldPostfix = removeBracketsOne(oldPostfix);
-	//string_log(oldPostfix.c_str());
+	tempPFF = "||||:"+oldPostfix;
+	string_log(tempPFF.c_str());
 	if (solveType == 'A'){
 		oldPostfix = solveArithmetic(oldPostfix);
 	}
