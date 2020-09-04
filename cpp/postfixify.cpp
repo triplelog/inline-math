@@ -868,7 +868,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 						inside += input_str.at(ii);
 					}
 					if (openPar == 0){
-						/*if (ii+3<input_str.length()){
+						if (ii+3<input_str.length()){
 							if (input_str.at(ii+1) == '[' && input_str.at(ii+3) == ']'){
 								if (input_str.at(ii+2) >= 'A' && input_str.at(ii+2) <= 'Z'){
 									type = "";
@@ -876,7 +876,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 									ii+=3;
 								}
 							}
-						}*/
+						}
 						break;
 					}
 				}
