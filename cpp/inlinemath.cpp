@@ -21,7 +21,7 @@
 
 using namespace std::chrono;
 std::string solveArithmetic(std::string s);
-
+std::string removeIdentities(std::string s);
 
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
@@ -159,7 +159,7 @@ void LatexIt(char* aa) {
 	
 	
 	//console_log(sz);
-	std::string noIdentities = removeIdentities(postfixed);
+	//std::string noIdentities = removeIdentities(postfixed);
 	
 	//std::string noIdentities = solveArithmetic(postfixed);
 	

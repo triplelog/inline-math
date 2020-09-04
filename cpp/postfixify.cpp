@@ -908,12 +908,21 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			if (repMap.find(twoChars) != repMap.end()){
 				//std::cout << "rmtc: " << repMap[twoChars] << "\n";
 				std::string repText = postfixify(repMap[twoChars]);
-				std::string solvedText = repText;
+				
+				repText.replace(0,0,twoChars.substr(0,1));
+				//std::string solvedText = repText;
 				//if (twoChars.at(0) == 'A'){
 				//	solvedText = solveArithmetic(repText);
 				//}
 				//std::cout << "rt: " << repText << "\n";
-				postVector[1].replace(iii,2,"("+solvedText+")");
+				/*int i;
+				for (i=0;i<repText.length();i++){
+					if (repText.at(i)=='@'){
+						repText.replace(i,0,twoChars.substr(0,1));
+						break;
+					}
+				}*/
+				postVector[1].replace(iii,2,"("+repText+")");
 				iii += 2+solvedText.length() - 2;
 			}
 		}
