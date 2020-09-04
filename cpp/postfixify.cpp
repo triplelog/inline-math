@@ -850,7 +850,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				int i = iii;
 				int ii; int openPar = 0;
 				std::string inside = "";
-				std::string type = "A";
+				std::string type = "Q";
 				for (ii=i+1;ii<input_str.length();ii++){
 					if (input_str.at(ii) == '('){
 						if (openPar > 0){
@@ -908,8 +908,10 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			if (repMap.find(twoChars) != repMap.end()){
 				//std::cout << "rmtc: " << repMap[twoChars] << "\n";
 				std::string repText = postfixify(repMap[twoChars]);
+				if (twoChars.at(0) != 'Q'){
+					repText.replace(0,0,twoChars.substr(0,1));
+				}
 				
-				repText.replace(0,0,twoChars.substr(0,1));
 				//std::string solvedText = repText;
 				//if (twoChars.at(0) == 'A'){
 				//	solvedText = solveArithmetic(repText);
