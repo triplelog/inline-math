@@ -595,7 +595,7 @@ std::string removeSolves(std::string input) {
 	string_log(bracketStrings[0].c_str());
 	string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
-	char solveType = "0";
+	char solveType = '0';
 	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
 		solveType = bracketStrings[0].at(0);
 		oldPostfix.replace(0,1,"");
