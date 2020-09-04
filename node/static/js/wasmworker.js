@@ -1,3 +1,7 @@
+
+function cpp_ready() {
+	postMessage("ready");
+}
 importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
@@ -9,7 +13,7 @@ var latex = "";
 function addLatex(x) {
 	latex += x;
 }
-	
+
 var svg = "";
 function addSVG(x) {
 	svg += x;

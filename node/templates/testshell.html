@@ -53,7 +53,10 @@
   	var myWorker = new Worker('js/wasmworker.js');
   	
   	myWorker.onmessage = function(e) {
-		if (e.data[0] == "markdown"){
+  		if (e.data == "ready"){
+  			setTimeout(updateMarkdown,50);
+  		}
+		else if (e.data[0] == "markdown"){
 			var html = e.data[2];
 			autoComplete[e.data[1]] = html;
 			if (autoNow == e.data[1]){
@@ -257,7 +260,7 @@
 		Prism.highlightAll();
 	}
 	
-	setTimeout(updateMarkdown,300);
+	
   </script>
   
 </body>

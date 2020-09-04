@@ -22,6 +22,9 @@ EM_JS(void, output_dependents, (const char* x), {
   setDependents(UTF8ToString(x));
 });
 
+EM_JS(void, send_ready, (), {
+  cpp_ready();
+});
 
 #include "removeIdentities.cpp"
 
@@ -252,6 +255,7 @@ int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
 	initialRun();
+	send_ready();
 	return 1;
 }
 
