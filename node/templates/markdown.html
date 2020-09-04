@@ -90,9 +90,9 @@
 	function updateInputValue(evt){
 		//TODO: restrct to radios of same name as event
 		var els = document.querySelectorAll('input.inline-radio:checked');
-		els += document.querySelectorAll('input.inline-input');
-		els += document.querySelectorAll('input.inline-number');
-		els += document.querySelectorAll('input.inline-range');
+		els = els.concat(document.querySelectorAll('input.inline-input'));
+		els = els.concat(document.querySelectorAll('input.inline-number'));
+		els = els.concat(document.querySelectorAll('input.inline-range'));
 		for (var i=0;i<els.length;i++){
 			var varName = els[i].getAttribute('name').substr(7);
 			myWorker.postMessage(["inputValue",varName,els[i].value]);
@@ -120,6 +120,7 @@
 		el.innerHTML = autoComplete[input];
 		Prism.highlightAll();
 		var els = document.querySelectorAll('input.inline-radio');
+		els = els.concat(document.querySelectorAll('input.inline-checkbox'));
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('click',updateInputValue);
 		}
