@@ -446,9 +446,15 @@ std::string removeBracketsOne(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
+	std::string tempPFF = "____:"+input;
+	string_log(tempPFF.c_str());
 	input.replace(secondIndex,bracketLength+1,bracketStrings[1]);
+	tempPFF = "____:"+input;
+	string_log(tempPFF.c_str());
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
+	tempPFF = "____:"+input;
+	string_log(tempPFF.c_str());
 	//std::cout << input << " --c\n";
 	return removeBracketsOne(input);
 	
