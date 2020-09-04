@@ -67,12 +67,18 @@ $G$
 Code
 ----
 
-For now only javascript code is supported, but adding more languages is on the roadmap. To create a code block, add a line with 3 tick marks. Then add lines of code and finally close with another line of 3 tick marks (\`).
+For now only javascript code is supported, but adding more languages is on the roadmap. To create a code block, add a line with 3 tick marks (i.e. \`\`\`). Then add lines of code and finally close with another line of 3 tick marks.
+
+Any mathematical expression within the code will be converted into a latex expression. Other parts of code will be highlighted by prismjs.
+
+Variables (as uppercase letters) can be imported from outside.
+
+It is possible to copy the underlying code by selecting the relevant lines and then clicking the "copy code" button. Or you can copy the latex by clicking the "copy latex" button. 
 
 ```
 var x = math.cos(2);
 var x = Math.sin(2);
-var z = a.b(c+4);
+var z = A+4;
 ```
 
 Calculator
