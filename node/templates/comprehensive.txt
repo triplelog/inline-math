@@ -86,6 +86,9 @@ Calculator
 
 Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
 
+$x==(3+4)[A]$
+
+$ddx(x)==(A+1)$
 {% endblock %}
 
 

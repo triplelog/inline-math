@@ -615,7 +615,7 @@ std::string removeSolves(std::string input) {
 			newLeft += oldPostfix.at(iii);
 		}
 	}
-	input.replace(secondIndex,bracketLength+1,newRight);
+	input.replace(secondIndex,bracketLength+1-1,newRight);
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,newLeft);
 	//std::cout << input << " --c\n";
