@@ -98,8 +98,11 @@
 		
 		els = document.querySelectorAll('input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
+			console.log(els[i]);
+			console.log(els[i].checked);
 			var varName = els[i].getAttribute('name').substr(7);
 			if (els[i].checked){
+				console.log("checked");
 				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes')]);
 			}
 			else {
