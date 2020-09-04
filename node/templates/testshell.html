@@ -114,7 +114,10 @@
 			
 		}
 		
+		updateMarkdown();
 		
+	}
+	function updateMarkdown(){
 		var answer = document.getElementById("inline-math").value;
 		myWorker.postMessage(["markdown",answer]);
 		autoNow = answer;
@@ -235,6 +238,7 @@
 		}
 	};
 	
+	
 
   </script>
   <script src="js/prism.js"></script>
@@ -253,6 +257,7 @@
 		Prism.highlightAll();
 	}
 	
+	setTimeout(updateMarkdown,300);
   </script>
   
 </body>
