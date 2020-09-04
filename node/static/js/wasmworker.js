@@ -25,7 +25,7 @@ var currentV = {};
 var inputV = {};
 importScripts('marked.js');
 
-function mapOrNew(input,varName){
+function mapOrNew(input,varName,forceNew=false){
 	latex = "";
 	
 	var foundMatch = false;
@@ -45,7 +45,7 @@ function mapOrNew(input,varName){
 		
 	}
 	var k;
-	if (foundMatch){
+	if (foundMatch && !forceNew){
 		latex = latexedInputs[input].latex;
 		k = latexedInputs[input].output;
 	}
@@ -138,13 +138,13 @@ function createInputs(input,varName) {
 	if (varName != ""){
 		if (!inputV[varName]){
 			inputV[varName]=defaultValue;
-			var j = mapOrNew(defaultValue,varName,false);
+			var j = mapOrNew(defaultValue,varName,true);
 			currentV[varName]=j;
 		}
 		else {
 			console.log(varName);
 			console.log(inputV[varName]);
-			var j = mapOrNew(inputV[varName],varName,false);
+			var j = mapOrNew(inputV[varName],varName,true);
 			console.log(j);
 			currentV[varName]=j;
 		}
