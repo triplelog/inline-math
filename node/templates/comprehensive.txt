@@ -76,9 +76,9 @@ Variables (as uppercase letters) can be imported from outside.
 It is possible to copy the underlying code by selecting the relevant lines and then clicking the "copy code" button. Or you can copy the latex by clicking the "copy latex" button. 
 
 ```
-var x = math.cos(2);
-var x = Math.sin(2);
-var z = A+4;
+var x=math.cos(2);
+var x=Math.sin(2);
+var z=A+4;
 ```
 
 Calculator
