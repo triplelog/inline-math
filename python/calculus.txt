@@ -61,7 +61,7 @@ ee
 
 ::: rule
 in: ddx(cos(A))
-out: -sin(A)*ddx(A)
+out: -1*sin(A)*ddx(A)
 ee
 :::
 ::: rule

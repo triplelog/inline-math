@@ -208,7 +208,10 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				if (ii > 0){
 					if (c == '*'){
 						//TODO: deal with fraction in s or child
-						if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
+						if (s == "-1"){
+							s = "-"+child;
+						}
+						else if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
 							if (child.length()>0 && (child.at(0) >= '0' && child.at(0) <= '9')){
 								//digit followed by digit
 								s += "\\cdot "+child;

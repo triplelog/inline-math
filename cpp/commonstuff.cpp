@@ -407,9 +407,6 @@ std::string removeBracketsOne(std::string input) {
 	int secondIndex;
 	char mychar;
 	int len = input.length();
-	std::string tempPFFF = "__inp__:"+input;
-	string_log(tempPFFF.c_str());
-	console_log(len);
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '{'){
@@ -420,10 +417,6 @@ std::string removeBracketsOne(std::string input) {
 		else if (mychar == '}') {
 			bracketStrings.push_back(tempString);
 			bracketLength++;
-			if (bracketStrings.size()>1){
-				string_log(bracketStrings[0].c_str());
-				string_log(bracketStrings[1].c_str());
-			}
 			break;
 		}
 		else if (mychar == '#' && !foundBracket) {
@@ -446,12 +439,6 @@ std::string removeBracketsOne(std::string input) {
 			tempString += mychar;
 			bracketLength++;
 		}
-		std::string tempPFF = "__ts__:"+tempString;
-		string_log(tempPFF.c_str());
-		if (bracketStrings.size()>0){
-			string_log(bracketStrings[0].c_str());
-		}
-		
 	}
 	if (!foundBracket){
 		return input;
@@ -459,17 +446,9 @@ std::string removeBracketsOne(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
-	std::string tempPFF = "____:"+input;
-	string_log(tempPFF.c_str());
-	console_log(secondIndex);
-	console_log(bracketLength);
 	input.replace(secondIndex,bracketLength+1,bracketStrings[1]);
-	tempPFF = "____:"+input;
-	string_log(tempPFF.c_str());
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
-	tempPFF = "____:"+input;
-	string_log(tempPFF.c_str());
 	//std::cout << input << " --c\n";
 	return removeBracketsOne(input);
 	
@@ -564,8 +543,6 @@ std::string removeSolves(std::string input) {
 	char mychar;
 	int len = input.length();
 	bool interiorBrackets = false;
-	string_log(input.c_str());
-	console_log(len);
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '('){
@@ -606,8 +583,6 @@ std::string removeSolves(std::string input) {
 		}
 		else if (foundBracket){
 			tempString += mychar;
-			std::string tempPFF = "||aa||:"+tempString;
-			string_log(tempPFF.c_str());
 			bracketLength++;
 		}
 	}
@@ -617,29 +592,22 @@ std::string removeSolves(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	//std::cout << input << " --a\n";
-	string_log("aaaa");
-	string_log(bracketStrings[0].c_str());
-	string_log(bracketStrings[1].c_str());
+	//string_log(bracketStrings[0].c_str());
+	//string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
 	char solveType = '0';
 	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
 		solveType = bracketStrings[0].at(0);
 		oldPostfix.replace(0,1,"");
 	}
-	std::string tempPFF = "||||:"+oldPostfix;
-	string_log(tempPFF.c_str());
+	//string_log(oldPostfix.c_str());
 	oldPostfix = removeBracketsOne(oldPostfix);
-	tempPFF = "||||:"+oldPostfix;
-	string_log(tempPFF.c_str());
+	//string_log(oldPostfix.c_str());
 	if (solveType == 'A'){
 		oldPostfix = solveArithmetic(oldPostfix);
 	}
 	else if (solveType == 'I'){
-		std::string tempPF = "----:"+oldPostfix;
-		string_log(tempPF.c_str());
 		oldPostfix = removeIdentities(oldPostfix);
-		tempPF = "----:"+oldPostfix;
-		string_log(tempPF.c_str());
 	}
 	else if (solveType == 'C'){
 		oldPostfix = toCanonical(oldPostfix);
