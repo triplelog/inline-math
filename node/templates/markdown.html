@@ -90,15 +90,27 @@
 	function updateInputValue(evt){
 		//TODO: restrct to radios of same name as event
 		var els = document.querySelectorAll('input.inline-radio:checked');
+		els += document.querySelectorAll('input.inline-input');
+		els += document.querySelectorAll('input.inline-number');
+		els += document.querySelectorAll('input.inline-range');
 		for (var i=0;i<els.length;i++){
 			var varName = els[i].getAttribute('name').substr(7);
 			myWorker.postMessage(["inputValue",varName,els[i].value]);
 		}
-		var els = document.querySelectorAll('input.inline-input');
+		
+		els = document.querySelectorAll('input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
 			var varName = els[i].getAttribute('name').substr(7);
-			myWorker.postMessage(["inputValue",varName,els[i].value]);
+			if (els[i].checked){
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes')]);
+			}
+			else {
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-no')]);
+			}
+			
 		}
+		
+		
 		var answer = document.getElementById("inline-math").value;
 		myWorker.postMessage(["markdown",answer]);
 		autoNow = answer;
@@ -114,7 +126,7 @@
 		els = document.querySelectorAll('input.inline-input');
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('change',updateInputValue);
-			els[i].addEventListener('input',updateInputValue);
+			//els[i].addEventListener('input',updateInputValue);
 		}
 	}
   	function answerDown(evt) {

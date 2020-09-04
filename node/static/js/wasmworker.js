@@ -73,21 +73,35 @@ function createInputs(input,varName) {
 		input = input.replace('checkbox(','');
 		input = input.substr(0,input.length-1);
 		var options = input.split(',');
-		defaultValue = options[0];
-		for (var i=0;i<options.length;i++){
-			if (options[i] != ""){
-				k = mapOrNew(options[i],"");
-				var selected = "";
-				if (inputV[varName]){
-					if (inputV[varName] == options[i]){selected = "checked";}
-				}
-				else {
-					if (defaultValue == options[i]){selected = "checked";}
-				}
-				html += '<label for="inline-'+varName+'-'+i+'">'+k+'</label>';
-				html += '<input type="checkbox" class="inline-checkbox" name="inline-'+varName+'" value="'+options[i]+'" id="inline-'+varName+'-'+i+'" '+selected+'></input>';
+		var dataYes = "true";
+		var dataNo = "false";
+		if (options.length>1){
+			dataYes = options[0];
+			dataNo = options[1];
+		}
+		else if (options.length == 1){
+			dataYes = options[0];
+		}
+		
+		
+		defaultValue = dataYes;
+		if (inputV[varName]){
+			if (inputV[varName] == dataYes){
+				selected = "checked";
+			}
+			else if (inputV[varName] == dataNo){
+				selected = "";
+			}
+			else {
+				selected = "checked";
 			}
 		}
+		else {
+			selected = "checked";
+		}
+		//html += '<label for="inline-'+varName+'">'+k+'</label>';
+		html += '<input type="checkbox" class="inline-checkbox" name="inline-'+varName+'" data-no="'+dataNo+'" data-yes="'+dataYes+'" id="inline-'+varName+'" '+selected+'></input>';
+
 	}
 	else if (input.search(/radio\(/)==0){
 		input = input.replace('radio(','');
@@ -112,12 +126,12 @@ function createInputs(input,varName) {
 	else if (input.search(/input\(/)==0){
 		input = input.replace('input(','');
 		input = input.substr(0,input.length-1);
-		defaultValue = input;
+		defaultValue = "";
 		
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
-		html += '<label for="inline-'+varName+'-'+i+'"></label>';
+		html += '<label for="inline-'+varName+'-'+i+'">'+input+'</label>';
 		html += '<input type="text" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
 
 	}
@@ -167,7 +181,7 @@ const renderer = {
 
 		return svg;
 	}
-	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0){
+	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);
 		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
