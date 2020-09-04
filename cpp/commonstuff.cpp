@@ -407,6 +407,8 @@ std::string removeBracketsOne(std::string input) {
 	int secondIndex;
 	char mychar;
 	int len = input.length();
+	std::string tempPFFF = "__inp__:"+input;
+	string_log(tempPFFF.c_str());
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '{'){
@@ -439,6 +441,8 @@ std::string removeBracketsOne(std::string input) {
 			tempString += mychar;
 			bracketLength++;
 		}
+		std::string tempPFF = "__ts__:"+tempString;
+		string_log(tempPFF.c_str());
 	}
 	if (!foundBracket){
 		return input;
