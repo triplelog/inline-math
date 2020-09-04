@@ -147,9 +147,11 @@ void LatexIt(char* aa) {
 	
 
 	postfixedV[1] = removeDependents(postfixedV[1]);
-	
+	string_log(postfixedV[1].c_str());
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	string_log(postfixed.c_str());
 	postfixed = removeSolves(postfixed);
+	string_log(postfixed.c_str());
 	postfixed = removeBracketsOne(postfixed);
 	
 	string_log(postfixed.c_str());
