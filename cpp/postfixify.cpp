@@ -913,7 +913,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				//	solvedText = solveArithmetic(repText);
 				//}
 				//std::cout << "rt: " << repText << "\n";
-				postVector[1].replace(iii,2,"{"+solvedText+"}");
+				postVector[1].replace(iii,2,"("+solvedText+")");
 				iii += 2+solvedText.length() - 2;
 			}
 		}
