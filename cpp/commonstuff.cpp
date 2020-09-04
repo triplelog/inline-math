@@ -610,7 +610,7 @@ std::string removeSolves(std::string input) {
 		std::string tempPF = "----:"+oldPostfix;
 		string_log(tempPF.c_str());
 		oldPostfix = removeIdentities(oldPostfix);
-		std::string tempPF = "----:"+oldPostfix;
+		tempPF = "----:"+oldPostfix;
 		string_log(tempPF.c_str());
 	}
 	else if (solveType == 'C'){
