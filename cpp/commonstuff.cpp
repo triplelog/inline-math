@@ -409,6 +409,7 @@ std::string removeBracketsOne(std::string input) {
 	int len = input.length();
 	std::string tempPFFF = "__inp__:"+input;
 	string_log(tempPFFF.c_str());
+	console_log(len);
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '{'){
