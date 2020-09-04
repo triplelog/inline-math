@@ -135,6 +135,37 @@ function createInputs(input,varName) {
 		html += '<input type="text" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
 
 	}
+	else if (input.search(/number\(/)==0){
+		input = input.replace('number(','');
+		input = input.substr(0,input.length-1);
+		defaultValue = "";
+		
+		if (inputV[varName]){
+			defaultValue = inputV[varName];
+		}
+		html += '<label for="inline-'+varName+'-'+i+'">'+input+'</label>';
+		html += '<input type="number" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
+
+	}
+	else if (input.search(/range\(/)==0){
+		input = input.replace('number(','');
+		input = input.substr(0,input.length-1);
+		var minRange = "0";
+		var maxRange = "100";
+		var options = input.split(',');
+		if (options.length>1){
+			minRange = options[0];
+			maxRange = options[1];
+		}
+		defaultValue = "50";
+		
+		if (inputV[varName]){
+			defaultValue = inputV[varName];
+		}
+		html += '<label for="inline-'+varName+'-'+i+'">'+input+'</label>';
+		html += '<input type="range" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
+
+	}
 	if (varName != ""){
 		if (!inputV[varName]){
 			inputV[varName]=defaultValue;
@@ -142,10 +173,7 @@ function createInputs(input,varName) {
 			currentV[varName]=j;
 		}
 		else {
-			console.log(varName);
-			console.log(inputV[varName]);
 			var j = mapOrNew(inputV[varName],varName,true);
-			console.log(j);
 			currentV[varName]=j;
 		}
 	}

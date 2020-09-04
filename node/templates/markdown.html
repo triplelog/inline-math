@@ -124,7 +124,7 @@
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('click',updateInputValue);
 		}
-		els = document.querySelectorAll('input.inline-input');
+		els = document.querySelectorAll('input.inline-input, input.inline-number, input.inline-range');
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('change',updateInputValue);
 			//els[i].addEventListener('input',updateInputValue);
