@@ -145,6 +145,7 @@ function createInputs(input,varName) {
 			console.log(varName);
 			console.log(inputV[varName]);
 			var j = mapOrNew(inputV[varName],varName,false);
+			console.log(j);
 			currentV[varName]=j;
 		}
 	}
