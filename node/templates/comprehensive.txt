@@ -13,7 +13,32 @@ Math can be included by wrapping an expression inside a pair of dollar signs lik
 **Calculus**
 
 $ddx(x)$
-$dd?(t;t)$
+$dd?(t^3;t)$
+$idx(x^2)$
+$idx?(t^3;t)$
+
+
+
+Variable Expressions
+--------------------
+
+By appending [A] after dollar signs, the interior expression will be stored as a variable. The variable must be exactly one uppercase letter. These variables can be called later inside any expression. 
+
+$7^2$[A]
+
+$A+1$[B]
+
+$x=B$
+
+Inputs
+------
+
+User input can be asked for by including the appropriate function within dollar signs and appending the desired variable as normal.
+
+checkbox(Yes,No) produces a checkbox with the first argument representing the value of the expression when checked and the second argument is the value of the expression when unchecked. If no arguments are used, the default is 1 and 0 for yes and no, respectively.
+$checkbox(x^2,x^3)$[C]
+$C$
+
 		
 ```
 var x = math.cos(2);
