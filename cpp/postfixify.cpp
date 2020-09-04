@@ -923,7 +923,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 					}
 				}*/
 				postVector[1].replace(iii,2,"("+repText+")");
-				iii += 2+solvedText.length() - 2;
+				iii += 2+repText.length() - 2;
 			}
 		}
 	}
