@@ -20,10 +20,9 @@
 
 
 using namespace std::chrono;
-
-#include "commonstuff.cpp"
-
 std::string solveArithmetic(std::string s);
+
+
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
 
