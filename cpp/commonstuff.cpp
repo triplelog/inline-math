@@ -461,6 +461,8 @@ std::string removeBracketsOne(std::string input) {
 	//std::cout << input << " --a\n";
 	std::string tempPFF = "____:"+input;
 	string_log(tempPFF.c_str());
+	console_log(secondIndex);
+	console_log(bracketLength);
 	input.replace(secondIndex,bracketLength+1,bracketStrings[1]);
 	tempPFF = "____:"+input;
 	string_log(tempPFF.c_str());
