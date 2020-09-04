@@ -445,7 +445,7 @@ std::string removeBracketsOne(std::string input) {
 		std::string tempPFF = "__ts__:"+tempString;
 		string_log(tempPFF.c_str());
 		console_log(bracketLength);
-		console_log(bracketStrings.length());
+		console_log(bracketStrings.size());
 	}
 	if (!foundBracket){
 		return input;
