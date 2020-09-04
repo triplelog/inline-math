@@ -3,7 +3,7 @@
 Comprehensive Test Suite
 ========================
 
-The following examples showcase almost every feature of Inline Math. The markdown on the left shows the exact syntax used and can be edited to see what happens. Anything not inside of dollar signs or a code block will be parsed as markdown using markedjs. 
+The following examples showcase almost every feature of Inline Math. The markdown on the left shows the exact syntax used and can be edited to see what happens. Anything not inside of dollar signs or a code block will be parsed as markdown using markedjs. For more details, each header can be clicked on to go to a dedicated page with more examples.
 
 Mathematical Expressions
 ------------------------
@@ -67,6 +67,7 @@ $G$
 Code
 ----
 
+For now only javascript code is supported, but adding more languages is on the roadmap. To create a code block, add a line with 3 tick marks. Then add lines of code and finally close with another line of 3 tick marks (\`).
 
 ```
 var x = math.cos(2);
@@ -74,6 +75,10 @@ var x = Math.sin(2);
 var z = a.b(c+4);
 ```
 
+Calculator
+----------
+
+Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
 
 {% endblock %}
 
