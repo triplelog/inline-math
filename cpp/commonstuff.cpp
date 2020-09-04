@@ -607,7 +607,11 @@ std::string removeSolves(std::string input) {
 		oldPostfix = solveArithmetic(oldPostfix);
 	}
 	else if (solveType == 'I'){
+		std::string tempPF = "----:"+oldPostfix;
+		string_log(tempPF.c_str());
 		oldPostfix = removeIdentities(oldPostfix);
+		std::string tempPF = "----:"+oldPostfix;
+		string_log(tempPF.c_str());
 	}
 	else if (solveType == 'C'){
 		oldPostfix = toCanonical(oldPostfix);
