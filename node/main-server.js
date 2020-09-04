@@ -82,6 +82,17 @@ app.get('/markdown',
 	}
 );
 
+app.get('/comprehensive',
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/comprehensive.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		

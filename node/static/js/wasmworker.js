@@ -138,13 +138,19 @@ function createInputs(input,varName) {
 	else if (input.search(/number\(/)==0){
 		input = input.replace('number(','');
 		input = input.substr(0,input.length-1);
-		defaultValue = "";
+		var minRange = "0";
+		var maxRange = "100";
+		var options = input.split(',');
+		if (options.length>1){
+			minRange = options[0];
+			maxRange = options[1];
+		}
+		defaultValue = "50";
 		
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
-		html += '<label for="inline-'+varName+'-'+i+'">'+input+'</label>';
-		html += '<input type="number" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
+		html += '<input type="number" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
 
 	}
 	else if (input.search(/range\(/)==0){
@@ -162,7 +168,7 @@ function createInputs(input,varName) {
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
-		html += '<label for="inline-'+varName+'-'+i+'">'+input+'</label>';
+		
 		html += '<input type="range" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'-'+i+'"></input>';
 
 	}
