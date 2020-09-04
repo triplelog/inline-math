@@ -164,7 +164,12 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 					}
 				}
 				else {
-					s += "("+child+")";
+					if (lastOp == '-'){
+						s += child;
+					}
+					else {
+						s += "("+child+")";
+					}
 				}
 			}
 			else if (prec[c] == prec[lastOp] && c != lastOp){
