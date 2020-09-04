@@ -1,3 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <algorithm>
+#include <math.h>
+#include <limits.h>
+#include <time.h>
+#include <string.h> 
+#include <ctype.h>
+#include <cmath>
+#include <variant>
+#include <map>
+#include <numeric>
+#include <chrono>
+#include <thread>
+#include <array>
+#include <vector>
+#include <unistd.h>
+#include <thread>
+#include <future>
+
+
+using namespace std::chrono;
+
+#include "commonstuff.cpp"
+
 std::string solveArithmetic(std::string s);
 #include "partialstuff.cpp"
 #include <emscripten/emscripten.h>
