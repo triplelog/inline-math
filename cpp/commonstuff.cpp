@@ -815,7 +815,7 @@ bool firstCorrect;
 
 
 void initialRun(){
-	prec['~'] = 6;
+	prec['~'] = 101;
 	prec['#'] = 100;
 	int i;
 	for (i=-128;i<0;i++){
