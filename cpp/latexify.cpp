@@ -27,7 +27,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -85: {
 			if (ii > 0){
-				s.replace(4,0,child+" \\text{d");
+				s.replace(5,0,child+" \\text{d");
 			}
 			else {
 				s += "\\int "+child+"}";
