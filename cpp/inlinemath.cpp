@@ -167,7 +167,7 @@ void LatexIt(char* aa) {
 	
 	//std::string noIdentities = doCalculus(postfixed);
 	postfixed = "\0";
-	std::string latexed = latexOne(noIdentities);
+	std::string latexed = latexOne(postfixed);
 	noIdentities = "\0";
 	latexed += "\0";
 	output_latex(latexed.c_str());
