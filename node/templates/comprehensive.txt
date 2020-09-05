@@ -94,6 +94,21 @@ $3+4-1==(3+4-1)[A]$
 
 $input()$[K]
 $=(ddx(K))[I]==(ddx(K))[S]$
+
+
+
+Plots
+-----
+
+Plot equations by including y=f(x) or x=f(y) within the plot() function inside of dollar signs.
+
+$plot(y=2*x)$
+
+
+Trees
+-----
+
+
 {% endblock %}
 
 
