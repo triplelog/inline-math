@@ -228,14 +228,12 @@ const renderer = {
 		latex = "";
 		t(input);
 		var tree = JSON.parse('{'+latex+'}');
-		console.log(tree);
 		for (var i in tree.nodes){
 			var text = tree.nodes[i].text;
 			k = katex.renderToString(text, {throwOnError: false});
 			tree.nodes[i].text = k;
 		}
-		console.log(tree);
-		return '<span class="inline-tree">'+JSON.parse(tree)+'</span>';
+		return '<span class="inline-tree">'+JSON.stringify(tree)+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);
