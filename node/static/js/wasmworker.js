@@ -234,6 +234,7 @@ const renderer = {
 			var text = tree.nodes[node].text;
 			k = katex.renderToString(text, {throwOnError: false});
 			tree.nodes[node].text = k;
+			console.log(k);
 		}
 		return '<span class="inline-tree">'+JSON.stringify(tree)+'</span>';
 	}
