@@ -227,7 +227,11 @@ const renderer = {
 		input = input.substr(0,input.length-1);
 		latex = "";
 		t(input);
-		
+		var tree = JSON.parse('{'+latex+'}');
+		console.log(tree);
+		for (var i=0;i<tree.nodes;i++){
+			
+		}
 		return '<span class="inline-tree">{'+latex+'}</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
