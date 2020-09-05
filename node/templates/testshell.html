@@ -141,6 +141,7 @@
 		}
 		
 		var treeEl = document.querySelector('.inline-tree');
+		console.log(treeEl.innerHTML);
 		createTree(treeEl,0);
 	}
   	function answerDown(evt) {
@@ -280,7 +281,7 @@
 	
 	}
 	function createTree(treeEl,i){
-		var tree = JSON.parse(treeEl.innerHTML);
+		var tree = JSON.parse(treeEl.textContent);
 		treeEl.innerHTML = "";
 	
 		var treeDiv = document.createElement('div');
