@@ -234,6 +234,7 @@ const renderer = {
 			k = katex.renderToString(text, {throwOnError: false});
 			tree.nodes[i].text = k;
 		}
+		console.log(tree);
 		return '<span class="inline-tree">'+JSON.parse(tree)+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
