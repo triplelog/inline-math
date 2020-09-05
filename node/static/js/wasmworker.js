@@ -238,7 +238,9 @@ const renderer = {
 			k = katex.renderToString(text, {throwOnError: false});
 			outText += "<node id=\""+node+"\">"+k+"</node>";
 			tree.nodes[node].text = "";
-			//console.log(k);
+			if (i==0){
+				console.log(k);
+			}
 		}
 		//console.log(tree);
 		outText += JSON.stringify(tree);
