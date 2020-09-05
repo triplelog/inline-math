@@ -139,6 +139,9 @@
 			els[i].addEventListener('change',updateInputValue);
 			//els[i].addEventListener('input',updateInputValue);
 		}
+		
+		var treeEl = document.querySelector('tree');
+		createTree(treeEl.textContent,0);
 	}
   	function answerDown(evt) {
 		var key = evt.key;
