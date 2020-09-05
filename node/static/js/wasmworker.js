@@ -238,6 +238,9 @@ const renderer = {
 			tree.nodes[node].text = k;
 			console.log(k);
 		}
+		console.log(tree);
+		var outText = JSON.stringify(tree);
+		console.log(outText);
 		return '<span class="inline-tree">'+JSON.stringify(tree)+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
