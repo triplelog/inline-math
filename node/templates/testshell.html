@@ -280,7 +280,7 @@
 	
 	}
 	function createTree(treeEl,i){
-		var tree = JSON.parse(treeEl.textContent);
+		var tree = JSON.parse(treeEl.innerHTML);
 		treeEl.innerHTML = "";
 	
 		var treeDiv = document.createElement('div');
