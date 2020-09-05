@@ -228,10 +228,12 @@ const renderer = {
 		latex = "";
 		t(input);
 		var tree = JSON.parse('{'+latex+'}');
-		for (var i in tree.nodes){
-			var text = tree.nodes[i].text;
+		
+		for (var i=0;i<tree.allNodes.length;i++){
+			var node = tree.allNodes[i];
+			var text = tree.nodes[node].text;
 			k = katex.renderToString(text, {throwOnError: false});
-			tree.nodes[i].text = k;
+			tree.nodes[node].text = k;
 		}
 		return '<span class="inline-tree">'+JSON.stringify(tree)+'</span>';
 	}
