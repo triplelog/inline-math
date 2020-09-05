@@ -264,9 +264,10 @@ function toggleNode(evt) {
 function createTree(tree,i){
 
 	console.log(tree);
-	var treeDiv = document.createElement('div');
+	const shadowRoot = this.attachShadow({mode: 'open'});
+	var treeDiv = shadowRoot.createElement('div');
 	treeDiv.classList.add('tf-tree');
-	var ul = document.createElement('ul');
+	var ul = shadowRoot.createElement('ul');
 	ul.id = "tree-simple"+i;
 	treeDiv.appendChild(ul);
 
@@ -278,8 +279,8 @@ function createTree(tree,i){
 		var text = nodes[name].text;
 		var children = [];
 		var parent = nodes[name].parent;
-		var node = document.createElement('li');
-		var span = document.createElement('span');
+		var node = shadowRoot.createElement('li');
+		var span = shadowRoot.createElement('span');
 		span.classList.add("tf-nc");
 		if (nodes[name].startNode){
 			span.classList.add("startNode");
@@ -306,7 +307,7 @@ function createTree(tree,i){
 				pnode.querySelector('ul').appendChild(node);
 			}
 			else {
-				var ul = document.createElement('ul');
+				var ul = shadowRoot.createElement('ul');
 				pnode.appendChild(ul);
 				pnode.querySelector('ul').appendChild(node);
 			}
