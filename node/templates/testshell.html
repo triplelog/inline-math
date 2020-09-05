@@ -141,7 +141,6 @@
 		}
 		
 		var treeEl = document.querySelector('.inline-tree');
-		//console.log(treeEl.innerHTML);
 		createTree(treeEl,0);
 	}
   	function answerDown(evt) {
@@ -284,7 +283,6 @@
 		var nodeText = {};
 		var els = treeEl.querySelectorAll('node');
 		for (var i=0;i<els.length;i++){
-			if(i==0){console.log(els[i].innerHTML);}
 			nodeText[els[i].id]=els[i].innerHTML;
 		}
 		for (var i=els.length-1;i>=0;i--){
@@ -349,18 +347,7 @@
 	
 		}
 
-	
 
-	
-		/*
-		var katexElements = ul.querySelectorAll('span.tf-nc');
-		for (var ii=0;ii<katexElements.length;ii++){
-			var el = katexElements[ii];
-			katex.render(el.textContent, el, {
-				throwOnError: false
-			});
-		}
-		*/
 		treeEl.appendChild(treeDiv);
 	}
   </script>
