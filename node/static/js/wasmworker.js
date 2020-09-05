@@ -227,9 +227,8 @@ const renderer = {
 		input = input.substr(0,input.length-1);
 		latex = "";
 		t(input);
-		createTree(JSON.parse("{"+latex+"}"),0);
 
-		return latex;
+		return "<tree>{"+latex+"}</tree>";
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);
@@ -249,91 +248,7 @@ const renderer = {
 };
 marked.use({ renderer });
 	
-function toggleNode(evt) {
-	var collapseTarget = evt.target.getAttribute('data-target');
-	console.log(collapseTarget);
-	var el = document.querySelector(collapseTarget);
-	if (el.style.display != 'block'){
-		el.style.display = "block";
-	}
-	else {
-		el.style.display = "none";
-	}
-	
-}
-function createTree(tree,i){
 
-	console.log(tree);
-	const shadowRoot = this.attachShadow({mode: 'open'});
-	var treeDiv = shadowRoot.createElement('div');
-	treeDiv.classList.add('tf-tree');
-	var ul = shadowRoot.createElement('ul');
-	ul.id = "tree-simple"+i;
-	treeDiv.appendChild(ul);
-
-	var allNodes = tree.allNodes;
-	var nodes = tree.nodes;
-	var jsonTree = {};
-	for (var ii=0;ii<allNodes.length;ii++){
-		var name = allNodes[ii];
-		var text = nodes[name].text;
-		var children = [];
-		var parent = nodes[name].parent;
-		var node = shadowRoot.createElement('li');
-		var span = shadowRoot.createElement('span');
-		span.classList.add("tf-nc");
-		if (nodes[name].startNode){
-			span.classList.add("startNode");
-		}
-		else if (nodes[name].startNodes){
-			span.classList.add("startNodes");
-		}
-		if (nodes[name].endNode){
-			span.classList.add("endNode");
-		}
-		else if (nodes[name].endNodes){
-			span.classList.add("endNodes");
-		}
-		span.textContent = text;
-		node.appendChild(span);
-	
-	
-		jsonTree[name]={text:text,children:children,node:node};
-		if (parent != ""){
-			jsonTree[parent].children.push(name);
-			var pnode = jsonTree[parent].node;
-			
-			if (pnode.querySelector('ul')){
-				pnode.querySelector('ul').appendChild(node);
-			}
-			else {
-				var ul = shadowRoot.createElement('ul');
-				pnode.appendChild(ul);
-				pnode.querySelector('ul').appendChild(node);
-			}
-		
-		}
-		else if (ii==0){
-			if (ul){
-				ul.appendChild(node);
-			}
-		}
-	
-	}
-
-	
-
-	
-	
-	var katexElements = ul.querySelectorAll('span.tf-nc');
-	for (var ii=0;ii<katexElements.length;ii++){
-		var el = katexElements[ii];
-		katex.render(el.textContent, el, {
-			throwOnError: false
-		});
-	}
-	console.log(treeDiv);
-}
 
 function replacer(match){
 	match = match.replace('$`','$');
