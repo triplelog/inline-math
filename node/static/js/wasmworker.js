@@ -230,18 +230,20 @@ const renderer = {
 		//console.log(latex);
 		var tree = JSON.parse('{'+latex+'}');
 		//console.log(tree);
+		var outText = "";
 		for (var i=0;i<tree.allNodes.length;i++){
 			var node = tree.allNodes[i];
 			var text = tree.nodes[node].text;
 			console.log(text);
 			k = katex.renderToString(text, {throwOnError: false});
-			tree.nodes[node].text = k;
-			console.log(k);
+			outText += "<node id=\""+node+"\">"+k+"</node>";
+			tree.nodes[node].text = "";
+			//console.log(k);
 		}
-		console.log(tree);
-		var outText = JSON.stringify(tree);
-		console.log(outText);
-		return '<span class="inline-tree">'+JSON.stringify(tree)+'</span>';
+		//console.log(tree);
+		outText += JSON.stringify(tree);
+		//console.log(outText);
+		return '<span class="inline-tree">'+outText+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);

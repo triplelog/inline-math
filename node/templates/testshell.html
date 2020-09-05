@@ -141,7 +141,7 @@
 		}
 		
 		var treeEl = document.querySelector('.inline-tree');
-		console.log(treeEl.innerHTML);
+		//console.log(treeEl.innerHTML);
 		createTree(treeEl,0);
 	}
   	function answerDown(evt) {
@@ -281,6 +281,14 @@
 	
 	}
 	function createTree(treeEl,i){
+		var nodeText = {};
+		var els = treeEl.querySelectorAll('node');
+		for (var i=0;i<els.length;i++){
+			nodeText[els[i].id]=els[i].innerHTML;
+		}
+		for (var i=els.length-1;i>=0;i--){
+			els[i].parentElement.removeChild(els[i]);
+		}
 		var tree = JSON.parse(treeEl.textContent);
 		treeEl.innerHTML = "";
 	
@@ -295,7 +303,7 @@
 		var jsonTree = {};
 		for (var ii=0;ii<allNodes.length;ii++){
 			var name = allNodes[ii];
-			var text = nodes[name].text;
+			var text = nodeText[name];
 			var children = [];
 			var parent = nodes[name].parent;
 			var node = document.createElement('li');
