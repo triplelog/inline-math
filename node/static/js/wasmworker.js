@@ -227,7 +227,7 @@ const renderer = {
 		input = input.substr(0,input.length-1);
 		latex = "";
 		t(input);
-		console.log(latex);
+		createTree(JSON.parse("{"+latex+"}"),0);
 
 		return latex;
 	}
