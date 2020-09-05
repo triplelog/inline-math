@@ -140,7 +140,7 @@
 			//els[i].addEventListener('input',updateInputValue);
 		}
 		
-		var treeEl = document.querySelector('tree');
+		var treeEl = document.querySelector('.inline-tree');
 		createTree(treeEl,0);
 	}
   	function answerDown(evt) {
@@ -281,7 +281,6 @@
 	}
 	function createTree(treeEl,i){
 		var tree = JSON.parse(treeEl.textContent);
-		console.log(tree);
 		treeEl.innerHTML = "";
 	
 		var treeDiv = document.createElement('div');
@@ -352,7 +351,6 @@
 			});
 		}
 		*/
-		console.log(treeDiv);
 		treeEl.appendChild(treeDiv);
 	}
   </script>

@@ -227,8 +227,8 @@ const renderer = {
 		input = input.substr(0,input.length-1);
 		latex = "";
 		t(input);
-
-		return "<tree>{"+latex+"}</tree>";
+		
+		return '<span class="inline-tree">{'+latex+'}</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);
