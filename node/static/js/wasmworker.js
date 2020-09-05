@@ -8,6 +8,7 @@ importScripts('conversions.js');
 var l = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var a = Module.cwrap("AddRules","string",["string","string"]);
+var t = Module.cwrap("TreeIt","string",["string"]);
 
 var latex = "";
 function addLatex(x) {
@@ -220,6 +221,15 @@ const renderer = {
 		svg += '</span>';
 
 		return svg;
+	}
+	else if (input.search(/tree\(/)==0){
+		input = input.replace('tree(','');
+		input = input.substr(0,input.length-1);
+		latex = "";
+		t(input);
+		console.log(latex);
+
+		return latex;
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);

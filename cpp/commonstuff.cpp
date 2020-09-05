@@ -807,6 +807,398 @@ std::string displayOne(Step step,std::string start,std::string end){
 	return oneStep;
 }
 
+std::string outputTree(Step stepS,Step stepE){
+	std::string pfstr = stepS.next;
+	//std::cout << "pfstr: " << pfstr << " and ";
+	int i; int ii; int iii;
+	//for (i=0;i<stepS.startNodes.size();i++){
+	//	std::cout << stepS.startNodes[i] << " ; ";
+	//}
+	//std::cout << "\n";
+	std::vector<std::string> treeOptions;
+	std::map<std::string,std::vector<std::string>> listMap;
+	std::map<int,std::string> operandMap;
+	std::map<int,std::string> originalMap;
+	std::vector<std::string> finalList;
+	std::vector<std::string> orderedKeyList;
+	std::map<std::string,std::vector<std::string>> nodeList;
+	std::string startNode = "";
+	std::string endNode = "";
+	std::map<std::string,bool> startNodes;
+	std::map<std::string,bool> endNodes;
+	
+    
+    
+	
+	int idx =0;
+	bool startOperands = false;
+	std::string currentOperator = "";
+	int iidx = 0;
+	bool midBrackets = false;
+	for (i=0;i<pfstr.length();i++){
+		if (pfstr.at(i) == '@'){
+			startOperands = true;
+		}
+		else if (startOperands && !midBrackets){
+			if (pfstr.at(i) == '_'){
+				originalMap[iidx] = currentOperator;
+				iidx++; 
+				currentOperator = "";
+			}
+			else if (pfstr.at(i) == '{'){
+				midBrackets = true;
+				currentOperator += pfstr.at(i);
+			}
+			else {
+				currentOperator += pfstr.at(i);
+			}
+		}
+		else if (startOperands && midBrackets){
+			if (pfstr.at(i) == '}'){
+				midBrackets = false;
+				currentOperator += pfstr.at(i);
+			}
+			else {
+				currentOperator += pfstr.at(i);
+			}
+		}
+	}
+	
+
+    
+    
+    
+	int treeIdx = 0;
+	//std::cout << "before third: " << pfstr << "\n";
+
+	for (i=0;i<pfstr.length();i++){
+		
+		if (pfstr.at(i) == '@'){
+			break;
+		}
+		else if (pfstr.at(i) != '#'){
+			std::string secondStr = "";
+			std::string secondTtr = "";
+			
+			int maxi = i-1;
+			
+			for (ii=0;ii<i;ii++){
+				std::string s = "";
+				std::string t = "";
+				for (iii=ii;iii<i;iii++){
+					s += pfstr.at(iii);
+					if (pfstr.at(iii) == '#'){
+						t += operandMap[iii] + '_';
+					}
+				}
+				if (listMap.find(s + '@' + t) != listMap.end()){
+					secondStr = s;
+					secondTtr = t;
+					maxi = ii;
+					break;
+				}
+			}
+			std::string firstStr = "";
+			std::string firstTtr = "";
+			std::vector<std::string> fullTrees;
+			
+			if (pfstr.at(i) != '-' && pfstr.at(i) != '/' && (pfstr.at(i) >= 0 || pfstr.at(i) <= -69 )){ // Is at least binary function
+				
+				for (ii=0;ii<maxi;ii++){
+					std::string s = "";
+					std::string t = "";
+					for (iii=ii;iii<maxi;iii++){
+						s += pfstr.at(iii);
+						if (pfstr.at(iii) == '#'){
+							t += operandMap[iii] + '_';
+						}
+					}
+					if (listMap.find(s + '@' + t) != listMap.end()){
+						firstStr = s;
+						firstTtr = t;
+						break;
+					}
+				}
+				
+				
+			}
+
+			std::string fullStr = firstStr + secondStr + pfstr.at(i) + '@' + firstTtr + secondTtr;
+			
+			
+			//Parent Node
+			std::string opStr = "";
+			opStr += pfstr.at(i);
+			std::string name = "node"+std::to_string(treeIdx);
+			if (i==stepS.startNode){startNode = name;}
+			if (i==stepE.endNode){endNode = name;}
+			for (ii=0;ii<stepS.startNodes.size();ii++){
+				if (i==stepS.startNodes[ii]){
+					startNodes[name]=true;
+					break;
+				}
+			}
+			for (ii=0;ii<stepE.endNodes.size();ii++){
+				if (i==stepE.endNodes[ii]){
+					endNodes[name]=true;
+					break;
+				}
+			}
+			treeIdx++;
+			std::string parent = "";
+			std::string nodeText = fullStr;
+			std::string pname = name;
+			nodeList[fullStr]={pname,parent,opStr};
+			
+			
+			//Child 1
+			nodeText = secondStr + '@' + secondTtr;
+			if (nodeList.find(nodeText) != nodeList.end()){
+				
+				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*') ){
+					std::vector<std::string> revList;
+					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						if (iter->second[1] == nodeList[nodeText][0]){
+							nodeList[iter->first][1] = pname;
+							revList.push_back(iter->first);
+						}
+					}
+					int okSz = orderedKeyList.size();
+					for (ii=0;ii<okSz;ii++){
+						for (iii=revList.size()-1;iii>=0;iii--){
+							if (orderedKeyList[ii] == revList[iii]){
+								orderedKeyList.push_back(revList[iii]);
+							}
+						}
+					}
+					
+				}
+				else {
+					nodeList[nodeText][1] = pname;
+					orderedKeyList.push_back(nodeText);
+				}
+				
+			}
+			else {
+				name = "node"+std::to_string(treeIdx);
+				treeIdx++;
+				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+					std::vector<std::string> revList;
+					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						if (iter->second[1] == name){
+							nodeList[iter->first][1] = pname;
+							revList.push_back(iter->first);
+						}
+					}
+					int okSz = orderedKeyList.size();
+					for (ii=0;ii<okSz;ii++){
+						for (iii=revList.size()-1;iii>=0;iii--){
+							if (orderedKeyList[ii] == revList[iii]){
+								orderedKeyList.push_back(revList[iii]);
+							}
+						}
+					}
+				}
+				else {
+					nodeList[nodeText] = {name,pname,opStr};
+					orderedKeyList.push_back(nodeText);
+				}
+				
+			}
+			
+			if (firstStr.length() > 0){
+				//Child 2
+				nodeText = firstStr + '@' + firstTtr;
+				if (nodeList.find(nodeText) != nodeList.end()){
+					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+						std::vector<std::string> revList;
+						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+							if (iter->second[1] == nodeList[nodeText][0]){
+								nodeList[iter->first][1] = pname;
+								revList.push_back(iter->first);
+							}
+						}
+						int okSz = orderedKeyList.size();
+						for (ii=0;ii<okSz;ii++){
+							for (iii=revList.size()-1;iii>=0;iii--){
+								if (orderedKeyList[ii] == revList[iii]){
+									orderedKeyList.push_back(revList[iii]);
+								}
+							}
+						}
+					}
+					else {
+						nodeList[nodeText][1] = pname;
+						orderedKeyList.push_back(nodeText);
+					}
+				
+				}
+				else {
+					name = "node"+std::to_string(treeIdx);
+					treeIdx++;
+					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+						std::vector<std::string> revList;
+						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+							if (iter->second[1] == name){
+								nodeList[iter->first][1] = pname;
+								revList.push_back(iter->first);
+							}
+						}
+						int okSz = orderedKeyList.size();
+						for (ii=0;ii<okSz;ii++){
+							for (iii=revList.size()-1;iii>=0;iii--){
+								if (orderedKeyList[ii] == revList[iii]){
+									orderedKeyList.push_back(revList[iii]);
+								}
+							}
+						}
+					}
+					else {
+						nodeList[nodeText] = {name,pname,opStr};
+						orderedKeyList.push_back(nodeText);
+					}
+				
+				}
+				
+			}
+			orderedKeyList.push_back(fullStr);
+			
+
+			
+			listMap[fullStr]={"#","_"};
+			
+		}
+		else {
+			listMap["#@" + std::to_string(idx) + "_"]={"#","_"};
+			operandMap[i]=std::to_string(idx);
+			
+			std::string name = "node"+std::to_string(treeIdx);
+			if (i==stepS.startNode){startNode = name;}
+			if (i==stepE.endNode){endNode = name;}
+			for (ii=0;ii<stepS.startNodes.size();ii++){
+				if (i==stepS.startNodes[ii]){
+					startNodes[name]=true;
+					break;
+				}
+			}
+			for (ii=0;ii<stepE.endNodes.size();ii++){
+				if (i==stepE.endNodes[ii]){
+					endNodes[name]=true;
+					break;
+				}
+			}
+			treeIdx++;
+			nodeList["#@" + std::to_string(idx) + "_"] = {name,"","#"};
+			orderedKeyList.push_back("#@" + std::to_string(idx) + "_");
+			idx++;
+		}
+		
+	}
+		
+	
+	//std::cout << "\n\n---start Original-----\n";
+	int iiii;
+	
+	//for (std::map<int,std::string>::iterator iter = originalMap.begin(); iter != originalMap.end(); ++iter){
+	//	std::cout << iter->first << " and " << iter->second << '\n';
+	//}
+	
+
+	//std::cout << " ENd bracketless\n";
+	//for (std::map<int,std::string>::iterator iter = bracketlessMap.begin(); iter != bracketlessMap.end(); ++iter){
+	//	std::cout << iter->first << " and " << iter->second << '\n';
+	//}
+	
+	std::map<std::string,std::string> skipList;
+	std::string nodes = "{";
+	std::string allNodes = "[";
+	//std::cout << "-DOJS-\nnodes = {};\n";
+	
+	std::vector<std::string> forLatex;
+	
+	for (ii=orderedKeyList.size()-1;ii>=0;ii--){
+		//std::cout << "anything: " << orderedKeyList[ii] << " and node: " << nodeList[orderedKeyList[ii]][0] << "\n";
+		if (skipList.find(orderedKeyList[ii]) != skipList.end()){
+			//std::cout << "skip: " << nodeList[orderedKeyList[ii]][0] << "\n";
+			continue;
+		}
+		else {
+			skipList[orderedKeyList[ii]] = "";
+		}
+		
+		std::string name = nodeList[orderedKeyList[ii]][0];
+		std::string parent = nodeList[orderedKeyList[ii]][1];
+		std::string postfix = fromOriginal(orderedKeyList[ii],originalMap);
+		forLatex.push_back(name);
+		forLatex.push_back(parent);
+		forLatex.push_back(postfix);
+		
+		
+	}
+	std::map<std::string,std::string> latexMap =toLatex(forLatex);
+	
+	
+	skipList.clear();
+	for (ii=orderedKeyList.size()-1;ii>=0;ii--){
+		if (skipList.find(orderedKeyList[ii]) != skipList.end()){
+			//std::cout << "skip: " << nodeList[orderedKeyList[ii]][0] << "\n";
+			continue;
+		}
+		else {
+			skipList[orderedKeyList[ii]] = "";
+		}
+		
+		std::string name = nodeList[orderedKeyList[ii]][0];
+		std::string parent = nodeList[orderedKeyList[ii]][1];
+		std::string postfix = fromOriginal(orderedKeyList[ii],originalMap);
+
+		if (latexMap.find(name) != latexMap.end()){
+			std::string outText = "\""+name + "\": {\"text\":";
+			outText += "\"" + latexMap[name] + "\",";
+			if (name == startNode){
+				outText += "\"startNode\": true,";
+			}
+			else if (startNodes.find(name) != startNodes.end()){
+				outText += "\"startNodes\": true,";
+			}
+			if (name == endNode){
+				outText += "\"endNode\": true,";
+			}
+			else if (endNodes.find(name) != endNodes.end()){
+				outText += "\"endNodes\": true,";
+			}
+			
+			outText += "\"op\": \"" + nodeList[orderedKeyList[ii]][2] + "\",";
+			outText += "\"parent\": \""+ parent + "\"}";
+		
+
+			if (nodes == "{"){
+				nodes += outText;
+			}
+			else {
+				nodes += ","+outText;
+			}
+			//std::cout << outText << "\n";
+			if (allNodes == "["){
+				allNodes += "\""+nodeList[orderedKeyList[ii]][0] + "\"";
+			}
+			else {
+				allNodes += ",\""+nodeList[orderedKeyList[ii]][0] + "\"";
+			}
+		}
+		
+		
+	}
+	
+	allNodes += "]";
+	nodes += "}";
+	
+	std::string treeStr = "\"nodes\":"+nodes+",\"allNodes\":"+allNodes;
+	//std::cout <<  treeStr << "\n";
+	return treeStr;
+}
+
+
 bool firstCorrect;
 #include "rules/identities.cpp"
 #include "rules/arithmetic.cpp"

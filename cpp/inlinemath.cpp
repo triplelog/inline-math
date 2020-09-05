@@ -153,9 +153,9 @@ void LatexIt(char* aa) {
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	//string_log(postfixedV[1].c_str());
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	string_log(postfixed.c_str());
+	//string_log(postfixed.c_str());
 	postfixed = removeSolves(postfixed);
-	string_log(postfixed.c_str());
+	//string_log(postfixed.c_str());
 	postfixed = removeBracketsOne(postfixed);
 	
 	//string_log(postfixed.c_str());
@@ -180,6 +180,87 @@ void LatexIt(char* aa) {
 	latexed += "\0";
 	output_latex(latexed.c_str());
 	latexed = "\0";
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+
+	//console_log(duration);
+}
+
+void TreeIt(char* aa) {
+	auto a1 = std::chrono::high_resolution_clock::now();
+	std::string a = std::string(aa);
+	char varName = ' ';
+	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
+		
+		varName = a.at(1);
+		char* out = new char[1];
+		out[0] = varName;
+		out[1] = '\0';
+		a = a.substr(4,a.length()-4);
+	}
+	
+	dependentChars.clear();
+	int i;
+	for (i=0;i<a.length();i++){
+		if (a.at(i) == '{'){
+			a[i] = '(';
+		}
+		else if (a.at(i) == '}'){
+			a[i] = ')';
+		}
+		else if (a.at(i) < 0){
+			return;
+		}
+		else if (a.at(i) == '\\'){
+			return;
+		}
+	}
+	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	//string_log(postfixedV[0].c_str());
+	//string_log(postfixedV[1].c_str());
+	dependentChars = getDependents(postfixedV[1]);
+	int sz = dependentChars.size();
+	char* dc = new char[sz];
+	for (i=0;i<sz;i++){
+		dc[i]=dependentChars[i];
+	}
+	dc[sz]='\0';
+	output_dependents(dc);
+	
+
+	postfixedV[1] = removeDependents(postfixedV[1]);
+	//string_log(postfixedV[1].c_str());
+	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	string_log(postfixed.c_str());
+	
+	
+	postfixed = removeSolves(postfixed);
+	//string_log(postfixed.c_str());
+	postfixed = removeBracketsOne(postfixed);
+	
+	
+	Step step;
+	step.next = postfixed;
+	step.rule = 0;
+	step.startNode = 0;
+	step.endNode = 0;
+	//std::vector<int> endNodes;
+	//std::vector<int> startNodes;
+	//std::map<char,std::string> partMap;
+	std::string treeStr = outputTree(step,step);
+	
+	
+	//string_log(postfixed.c_str());
+	if (varName >= 'A' && varName <= 'Z'){
+		currentV[varName]=removeBORP(postfixed);
+	}
+	
+
+	postfixed = "\0";
+	//noIdentities = "\0";
+	treeStr += "\0";
+	output_latex(treeStr.c_str());
+	treeStr = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 

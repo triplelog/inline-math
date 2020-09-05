@@ -108,6 +108,7 @@ $plot(y=2*x)$
 Trees
 -----
 
+$tree(y=2*x)$
 
 {% endblock %}
 
