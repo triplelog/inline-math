@@ -249,7 +249,90 @@ const renderer = {
 };
 marked.use({ renderer });
 	
+function toggleNode(evt) {
+	var collapseTarget = evt.target.getAttribute('data-target');
+	console.log(collapseTarget);
+	var el = document.querySelector(collapseTarget);
+	if (el.style.display != 'block'){
+		el.style.display = "block";
+	}
+	else {
+		el.style.display = "none";
+	}
+	
+}
+function createTree(tree,i){
 
+	console.log(tree);
+	var treeDiv = document.createElement('div');
+	treeDiv.classList.add('tf-tree');
+	var ul = document.createElement('ul');
+	ul.id = "tree-simple"+i;
+	treeDiv.appendChild(ul);
+
+	var allNodes = tree.allNodes;
+	var nodes = tree.nodes;
+	var jsonTree = {};
+	for (var ii=0;ii<allNodes.length;ii++){
+		var name = allNodes[ii];
+		var text = nodes[name].text;
+		var children = [];
+		var parent = nodes[name].parent;
+		var node = document.createElement('li');
+		var span = document.createElement('span');
+		span.classList.add("tf-nc");
+		if (nodes[name].startNode){
+			span.classList.add("startNode");
+		}
+		else if (nodes[name].startNodes){
+			span.classList.add("startNodes");
+		}
+		if (nodes[name].endNode){
+			span.classList.add("endNode");
+		}
+		else if (nodes[name].endNodes){
+			span.classList.add("endNodes");
+		}
+		span.textContent = text;
+		node.appendChild(span);
+	
+	
+		jsonTree[name]={text:text,children:children,node:node};
+		if (parent != ""){
+			jsonTree[parent].children.push(name);
+			var pnode = jsonTree[parent].node;
+			
+			if (pnode.querySelector('ul')){
+				pnode.querySelector('ul').appendChild(node);
+			}
+			else {
+				var ul = document.createElement('ul');
+				pnode.appendChild(ul);
+				pnode.querySelector('ul').appendChild(node);
+			}
+		
+		}
+		else if (ii==0){
+			if (ul){
+				ul.appendChild(node);
+			}
+		}
+	
+	}
+
+	
+
+	
+	
+	var katexElements = ul.querySelectorAll('span.tf-nc');
+	for (var ii=0;ii<katexElements.length;ii++){
+		var el = katexElements[ii];
+		katex.render(el.textContent, el, {
+			throwOnError: false
+		});
+	}
+	console.log(treeDiv);
+}
 
 function replacer(match){
 	match = match.replace('$`','$');
