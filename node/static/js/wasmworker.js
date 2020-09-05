@@ -228,6 +228,7 @@ const renderer = {
 		latex = "";
 		t(input);
 		//console.log(latex);
+		latex = latex.replace(/\\/g,'\\\\');
 		var tree = JSON.parse('{'+latex+'}');
 		//console.log(tree);
 		var outText = "";
