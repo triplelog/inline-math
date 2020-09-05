@@ -108,7 +108,7 @@ $plot(y=2*x)$
 Trees
 -----
 
-$tree(y=x^2+1/2)$
+$tree(y=x^2)$
 
 {% endblock %}
 
