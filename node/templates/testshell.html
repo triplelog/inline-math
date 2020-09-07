@@ -261,7 +261,7 @@
   		}
 		for (pid=0;pid<formEls.length;pid++){
 			formEls[pid].id = "pid-"+env.language+"-"+pid;
-			//myWorker.postMessage(["code",formEls[pid].textContent,pid,env.language]);
+			myWorker.postMessage(["code",formEls[pid].textContent,pid,env.language]);
 		}
 	});
 	function highlightCode(){

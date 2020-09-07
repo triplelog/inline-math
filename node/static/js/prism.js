@@ -621,13 +621,24 @@ var _ = {
 					env.tokens.splice(i+1,0,text.substr(1));
 					env.tokens[i]='\n';
 				}
-				console.log(text);
+				else if (text.search('\n')==text.length-1){
+					env.tokens.splice(i+1,0,'\n');
+					env.tokens[i]=text.substr(0,text.length-1);
+					i++;
+				}
+				else {
+					var newline = text.search('\n');
+					env.tokens.splice(i+1,0,text.substr(newline+1));
+					env.tokens.splice(i+1,0,'\n');
+					env.tokens[i]=text.substr(0,newline);
+					i++;
+				}
 			}
 		}
 		for (i=0;i<env.tokens.length;i++){
-			if (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'constant' && env.tokens[i].type != 'function'  ){
+			if ( (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'constant' && env.tokens[i].type != 'function') || env.tokens[i] == '\n'  ){
 				
-				if (env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '.' ) ){
+				if ( env.tokens[i].type && env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '.' ) ){
 					continue;
 				}
 				if (formulaStart < i && isFormula){
