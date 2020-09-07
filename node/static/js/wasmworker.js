@@ -56,7 +56,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 	}
 	else{
 		if (varName != ""){
-			if (tree){
+			if (isTree){
 				t("|"+varName+":="+input);
 				k = latex;
 			}
@@ -67,7 +67,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			
 		}
 		else{
-			if (tree){
+			if (isTree){
 				t(input);
 				k = latex;
 			}
