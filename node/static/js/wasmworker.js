@@ -97,10 +97,10 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l(input);
-				latex.replace('\\\\','\\');
+				latex.replace('\\','|');
 				console.log("latexed",latex);
 				k = katex.renderToString(latex, {throwOnError: false});
-				console.log("katexed",k);
+				//console.log("katexed",k);
 			}
 			
 		}
