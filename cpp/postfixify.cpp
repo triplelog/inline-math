@@ -367,7 +367,7 @@ std::string replaceFunctions(std::string input_str){
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
 			
-			else if (query6.find(sixChars) != query6.end()){
+			if (query6.find(sixChars) != query6.end()){
 				if (query6[sixChars] == "slopey"){ 
 					//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
 					std::string inside = "";
