@@ -315,6 +315,8 @@ std::string replaceFunctions(std::string input_str){
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
+		nineChars.replace(0,1,"");
+		nineChars += input_str.at(i);
 		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
