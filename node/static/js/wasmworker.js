@@ -30,7 +30,7 @@ var currentV = {};
 var inputV = {};
 importScripts('marked.js');
 
-function mapOrNew(input,varName,forceNew=false){
+function mapOrNew(input,varName,forceNew=false,isTree=false){
 	latex = "";
 	
 	var foundMatch = false;
@@ -56,12 +56,52 @@ function mapOrNew(input,varName,forceNew=false){
 	}
 	else{
 		if (varName != ""){
-			l("|"+varName+":="+input);
+			if (tree){
+				t("|"+varName+":="+input);
+				latex = latex.replace(/\\/g,'\\\\');
+				var tree = JSON.parse('{'+latex+'}');
+				var outText = "";
+				for (var i=0;i<tree.allNodes.length;i++){
+					var node = tree.allNodes[i];
+					var text = tree.nodes[node].text;
+					k = katex.renderToString(text, {throwOnError: false});
+					outText += "<node id=\""+node+"\">"+k+"</node>";
+					tree.nodes[node].text = "";
+
+				}
+				outText += JSON.stringify(tree);
+				k = outText;
+				
+			}
+			else {
+				l("|"+varName+":="+input);
+				k = katex.renderToString(latex, {throwOnError: false});
+			}
+			
 		}
-		else {
-			l(input);
+		else{
+			if (tree){
+				t(input);
+				latex = latex.replace(/\\/g,'\\\\');
+				var tree = JSON.parse('{'+latex+'}');
+				var outText = "";
+				for (var i=0;i<tree.allNodes.length;i++){
+					var node = tree.allNodes[i];
+					var text = tree.nodes[node].text;
+					k = katex.renderToString(text, {throwOnError: false});
+					outText += "<node id=\""+node+"\">"+k+"</node>";
+					tree.nodes[node].text = "";
+
+				}
+				outText += JSON.stringify(tree);
+				k = outText;
+			}
+			else {
+				l(input);
+				k = katex.renderToString(latex, {throwOnError: false});
+			}
+			
 		}
-		k = katex.renderToString(latex, {throwOnError: false});
 		latexedInputs[input]={dependents:{},output:k,varName:varName,latex:latex};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
@@ -226,31 +266,9 @@ const renderer = {
 		input = input.replace('tree(','');
 		input = input.substr(0,input.length-1);
 		latex = "";
-		t(input);
-		latex = latex.replace(/\\/g,'\\\\');
-		var tree = JSON.parse('{'+latex+'}');
-		/*for (var i=0;i<tree.allNodes.length;i++){
-			var node = tree.allNodes[i];
-			if (tree.nodes[node].parent[tree.nodes[node].parent.length-1] == 'f' && node[node.length-1] != 'o'){
-				tree.nodes[node].parent = tree.nodes[node].parent.replace('f','o');
-			}
-			if (node[node.length-1] == 'f'){
-				tree.allNodes.splice(i+1,0,node.substr(0,node.length-1)+"o");
-				tree.nodes[node.substr(0,node.length-1)+"o"] = {};
-				tree.nodes[node.substr(0,node.length-1)+"o"].text = tree.nodes[node].op;
-				tree.nodes[node.substr(0,node.length-1)+"o"].parent = node;
-			}
-		}*/
-		var outText = "";
-		for (var i=0;i<tree.allNodes.length;i++){
-			var node = tree.allNodes[i];
-			var text = tree.nodes[node].text;
-			k = katex.renderToString(text, {throwOnError: false});
-			outText += "<node id=\""+node+"\">"+k+"</node>";
-			tree.nodes[node].text = "";
-
-		}
-		outText += JSON.stringify(tree);
+		var outText = mapOrNew(input,varName,false,true);
+		
+		
 		return '<span class="inline-tree">'+outText+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
