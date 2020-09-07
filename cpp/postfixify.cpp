@@ -184,7 +184,9 @@ std::string replaceFunctions(std::string input_str){
 	std::map<std::string,std::string> replacements6;
 	std::map<std::string,std::string> replacements7;
 	std::map<std::string,std::string> replacements8;
-	std::map<std::string,std::string> replacements9;
+	
+	std::map<std::string,std::string> rawrep5;
+	std::map<std::string,std::string> rawrep4;
 	
 	std::map<std::string,std::string> query7;
 	std::map<std::string,std::string> query6;
@@ -200,15 +202,15 @@ std::string replaceFunctions(std::string input_str){
 	std::string solveStr = "";
 	solveStr += solve;
 	int i; int ii;
-	replacements4["ddx("]="x";
-	replacements4["ddx("]+=ddx+"(";
+	replacements3["ddx"]="x";
+	replacements3["ddx"]+=ddx;
 
 	query3["dd?"]="";
 	query3["dd?"]+=ddx;
 	query3["der"]="";
 	query3["der"]+=ddx;
-	replacements4["idx("]="x";
-	replacements4["idx("]+=idx+"(";
+	replacements3["idx"]="x";
+	replacements3["idx"]+=idx;
 
 	query3["id?"]="";
 	query3["id?"]+=idx;
@@ -232,20 +234,20 @@ std::string replaceFunctions(std::string input_str){
 		ci += i;
 		char ch{-16};
 		ch += i;
-		replacements4[trigFunctions[i]+"("]="";
-		replacements4[trigFunctions[i]+"("]+=c+"(";
-		replacements5[trigFunctions[i]+"h("]="";
-		replacements5[trigFunctions[i]+"h("]+=ch+"(";
-		replacements7["arc"+trigFunctions[i]+"("]="";
-		replacements7["arc"+trigFunctions[i]+"("]+=ci+"(";
-		replacements7[trigFunctions[i]+"^-1("]="";
-		replacements7[trigFunctions[i]+"^-1("]+=ci+"(";
-		replacements9[trigFunctions[i]+"^(-1)("]="";
-		replacements9[trigFunctions[i]+"^(-1)("]+=ci+"(";
-		replacements9[trigFunctions[i]+"^{-1}("]="";
-		replacements9[trigFunctions[i]+"^{-1}("]+=ci+"(";
-		replacements6[trigFunctions[i]+"-1("]="";
-		replacements6[trigFunctions[i]+"-1("]+=ci+"(";
+		replacements3[trigFunctions[i]]="";
+		replacements3[trigFunctions[i]]+=c;
+		replacements4[trigFunctions[i]+"h"]="";
+		replacements4[trigFunctions[i]+"h"]+=ch;
+		replacements6["arc"+trigFunctions[i]]="";
+		replacements6["arc"+trigFunctions[i]]+=ci;
+		replacements6[trigFunctions[i]+"^-1"]="";
+		replacements6[trigFunctions[i]+"^-1"]+=ci;
+		replacements8[trigFunctions[i]+"^(-1)"]="";
+		replacements8[trigFunctions[i]+"^(-1)"]+=ci;
+		replacements8[trigFunctions[i]+"^{-1}"]="";
+		replacements8[trigFunctions[i]+"^{-1}"]+=ci;
+		replacements5[trigFunctions[i]+"-1"]="";
+		replacements5[trigFunctions[i]+"-1"]+=ci;
 		query4[trigFunctions[i]+"^"]="";
 		query4[trigFunctions[i]+"^"]+=c;
 	}
@@ -253,19 +255,19 @@ std::string replaceFunctions(std::string input_str){
 	
 	char sqrt{-67};
 	char root{-84};
-	replacements5["sqrt("]="";
-	replacements5["sqrt("]+=sqrt+"(";
-	replacements5["root("]="";
-	replacements5["root("]+=sqrt+"(";
+	replacements4["sqrt"]="";
+	replacements4["sqrt"]+=sqrt;
+	replacements4["root"]="";
+	replacements4["root"]+=sqrt;
 	//TODO: add nth roots
 	
 	
 	
 	char log{-93};
-	replacements4["log("]="e";
-	replacements4["log("]+=log+"(";
-	replacements3["ln("]="e";
-	replacements3["ln("]+=log+"(";
+	replacements3["log"]="e";
+	replacements3["log"]+=log;
+	replacements2["ln"]="e";
+	replacements2["ln"]+=log;
 	query3["log"]="";
 	query3["log"]+=log;
 	query2["ln"]="";
@@ -273,8 +275,8 @@ std::string replaceFunctions(std::string input_str){
 	//TODO: add other bases
 	
 	char abs{-34};
-	replacements4["abs("]="";
-	replacements4["abs("]+=abs+"(";
+	replacements3["abs"]="";
+	replacements3["abs"]+=abs;
 	
 	char element{-95};
 	query4[" in "]="";
@@ -284,12 +286,12 @@ std::string replaceFunctions(std::string input_str){
 	query5["slope"]="slope";
 	query6["slopey"]="slopey";
 	
-	/*replacements5[" AND "]="&";
-	replacements4[" OR "]="|";
-	replacements5[" And "]="&";
-	replacements4[" Or "]="|";
-	replacements5[" and "]="&";
-	replacements4[" or "]="|";*/
+	rawrep5[" AND "]="&";
+	rawrep5[" And "]="&";
+	rawrep5[" and "]="&";
+	rawrep4[" OR "]="|";
+	rawrep4[" Or "]="|";
+	rawrep4[" or "]="|";
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -298,7 +300,6 @@ std::string replaceFunctions(std::string input_str){
 	std::string sixChars = "......";
 	std::string sevenChars = ".......";
 	std::string eightChars = "........";
-	std::string nineChars = ".........";
 	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
@@ -315,8 +316,6 @@ std::string replaceFunctions(std::string input_str){
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
-		nineChars.replace(0,1,"");
-		nineChars += input_str.at(i);
 		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
@@ -326,50 +325,54 @@ std::string replaceFunctions(std::string input_str){
 			//std::cout << i << " : " << input_str << " char: " << element << '\n';
 			
 		}
-		else if (replacements9.find(nineChars) != replacements9.end()){
-			input_str.replace(i-9,9,replacements9[nineChars]);
-			nineChars = ".........";
-			i+= replacements9[nineChars].length() - 9;
-		}
-		else if (replacements8.find(eightChars) != replacements8.end()){
-			input_str.replace(i-8,8,replacements8[eightChars]);
-			eightChars = "........";
-			i+= replacements8[eightChars].length() - 8;
-		}
-		else if (replacements7.find(sevenChars) != replacements7.end()){
-			input_str.replace(i-7,7,replacements7[sevenChars]);
-			sevenChars = ".......";
-			i+= replacements7[sevenChars].length() - 7;
-		}
-		else if (replacements6.find(sixChars) != replacements6.end()){
-			input_str.replace(i-6,6,replacements6[sixChars]);
-			sixChars = "......";
-			i+= replacements6[sixChars].length() - 6;
-		}
-		else if (replacements5.find(fiveChars) != replacements5.end()){
-			input_str.replace(i-5,5,replacements5[fiveChars]);
+		else if (rawrep5.find(fiveChars) != rawrep5.end()){
+			input_str.replace(i-5,5,rawrep5[fiveChars]);
 			fiveChars = ".....";
-			i+= replacements5[fiveChars].length() - 5;
+			i+= rawrep5[fiveChars].length() - 5;
 		}
-		else if (replacements4.find(fourChars) != replacements4.end()){
-			input_str.replace(i-4,4,replacements4[fourChars]);
+		else if (rawrep4.find(fourChars) != rawrep4.end()){
+			input_str.replace(i-4,4,rawrep4[fourChars]);
 			fourChars = "....";
-			i+= replacements4[fourChars].length() - 4;
-		}
-		else if (replacements3.find(threeChars) != replacements3.end()){
-			input_str.replace(i-3,3,replacements3[threeChars]);
-			threeChars = "...";
-			i+= replacements3[threeChars].length() - 3;
-		}
-		else if (replacements2.find(twoChars) != replacements2.end()){
-			input_str.replace(i-2,2,replacements2[twoChars]);
-			twoChars = "..";
-			i+= replacements2[twoChars].length() - 2;
+			i+= rawrep4[fourChars].length() - 4;
 		}
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
-			
-			if (query6.find(sixChars) != query6.end()){
+			if (replacements8.find(eightChars) != replacements8.end()){
+				input_str.replace(i-7,8,replacements8[eightChars]);
+				eightChars = "........";
+				i+= replacements8[eightChars].length() - 8;
+			}
+			else if (replacements7.find(sevenChars) != replacements7.end()){
+				input_str.replace(i-6,7,replacements7[sevenChars]);
+				sevenChars = ".......";
+				i+= replacements7[sevenChars].length() - 7;
+			}
+			else if (replacements6.find(sixChars) != replacements6.end()){
+				input_str.replace(i-5,6,replacements6[sixChars]);
+				sixChars = "......";
+				i+= replacements6[sixChars].length() - 6;
+			}
+			else if (replacements5.find(fiveChars) != replacements5.end()){
+				input_str.replace(i-4,5,replacements5[fiveChars]);
+				fiveChars = ".....";
+				i+= replacements5[fiveChars].length() - 5;
+			}
+			else if (replacements4.find(fourChars) != replacements4.end()){
+				input_str.replace(i-3,4,replacements4[fourChars]);
+				fourChars = "....";
+				i+= replacements4[fourChars].length() - 4;
+			}
+			else if (replacements3.find(threeChars) != replacements3.end()){
+				input_str.replace(i-2,3,replacements3[threeChars]);
+				threeChars = "...";
+				i+= replacements3[threeChars].length() - 3;
+			}
+			else if (replacements2.find(twoChars) != replacements2.end()){
+				input_str.replace(i-1,2,replacements2[twoChars]);
+				twoChars = "..";
+				i+= replacements2[twoChars].length() - 2;
+			}
+			else if (query6.find(sixChars) != query6.end()){
 				if (query6[sixChars] == "slopey"){ 
 					//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
 					std::string inside = "";
