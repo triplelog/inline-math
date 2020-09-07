@@ -565,6 +565,12 @@ std::string removeSolves(std::string input) {
 			tempString += mychar;
 			bracketLength++;
 		}
+		else if (mychar == '{' && !foundBracket){ //Must always be inside of a par
+			interiorBrackets = true;
+		}
+		else if (mychar == '}' && !foundBracket) {
+			interiorBrackets = false;
+		}
 		else if (mychar == '#' && !foundBracket && !interiorBrackets) {
 			operandToIndex[idx]=iii;
 			idx++;

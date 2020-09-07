@@ -97,6 +97,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l(input);
+				console.log("latexed",latex);
 				k = katex.renderToString(latex, {throwOnError: false});
 			}
 			
