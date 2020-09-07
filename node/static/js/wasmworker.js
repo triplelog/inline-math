@@ -237,6 +237,9 @@ const renderer = {
 				tree.nodes[node.substr(0,node.length-1)+"o"].text = tree.nodes[node].op;
 				tree.nodes[node.substr(0,node.length-1)+"o"].parent = node;
 			}
+			if (tree.nodes[node].parent[tree.nodes[node].parent.length-1] == 'f'){
+				tree.nodes[node].parent = tree.nodes[node].parent.replace('f','o');
+			}
 		}
 		var outText = "";
 		for (var i=0;i<tree.allNodes.length;i++){
