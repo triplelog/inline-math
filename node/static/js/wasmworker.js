@@ -99,8 +99,6 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 				l(input);
 				latex = latex.replace('\\\\','\\');
 				console.log("latexed",latex);
-				latex = latex.replace('\\','|');
-				console.log("latexed",latex);
 				k = katex.renderToString(latex, {throwOnError: false});
 				//console.log("katexed",k);
 			}
