@@ -232,7 +232,16 @@ function createInputs(input,varName) {
 
 const renderer = {
   code(code, infostring, escaped) {
-  	return '<pre><code class="language-js">'+code+'</code></pre>';
+  	if (infostring.trim() == 'javascript' || infostring.trim() == 'js' || infostring.trim() == ''){
+  		return '<pre><code class="language-js">'+code+'</code></pre>';
+  	}
+  	else if (infostring.trim() == 'python' || infostring.trim() == 'py'){
+  		return '<pre><code class="language-python">'+code+'</code></pre>';
+  	}
+  	else {
+  		return '<pre><code class="language-js">'+code+'</code></pre>';
+  	}
+  	
   },
   codespan(text) {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
@@ -320,7 +329,16 @@ onmessage = function(e) {
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
-		var input = jsToMath(message[1]);
+		var input;
+		if (message[3] == 'javascript'){
+			input = jsToMath(message[1]);
+		}
+		else if (){
+			input = pythonToMath(message[1]);
+		}
+		else {
+			input = jsToMath(message[1]);
+		}
 		k = mapOrNew(input,"");
 		result = ["code",message[1],k,message[2],latex];
 	}
