@@ -342,7 +342,7 @@ onmessage = function(e) {
 			input = jsToMath(message[1]);
 		}
 		k = mapOrNew(input,"");
-		result = ["code",message[1],k,message[2],latex];
+		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "latex"){
 		var input = message[1];
