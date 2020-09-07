@@ -638,6 +638,7 @@ var _ = {
 				isFormula = false;
 			}
 			else {
+				asdf[i]=env.tokens[i].content;
 				if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
 					isFormula = true;
 				}
