@@ -206,8 +206,7 @@ std::string replaceFunctions(std::string input_str){
 	query3["dd?"]+=ddx;
 	query3["der"]="";
 	query3["der"]+=ddx;
-	replacements4["idx("]="x";
-	replacements4["idx("]+=idx+"(";
+	replacements4["idx("]="x"+std::to_string(idx)+"(";
 
 	query3["id?"]="";
 	query3["id?"]+=idx;
@@ -231,20 +230,13 @@ std::string replaceFunctions(std::string input_str){
 		ci += i;
 		char ch{-16};
 		ch += i;
-		replacements4[trigFunctions[i]+"("]="";
-		replacements4[trigFunctions[i]+"("]+=c+"(";
-		replacements5[trigFunctions[i]+"h("]="";
-		replacements5[trigFunctions[i]+"h("]+=ch+"(";
-		replacements7["arc"+trigFunctions[i]+"("]="";
-		replacements7["arc"+trigFunctions[i]+"("]+=ci+"(";
-		replacements7[trigFunctions[i]+"^-1("]="";
-		replacements7[trigFunctions[i]+"^-1("]+=ci+"(";
-		replacements9[trigFunctions[i]+"^(-1)("]="";
-		replacements9[trigFunctions[i]+"^(-1)("]+=ci+"(";
-		replacements9[trigFunctions[i]+"^{-1}("]="";
-		replacements9[trigFunctions[i]+"^{-1}("]+=ci+"(";
-		replacements6[trigFunctions[i]+"-1("]="";
-		replacements6[trigFunctions[i]+"-1("]+=ci+"(";
+		replacements4[trigFunctions[i]+"("]=""+std::to_string(c)+"(";
+		replacements5[trigFunctions[i]+"h("]=""+std::to_string(ch)+"(";
+		replacements7["arc"+trigFunctions[i]+"("]=""+std::to_string(ci)+"(";
+		replacements7[trigFunctions[i]+"^-1("]=""+std::to_string(ci)+"(";
+		replacements9[trigFunctions[i]+"^(-1)("]=""+std::to_string(ci)+"(";
+		replacements9[trigFunctions[i]+"^{-1}("]=""+std::to_string(ci)+"(";
+		replacements6[trigFunctions[i]+"-1("]=""+std::to_string(ci)+"(";
 		query4[trigFunctions[i]+"^"]="";
 		query4[trigFunctions[i]+"^"]+=c;
 	}
@@ -252,19 +244,15 @@ std::string replaceFunctions(std::string input_str){
 	
 	char sqrt{-67};
 	char root{-84};
-	replacements5["sqrt("]="";
-	replacements5["sqrt("]+=sqrt+"(";
-	replacements5["root("]="";
-	replacements5["root("]+=sqrt+"(";
+	replacements5["sqrt("]=""+std::to_string(sqrt)+"(";
+	replacements5["root("]=""+std::to_string(sqrt)+"(";
 	//TODO: add nth roots
 	
 	
 	
 	char log{-93};
-	replacements4["log("]="e";
-	replacements4["log("]+=log+"(";
-	replacements3["ln("]="e";
-	replacements3["ln("]+=log+"(";
+	replacements4["log("]="e"+std::to_string(log)+"(";
+	replacements3["ln("]="e"+std::to_string(log)+"(";
 	query3["log"]="";
 	query3["log"]+=log;
 	query2["ln"]="";
@@ -272,8 +260,7 @@ std::string replaceFunctions(std::string input_str){
 	//TODO: add other bases
 	
 	char abs{-34};
-	replacements4["abs("]="";
-	replacements4["abs("]+=abs+"(";
+	replacements4["abs("]=""+std::to_string(abs)+"(";
 	
 	char element{-95};
 	query4[" in "]="";
