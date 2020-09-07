@@ -824,7 +824,7 @@ std::string replaceFunctions(std::string input_str){
 		}
 	}
 	
-	std::string output_str = "";
+	/*std::string output_str = "";
 	for (i=0;i<input_str.length()-1;i++){
 		switch (input_str.at(i)) 
 		{ 
@@ -833,8 +833,8 @@ std::string replaceFunctions(std::string input_str){
 			case '\n': break;
 			default: output_str += input_str.at(i);
 		}
-	}
-	return output_str;
+	}*/
+	return input_str;
 }
 
 std::string postfixify(std::string input_str) {
