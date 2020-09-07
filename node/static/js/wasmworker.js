@@ -335,6 +335,7 @@ onmessage = function(e) {
 		}
 		else if (message[3] == 'python'){
 			input = pythonToMath(message[1]);
+			console.log(input);
 		}
 		else {
 			input = jsToMath(message[1]);
