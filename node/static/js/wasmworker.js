@@ -285,6 +285,7 @@ const renderer = {
 			currentV[varName]=k;
 		}
 		if (matchInvisible && matchInvisible.index == 0){
+			console.log(k);
 			return "";
 		}
 		return k;
