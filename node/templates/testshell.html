@@ -252,6 +252,7 @@
   <script>
   	Prism.hooks.add('complete', function(env) {
   		var pid = 0;
+  		console.log(env);
 		var formEls = document.querySelectorAll('.token.formula');
 		for (pid=0;pid<formEls.length;pid++){
 			console.log(formEls[pid].textContent);

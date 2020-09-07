@@ -236,6 +236,7 @@ const renderer = {
   		return '<pre><code class="language-js">'+code+'</code></pre>';
   	}
   	else if (infostring.trim() == 'python' || infostring.trim() == 'py'){
+  		console.log('<pre><code class="language-python">'+code+'</code></pre>');
   		return '<pre><code class="language-python">'+code+'</code></pre>';
   	}
   	else {
