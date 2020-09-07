@@ -184,6 +184,7 @@ std::string replaceFunctions(std::string input_str){
 	std::map<std::string,std::string> replacements6;
 	std::map<std::string,std::string> replacements7;
 	std::map<std::string,std::string> replacements8;
+	std::map<std::string,std::string> replacements9;
 	
 	std::map<std::string,std::string> query7;
 	std::map<std::string,std::string> query6;
@@ -290,6 +291,7 @@ std::string replaceFunctions(std::string input_str){
 	std::string sixChars = "......";
 	std::string sevenChars = ".......";
 	std::string eightChars = "........";
+	std::string nineChars = ".........";
 	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
@@ -306,6 +308,8 @@ std::string replaceFunctions(std::string input_str){
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
+		nineChars.replace(0,1,"");
+		nineChars += input_str.at(i);
 		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
@@ -315,44 +319,50 @@ std::string replaceFunctions(std::string input_str){
 			//std::cout << i << " : " << input_str << " char: " << element << '\n';
 			
 		}
+		else if (replacements9.find(nineChars) != replacements9.end()){
+			input_str.replace(i-7,8,replacements9[nineChars]);
+			nineChars = ".........";
+			i+= replacements9[nineChars].length() - 9;
+		}
+		else if (replacements8.find(eightChars) != replacements8.end()){
+			input_str.replace(i-7,8,replacements8[eightChars]);
+			eightChars = "........";
+			i+= replacements8[eightChars].length() - 8;
+		}
+		else if (replacements7.find(sevenChars) != replacements7.end()){
+			input_str.replace(i-6,7,replacements7[sevenChars]);
+			sevenChars = ".......";
+			i+= replacements7[sevenChars].length() - 7;
+		}
+		else if (replacements6.find(sixChars) != replacements6.end()){
+			input_str.replace(i-5,6,replacements6[sixChars]);
+			sixChars = "......";
+			i+= replacements6[sixChars].length() - 6;
+		}
+		else if (replacements5.find(fiveChars) != replacements5.end()){
+			input_str.replace(i-4,5,replacements5[fiveChars]);
+			fiveChars = ".....";
+			i+= replacements5[fiveChars].length() - 5;
+		}
+		else if (replacements4.find(fourChars) != replacements4.end()){
+			input_str.replace(i-3,4,replacements4[fourChars]);
+			fourChars = "....";
+			i+= replacements4[fourChars].length() - 4;
+		}
+		else if (replacements3.find(threeChars) != replacements3.end()){
+			input_str.replace(i-2,3,replacements3[threeChars]);
+			threeChars = "...";
+			i+= replacements3[threeChars].length() - 3;
+		}
+		else if (replacements2.find(twoChars) != replacements2.end()){
+			input_str.replace(i-1,2,replacements2[twoChars]);
+			twoChars = "..";
+			i+= replacements2[twoChars].length() - 2;
+		}
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
-			if (replacements8.find(eightChars) != replacements8.end()){
-				input_str.replace(i-7,8,replacements8[eightChars]);
-				eightChars = "........";
-				i+= replacements8[eightChars].length() - 8;
-			}
-			else if (replacements7.find(sevenChars) != replacements7.end()){
-				input_str.replace(i-6,7,replacements7[sevenChars]);
-				sevenChars = ".......";
-				i+= replacements7[sevenChars].length() - 7;
-			}
-			else if (replacements6.find(sixChars) != replacements6.end()){
-				input_str.replace(i-5,6,replacements6[sixChars]);
-				sixChars = "......";
-				i+= replacements6[sixChars].length() - 6;
-			}
-			else if (replacements5.find(fiveChars) != replacements5.end()){
-				input_str.replace(i-4,5,replacements5[fiveChars]);
-				fiveChars = ".....";
-				i+= replacements5[fiveChars].length() - 5;
-			}
-			else if (replacements4.find(fourChars) != replacements4.end()){
-				input_str.replace(i-3,4,replacements4[fourChars]);
-				fourChars = "....";
-				i+= replacements4[fourChars].length() - 4;
-			}
-			else if (replacements3.find(threeChars) != replacements3.end()){
-				input_str.replace(i-2,3,replacements3[threeChars]);
-				threeChars = "...";
-				i+= replacements3[threeChars].length() - 3;
-			}
-			else if (replacements2.find(twoChars) != replacements2.end()){
-				input_str.replace(i-1,2,replacements2[twoChars]);
-				twoChars = "..";
-				i+= replacements2[twoChars].length() - 2;
-			}
-			else if (query6.find(sixChars) != query6.end()){
+			
+			if (query6.find(sixChars) != query6.end()){
 				if (query6[sixChars] == "slopey"){ 
 					//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
 					std::string inside = "";
