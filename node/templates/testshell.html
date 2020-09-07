@@ -325,7 +325,7 @@
 			node.appendChild(span);
 			if (name[name.length-1]=='f'){
 				var opSpan = document.createElement('span');
-				opSpan.innerHTML = text;
+				opSpan.innerHTML = nodes[name].op;
 				opSpan.style.position = "absolute";
 				opSpan.style.top = "2rem";
 				node.appendChild(opSpan);
