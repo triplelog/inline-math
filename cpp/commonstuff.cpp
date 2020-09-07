@@ -555,12 +555,12 @@ std::string removeSolves(std::string input) {
 			bracketLength++;
 			break;
 		}
-		else if (mychar == '{'){ //Must always be inside of a par
+		else if (mychar == '{' && foundBracket){ //Must always be inside of a par
 			interiorBrackets = true;
 			tempString += mychar;
 			bracketLength++;
 		}
-		else if (mychar == '}') {
+		else if (mychar == '}' && foundBracket) {
 			interiorBrackets = false;
 			tempString += mychar;
 			bracketLength++;
