@@ -611,10 +611,9 @@ var _ = {
 		var formulaStart = 0;
 		var isFormula = false;
 		var i = 0;
-		var asdf = {};
 		for (i=0;i<env.tokens.length;i++){
 			if (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'constant' && env.tokens[i].type != 'function'  ){
-				asdf[i]=env.tokens[i].content;
+				
 				if (env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '.' ) ){
 					continue;
 				}
@@ -638,14 +637,13 @@ var _ = {
 				isFormula = false;
 			}
 			else {
-				asdf[i]=env.tokens[i];
+				//var text = env.tokens[i];
 				if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
 					isFormula = true;
 				}
 				
 			}
 		}
-		console.log(asdf);
 		if (formulaStart < i && isFormula){
 			var formula = "";
 			for (var ii=formulaStart;ii<i;ii++){
