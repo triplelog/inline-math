@@ -159,6 +159,12 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 						}
 					
 					}
+					else if (c == '&'){
+						s += " AND ("+child+")";
+					}
+					else if (c == '|'){
+						s += " OR ("+child+")";
+					}
 					else {
 						s += c+"("+child+")";
 					}
@@ -192,6 +198,12 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else if (c == '+'){
 						s += child;
+					}
+					else if (c == '&'){
+						s += " AND ("+child+")";
+					}
+					else if (c == '|'){
+						s += " OR ("+child+")";
 					}
 					else {
 						s += c+"("+child+")";
@@ -229,6 +241,12 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 						else {
 							s += "\\cdot "+child;
 						}
+					}
+					else if (c == '&'){
+						s += " AND "+child;
+					}
+					else if (c == '|'){
+						s += " OR "+child;
 					}
 					else {
 						s += c+child;
