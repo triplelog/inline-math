@@ -33,6 +33,16 @@ $A+1$[B]
 
 $x=B$
 
+Appending an exclamation mark after the closing dollar sign hides the expression. Therefore it is possible to set variables or perform computations behind the scenes and then output some final result.
+
+$3+4*5$![L]
+
+$L+7$![M]
+
+$x=M$!
+
+$x=M$
+
 Inputs
 ------
 
