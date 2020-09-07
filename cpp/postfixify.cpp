@@ -151,6 +151,12 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			else if (ci == "beta"){
 				intstr += "\\beta";
 			}
+			else if (ci == "delta"){
+				intstr += "\\delta";
+			}
+			else if (ci == "Delta"){
+				intstr += "\\Delta";
+			}
 			else if (ci == "theta"){
 				intstr += "\\theta";
 			}
