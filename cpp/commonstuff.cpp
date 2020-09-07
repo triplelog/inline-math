@@ -1230,6 +1230,11 @@ void initialRun(){
 	prec[-110] = 2;//is not
 	prec[-95] = 2;//in
 	prec[-96] = 2;//not in
+	//+=
+	//-=
+	//++
+	//--
+	
 	prec['&'] = 1;
 	prec['|'] = 0;
 	prec['('] = -1;
