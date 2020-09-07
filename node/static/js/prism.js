@@ -612,7 +612,7 @@ var _ = {
 		var isFormula = false;
 		var i = 0;
 		for (i=0;i<env.tokens.length;i++){
-			
+			console.log(env.tokens[i]);
 			if (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'constant' && env.tokens[i].type != 'function'  ){
 				if (env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '.' ) ){
 					continue;
