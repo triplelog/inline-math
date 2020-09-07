@@ -313,42 +313,42 @@ std::string replaceFunctions(std::string input_str){
 			
 		}
 		else if (replacements9.find(nineChars) != replacements9.end()){
-			input_str.replace(i-7,8,replacements9[nineChars]);
+			input_str.replace(i-9,9,replacements9[nineChars]);
 			nineChars = ".........";
 			i+= replacements9[nineChars].length() - 9;
 		}
 		else if (replacements8.find(eightChars) != replacements8.end()){
-			input_str.replace(i-7,8,replacements8[eightChars]);
+			input_str.replace(i-8,8,replacements8[eightChars]);
 			eightChars = "........";
 			i+= replacements8[eightChars].length() - 8;
 		}
 		else if (replacements7.find(sevenChars) != replacements7.end()){
-			input_str.replace(i-6,7,replacements7[sevenChars]);
+			input_str.replace(i-7,7,replacements7[sevenChars]);
 			sevenChars = ".......";
 			i+= replacements7[sevenChars].length() - 7;
 		}
 		else if (replacements6.find(sixChars) != replacements6.end()){
-			input_str.replace(i-5,6,replacements6[sixChars]);
+			input_str.replace(i-6,6,replacements6[sixChars]);
 			sixChars = "......";
 			i+= replacements6[sixChars].length() - 6;
 		}
 		else if (replacements5.find(fiveChars) != replacements5.end()){
-			input_str.replace(i-4,5,replacements5[fiveChars]);
+			input_str.replace(i-5,5,replacements5[fiveChars]);
 			fiveChars = ".....";
 			i+= replacements5[fiveChars].length() - 5;
 		}
 		else if (replacements4.find(fourChars) != replacements4.end()){
-			input_str.replace(i-3,4,replacements4[fourChars]);
+			input_str.replace(i-4,4,replacements4[fourChars]);
 			fourChars = "....";
 			i+= replacements4[fourChars].length() - 4;
 		}
 		else if (replacements3.find(threeChars) != replacements3.end()){
-			input_str.replace(i-2,3,replacements3[threeChars]);
+			input_str.replace(i-3,3,replacements3[threeChars]);
 			threeChars = "...";
 			i+= replacements3[threeChars].length() - 3;
 		}
 		else if (replacements2.find(twoChars) != replacements2.end()){
-			input_str.replace(i-1,2,replacements2[twoChars]);
+			input_str.replace(i-2,2,replacements2[twoChars]);
 			twoChars = "..";
 			i+= replacements2[twoChars].length() - 2;
 		}
