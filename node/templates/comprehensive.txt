@@ -119,6 +119,7 @@ $3+4-1==(3+4-1)[A]$
 $x=alpha+beta+delta+Delta+theta$
 
 $input()$[K]
+
 $=(ddx(K))[I]==(ddx(K))[S]$
 
 
