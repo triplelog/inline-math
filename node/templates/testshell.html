@@ -257,7 +257,7 @@
 		for (pid=0;pid<formEls.length;pid++){
 			console.log(formEls[pid].textContent);
 			formEls[pid].id = "pid-"+pid;
-			myWorker.postMessage(["code",formEls[pid].textContent,pid,'javascript']);
+			myWorker.postMessage(["code",formEls[pid].textContent,pid,env.language]);
 		}
 		
 	});

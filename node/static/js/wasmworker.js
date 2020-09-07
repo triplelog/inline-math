@@ -330,10 +330,10 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "code"){
 		var input;
-		if (message[3] == 'javascript'){
+		if (message[3] == 'js'){
 			input = jsToMath(message[1]);
 		}
-		else if (message[3] == 'python'){
+		else if (message[3] == 'py'){
 			input = pythonToMath(message[1]);
 		}
 		else {

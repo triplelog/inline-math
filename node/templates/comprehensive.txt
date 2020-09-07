@@ -91,6 +91,18 @@ var x=Math.sin(2);
 var z=A+4;
 ```
 
+``` javascript
+var x=math.cos(2);
+var x=Math.sin(2);
+var z=A+4;
+```
+
+``` python
+x=math.cos(2);
+x=Math.sin(2);
+z=A+4;
+```
+
 Calculator
 ----------
 
