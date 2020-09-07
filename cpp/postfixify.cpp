@@ -200,8 +200,7 @@ std::string replaceFunctions(std::string input_str){
 	std::string solveStr = "";
 	solveStr += solve;
 	int i; int ii;
-	replacements4["ddx("]="x";
-	replacements4["ddx("]+=ddx+"(";
+	replacements4["ddx("]="x"+std::string(ddx)+"(";
 
 	query3["dd?"]="";
 	query3["dd?"]+=ddx;
