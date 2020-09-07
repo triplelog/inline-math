@@ -337,7 +337,7 @@ std::string replaceFunctions(std::string input_str){
 			input_str.replace(i-5,5,rawrep5[fiveChars]);
 			fiveChars = ".....";
 			i+= rawrep5[fiveChars].length() - 5;
-			string_log(input_str);
+			string_log(input_str.c_str());
 		}
 		else if (rawrep4.find(fourChars) != rawrep4.end()){
 			input_str.replace(i-4,4,rawrep4[fourChars]);
