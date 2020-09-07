@@ -162,6 +162,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 
 	}
+	string_log(expstr.c_str());
+	string_log(intstr.c_str());
 	return {expstr,intstr};
 
 
