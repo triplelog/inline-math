@@ -58,20 +58,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 		if (varName != ""){
 			if (tree){
 				t("|"+varName+":="+input);
-				latex = latex.replace(/\\/g,'\\\\');
-				var tree = JSON.parse('{'+latex+'}');
-				var outText = "";
-				for (var i=0;i<tree.allNodes.length;i++){
-					var node = tree.allNodes[i];
-					var text = tree.nodes[node].text;
-					k = katex.renderToString(text, {throwOnError: false});
-					outText += "<node id=\""+node+"\">"+k+"</node>";
-					tree.nodes[node].text = "";
-
-				}
-				outText += JSON.stringify(tree);
-				k = outText;
-				
+				k = latex;
 			}
 			else {
 				l("|"+varName+":="+input);
@@ -82,19 +69,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 		else{
 			if (tree){
 				t(input);
-				latex = latex.replace(/\\/g,'\\\\');
-				var tree = JSON.parse('{'+latex+'}');
-				var outText = "";
-				for (var i=0;i<tree.allNodes.length;i++){
-					var node = tree.allNodes[i];
-					var text = tree.nodes[node].text;
-					k = katex.renderToString(text, {throwOnError: false});
-					outText += "<node id=\""+node+"\">"+k+"</node>";
-					tree.nodes[node].text = "";
-
-				}
-				outText += JSON.stringify(tree);
-				k = outText;
+				k = latex;
 			}
 			else {
 				l(input);
@@ -265,10 +240,20 @@ const renderer = {
 	else if (input.search(/tree\(/)==0){
 		input = input.replace('tree(','');
 		input = input.substr(0,input.length-1);
-		latex = "";
-		var outText = mapOrNew(input,varName,false,true);
-		
-		
+		//latex = "";
+		latex = mapOrNew(input,varName,false,true);
+		latex = latex.replace(/\\/g,'\\\\');
+		var tree = JSON.parse('{'+latex+'}');
+		var outText = "";
+		for (var i=0;i<tree.allNodes.length;i++){
+			var node = tree.allNodes[i];
+			var text = tree.nodes[node].text;
+			k = katex.renderToString(text, {throwOnError: false});
+			outText += "<node id=\""+node+"\">"+k+"</node>";
+			tree.nodes[node].text = "";
+
+		}
+		outText += JSON.stringify(tree);
 		return '<span class="inline-tree">'+outText+'</span>';
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
