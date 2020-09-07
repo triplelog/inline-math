@@ -252,14 +252,21 @@
   <script>
   	Prism.hooks.add('complete', function(env) {
   		var pid = 0;
-  		console.log(env);
-		var formEls = document.querySelectorAll('.token.formula');
+  		var formEls;
+  		if (env.language == 'js'){
+  			formEls = document.querySelectorAll('code.language-js .token.formula');
+  		}
+  		else if (env.language == 'python'){
+  			formEls = document.querySelectorAll('code.language-python .token.formula');
+  		}
+		var asdf = {};
 		for (pid=0;pid<formEls.length;pid++){
 			console.log(formEls[pid].textContent);
-			formEls[pid].id = "pid-"+pid;
+			formEls[pid].id = "pid-"+env.language+"-"+pid;
+			asdf["pid-"+env.language+"-"+pid] = formEls[pid].textContent;
 			myWorker.postMessage(["code",formEls[pid].textContent,pid,env.language]);
 		}
-		
+		console.log(asdf);
 	});
 	function highlightCode(){
 		Prism.highlightAll();
