@@ -200,15 +200,15 @@ std::string replaceFunctions(std::string input_str){
 	std::string solveStr = "";
 	solveStr += solve;
 	int i; int ii;
-	replacements3["ddx"]="x";
-	replacements3["ddx"]+=ddx;
+	replacements4["ddx("]="x";
+	replacements4["ddx("]+=ddx;
 
 	query3["dd?"]="";
 	query3["dd?"]+=ddx;
 	query3["der"]="";
 	query3["der"]+=ddx;
-	replacements3["idx"]="x";
-	replacements3["idx"]+=idx;
+	replacements4["idx("]="x";
+	replacements4["idx("]+=idx;
 
 	query3["id?"]="";
 	query3["id?"]+=idx;
@@ -232,20 +232,20 @@ std::string replaceFunctions(std::string input_str){
 		ci += i;
 		char ch{-16};
 		ch += i;
-		replacements3[trigFunctions[i]]="";
-		replacements3[trigFunctions[i]]+=c;
-		replacements4[trigFunctions[i]+"h"]="";
-		replacements4[trigFunctions[i]+"h"]+=ch;
-		replacements6["arc"+trigFunctions[i]]="";
-		replacements6["arc"+trigFunctions[i]]+=ci;
-		replacements6[trigFunctions[i]+"^-1"]="";
-		replacements6[trigFunctions[i]+"^-1"]+=ci;
-		replacements8[trigFunctions[i]+"^(-1)"]="";
-		replacements8[trigFunctions[i]+"^(-1)"]+=ci;
-		replacements8[trigFunctions[i]+"^{-1}"]="";
-		replacements8[trigFunctions[i]+"^{-1}"]+=ci;
-		replacements5[trigFunctions[i]+"-1"]="";
-		replacements5[trigFunctions[i]+"-1"]+=ci;
+		replacements4[trigFunctions[i]+"("]="";
+		replacements4[trigFunctions[i]+"("]+=c;
+		replacements5[trigFunctions[i]+"h("]="";
+		replacements5[trigFunctions[i]+"h("]+=ch;
+		replacements7["arc"+trigFunctions[i]+"("]="";
+		replacements7["arc"+trigFunctions[i]+"("]+=ci;
+		replacements7[trigFunctions[i]+"^-1("]="";
+		replacements7[trigFunctions[i]+"^-1("]+=ci;
+		replacements9[trigFunctions[i]+"^(-1)("]="";
+		replacements9[trigFunctions[i]+"^(-1)("]+=ci;
+		replacements9[trigFunctions[i]+"^{-1}("]="";
+		replacements9[trigFunctions[i]+"^{-1}("]+=ci;
+		replacements6[trigFunctions[i]+"-1("]="";
+		replacements6[trigFunctions[i]+"-1("]+=ci;
 		query4[trigFunctions[i]+"^"]="";
 		query4[trigFunctions[i]+"^"]+=c;
 	}
@@ -253,19 +253,19 @@ std::string replaceFunctions(std::string input_str){
 	
 	char sqrt{-67};
 	char root{-84};
-	replacements4["sqrt"]="";
-	replacements4["sqrt"]+=sqrt;
-	replacements4["root"]="";
-	replacements4["root"]+=sqrt;
+	replacements5["sqrt("]="";
+	replacements5["sqrt("]+=sqrt;
+	replacements5["root("]="";
+	replacements5["root("]+=sqrt;
 	//TODO: add nth roots
 	
 	
 	
 	char log{-93};
-	replacements3["log"]="e";
-	replacements3["log"]+=log;
-	replacements2["ln"]="e";
-	replacements2["ln"]+=log;
+	replacements4["log("]="e";
+	replacements4["log("]+=log;
+	replacements3["ln("]="e";
+	replacements3["ln("]+=log;
 	query3["log"]="";
 	query3["log"]+=log;
 	query2["ln"]="";
@@ -273,8 +273,8 @@ std::string replaceFunctions(std::string input_str){
 	//TODO: add other bases
 	
 	char abs{-34};
-	replacements3["abs"]="";
-	replacements3["abs"]+=abs;
+	replacements4["abs("]="";
+	replacements4["abs("]+=abs;
 	
 	char element{-95};
 	query4[" in "]="";
@@ -283,6 +283,13 @@ std::string replaceFunctions(std::string input_str){
 	
 	query5["slope"]="slope";
 	query6["slopey"]="slopey";
+	
+	/*replacements5[" AND "]="&";
+	replacements4[" OR "]="|";
+	replacements5[" And "]="&";
+	replacements4[" Or "]="|";
+	replacements5[" and "]="&";
+	replacements4[" or "]="|";*/
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
