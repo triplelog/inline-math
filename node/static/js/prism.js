@@ -637,7 +637,13 @@ var _ = {
 				isFormula = false;
 			}
 			else {
-				//var text = env.tokens[i];
+				var text = env.tokens[i];
+				if (env.tokens[i].type){
+					text = env.tokens[i].content;
+				}
+				if (text.search('\n')>-1){
+					console.log(text);
+				}
 				if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
 					isFormula = true;
 				}
