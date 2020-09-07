@@ -324,7 +324,7 @@ std::string replaceFunctions(std::string input_str){
 			//std::cout << i << " : " << input_str << " char: " << element << '\n';
 			
 		}
-		else if (replacements9.find(eightChars) != replacements9.end()){
+		else if (replacements9.find(nineChars) != replacements9.end()){
 			input_str.replace(i,9,replacements9[nineChars]);
 			nineChars = ".........";
 			i+= replacements9[nineChars].length() - 9;
