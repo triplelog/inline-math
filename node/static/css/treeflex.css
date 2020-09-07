@@ -11,9 +11,9 @@
 .tf-tree li li:only-child>.tf-nc:before,.tf-tree li li:only-child>.tf-node-content:before{height:calc(var(--padtb) + 2 * var(--pad1));top:calc(-1 * var(--padtb) - 2 * var(--pad1))}
 .tf-tree .tf-nc,.tf-tree .tf-node-content{border:calc(2 * var(--pad1)) solid #000;display:inline-block;padding:calc(.5 * var(--padtb)) var(--padlr);position:relative}
 .tf-tree .tf-nc:before,.tf-tree .tf-node-content:before{top:calc(-1 * var(--padtb) - var(--pad1))}
-.tf-tree .tf-nc:after,.tf-tree .tf-nc:before,.tf-tree .tf-node-content:after,.tf-tree .tf-node-content:before{border-left:calc(2 * var(--pad1)) solid #000;content:"";display:block;height:var(--padtb);left:calc(50% - var(--pad1));position:absolute;width:calc(2 * var(--pad1))}
-.tf-tree .tf-nc:after,.tf-tree .tf-node-content:after{top:calc(100% + var(--pad1))}
-.tf-tree .tf-nc:only-child:after,.tf-tree .tf-node-content:only-child:after,.tf-tree>ul>li>.tf-nc:before,.tf-tree>ul>li>.tf-node-content:before{display:none}
+.tf-tree .tf-nc:after,.tf-tree .tf-nc:before{border-left:calc(2 * var(--pad1)) solid #000;content:"";display:block;height:var(--padtb);left:calc(50% - var(--pad1));position:absolute;width:calc(2 * var(--pad1))}
+.tf-tree .tf-nc:after{top:calc(100% + var(--pad1))}
+.tf-tree .tf-nc:only-child:after, .tf-tree>ul>li>.tf-nc:before{display:none}
 .tf-tree.tf-gap-sm li{padding:0 .6em}
 .tf-tree.tf-gap-sm li>.tf-nc:before,.tf-tree.tf-gap-sm li>.tf-node-content:before{height:.6em;top:-.6em}
 .tf-tree.tf-gap-sm li>.tf-nc:after,.tf-tree.tf-gap-sm li>.tf-node-content:after{height:.6em}

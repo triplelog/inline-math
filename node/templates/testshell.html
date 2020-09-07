@@ -323,7 +323,13 @@
 			}
 			span.innerHTML = text;
 			node.appendChild(span);
-	
+			if (name[name.length-1]=='f'){
+				var opSpan = document.createElement('span');
+				opSpan.innerHTML = text;
+				opSpan.style.position = "absolute";
+				opSpan.style.top = "10px";
+				node.appendChild(opSpan);
+			}
 	
 			jsonTree[name]={text:text,children:children,node:node};
 			if (parent != ""){
