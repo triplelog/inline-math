@@ -238,14 +238,16 @@ const renderer = {
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
-	var matchInvisible = text.match(/\$+([^\$\n]+?)\$<[A-Z]>+/);
+	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/);
 	var varName = "";
 	if (matchUpper && matchUpper.index == 0){
 		varName = matchUpper[0][matchUpper[0].length-2];
 	}
 	else if (matchInvisible && matchInvisible.index == 0){
 		varName = matchInvisible[0][matchInvisible[0].length-2];
+		console.log(varName);
 	}
+	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
 	
 	if (match && match.index == 0){
 	
@@ -307,11 +309,13 @@ onmessage = function(e) {
 	if (message[0] == "markdown"){
 		var markdown = message[1];
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$<[A-Z]>+/g,'`$&`');
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
-		markdown = markdown.replace(/\$`<[A-Z]>`/g,replacer);
+		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
+		markdown = markdown.replace(/\$`!/g,'$&`');
+		markdown = markdown.replace(/\$`!/g,replacer);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
