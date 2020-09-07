@@ -232,7 +232,10 @@ function createInputs(input,varName) {
 
 const renderer = {
   code(code, infostring, escaped) {
-  	if (infostring.trim() == 'javascript' || infostring.trim() == 'js' || infostring.trim() == ''){
+  	if (!infostring || infostring.trim() == ''){
+  		return '<pre><code class="language-js">'+code+'</code></pre>';
+  	}
+  	else if (infostring.trim() == 'javascript' || infostring.trim() == 'js'){
   		return '<pre><code class="language-js">'+code+'</code></pre>';
   	}
   	else if (infostring.trim() == 'python' || infostring.trim() == 'py'){
