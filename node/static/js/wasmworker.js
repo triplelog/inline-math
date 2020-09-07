@@ -241,6 +241,7 @@ const renderer = {
 				tree.nodes[node.substr(0,node.length-1)+"o"].parent = node;
 			}
 		}
+		console.log(tree);
 		var outText = "";
 		for (var i=0;i<tree.allNodes.length;i++){
 			var node = tree.allNodes[i];
