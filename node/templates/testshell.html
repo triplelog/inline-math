@@ -306,6 +306,9 @@
 			var children = [];
 			var parent = nodes[name].parent;
 			var node = document.createElement('li');
+			if (name[name.length-1] == 'o'){
+				node.classList.add('only-child');
+			}
 			var span = document.createElement('span');
 			span.classList.add("tf-nc");
 			span.classList.add("rounded");
