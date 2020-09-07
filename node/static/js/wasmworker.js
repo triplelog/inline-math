@@ -229,7 +229,7 @@ const renderer = {
 		t(input);
 		latex = latex.replace(/\\/g,'\\\\');
 		var tree = JSON.parse('{'+latex+'}');
-		for (var i=0;i<tree.allNodes.length;i++){
+		/*for (var i=0;i<tree.allNodes.length;i++){
 			var node = tree.allNodes[i];
 			if (tree.nodes[node].parent[tree.nodes[node].parent.length-1] == 'f' && node[node.length-1] != 'o'){
 				tree.nodes[node].parent = tree.nodes[node].parent.replace('f','o');
@@ -240,7 +240,7 @@ const renderer = {
 				tree.nodes[node.substr(0,node.length-1)+"o"].text = tree.nodes[node].op;
 				tree.nodes[node.substr(0,node.length-1)+"o"].parent = node;
 			}
-		}
+		}*/
 		var outText = "";
 		for (var i=0;i<tree.allNodes.length;i++){
 			var node = tree.allNodes[i];
