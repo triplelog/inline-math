@@ -638,10 +638,10 @@ std::string removeSolves(std::string input) {
 		}
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
-	string_log(input.c_str());
+	//string_log(input.c_str());
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,newLeft);
-	string_log(input.c_str());
+	//string_log(input.c_str());
 	//std::cout << input << " --c\n";
 	return removeSolves(input);
 	

@@ -138,9 +138,9 @@ void LatexIt(char* aa) {
 		}
 	}
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	string_log("postfixing");
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
+	//string_log("postfixing");
+	//string_log(postfixedV[0].c_str());
+	//string_log(postfixedV[1].c_str());
 	
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
@@ -153,11 +153,11 @@ void LatexIt(char* aa) {
 	
 
 	postfixedV[1] = removeDependents(postfixedV[1]);
-	string_log(postfixedV[1].c_str());
+	//string_log(postfixedV[1].c_str());
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	string_log(postfixed.c_str());
+	//string_log(postfixed.c_str());
 	postfixed = removeSolves(postfixed);
-	string_log(postfixed.c_str());
+	//string_log(postfixed.c_str());
 	postfixed = removeBracketsOne(postfixed);
 	
 	//string_log(postfixed.c_str());

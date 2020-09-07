@@ -33,6 +33,8 @@ $A+1$[B]
 
 $x=B$
 
+$x=A+=(B+1)[A]$
+
 Appending an exclamation mark after the closing dollar sign hides the expression. Therefore it is possible to set variables or perform computations behind the scenes and then output some final result.
 
 $3+4*5$![L]
@@ -113,6 +115,8 @@ $=(ddx(cos(x)))[I]==(ddx(cos(x)))[S]$
 $3*x^2+4*x^3==(3*x^2+4*x^3)[C]$
 
 $3+4-1==(3+4-1)[A]$
+
+$x=alpha$
 
 $input()$[K]
 $=(ddx(K))[I]==(ddx(K))[S]$
