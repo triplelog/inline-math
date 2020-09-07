@@ -231,14 +231,14 @@ const renderer = {
 		var tree = JSON.parse('{'+latex+'}');
 		for (var i=0;i<tree.allNodes.length;i++){
 			var node = tree.allNodes[i];
+			if (tree.nodes[node].parent[tree.nodes[node].parent.length-1] == 'f' && node[node.length-1] != 'o'){
+				tree.nodes[node].parent = tree.nodes[node].parent.replace('f','o');
+			}
 			if (node[node.length-1] == 'f'){
 				tree.allNodes.splice(i+1,0,node.substr(0,node.length-1)+"o");
 				tree.nodes[node.substr(0,node.length-1)+"o"] = {};
 				tree.nodes[node.substr(0,node.length-1)+"o"].text = tree.nodes[node].op;
 				tree.nodes[node.substr(0,node.length-1)+"o"].parent = node;
-			}
-			if (tree.nodes[node].parent[tree.nodes[node].parent.length-1] == 'f'){
-				tree.nodes[node].parent = tree.nodes[node].parent.replace('f','o');
 			}
 		}
 		var outText = "";
