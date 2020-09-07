@@ -270,12 +270,12 @@ std::string replaceFunctions(std::string input_str){
 	query5["slope"]="slope";
 	query6["slopey"]="slopey";
 	
-	replacements5[" AND "]="&";
+	/*replacements5[" AND "]="&";
 	replacements4[" OR "]="|";
 	replacements5[" And "]="&";
 	replacements4[" Or "]="|";
 	replacements5[" and "]="&";
-	replacements4[" or "]="|";
+	replacements4[" or "]="|";*/
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
