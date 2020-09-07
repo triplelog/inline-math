@@ -929,7 +929,7 @@ std::string outputTree(Step stepS,Step stepE){
 			//Parent Node
 			std::string opStr = "";
 			opStr += pfstr.at(i);
-			std::string name = "node"+std::to_string(treeIdx);
+			std::string name = "node"+std::to_string(treeIdx)+"f";
 			if (i==stepS.startNode){startNode = name;}
 			if (i==stepE.endNode){endNode = name;}
 			for (ii=0;ii<stepS.startNodes.size();ii++){
@@ -980,7 +980,7 @@ std::string outputTree(Step stepS,Step stepE){
 				
 			}
 			else {
-				name = "node"+std::to_string(treeIdx);
+				//name = "node"+std::to_string(treeIdx)+"f";
 				treeIdx++;
 				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
 					std::vector<std::string> revList;
@@ -1034,7 +1034,7 @@ std::string outputTree(Step stepS,Step stepE){
 				
 				}
 				else {
-					name = "node"+std::to_string(treeIdx);
+					//name = "node"+std::to_string(treeIdx)+"f";
 					treeIdx++;
 					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
 						std::vector<std::string> revList;
