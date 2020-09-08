@@ -309,7 +309,24 @@ const renderer = {
 	
   }
 };
+const tokenizer = {
+  html(src) {
+  	console.log("html",src);
+    /*const match = src.match(/\$+([^\$\n]+?)\$+/);
+    if (match) {
+      return {
+        type: 'codespan',
+        raw: match[0],
+        text: match[1].trim()
+      };
+    }*/
+
+    // return false to use original codespan tokenizer
+    return false;
+  }
+};
 marked.use({ renderer });
+marked.use({ tokenizer });
 	
 
 
