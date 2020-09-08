@@ -1440,9 +1440,8 @@ Number solvePostfix(std::string postfix) {
   	std::vector<Number> intArray;
   	std::string currentOperand = "";
   	Number n;
-  	//string_log("solve");
-  	//string_log(postfix.c_str());
-  	//std::cout << "pf: " << postfix << "\n";
+  	string_log("solve");
+  	string_log(postfix.c_str());
   	if (numbers.find("") == numbers.end()){
 		numberType("");
 	}
