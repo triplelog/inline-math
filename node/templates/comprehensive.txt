@@ -3,8 +3,6 @@
 Comprehensive Test Suite
 ========================
 
-$7! + =(7!)[A]$
-
 The following examples showcase almost every feature of Inline Math. The markdown on the left shows the exact syntax used and can be edited to see what happens. Anything not inside of dollar signs or a code block will be parsed as markdown using markedjs. For more details, each header can be clicked on to go to a dedicated page with more examples.
 
 Mathematical Expressions
@@ -127,7 +125,7 @@ $=(ddx(K))[I]==(ddx(K))[S]$
 
 $3!= 2$ and $2== 2$ and $3<4$ and $5>4$ and $1<=2$ and $3>= 2$
 
-$5! = =(5!)$
+$5! = =(5!)[A]$
 
 Plots
 -----
