@@ -38,6 +38,14 @@ std::string numberType(std::string input){
 		//std::cout << "n1: " << outputNumber(n) << "\n";
 		return "num";
 	}
+	else if (input == "e"){
+		n.type = 11;
+		n.top = "1:1,";
+		n.bottom = "e";
+		numbers[input]=n;
+		//std::cout << "n1: " << outputNumber(n) << "\n";
+		return "num";
+	}
 	else if (input.length()>3 && input.at(input.length()-2) == 'p' && input.at(input.length()-1) == 'i'){
 		n.type = 11;
 		if (numbers.find(input.substr(0,input.length()-3)) == numbers.end()){
@@ -67,6 +75,28 @@ std::string numberType(std::string input){
 		}
 		n.top = "0,"+outputNumber(nn);
 		n.bottom = "complex";
+		numbers[input]=n;
+		//std::cout << "n2: " << outputNumber(n) << "\n";
+		return "num";
+	}
+	else if (input.length()>1 && input.at(input.length()-1) == 'e'){
+		n.type = 11;
+		if (numbers.find(input.substr(0,input.length()-1)) == numbers.end()){
+			numberType(input.substr(0,input.length()-1));
+		}
+		Number nn = numbers[input.substr(0,input.length()-1)];
+		if (nn.type == 0){
+			n.type = 0;
+			numbers[input]=n;
+			return "string";
+		}
+		else if (nn.type > 9){
+			n.type = 0;
+			numbers[input]=n;
+			return "string";
+		}
+		n.top = "1:"+outputNumber(nn)+",";
+		n.bottom = "e";
 		numbers[input]=n;
 		//std::cout << "n2: " << outputNumber(n) << "\n";
 		return "num";
@@ -352,6 +382,31 @@ std::string outputNumber(Number n){
 		}
 		else if (n.bottom == "\\pi"){
 			return n.top+"\\pi";
+		}
+		else if (n.bottom == "e"){
+			std::string outputE = "";
+			int i; bool isReal = true;
+			std::string realA = "";
+			std::string imA = "";
+			for (i=0;i<n.top.length();i++){
+				if (n.top.at(i) == ':'){
+					isReal = false;
+				}
+				else if (n.top.at(i) == ','){
+					isReal = true;
+					if (outputE.length()>0){
+						outputE += "+";
+					}
+					outputE += imA+"e^{"+realA+"}";
+				}
+				else if (isReal){
+					realA += n.top.at(i);
+				}
+				else {
+					imA += n.top.at(i);
+				}
+			}
+			return outputE;
 		}
 		return n.top + n.bottom;
 	}
@@ -781,6 +836,48 @@ Number addTwo(const Number numA, const Number numB){
 
 }
 
+std::vector<Number> eToArray(Number numA){
+	std::string realA = "";
+	std::string imA = "";
+	int i;
+	bool isReal = true;
+	std::vector<Number> arrayA;
+	for (i=0;i<numA.top.length();i++){
+		if (numA.top.at(i) == ':'){
+			isReal = false;
+		}
+		else if (numA.top.at(i) == ','){
+			isReal = true;
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
+			if (numbers.find(imA) == numbers.end()){
+				numberType(imA);
+			}
+			arrayA.push_back(numbers[realA]);
+			arrayA.push_back(numbers[imA]);
+		}
+		else if (isReal){
+			realA += numA.top.at(i);
+		}
+		else {
+			imA += numA.top.at(i);
+		}
+	}
+	return arrayA;
+}
+Number arrayToE(std::vector<Number> arrayA){
+	int i;
+	std::string outputA ="";
+	for (i=0;i<arrayA.size()/2;i++){
+		outputA += outputNumber(arrayA[i*2])+":"+outputNumber(arrayA[i*2+1])+",";
+	}
+	Number n;
+	n.type = 11;
+	n.top = outputA;
+	n.bottom = "e";
+	return n;
+}
 Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
 	int neg = 1;
@@ -889,6 +986,72 @@ Number mulTwo(const Number numA, const Number numB){
 		n.type = 11;
 		n.top = outputNumber(realN);
 		n.bottom = "\\pi";
+		return n;
+	}
+	if ((numA.type == 11 && numA.bottom == "e") || (numB.type == 11 && numB.bottom == "e")){
+		std::string realA = "";
+		std::string realB = "";
+		std::string imA = "";
+		std::string imB = "";
+		int i;
+		bool isReal = true;
+		std::vector<Number> arrayA;
+		std::vector<Number> arrayB;
+		if (numA.type == 11 && numA.bottom == "e"){
+			arrayA = eToArray(numA);
+		}
+		else if (numA.type > 0 && numA.type <9){
+			realA = outputNumber(numA);
+		}
+		else {
+			return n;
+		}
+		if (numB.type == 11 && numB.bottom == "e"){
+			arrayB = eToArray(numB);
+		}
+		else if (numB.type > 0 && numB.type <9){
+			realB = outputNumber(numB);
+		}
+		else {
+			return n;
+		}
+		
+		
+		if (realB.length()>0){
+			//mul each part of arrayA
+			for (i=0;i<arrayA.size()/2;i++){
+				arrayA[i*2+1]=mulTwo(arrayA[i*2+1],numB);
+			}
+			n = arrayToE(arrayA);
+			return n;
+		}
+		else if (realA.length()>0){
+			//mul each part of arrayA
+			for (i=0;i<arrayB.size()/2;i++){
+				arrayB[i*2+1]=mulTwo(arrayB[i*2+1],numA);
+			}
+			n = arrayToE(arrayB);
+			return n;
+		}
+		else {
+			std::vector<Number> outputArray;
+			int ii;
+			for (i=0;i<arrayA.size()/2;i++){
+				for (ii=0;ii<arrayB.size()/2;ii++){
+					outputArray.push_back(addTwo(arrayA[i*2],arrayB[ii*2]));
+					outputArray.push_back(mulTwo(arrayA[i*2+1],arrayB[ii*2+1]));
+				}
+			}
+			n = arrayToE(outputArray);
+		}
+		Number realN;
+		Number imN;
+		
+		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),negateOne(mulTwo(numbers[imA],numbers[imB])));
+		imN = addTwo(mulTwo(numbers[realA],numbers[imB]),mulTwo(numbers[imA],numbers[realB]));
+		n.type = 11;
+		n.top = outputNumber(realN)+","+outputNumber(imN);
+		n.bottom = "complex";
 		return n;
 	}
 	else if (numA.type == 1){
@@ -1213,10 +1376,10 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	}
 	else if (numA.type == 11){
 		//std::cout << "n3: " << outputNumber(numA) << " and " << numA.top << " and " << numA.bottom << "\n";
-		if (numA.bottom == "pi"){
+		if (numA.bottom == "\\pi"){
 			n = numbers[numA.top];
 			if (n.type == 1 || n.type == -1){
-				if (fn == -64){
+				if (fn == -64){//sine
 					//std::cout << "n4: " << outputNumber(numbers["0"]) << "\n";
 					return numbers["0"];
 				}
