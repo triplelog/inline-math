@@ -442,6 +442,49 @@ Number reduceFraction(const Number numA){
 	return n;
 	
 }
+std::vector<Number> eToArray(Number numA){
+	std::string realA = "";
+	std::string imA = "";
+	int i;
+	bool isReal = true;
+	std::vector<Number> arrayA;
+	for (i=0;i<numA.top.length();i++){
+		if (numA.top.at(i) == ':'){
+			isReal = false;
+		}
+		else if (numA.top.at(i) == ','){
+			isReal = true;
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
+			if (numbers.find(imA) == numbers.end()){
+				numberType(imA);
+			}
+			arrayA.push_back(numbers[realA]);
+			arrayA.push_back(numbers[imA]);
+		}
+		else if (isReal){
+			realA += numA.top.at(i);
+		}
+		else {
+			imA += numA.top.at(i);
+		}
+	}
+	return arrayA;
+}
+Number arrayToE(std::vector<Number> arrayA){
+	int i;
+	std::string outputA ="";
+	for (i=0;i<arrayA.size()/2;i++){
+		outputA += outputNumber(arrayA[i*2])+":"+outputNumber(arrayA[i*2+1])+",";
+	}
+	Number n;
+	n.type = 11;
+	n.top = outputA;
+	n.bottom = "e";
+	return n;
+}
+
 Number addTwo(const Number numA, const Number numB){
 	std::string revsum = "";
 	Number n;
@@ -541,6 +584,57 @@ Number addTwo(const Number numA, const Number numB){
 		n.type = 11;
 		n.top = outputNumber(realN);
 		n.bottom = "\\pi";
+		return n;
+	}
+	else if ((numA.type == 11 && numA.bottom == "e") || (numB.type == 11 && numB.bottom == "e")){
+		std::string realA = "";
+		std::string realB = "";
+		std::string imA = "";
+		std::string imB = "";
+		int i;
+		bool isReal = true;
+		std::vector<Number> arrayA;
+		std::vector<Number> arrayB;
+		if (numA.type == 11 && numA.bottom == "e"){
+			arrayA = eToArray(numA);
+		}
+		else if (numA.type > 0 && numA.type <9){
+			realA = outputNumber(numA);
+		}
+		else {
+			return n;
+		}
+		if (numB.type == 11 && numB.bottom == "e"){
+			arrayB = eToArray(numB);
+		}
+		else if (numB.type > 0 && numB.type <9){
+			realB = outputNumber(numB);
+		}
+		else {
+			return n;
+		}
+		
+		
+		if (realB.length()>0){
+			arrayA.push_back(numbers["0"]);
+			arrayA.push_back(numB);
+			n = arrayToE(arrayA);
+			return n;
+		}
+		else if (realA.length()>0){
+			arrayB.push_back(numbers["0"]);
+			arrayB.push_back(numA);
+			n = arrayToE(arrayB);
+			return n;
+		}
+		else {
+			for (ii=0;ii<arrayB.size()/2;ii++){
+				arrayA.push_back(arrayB[ii*2]);
+				arrayA.push_back(arrayB[ii*2+1]);
+			}
+			n = arrayToE(arrayA);
+		}
+		
 		return n;
 	}
 	else if (numA.type == 1){
@@ -836,48 +930,7 @@ Number addTwo(const Number numA, const Number numB){
 
 }
 
-std::vector<Number> eToArray(Number numA){
-	std::string realA = "";
-	std::string imA = "";
-	int i;
-	bool isReal = true;
-	std::vector<Number> arrayA;
-	for (i=0;i<numA.top.length();i++){
-		if (numA.top.at(i) == ':'){
-			isReal = false;
-		}
-		else if (numA.top.at(i) == ','){
-			isReal = true;
-			if (numbers.find(realA) == numbers.end()){
-				numberType(realA);
-			}
-			if (numbers.find(imA) == numbers.end()){
-				numberType(imA);
-			}
-			arrayA.push_back(numbers[realA]);
-			arrayA.push_back(numbers[imA]);
-		}
-		else if (isReal){
-			realA += numA.top.at(i);
-		}
-		else {
-			imA += numA.top.at(i);
-		}
-	}
-	return arrayA;
-}
-Number arrayToE(std::vector<Number> arrayA){
-	int i;
-	std::string outputA ="";
-	for (i=0;i<arrayA.size()/2;i++){
-		outputA += outputNumber(arrayA[i*2])+":"+outputNumber(arrayA[i*2+1])+",";
-	}
-	Number n;
-	n.type = 11;
-	n.top = outputA;
-	n.bottom = "e";
-	return n;
-}
+
 Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
 	int neg = 1;
@@ -988,7 +1041,7 @@ Number mulTwo(const Number numA, const Number numB){
 		n.bottom = "\\pi";
 		return n;
 	}
-	if ((numA.type == 11 && numA.bottom == "e") || (numB.type == 11 && numB.bottom == "e")){
+	else if ((numA.type == 11 && numA.bottom == "e") || (numB.type == 11 && numB.bottom == "e")){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
@@ -1044,14 +1097,7 @@ Number mulTwo(const Number numA, const Number numB){
 			}
 			n = arrayToE(outputArray);
 		}
-		Number realN;
-		Number imN;
 		
-		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),negateOne(mulTwo(numbers[imA],numbers[imB])));
-		imN = addTwo(mulTwo(numbers[realA],numbers[imB]),mulTwo(numbers[imA],numbers[realB]));
-		n.type = 11;
-		n.top = outputNumber(realN)+","+outputNumber(imN);
-		n.bottom = "complex";
 		return n;
 	}
 	else if (numA.type == 1){
