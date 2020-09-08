@@ -107,7 +107,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -105: {
 			if (ii > 0){
-				s += "+="+child;
+				s += "\\pluseq "+child;
 			}
 			else {
 				s += child;

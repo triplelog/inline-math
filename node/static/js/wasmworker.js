@@ -30,6 +30,9 @@ var currentV = {};
 var inputV = {};
 importScripts('marked.js');
 
+
+var katexOptions = {throwOnError: false, macros: {'\newcommand{\pluseq}':'\mathrel{{+}{=}}'}};
+
 function mapOrNew(input,varName,forceNew=false,isTree=false){
 	latex = "";
 	
@@ -64,7 +67,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
 					var text = tree.nodes[node].text;
-					k = katex.renderToString(text, {throwOnError: false});
+					k = katex.renderToString(text, katexOptions);
 					outText += "<node id=\""+node+"\">"+k+"</node>";
 					tree.nodes[node].text = "";
 
@@ -74,7 +77,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l("|"+varName+":="+input);
-				k = katex.renderToString(latex, {throwOnError: false});
+				k = katex.renderToString(latex, katexOptions);
 			}
 			
 		}
@@ -87,7 +90,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
 					var text = tree.nodes[node].text;
-					k = katex.renderToString(text, {throwOnError: false});
+					k = katex.renderToString(text, katexOptions);
 					outText += "<node id=\""+node+"\">"+k+"</node>";
 					tree.nodes[node].text = "";
 
@@ -97,7 +100,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l(input);
-				k = katex.renderToString(latex, {throwOnError: false});
+				k = katex.renderToString(latex, katexOptions);
 			}
 			
 		}
