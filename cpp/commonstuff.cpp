@@ -610,7 +610,17 @@ std::string removeSolves(std::string input) {
 	oldPostfix = removeBracketsOne(oldPostfix);
 	//string_log(oldPostfix.c_str());
 	if (solveType == 'A'){
+		string_log("solving arithmetic");
+		int si;
+		for (si=0;si<oldPostfix.length();si++){
+			std::string ssi(1,oldPostfix.at(si));
+			string_log(ssi.c_str());
+		}
 		oldPostfix = solveArithmetic(oldPostfix);
+		for (si=0;si<oldPostfix.length();si++){
+			std::string ssi(1,oldPostfix.at(si));
+			string_log(ssi.c_str());
+		}
 	}
 	else if (solveType == 'I'){
 		oldPostfix = removeIdentities(oldPostfix);
