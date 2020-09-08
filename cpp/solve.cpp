@@ -752,13 +752,16 @@ Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
 	int neg = 1;
 	Number n;
-	
+	string_log("multiplying");
+	string_log(outputNumber(numA).c_str());
+	string_log(outputNumber(numB).c_str());
 	if (numA.type == 11 || numB.type == 11){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
 		std::string imB = "";
-		
+		string_log(outputNumber(numA).c_str());
+		string_log(outputNumber(numB).c_str());
 		int i;
 		bool isReal = true;
 		if (numA.type == 11){
