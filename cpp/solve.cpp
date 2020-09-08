@@ -1370,6 +1370,8 @@ Number solvePostfix(std::string postfix) {
   	std::vector<Number> intArray;
   	std::string currentOperand = "";
   	Number n;
+  	string_log("solve");
+  	string_log(postfix.c_str());
   	//std::cout << "pf: " << postfix << "\n";
   	if (numbers.find("") == numbers.end()){
 		numberType("");
@@ -1397,6 +1399,7 @@ Number solvePostfix(std::string postfix) {
 			if (numbers.find(currentOperand) == numbers.end()){
 				numberType(currentOperand);
 			}
+			string_log(currentOperand.c_str());
 			intArray.push_back(numbers[currentOperand]);
 			stack.push_back(numbers[""]);
 
