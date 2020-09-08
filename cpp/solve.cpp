@@ -1072,12 +1072,8 @@ Number mulTwo(const Number numA, const Number numB){
 		
 		if (realB.length()>0){
 			//mul each part of arrayA
-			string_log("multiply e by not-e");
 			for (i=0;i<arrayA.size()/2;i++){
-				string_log(outputNumber(arrayA[i*2]).c_str());
-				string_log(outputNumber(arrayA[i*2+1]).c_str());
 				arrayA[i*2+1]=mulTwo(arrayA[i*2+1],numB);
-				string_log(outputNumber(arrayA[i*2+1]).c_str());
 			}
 			n = arrayToE(arrayA);
 			return n;
@@ -1848,6 +1844,12 @@ Number solvePostfix(std::string postfix) {
     } 
 	
 	//std::cout << "pfb: " << postfix << " and " << stack[0].type << " and " << outputNumber(stack[0]) << "\n";
+	if (stack[0].type == 11){
+		std::vector<std::string> pfA = postfixifyVector(outputNumber(stack[0]),false);
+		std::string pfN = pfA[0]+"@"+pfA[1];
+		string_log("display");
+		string_log(pfN.c_str());
+	}
 	solvedPostfixMap[postfix] = stack[0];
 	return stack[0];
 }
