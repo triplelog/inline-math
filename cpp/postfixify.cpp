@@ -374,7 +374,7 @@ std::string replaceFunctions(std::string input_str){
 			//input_str.replace(i-1,2,rawrep2[twoChars]);
 			int si;
 			for (si=0;si<input_str.length();si++){
-				std::string ssi(1,input_str.at(si))
+				std::string ssi(1,input_str.at(si));
 				string_log(ssi.c_str());
 			}
 			
