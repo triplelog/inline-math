@@ -864,9 +864,7 @@ std::string replaceFunctions(std::string input_str){
 		switch (input_str.at(i)) 
 		{ 
 			case '+': {
-				string_log(input_str.c_str());
-				string_log(output_str.c_str());
-				if (i+1<input_str.length() && input_str.at(i+1) == '+'){output_str += pestr + "1"; i++; string_log(output_str.c_str()); break;}
+				if (i+1<input_str.length() && input_str.at(i+1) == '+'){output_str += pestr + "1"; i++; break;}
 				else {output_str += input_str.at(i); break;}
 				}
 			case '-': {

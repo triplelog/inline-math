@@ -662,7 +662,8 @@ var _ = {
 			}
 			else {
 				
-				if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
+				//if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
+				if (env.tokens[i].type){
 					isFormula = true;
 				}
 				
