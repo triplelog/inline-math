@@ -235,6 +235,8 @@ function createInputs(input,varName) {
 
 const renderer = {
   code(code, infostring, escaped) {
+  	code = code.replace(/&lt;/g,'<');
+  	code = code.replace(/&gt;/g,'>');
   	if (!infostring || infostring.trim() == ''){
   		return '<pre><code class="language-js">'+code+'</code></pre>';
   	}
@@ -252,7 +254,7 @@ const renderer = {
   codespan(text) {
   	text = text.replace(/&lt;/g,'<');
   	text = text.replace(/&gt;/g,'>');
-	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+  	text = text.replace(/=[^(]/g,'= ');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
 	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/);
@@ -311,24 +313,8 @@ const renderer = {
 	
   }
 };
-const tokenizer = {
-  html(src) {
-  	//console.log("html",src);
-    /*const match = src.match(/\$+([^\$\n]+?)\$+/);
-    if (match) {
-      return {
-        type: 'codespan',
-        raw: match[0],
-        text: match[1].trim()
-      };
-    }*/
 
-    // return false to use original codespan tokenizer
-    return false;
-  }
-};
 marked.use({ renderer });
-marked.use({ tokenizer });
 	
 
 
