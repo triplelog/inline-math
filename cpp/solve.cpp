@@ -348,7 +348,7 @@ std::string outputNumber(Number n){
 					imA += n.top.at(i);
 				}
 			}
-			return realA+"+"+imA+"i";
+			return "("+realA+"+"+imA+"i)";
 		}
 		return n.top + n.bottom;
 	}
@@ -388,7 +388,74 @@ Number addTwo(const Number numA, const Number numB){
 	std::string revsum = "";
 	Number n;
 	int base = 10;
-	if (numA.type == 1){
+	
+	if (numA.type == 11 || numB.type == 11){
+		std::string realA = "";
+		std::string realB = "";
+		std::string imA = "";
+		std::string imB = "";
+		int i;
+		bool isReal = true;
+		if (numA.type == 11){
+			for (i=0;i<numA.top.length();i++){
+				if (numA.top.at(i) == ','){
+					isReal = false;
+				}
+				else if (isReal){
+					realA += numA.top.at(i);
+				}
+				else {
+					imA += numA.top.at(i);
+				}
+			}
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
+			if (numbers.find(imA) == numbers.end()){
+				numberType(imA);
+			}
+		}
+		else if (numA.type > 0 && numA.type <9){
+			realA = outputNumber(numA);
+			imA = "0";
+		}
+		if (numB.type == 11){
+			isReal = true;
+			for (i=0;i<numB.top.length();i++){
+				if (numB.top.at(i) == ','){
+					isReal = false;
+				}
+				else if (isReal){
+					realB += numB.top.at(i);
+				}
+				else {
+					imB += numB.top.at(i);
+				}
+			}
+			if (numbers.find(realB) == numbers.end()){
+				numberType(realB);
+			}
+			if (numbers.find(imB) == numbers.end()){
+				numberType(imB);
+			}
+		}
+		else if (numB.type > 0 && numB.type <9){
+			realB = outputNumber(numB);
+			imB = "0";
+		}
+		if (imB.length()==0 && imA.length() == 0){
+			return n;
+		}
+		Number realN;
+		Number imN;
+		
+		realN = addTwo(numbers[realA],numbers[realB]);
+		imN = addTwo(numbers[imA],numbers[imB]);
+		n.type = 11;
+		n.top = outputNumber(realN)+","+outputNumber(imN);
+		n.bottom = "complex";
+	}
+	else if (numA.type == 1){
 		if (numB.type == 1){
 			std::string a = numA.top;
 			std::string b = numB.top;
@@ -669,7 +736,24 @@ Number addTwo(const Number numA, const Number numB){
 			return addTwo(n,numB);
 		}
 	}
-	else if (numA.type == 11 || numB.type == 11){
+	else if (numA.type < 0){
+		if (numB.type > 0){
+			return addTwo(numB,numA);
+		}
+		else if (numB.type < 0){
+			return negateOne(addTwo(negateOne(numA),negateOne(numB)));
+		}
+	}
+	return n;
+
+}
+
+Number mulTwo(const Number numA, const Number numB){
+	int base = 10;
+	int neg = 1;
+	Number n;
+	
+	if (numA.type == 11 || numB.type == 11){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
@@ -729,30 +813,13 @@ Number addTwo(const Number numA, const Number numB){
 		Number realN;
 		Number imN;
 		
-		realN = addTwo(numbers[realA],numbers[realB]);
-		imN = addTwo(numbers[imA],numbers[imB]);
+		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),invertOne(mulTwo(numbers[imA],numbers[imB])));
+		imN = addTwo(mulTwo(numbers[realA],numbers[imB]),mulTwo(numbers[imA],numbers[realB]));
 		n.type = 11;
 		n.top = outputNumber(realN)+","+outputNumber(imN);
 		n.bottom = "complex";
-	}
-	else if (numA.type < 0){
-		if (numB.type > 0){
-			return addTwo(numB,numA);
-		}
-		else if (numB.type < 0){
-			return negateOne(addTwo(negateOne(numA),negateOne(numB)));
-		}
-	}
-	return n;
-
-}
-
-Number mulTwo(const Number numA, const Number numB){
-	int base = 10;
-	int neg = 1;
-	Number n;
-			
-	if (numA.type == 1){
+	}	
+	else if (numA.type == 1){
 		if (numB.type == 1){
 			n.type = 1;
 			int prod = std::stoi(numA.top);
@@ -831,72 +898,6 @@ Number mulTwo(const Number numA, const Number numB){
 			n = reduceFraction(n);
 			return n;
 		}
-	}
-	else if (numA.type == 11 || numB.type == 11){
-		std::string realA = "";
-		std::string realB = "";
-		std::string imA = "";
-		std::string imB = "";
-		int i;
-		bool isReal = true;
-		if (numA.type == 11){
-			for (i=0;i<numA.top.length();i++){
-				if (numA.top.at(i) == ','){
-					isReal = false;
-				}
-				else if (isReal){
-					realA += numA.top.at(i);
-				}
-				else {
-					imA += numA.top.at(i);
-				}
-			}
-			if (numbers.find(realA) == numbers.end()){
-				numberType(realA);
-			}
-			if (numbers.find(imA) == numbers.end()){
-				numberType(imA);
-			}
-		}
-		else if (numA.type > 0 && numA.type <9){
-			realA = outputNumber(numA);
-			imA = "0";
-		}
-		if (numB.type == 11){
-			isReal = true;
-			for (i=0;i<numB.top.length();i++){
-				if (numB.top.at(i) == ','){
-					isReal = false;
-				}
-				else if (isReal){
-					realB += numB.top.at(i);
-				}
-				else {
-					imB += numB.top.at(i);
-				}
-			}
-			if (numbers.find(realB) == numbers.end()){
-				numberType(realB);
-			}
-			if (numbers.find(imB) == numbers.end()){
-				numberType(imB);
-			}
-		}
-		else if (numB.type > 0 && numB.type <9){
-			realB = outputNumber(numB);
-			imB = "0";
-		}
-		if (imB.length()==0 && imA.length() == 0){
-			return n;
-		}
-		Number realN;
-		Number imN;
-		
-		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),invertOne(mulTwo(numbers[imA],numbers[imB])));
-		imN = addTwo(mulTwo(numbers[realA],numbers[imB]),mulTwo(numbers[imA],numbers[realB]));
-		n.type = 11;
-		n.top = outputNumber(realN)+","+outputNumber(imN);
-		n.bottom = "complex";
 	}
 	else if (numA.type < 0){
 		if (numB.type > 0){
