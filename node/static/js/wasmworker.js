@@ -250,10 +250,8 @@ const renderer = {
   	
   },
   codespan(text) {
-  	console.log("codespan",text);
-  	text = text.replace('&lt;','<');
-  	text = text.replace('&gt;','>');
-  	console.log("codespan",text);
+  	text = text.replace(/&lt;/g,'<');
+  	text = text.replace(/&gt;/g,'>');
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
