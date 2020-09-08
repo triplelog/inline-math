@@ -304,14 +304,12 @@ std::string replaceFunctions(std::string input_str){
 	rawrep4[" or "]="|";
 	char plusequal{-105};
 	char minusequal{-106};
-	rawrep2["++"]= "";
-	rawrep2["++"]+= plusequal+"1";
-	rawrep2["--"]= "";
-	rawrep2["--"]+= minusequal+"1";
-	rawrep2["+="]= std::to_string(plusequal);
-	rawrep2["-="]= "";
-	rawrep2["-="]+= minusequal;
-	rawrep2["=="]= "=";
+	std::string pestr(1,plusequal);
+	std::string mestr(1,minusequal);
+	rawrep2["++"]= pestr+"1";
+	rawrep2["--"]= mestr+"1";
+	rawrep2["+="]= pestr;
+	rawrep2["-="]= mestr;
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
