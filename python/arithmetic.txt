@@ -61,3 +61,12 @@ in: log(A)
 out: =(log(A))
 ee
 :::
+
+:subtople:prealgebra.factorial.factorial
+:name:Factorial
+
+::: rule
+in: A!
+out: =(A!)
+ee
+:::
