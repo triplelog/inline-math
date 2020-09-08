@@ -314,8 +314,8 @@ std::string replaceFunctions(std::string input_str){
 	rawrep3[">= "]= "]";
 	rawrep2["+-"]= "-";
 	char factorial{-41};
-	rawrep2["!!"]= "";
-	rawrep2["!!"]+= factorial;
+	std::string factorialstr(1,factorial);
+	rawrep2["!!"]= factorialstr;
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -878,7 +878,7 @@ std::string replaceFunctions(std::string input_str){
 				else {output_str += input_str.at(i); break;}
 				}
 			case '!': {
-				if (i+1<input_str.length() && input_str.at(i+1) == '!'){output_str += "" + factorial; i++; break;}
+				if (i+1<input_str.length() && input_str.at(i+1) == '!'){output_str += factorialstr; i++; break;}
 				else {output_str += input_str.at(i); break;}
 				}
 			case ' ': break;
