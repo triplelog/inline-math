@@ -308,8 +308,7 @@ std::string replaceFunctions(std::string input_str){
 	rawrep2["++"]+= plusequal+"1";
 	rawrep2["--"]= "";
 	rawrep2["--"]+= minusequal+"1";
-	rawrep2["+="]= "";
-	rawrep2["+="]+= plusequal;
+	rawrep2["+="]= std::to_string(plusequal);
 	rawrep2["-="]= "";
 	rawrep2["-="]+= minusequal;
 	rawrep2["=="]= "=";
