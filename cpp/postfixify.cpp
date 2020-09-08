@@ -142,10 +142,9 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 		else {
 			
-			if (ci == "pi" || ci == "Pi" || ci == "PI"){
-				intstr += "\\pi";
-			}
-			else if (ci == "alpha"){
+			
+			bool addHash = true;
+			if (ci == "alpha"){
 				intstr += "\\alpha";
 			}
 			else if (ci == "beta"){
@@ -160,11 +159,44 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			else if (ci == "theta"){
 				intstr += "\\theta";
 			}
+			else if (ci == "pi" || ci == "Pi" || ci == "PI"){
+				intstr += "\\pi";
+			}
+			else if (ci.at(0) == '\\'){
+				intstr += ci;
+			}
+			else if (ci.at(ci.length()-1) <= 'z' && ci.at(ci.length()-1) >= 'A'){
+				if (ci.length() > 2){
+					if (ci.at(ci.length()-2) == 'p' || ci.at(ci.length()-2) == 'P'){
+						if (ci.at(ci.length()-1) == 'I' || ci.at(ci.length()-1) == 'i'){
+							if (ci.at(ci.length()-3) == '\\'){
+								intstr += ci.substr(0,ci.length()-3) + "_\\pi";
+								expstr += '##*';
+							}
+							else {
+								intstr += ci.substr(0,ci.length()-2) + "_\\pi";
+								expstr += '##*';
+							}
+							addHash = false;
+						}
+						else {
+							intstr += ci;
+						}
+					}
+					else {
+						intstr += ci;
+					}
+				}
+				else {
+					intstr += ci;
+				}
+			}
 			else {
 				intstr += ci;
 			}
 			intstr += "_";
-			expstr += "#";
+			if (addHash){ expstr += "#"; }
+			
 		}
 
 	}
