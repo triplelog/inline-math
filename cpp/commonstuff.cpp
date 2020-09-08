@@ -542,6 +542,7 @@ std::string removeType11(std::string input) {
 	int secondIndex;
 	char mychar;
 	int len = input.length();
+	bool foundBracket = false;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '#') {
@@ -556,6 +557,7 @@ std::string removeType11(std::string input) {
 					leftString = postfixedV[0];
 					rightString = postfixedV[1];
 					bracketLength = tempString.length();
+					foundBracket = true;
 					break;
 				}
 			}
