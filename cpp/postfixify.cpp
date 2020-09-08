@@ -195,6 +195,8 @@ std::string replaceFunctions(std::string input_str){
 	
 	std::map<std::string,std::string> rawrep5;
 	std::map<std::string,std::string> rawrep4;
+	std::map<std::string,std::string> rawrep3;
+	std::map<std::string,std::string> rawrep2;
 	
 	std::map<std::string,std::string> query7;
 	std::map<std::string,std::string> query6;
@@ -300,6 +302,16 @@ std::string replaceFunctions(std::string input_str){
 	rawrep4[" OR "]="|";
 	rawrep4[" Or "]="|";
 	rawrep4[" or "]="|";
+	char plusequal{-105};
+	char minusequal{-106};
+	rawrep2["++"]= "";
+	rawrep2["++"]+= plusequal+"1";
+	rawrep2["--"]= "";
+	rawrep2["--"]+= minusequal+"1";
+	rawrep2["+="]= "";
+	rawrep2["+="]+= plusequal;
+	rawrep2["-="]= "";
+	rawrep2["-="]+= minusequal;
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -343,6 +355,16 @@ std::string replaceFunctions(std::string input_str){
 			input_str.replace(i-3,4,rawrep4[fourChars]);
 			fourChars = "....";
 			i+= rawrep4[fourChars].length() - 4;
+		}
+		else if (rawrep3.find(threeChars) != rawrep3.end()){
+			input_str.replace(i-2,3,rawrep3[threeChars]);
+			threeChars = "...";
+			i+= rawrep3[threeChars].length() - 3;
+		}
+		else if (rawrep2.find(twoChars) != rawrep2.end()){
+			input_str.replace(i-1,2,rawrep2[twoChars]);
+			twoChars = "..";
+			i+= rawrep2[twoChars].length() - 2;
 		}
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
