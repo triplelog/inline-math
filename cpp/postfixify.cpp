@@ -365,7 +365,10 @@ std::string replaceFunctions(std::string input_str){
 			i+= rawrep3[threeChars].length() - 3;
 		}
 		else if (rawrep2.find(twoChars) != rawrep2.end()){
+			string_log("twoChars");
 			string_log(input_str.c_str());
+			console_log(i);
+			string_log(rawrep2[twoChars].c_str());
 			input_str.replace(i-1,2,rawrep2[twoChars]);
 			string_log(input_str.c_str());
 			twoChars = "..";
