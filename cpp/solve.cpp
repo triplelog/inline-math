@@ -397,7 +397,7 @@ std::string outputNumber(Number n){
 					if (outputE.length()>0){
 						outputE += "+";
 					}
-					outputE += imA+"e^"+realA+"";
+					outputE += imA+"*e^"+realA+"";
 				}
 				else if (isReal){
 					realA += n.top.at(i);
@@ -1847,6 +1847,8 @@ Number solvePostfix(std::string postfix) {
 	if (stack[0].type == 11){
 		std::vector<std::string> pfA = postfixifyVector(outputNumber(stack[0]),false);
 		std::string pfN = pfA[0]+"@"+pfA[1];
+		stack[0].top = pfN;
+		stack[0].bottom = "postfix";
 		string_log("display");
 		string_log(pfN.c_str());
 	}
