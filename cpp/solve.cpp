@@ -348,7 +348,7 @@ std::string outputNumber(Number n){
 					imA += n.top.at(i);
 				}
 			}
-			return "("+realA+"+"+imA+"i)";
+			return realA+"+"+imA+"i";
 		}
 		return n.top + n.bottom;
 	}
