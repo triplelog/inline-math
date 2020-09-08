@@ -367,11 +367,7 @@ std::string replaceFunctions(std::string input_str){
 		else if (rawrep2.find(twoChars) != rawrep2.end()){
 			string_log("twoChars");
 			string_log(input_str.c_str());
-			console_log(i);
-			string_log(rawrep2[twoChars].c_str());
-			input_str[i-1]=factorial;
-			input_str[i]= ' ';
-			//input_str.replace(i-1,2,rawrep2[twoChars]);
+			input_str.replace(i-1,2,rawrep2[twoChars]);
 			int si;
 			for (si=0;si<input_str.length();si++){
 				std::string ssi(1,input_str.at(si));
