@@ -579,12 +579,14 @@ std::string removeType11(std::string input) {
 	}
 	
 	int firstIndex = operandToIndex[iidx];
+	std::string retInput = input;
 	string_log("type11 replace");
 	string_log(input.c_str());
 	input.replace(secondIndex,bracketLength+1,rightString);
 	string_log(input.c_str());
 	input.replace(firstIndex,1,leftString);
 	string_log(input.c_str());
+	return retInput;
 	return removeType11(input);
 	
 	
