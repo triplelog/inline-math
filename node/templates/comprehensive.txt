@@ -98,7 +98,7 @@ var x=math.cos(2);
 var x= Math.sin(2);
 var z=A+4;
 a++;
-b+=4;
+b+= 4;
 ```
 
 ``` python
@@ -124,7 +124,7 @@ $input()$[K]
 
 $=(ddx(K))[I]==(ddx(K))[S]$
 
-$3!= 2$ and $3<= 4$ and $4>= 3$ and $2== 2$ and $1< 2$ and $3> 2$
+$3!= 2$ and  and $2== 2$ 
 
 Plots
 -----
