@@ -250,6 +250,7 @@ const renderer = {
   	
   },
   codespan(text) {
+  	console.log("codespan",text);
 	//const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
@@ -311,7 +312,7 @@ const renderer = {
 };
 const tokenizer = {
   html(src) {
-  	console.log("html",src);
+  	//console.log("html",src);
     /*const match = src.match(/\$+([^\$\n]+?)\$+/);
     if (match) {
       return {
