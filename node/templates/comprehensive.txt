@@ -97,7 +97,6 @@ var z=A+4;
 var x=math.cos(2);
 var x= Math.sin(2);
 var z=A+4;
-a++;
 b+= 4;
 ```
 
