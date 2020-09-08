@@ -81,6 +81,7 @@ std::string solveArithmetic(std::string s){
 		}
 	}
 	newPostfix = removeType11(newPostfix);
+	newPostfix = removeIdentities(newPostfix);
 	return newPostfix;
 }
 
