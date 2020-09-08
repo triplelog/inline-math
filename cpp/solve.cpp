@@ -22,10 +22,10 @@ std::string numberType(std::string input){
 		numbers[""]=n;
 		return "string";
 	}
-	if (input == "pi"){
+	if (input == "\\pi"){
 		n.type = 11;
 		n.top = "1";
-		n.bottom = "pi";
+		n.bottom = "\\pi";
 		numbers[input]=n;
 		//std::cout << "n1: " << outputNumber(n) << "\n";
 		return "num";
@@ -38,13 +38,13 @@ std::string numberType(std::string input){
 		//std::cout << "n1: " << outputNumber(n) << "\n";
 		return "num";
 	}
-	else if (input.length()>2 && input.at(input.length()-2) == 'p' && input.at(input.length()-1) == 'i'){
+	else if (input.length()>3 && input.at(input.length()-2) == 'p' && input.at(input.length()-1) == 'i'){
 		n.type = 11;
-		if (numbers.find(input.substr(0,input.length()-2)) == numbers.end()){
-			numberType(input.substr(0,input.length()-2));
+		if (numbers.find(input.substr(0,input.length()-3)) == numbers.end()){
+			numberType(input.substr(0,input.length()-3));
 		}
-		n.top = outputNumber(numbers[input.substr(0,input.length()-2)]);
-		n.bottom = "pi";
+		n.top = outputNumber(numbers[input.substr(0,input.length()-3)]);
+		n.bottom = "\\pi";
 		numbers[input]=n;
 		//std::cout << "n2: " << outputNumber(n) << "\n";
 		return "num";
@@ -350,6 +350,9 @@ std::string outputNumber(Number n){
 			}
 			return realA+"+"+imA+"i";
 		}
+		else if (n.bottom == "\\pi"){
+			return n.top+"\\pi";
+		}
 		return n.top + n.bottom;
 	}
 	return "";
@@ -389,7 +392,7 @@ Number addTwo(const Number numA, const Number numB){
 	Number n;
 	int base = 10;
 	
-	if (numA.type == 11 || numB.type == 11){
+	if ((numA.type == 11 && numA.bottom == "complex") || (numB.type == 11 && numB.bottom == "complex")){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
@@ -454,6 +457,36 @@ Number addTwo(const Number numA, const Number numB){
 		n.type = 11;
 		n.top = outputNumber(realN)+","+outputNumber(imN);
 		n.bottom = "complex";
+	}
+	else if ((numA.type == 11 && numA.bottom == "\\pi") && (numB.type == 11 && numB.bottom == "\\pi")){
+		std::string realA = "";
+		std::string realB = "";
+		int i;
+		if (numA.type == 11 && numA.bottom == "\\pi"){
+			realA = numA.top;
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
+		}
+		else if (numA.type > 0 && numA.type <9){
+			realA = outputNumber(numA);
+		}
+		if (numB.type == 11 && numB.bottom == "\\pi"){
+			realB = numB.top;
+			if (numbers.find(realB) == numbers.end()){
+				numberType(realB);
+			}
+		}
+		else if (numB.type > 0 && numB.type <9){
+			realB = outputNumber(numB);
+		}
+		Number realN;
+		
+		realN = addTwo(numbers[realA],numbers[realB]);
+		n.type = 11;
+		n.top = outputNumber(realN);
+		n.bottom = "\\pi";
+		return n;
 	}
 	else if (numA.type == 1){
 		if (numB.type == 1){
@@ -752,14 +785,14 @@ Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
 	int neg = 1;
 	Number n;
-	if (numA.type == 11 || numB.type == 11){
+	if ((numA.type == 11 && numA.bottom == "complex") || (numB.type == 11 && numB.bottom == "complex")){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
 		std::string imB = "";
 		int i;
 		bool isReal = true;
-		if (numA.type == 11){
+		if (numA.type == 11 && numA.bottom == "complex"){
 			for (i=0;i<numA.top.length();i++){
 				if (numA.top.at(i) == ','){
 					isReal = false;
@@ -782,7 +815,7 @@ Number mulTwo(const Number numA, const Number numB){
 			realA = outputNumber(numA);
 			imA = "0";
 		}
-		if (numB.type == 11){
+		if (numB.type == 11 && numB.bottom == "complex"){
 			isReal = true;
 			for (i=0;i<numB.top.length();i++){
 				if (numB.top.at(i) == ','){
@@ -818,7 +851,46 @@ Number mulTwo(const Number numA, const Number numB){
 		n.top = outputNumber(realN)+","+outputNumber(imN);
 		n.bottom = "complex";
 		return n;
-	}	
+	}
+	else if ((numA.type == 11 && numA.bottom == "\\pi") || (numB.type == 11 && numB.bottom == "\\pi")){
+		std::string realA = "";
+		std::string realB = "";
+		if ((numA.type == 11 && numA.bottom == "\\pi") && (numB.type == 11 && numB.bottom == "\\pi")){
+			return n;
+		}
+		int i;
+		if (numA.type == 11 && numA.bottom == "\\pi"){
+			realA = numA.top;
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
+		}
+		else if (numA.type > 0 && numA.type <9){
+			realA = outputNumber(numA);
+		}
+		else {
+			return n;
+		}
+		if (numB.type == 11 && numB.bottom == "\\pi"){
+			realB = numB.top;
+			if (numbers.find(realB) == numbers.end()){
+				numberType(realB);
+			}
+		}
+		else if (numB.type > 0 && numB.type <9){
+			realB = outputNumber(numB);
+		}
+		else {
+			return n;
+		}
+		Number realN;
+		
+		realN = mulTwo(numbers[realA],numbers[realB]);
+		n.type = 11;
+		n.top = outputNumber(realN);
+		n.bottom = "\\pi";
+		return n;
+	}
 	else if (numA.type == 1){
 		if (numB.type == 1){
 			n.type = 1;
