@@ -372,7 +372,11 @@ std::string replaceFunctions(std::string input_str){
 			input_str[i-1]=factorial;
 			input_str[i]= ' ';
 			//input_str.replace(i-1,2,rawrep2[twoChars]);
-			string_log(input_str.c_str());
+			int si;
+			for (si=0;si<input_str.length();si++){
+				string_log(input_str.at(si));
+			}
+			
 			twoChars = "..";
 			i+= 1;//rawrep2[twoChars].length() - 2;
 		}
