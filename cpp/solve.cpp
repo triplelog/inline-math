@@ -397,7 +397,7 @@ std::string outputNumber(Number n){
 					if (outputE.length()>0){
 						outputE += "+";
 					}
-					outputE += imA+"e^{"+realA+"}";
+					outputE += imA+"e^"+realA+"";
 				}
 				else if (isReal){
 					realA += n.top.at(i);
