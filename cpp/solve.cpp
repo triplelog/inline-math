@@ -752,16 +752,11 @@ Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
 	int neg = 1;
 	Number n;
-	string_log("multiplying");
-	string_log(outputNumber(numA).c_str());
-	string_log(outputNumber(numB).c_str());
 	if (numA.type == 11 || numB.type == 11){
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
 		std::string imB = "";
-		string_log(outputNumber(numA).c_str());
-		string_log(outputNumber(numB).c_str());
 		int i;
 		bool isReal = true;
 		if (numA.type == 11){
@@ -788,7 +783,6 @@ Number mulTwo(const Number numA, const Number numB){
 			imA = "0";
 		}
 		if (numB.type == 11){
-			string_log("multiplying complex by real");
 			isReal = true;
 			for (i=0;i<numB.top.length();i++){
 				if (numB.top.at(i) == ','){
@@ -818,11 +812,12 @@ Number mulTwo(const Number numA, const Number numB){
 		Number realN;
 		Number imN;
 		
-		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),invertOne(mulTwo(numbers[imA],numbers[imB])));
+		realN = addTwo(mulTwo(numbers[realA],numbers[realB]),negateOne(mulTwo(numbers[imA],numbers[imB])));
 		imN = addTwo(mulTwo(numbers[realA],numbers[imB]),mulTwo(numbers[imA],numbers[realB]));
 		n.type = 11;
 		n.top = outputNumber(realN)+","+outputNumber(imN);
 		n.bottom = "complex";
+		return n;
 	}	
 	else if (numA.type == 1){
 		if (numB.type == 1){
@@ -1373,8 +1368,8 @@ Number solvePostfix(std::string postfix) {
   	std::vector<Number> intArray;
   	std::string currentOperand = "";
   	Number n;
-  	string_log("solve");
-  	string_log(postfix.c_str());
+  	//string_log("solve");
+  	//string_log(postfix.c_str());
   	//std::cout << "pf: " << postfix << "\n";
   	if (numbers.find("") == numbers.end()){
 		numberType("");
@@ -1402,7 +1397,6 @@ Number solvePostfix(std::string postfix) {
 			if (numbers.find(currentOperand) == numbers.end()){
 				numberType(currentOperand);
 			}
-			string_log(currentOperand.c_str());
 			intArray.push_back(numbers[currentOperand]);
 			stack.push_back(numbers[""]);
 
