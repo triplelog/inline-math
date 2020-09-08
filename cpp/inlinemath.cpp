@@ -24,6 +24,7 @@ std::string solveArithmetic(std::string s);
 std::string removeIdentities(std::string s);
 std::string toCanonical(std::string s);
 std::string doCalculus(std::string s);
+std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations);
 
 #include <emscripten/emscripten.h>
 
