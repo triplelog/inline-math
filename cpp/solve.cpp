@@ -628,9 +628,9 @@ Number addTwo(const Number numA, const Number numB){
 			return n;
 		}
 		else {
-			for (ii=0;ii<arrayB.size()/2;ii++){
-				arrayA.push_back(arrayB[ii*2]);
-				arrayA.push_back(arrayB[ii*2+1]);
+			for (i=0;i<arrayB.size()/2;i++){
+				arrayA.push_back(arrayB[i*2]);
+				arrayA.push_back(arrayB[i*2+1]);
 			}
 			n = arrayToE(arrayA);
 		}
