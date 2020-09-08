@@ -312,6 +312,7 @@ std::string replaceFunctions(std::string input_str){
 	rawrep2["+="]+= plusequal;
 	rawrep2["-="]= "";
 	rawrep2["-="]+= minusequal;
+	rawrep2["=="]= "=";
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -349,7 +350,6 @@ std::string replaceFunctions(std::string input_str){
 			input_str.replace(i-4,5,rawrep5[fiveChars]);
 			fiveChars = ".....";
 			i+= rawrep5[fiveChars].length() - 5;
-			string_log(input_str.c_str());
 		}
 		else if (rawrep4.find(fourChars) != rawrep4.end()){
 			input_str.replace(i-3,4,rawrep4[fourChars]);
@@ -362,7 +362,9 @@ std::string replaceFunctions(std::string input_str){
 			i+= rawrep3[threeChars].length() - 3;
 		}
 		else if (rawrep2.find(twoChars) != rawrep2.end()){
+			string_log(input_str.c_str());
 			input_str.replace(i-1,2,rawrep2[twoChars]);
+			string_log(input_str.c_str());
 			twoChars = "..";
 			i+= rawrep2[twoChars].length() - 2;
 		}
