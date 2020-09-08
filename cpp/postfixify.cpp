@@ -369,10 +369,12 @@ std::string replaceFunctions(std::string input_str){
 			string_log(input_str.c_str());
 			console_log(i);
 			string_log(rawrep2[twoChars].c_str());
-			input_str.replace(i-1,2,rawrep2[twoChars]);
+			input_str[i-1]=factorial;
+			input_str[i]=" ";
+			//input_str.replace(i-1,2,rawrep2[twoChars]);
 			string_log(input_str.c_str());
 			twoChars = "..";
-			i+= rawrep2[twoChars].length() - 2;
+			i+= 1;//rawrep2[twoChars].length() - 2;
 		}
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
