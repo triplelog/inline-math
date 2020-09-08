@@ -1072,8 +1072,12 @@ Number mulTwo(const Number numA, const Number numB){
 		
 		if (realB.length()>0){
 			//mul each part of arrayA
+			string_log("multiply e by not-e");
 			for (i=0;i<arrayA.size()/2;i++){
+				string_log(outputNumber(arrayA[i*2]).c_str());
+				string_log(outputNumber(arrayA[i*2+1]).c_str());
 				arrayA[i*2+1]=mulTwo(arrayA[i*2+1],numB);
+				string_log(outputNumber(arrayA[i*2+1]).c_str());
 			}
 			n = arrayToE(arrayA);
 			return n;
