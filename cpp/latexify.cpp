@@ -116,7 +116,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -106: {
 			if (ii > 0){
-				s += "-="+child;
+				s += "\\minuseq"+child;
 			}
 			else {
 				s += child;
@@ -143,6 +143,33 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 
+		}
+		case '!': {
+			if (ii > 0){
+				s += "\\neq "+child;
+			}
+			else {
+				s += child;
+			}
+			break;
+		}
+		case '[': {
+			if (ii > 0){
+				s += "\\leq "+child;
+			}
+			else {
+				s += child;
+			}
+			break;
+		}
+		case ']': {
+			if (ii > 0){
+				s += "\\geq "+child;
+			}
+			else {
+				s += child;
+			}
+			break;
 		}
 		case '-': {
 			if (prec['-'] >= prec[lastOp]){

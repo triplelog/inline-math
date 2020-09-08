@@ -31,7 +31,7 @@ var inputV = {};
 importScripts('marked.js');
 
 
-var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'}};
+var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
 function mapOrNew(input,varName,forceNew=false,isTree=false){
 	latex = "";

@@ -308,8 +308,13 @@ std::string replaceFunctions(std::string input_str){
 	std::string mestr(1,minusequal);
 	rawrep2["++"]= pestr+"1";
 	rawrep2["--"]= mestr+"1";
-	rawrep2["+="]= pestr;
-	rawrep2["-="]= mestr;
+	rawrep3["+= "]= pestr;
+	rawrep3["-= "]= mestr;
+	rawrep3["== "]= "= ";
+	rawrep3["!= "]= "!";
+	rawrep3["<= "]= "[";
+	rawrep3[">= "]= "]";
+	rawrep3["+-"]= "-";
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -1531,16 +1536,10 @@ std::string replaceFunctionsFuture(std::string input_str){
 
 std::string postfixify(std::string input_str) {
 	/*input_str = input_str.toUpperCase();
-	input_str = input_str.replace(/AND/g,'&');
-	input_str = input_str.replace(/OR/g,'|');
 	input_str = input_str.replace(/\[/g,'(');
 	input_str = input_str.replace(/]/g,')');
 	input_str = input_str.replace(/{/g,'(');
 	input_str = input_str.replace(/}/g,')');
-	input_str = input_str.replace(/>=/g,']');
-	input_str = input_str.replace(/<=/g,'[');
-	input_str = input_str.replace(/==/g,'=');
-	input_str = input_str.replace(/!=/g,'!');
 	input_str = input_str.replace(/\+-/g,'-');
 	input_str = input_str.replace(/--/g,'+');*/
 	
