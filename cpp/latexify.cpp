@@ -144,6 +144,15 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 
 		}
+		case -41: {
+			if (ii > 0){
+				s += child + "!";
+			}
+			else {
+				s += child + "!";
+			}
+			break;
+		}
 		case '!': {
 			if (ii > 0){
 				s += "\\neq "+child;

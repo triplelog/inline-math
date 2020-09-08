@@ -1083,6 +1083,26 @@ Number hypTrigTwo(char fn, const Number numA){ //numA is base and numB is inside
 
 }
 
+Number factorialOne(const Number numA){
+	Number n;
+	int nn = 1;
+	int i;
+	if (numA.type == 1){
+		int na = std::stoi(numA.top);
+		for (i=2;i<na+1;i++){
+			nn *= i;
+		}
+		n.type = 1;
+		n.top = std::to_string(nn);
+		n.bottom = "1";
+	}
+	else {
+		n.type = 0;
+	}
+	
+	return n;
+}
+
 Number roundOne(const Number numA){
 	int base = 10;
 	int neg = 1;
@@ -1230,6 +1250,7 @@ Number solvePostfix(std::string postfix) {
 	            case '*': stack[currentIndex - 2] = mulTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break; 
 	            case '/': stack[currentIndex - 1] = invertOne(stack[currentIndex - 1]); currentIndex++; break;
 	            case '^': stack[currentIndex - 2] = expTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -41: stack[currentIndex - 1] = factorialOne(stack[currentIndex - 1]); currentIndex++; break;
 	            case -93: stack[currentIndex - 2] = logTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            case -84: stack[currentIndex - 2] = rootNth(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            case -82: stack[currentIndex - 1] = roundOne(stack[currentIndex - 1]); currentIndex++; break;

@@ -312,7 +312,10 @@ std::string replaceFunctions(std::string input_str){
 	rawrep3["!= "]= "!";
 	rawrep3["<= "]= "[";
 	rawrep3[">= "]= "]";
-	rawrep3["+-"]= "-";
+	rawrep2["+-"]= "-";
+	char factorial{-41};
+	rawrep2["!!"]= "";
+	rawrep2["!!"]+= factorial;
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
