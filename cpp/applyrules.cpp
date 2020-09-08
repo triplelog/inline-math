@@ -285,6 +285,12 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 								
 								if (opResult.type == 11){
 									currentOperand = "("+opResult.top+")";
+									if (currentOperand == "("+insidePostfix+")"){
+										cannotSolve = true;
+									}
+									string_log("outputtingA");
+									string_log(currentOperand.c_str());
+									string_log(insidePostfix.c_str());
 								}
 								else {
 									std::string outputN = outputNumber(opResult);
