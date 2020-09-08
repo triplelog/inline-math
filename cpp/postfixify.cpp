@@ -171,11 +171,11 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 						if (ci.at(ci.length()-1) == 'I' || ci.at(ci.length()-1) == 'i'){
 							if (ci.at(ci.length()-3) == '\\'){
 								intstr += ci.substr(0,ci.length()-3) + "_\\pi";
-								expstr += '##*';
+								expstr += "##*";
 							}
 							else {
 								intstr += ci.substr(0,ci.length()-2) + "_\\pi";
-								expstr += '##*';
+								expstr += "##*";
 							}
 							addHash = false;
 						}
