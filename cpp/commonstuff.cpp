@@ -529,6 +529,66 @@ std::string removeParOne(std::string input) {
 	
 }
 
+std::string removeType11(std::string input) {
+	std::map<int,int> operandToIndex;
+	int iii; int iiii;
+	bool foundAt = false;
+	int idx = 0;
+	int iidx = 0;
+	std::string tempString = "";
+	std::string leftString = "";
+	std::string rightString = "";
+	int bracketLength = 0;
+	int secondIndex;
+	char mychar;
+	int len = input.length();
+	for (iii=0;iii<len;iii++){
+		mychar = input.at(iii);
+		if (mychar == '#') {
+			operandToIndex[idx]=iii;
+			idx++;
+		}
+		else if (mychar == '_') {
+			if (numbers.find(tempString) != numbers.end()){
+				Number n = numbers[tempString];
+				if (n.type == 11){
+					std::vector<std::string> postfixedV = postfixifyVector(outputNumber(n),false);
+					leftString = postfixedV[0];
+					rightString = postfixedV[1];
+					bracketLength = tempString.length();
+					break;
+				}
+			}
+			iidx++;
+			tempString = "";
+			secondIndex = iii+1;
+		}
+		else if (mychar == '@') {
+			tempString = "";
+			foundAt = true;
+			secondIndex = iii+1;
+		}
+		else {
+			tempString += mychar;
+		}
+	}
+	if (!foundBracket){
+		return input;
+	}
+	
+	int firstIndex = operandToIndex[iidx];
+	string_log("type11 replace");
+	string_log(input.c_str());
+	input.replace(secondIndex,bracketLength+1,rightString);
+	string_log(input.c_str());
+	input.replace(firstIndex,1,leftString);
+	string_log(input.c_str());
+	return removeType11(input);
+	
+	
+	
+}
+
 std::string removeSolves(std::string input) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
@@ -617,6 +677,7 @@ std::string removeSolves(std::string input) {
 		//	string_log(ssi.c_str());
 		//}
 		oldPostfix = solveArithmetic(oldPostfix);
+		
 		//for (si=0;si<oldPostfix.length();si++){
 		//	std::string ssi(1,oldPostfix.at(si));
 		//	string_log(ssi.c_str());

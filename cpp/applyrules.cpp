@@ -282,27 +282,11 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 							}
 							else {
 								//std::cout << "ipf2or: " << outputNumber(opResult) << "\n";
-								
-								if (opResult.type == 11){
-									currentOperand = "("+opResult.top+")";
-									if (currentOperand == "("+insidePostfix+")"){
-										cannotSolve = true;
-									}
-									string_log("outputtingA");
-									string_log(currentOperand.c_str());
-									string_log(insidePostfix.c_str());
+								std::string outputN = outputNumber(opResult);
+								currentOperand = "(#@"+outputN+"_)";
+								if (numbers.find(outputN) == numbers.end()){
+									numbers[outputN]=opResult;
 								}
-								else {
-									std::string outputN = outputNumber(opResult);
-									currentOperand = "(#@"+outputN+"_)";
-									if (numbers.find(outputN) == numbers.end()){
-										numbers[outputN]=opResult;
-									}
-								}
-								
-								string_log("outputting");
-								string_log(currentOperand.c_str());
-								
 								
 							}
 							

@@ -80,6 +80,7 @@ std::string solveArithmetic(std::string s){
 			newPostfix = removeBracketsOne(someStrings[0].next);
 		}
 	}
+	newPostfix = removeType11(newPostfix);
 	return newPostfix;
 }
 

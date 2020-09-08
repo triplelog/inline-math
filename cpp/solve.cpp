@@ -1844,14 +1844,14 @@ Number solvePostfix(std::string postfix) {
     } 
 	
 	//std::cout << "pfb: " << postfix << " and " << stack[0].type << " and " << outputNumber(stack[0]) << "\n";
-	if (stack[0].type == 11){
+	/*if (stack[0].type == 11){
 		std::vector<std::string> pfA = postfixifyVector(outputNumber(stack[0]),false);
 		std::string pfN = pfA[0]+"@"+pfA[1];
 		stack[0].top = pfN;
 		stack[0].bottom = "postfix";
 		string_log("display");
 		string_log(pfN.c_str());
-	}
+	}*/
 	solvedPostfixMap[postfix] = stack[0];
 	return stack[0];
 }
