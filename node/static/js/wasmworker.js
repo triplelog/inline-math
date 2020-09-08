@@ -242,7 +242,6 @@ const renderer = {
   		return '<pre><code class="language-js">'+code+'</code></pre>';
   	}
   	else if (infostring.trim() == 'python' || infostring.trim() == 'py'){
-  		console.log('<pre><code class="language-python">'+code+'</code></pre>');
   		return '<pre><code class="language-python">'+code+'</code></pre>';
   	}
   	else {
@@ -303,7 +302,6 @@ const renderer = {
 			currentV[varName]=k;
 		}
 		if (matchInvisible && matchInvisible.index == 0){
-			console.log(k);
 			return "";
 		}
 		return k;
