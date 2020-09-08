@@ -254,7 +254,7 @@ const renderer = {
   codespan(text) {
   	text = text.replace(/&lt;/g,'<');
   	text = text.replace(/&gt;/g,'>');
-  	text = text.replace(/=[^\(]/g,'= ');
+  	text = text.replace(/=([^\( ])/g,'= '+'$1');
   	console.log(text);
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
