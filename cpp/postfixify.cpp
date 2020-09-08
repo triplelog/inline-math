@@ -368,14 +368,13 @@ std::string replaceFunctions(std::string input_str){
 			string_log("twoChars");
 			string_log(input_str.c_str());
 			input_str.replace(i-1,2,rawrep2[twoChars]);
-			int si;
-			for (si=0;si<input_str.length();si++){
-				std::string ssi(1,input_str.at(si));
-				string_log(ssi.c_str());
-			}
-			
+			//int si;
+			//for (si=0;si<input_str.length();si++){
+			//	std::string ssi(1,input_str.at(si));
+			//	string_log(ssi.c_str());
+			//}
 			twoChars = "..";
-			i+= 1;//rawrep2[twoChars].length() - 2;
+			i+= rawrep2[twoChars].length() - 2;
 		}
 		else if (input_str.at(i+1) == '('){
 			//std::cout << i << " : " << input_str << " 3chars: " << threeChars << '\n';
