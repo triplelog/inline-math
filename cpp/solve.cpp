@@ -334,7 +334,21 @@ std::string outputNumber(Number n){
 	}
 	else if (n.type == 11){
 		if (n.bottom == "complex"){
-			return n.top;
+			int i; bool isReal = true;
+			std::string realA = "";
+			std::string imA = "";
+			for (i=0;i<n.top.length();i++){
+				if (n.top.at(i) == ','){
+					isReal = false;
+				}
+				else if (isReal){
+					realA += n.top.at(i);
+				}
+				else {
+					imA += n.top.at(i);
+				}
+			}
+			return realA+"+"+imA+"i";
 		}
 		return n.top + n.bottom;
 	}
@@ -664,14 +678,14 @@ Number addTwo(const Number numA, const Number numB){
 		bool isReal = true;
 		if (numA.type == 11){
 			for (i=0;i<numA.top.length();i++){
-				if (numA.at(i) == ','){
+				if (numA.top.at(i) == ','){
 					isReal = false;
 				}
 				else if (isReal){
-					realA += numA.at(i);
+					realA += numA.top.at(i);
 				}
 				else {
-					imA += numA.at(i);
+					imA += numA.top.at(i);
 				}
 			}
 			if (numbers.find(realA) == numbers.end()){
@@ -688,14 +702,14 @@ Number addTwo(const Number numA, const Number numB){
 		if (numB.type == 11){
 			isReal = true;
 			for (i=0;i<numB.top.length();i++){
-				if (numB.at(i) == ','){
+				if (numB.top.at(i) == ','){
 					isReal = false;
 				}
 				else if (isReal){
-					realB += numB.at(i);
+					realB += numB.top.at(i);
 				}
 				else {
-					imB += numB.at(i);
+					imB += numB.top.at(i);
 				}
 			}
 			if (numbers.find(realB) == numbers.end()){
