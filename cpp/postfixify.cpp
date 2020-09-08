@@ -865,11 +865,11 @@ std::string replaceFunctions(std::string input_str){
 		{ 
 			case '+': {
 				if (i+1<input_str.length() && input_str.at(i+1) == '+'){output_str += pestr + "1"; i++; break;}
-				else {break;}
+				else {output_str += input_str.at(i); break;}
 				}
 			case '-': {
 				if (i+1<input_str.length() && input_str.at(i+1) == '+'){output_str += mestr + "1"; i++; break;}
-				else {break;}
+				else {output_str += input_str.at(i); break;}
 				}
 			case ' ': break;
 			case '\t': break;
