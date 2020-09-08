@@ -758,6 +758,7 @@ Number mulTwo(const Number numA, const Number numB){
 		std::string realB = "";
 		std::string imA = "";
 		std::string imB = "";
+		
 		int i;
 		bool isReal = true;
 		if (numA.type == 11){
@@ -784,6 +785,7 @@ Number mulTwo(const Number numA, const Number numB){
 			imA = "0";
 		}
 		if (numB.type == 11){
+			string_log("multiplying complex by real");
 			isReal = true;
 			for (i=0;i<numB.top.length();i++){
 				if (numB.top.at(i) == ','){
