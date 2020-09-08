@@ -551,14 +551,19 @@ std::string removeType11(std::string input) {
 		}
 		else if (mychar == '_') {
 			if (numbers.find(tempString) != numbers.end()){
-				Number n = numbers[tempString];
-				if (n.type == 11){
-					std::vector<std::string> postfixedV = postfixifyVector(outputNumber(n),false);
-					leftString = postfixedV[0];
-					rightString = postfixedV[1];
-					bracketLength = tempString.length();
-					foundBracket = true;
-					break;
+				if (tempString == "e" || tempString == "\\pi" || tempString == "i"){
+				
+				}
+				else {
+					Number n = numbers[tempString];
+					if (n.type == 11){
+						std::vector<std::string> postfixedV = postfixifyVector(outputNumber(n),false);
+						leftString = postfixedV[0];
+						rightString = postfixedV[1];
+						bracketLength = tempString.length();
+						foundBracket = true;
+						break;
+					}
 				}
 			}
 			iidx++;
@@ -586,7 +591,7 @@ std::string removeType11(std::string input) {
 	string_log(input.c_str());
 	input.replace(firstIndex,1,leftString);
 	string_log(input.c_str());
-	return retInput;
+	//return retInput;
 	return removeType11(input);
 	
 	
