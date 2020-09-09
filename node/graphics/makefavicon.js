@@ -64,8 +64,8 @@ var svg = `<!DOCTYPE html>
   </style>
 </head>
 
-<body><svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">`;
+<body><svg version=\"1.1\" baseProfile=\"full\" width=\"600\" height=\"300\" xmlns=\"http://www.w3.org/2000/svg\">`;
 svg += ``;
-svg += `<text x="0" y="0" font-size="20px" fill="red">Inline</text>`;
+svg += `<text x="50" y="150" font-size="30px" fill="red">Inline</text>`;
 svg += "</svg></body></html";
 fs.writeFileSync("../node/static/logo.html", svg);
