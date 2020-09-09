@@ -3,7 +3,7 @@ var svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100
 
 for (var i=0;i<100;i++){
 	for (var ii=0;ii<100;ii++){
-		var r = .02;
+		var r = .025;
 		if (i%2==0){
 			r*=1.5;
 		}
@@ -20,6 +20,12 @@ for (var i=0;i<100;i++){
 			r*=1.5;
 		}
 		if (ii%8==0){
+			r*=1.5;
+		}
+		if (i%16==0){
+			r*=1.5;
+		}
+		if (ii%16==0){
 			r*=1.5;
 		}
 		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"red\"/>";
