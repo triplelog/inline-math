@@ -150,6 +150,15 @@ function getParents() {
 			break;
 		}
 	}
+
+	var nParent = commonParent;
+	while(nParent.id != "output-math" && nParent.parentElement){
+		nParent = nParent.parentElement;
+	}
+	if (nParent.id != "output-math"){
+		commonParent = document.getElementById('output-math');
+		parents = "all";
+	}
 	
 	return [commonParent,parents];
 }
