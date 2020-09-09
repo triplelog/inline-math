@@ -298,6 +298,13 @@ const renderer = {
 	}
 	else if (input.search(/align\(/)==0){
 		input = input.replace('align(','');
+		var aligners = ["="];
+		if (input[input.length-2] == ']'){
+			var alignSplit = input.split('[');
+			var aSplit = alignSplit[alignSplit.length-1];
+			aSplit = aSplit.substr(0,aSplit.length-2);
+			aligners = aSplit.split(',');
+		}
 		input = input.substr(0,input.length-1);
 		var inputs = input.split(',');
 		var outText = '\\begin{aligned}\n';
@@ -305,6 +312,10 @@ const renderer = {
 			var inp = inputs[i].trim();
 			if (inp.length > 0){
 				mapOrNew(inputs[i].trim(),"");
+				for (var ii=0;ii<aligners.length;ii++){
+					latex = latex.replace(aligners[ii],'&'+aligners[ii]);
+				}
+				
 				outText += latex + "\\\\\n";
 			}
 			
