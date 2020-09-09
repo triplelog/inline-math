@@ -78,6 +78,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			else {
 				l("|"+varName+":="+input);
 				k = katex.renderToString(latex, katexOptions);
+				k = k.replace('class="katex"','class="katex" data-input="" data-latex=""');
 			}
 			
 		}
@@ -101,6 +102,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			else {
 				l(input);
 				k = katex.renderToString(latex, katexOptions);
+				k = k.replace('class="katex"','class="katex" data-input="" data-latex=""');
 			}
 			
 		}
@@ -339,6 +341,7 @@ const renderer = {
 		console.log(outText);
 		katexOptions.displayMode = true;
 		k = katex.renderToString(outText, katexOptions);
+		k = k.replace('class="katex"','class="katex" data-input="" data-latex=""');
 		katexOptions.displayMode = false;
 		return k;
 	}
