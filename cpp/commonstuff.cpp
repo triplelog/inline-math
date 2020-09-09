@@ -613,8 +613,9 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			
 		}
 		else if (input.at(iii) == '@'){
+			currentOperand += "@";
+			postfix += currentOperand;
 			currentOperand = "";
-			postfix += input.at(iii);
 		}
 		else if (input.at(iii) == '_'){
 			if (idx == 0){
@@ -631,7 +632,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			
 		}
 		else {
-			postfix += input.at(iii);
+			currentOperand += input.at(iii);
 		}
 	}
 	string_log(independentVar.c_str());
