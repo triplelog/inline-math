@@ -2337,32 +2337,29 @@ std::string solveFunction(std::string input){
 		else {
 			currentOperand += input.at(i);
 		}
-		std::string ssi(1,input.at(i));
-		string_log(ssi.c_str());
 	}
 	string_log(functionName.c_str());
 	string_log(inputLeft.c_str());
 	string_log(inputRight.c_str());
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
+		int i;
+		std::string newPostfix = f.postfix;
+		for (i=f.rightIdx.size()-1;i>=0;i--){
+			newPostfix.replace(f.rightIdx[i],f.var.length()+1,inputRight);
+		}
+		string_log(newPostfix.c_str());
+		for (i=f.leftIdx.size()-1;i>=0;i--){
+			newPostfix.replace(f.leftIdx[i],1,inputLeft);
+		}
+		string_log(newPostfix.c_str());
 	}
 	else {
 		return returnStr;
 	}
 	
 	return returnStr;
-	/*
-	Function f = functionMap[numA.top];
-	std::string input = outputNumber(numB);
-	int i;
-	std::string newPostfix = f.postfix;
-	for (i=f.rightIdx.size()-1;i>=0;i--){
-		newPostfix.replace(f.rightIdx[i],f.var.length(),input);
-	}
-	for (i=f.leftIdx.size()-1;i>=0;i--){
-		postfix.replace(f.leftIdx[i],f.var.length(),input);
-	}
-	string_log(newPostfix.c_str());*/
+
 	//return solvePostfix(newPostfix);
 	
 	
