@@ -299,13 +299,19 @@ const renderer = {
 	else if (input.search(/align\(/)==0){
 		input = input.replace('align(','');
 		var aligners = ["="];
-		if (input[input.length-2] == ']'){
+		if (input[input.length-1] == ']'){
 			var alignSplit = input.split('[');
 			var aSplit = alignSplit[alignSplit.length-1];
-			aSplit = aSplit.substr(0,aSplit.length-2);
+			aSplit = aSplit.substr(0,aSplit.length-1);
 			aligners = aSplit.split(',');
+			input = input.split(')');
+			input = input.slice(0,input.length-1);
+			input = input.join(')');
 		}
-		input = input.substr(0,input.length-1);
+		else {
+			input = input.substr(0,input.length-1);
+		}
+		
 		var inputs = input.split(',');
 		var outText = '\\begin{aligned}\n';
 		for (var i=0;i<inputs.length;i++){
