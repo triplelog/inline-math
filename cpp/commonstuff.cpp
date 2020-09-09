@@ -742,6 +742,8 @@ std::string removeSolves(std::string input) {
 		oldPostfix = doCalculus(oldPostfix);
 	}
 	else if (solveType == 'D'){
+		string_log("defining");
+		string_log(oldPostfix.c_str());
 		grabFunction(oldPostfix);
 		//oldPostfix = doCalculus(oldPostfix);
 	}
