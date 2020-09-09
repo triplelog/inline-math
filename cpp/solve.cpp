@@ -462,6 +462,8 @@ std::vector<Number> eToArray(Number numA){
 			}
 			arrayA.push_back(numbers[realA]);
 			arrayA.push_back(numbers[imA]);
+			realA = "";
+			imA = "";
 		}
 		else if (isReal){
 			realA += numA.top.at(i);
@@ -1090,7 +1092,6 @@ Number mulTwo(const Number numA, const Number numB){
 				arrayB[i*2+1]=mulTwo(arrayB[i*2+1],numA);
 			}
 			n = arrayToE(arrayB);
-			string_log(n.top.c_str());
 			return n;
 		}
 		else {
