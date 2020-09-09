@@ -27,7 +27,7 @@
   		margin-right: .5rem;
   	}
   	.outputDiv {
-  		height: calc(100vh - 1rem);
+  		height: calc(100vh - 2rem);
   		flex: 4;
   		border: 1px solid black;
   		padding: .5rem;
@@ -45,6 +45,9 @@
   			<li>Plot</li>
   			<li>Trees</li>
   		</ul>
+  		<button class="copy-latex">Copy Latex</button>
+  		<button class="copy-text">Copy Text</button>
+  		<textarea></textarea>
   	</div>
   	
 	<div class="editDiv">
@@ -236,49 +239,7 @@
 	window.Prism = window.Prism || {};
 	window.Prism.manual = true;
 	
-	document.onselectionchange = function() {
-		console.log("change");
-		var els = document.querySelectorAll('pre');
-		for (var i=0;i<els.length;i++){
-			if (els[i].querySelector('div')){
-				els[i].querySelector('div').style.display = 'none';
-			}
-		}
-		var codeParent = getParents()[0];
-		if (codeParent.style && codeParent.style.display == 'none'){
-			return;
-		}
-		if (codeParent.tagName == 'CODE'){
-		}
-		else {
-			while (codeParent.parentElement){
-				codeParent = codeParent.parentElement;
-				if (codeParent.style && codeParent.style.display == 'none'){
-					return;
-				}
-				if (codeParent.tagName == 'CODE'){
-					break;
-				}
-			}
-		}
-		if (codeParent.parentElement){
-			if (codeParent.parentElement.querySelector('div')){
-				codeParent.parentElement.querySelector('div').style.display = 'block';
-			}
-			else {
-				var div = document.createElement('div');
-				div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
-				var ta = document.createElement('textarea');
-				//ta.style.visibility = 'hidden';
-				div.appendChild(ta);
-				codeParent.parentElement.appendChild(div);
-				div.querySelector('button.copy-latex').addEventListener('click',getCopied);
-				div.querySelector('button.copy-code').addEventListener('click',getCopied);
-				
-				
-			}
-		}
-	};
+
 	
 	
 

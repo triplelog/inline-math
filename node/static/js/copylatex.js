@@ -160,7 +160,7 @@ function getCopied(evt) {
 	while (el.tagName != 'BUTTON' && el.parentElement){
 		el = el.parentElement;
 	}
-	if (el.classList && el.classList.contains('copy-code')){
+	if (el.classList && el.classList.contains('copy-text')){
 		output = 'code';
 	}
 	var el = el.parentElement.querySelector('textarea');
@@ -217,3 +217,11 @@ function getCopied(evt) {
 	document.execCommand('copy');
 }
 
+//var div = document.createElement('div');
+//div.innerHTML = '<button class="copy-latex">Copy Latex</button><button class="copy-code">Copy Code</button>';
+//var ta = document.createElement('textarea');
+//ta.style.visibility = 'hidden';
+//div.appendChild(ta);
+//codeParent.parentElement.appendChild(div);
+document.querySelector('button.copy-latex').addEventListener('click',getCopied);
+document.querySelector('button.copy-text').addEventListener('click',getCopied);
