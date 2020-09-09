@@ -765,6 +765,22 @@ std::string removeSolves(std::string input) {
 		//	string_log(ssi.c_str());
 		//}
 	}
+	else if (solveType == 'R'){
+		//string_log("solving arithmetic");
+		//int si;
+		//for (si=0;si<oldPostfix.length();si++){
+		//	std::string ssi(1,oldPostfix.at(si));
+		//	string_log(ssi.c_str());
+		//}
+		
+		//oldPostfix = approxArithmetic(oldPostfix);
+		oldPostfix = solveArithmetic(oldPostfix);
+		
+		//for (si=0;si<oldPostfix.length();si++){
+		//	std::string ssi(1,oldPostfix.at(si));
+		//	string_log(ssi.c_str());
+		//}
+	}
 	else if (solveType == 'I'){
 		oldPostfix = removeIdentities(oldPostfix);
 	}
