@@ -1201,7 +1201,82 @@ Number expTwo(const Number numA, const Number numB){
 		n.bottom = numB.bottom;
 		return invertOne(expTwo(numA,n));
 	}
-	if (numA.type == 1){
+	if (numA.type == 11 && numA.bottom == "e"){
+		if (numB.type > 0 && numB.type < 9){
+			std::vector<Number> arrayA = eToArray(numA);
+			int i;
+			for (i=0;i<arrayA.size()/2;i++){
+				arrayA[i*2]=mulTwo(arrayA[i*2],numB);
+			}
+			n = arrayToE(arrayA);
+			return n;
+		}
+		return n;
+	}
+	else if (numA.type == 11 && numA.bottom == "i"){
+		if (numB.type == 1){
+			if (numA.top.substr(0,2) == "0,"){
+				std::string imA = numA.top.substr(2,numA.top.length()-2);
+				if (numbers.find(imA) = numbers.end()){
+					numberType(imA);
+				}
+				Number newIm = expTwo(numbers[imA],numB);
+				int nb = std::stoi(numB.top);
+				if (nb%4 == 0){
+					n = newIm;
+					return n;
+				}
+				else if (nb%4 == 1){
+					if (numbers.find("i") = numbers.end()){
+						numberType("i");
+					}
+					n = mulTwo(numbers["i"],newIm);
+					return n;
+				}
+				else if (nb%4 == 2){
+					n = newIm;
+					n.type *= 1;
+					return n;
+				}
+				else if (nb%4 == 3){
+					if (numbers.find("i") = numbers.end()){
+						numberType("i");
+					}
+					n = mulTwo(numbers["i"],negateOne(newIm));
+					return n;
+				}
+			}
+			else {
+				int nb = std::stoi(numB.top);
+				int i;
+				if (nb == 0){
+					n.type = "1";
+					n.top = "1";
+					n.bottom = "1";
+					return n;
+				}
+				else if (nb == 1){
+					n = numA;
+					return n;
+				}
+				n.type = numA.type;
+				n.top = numA.top;
+				n.bottom = numA.bottom;
+				if (nb<20){
+					for (i=1;i<nb;i++){
+						n = mulTwo(n,numA);
+					}
+					return n;
+				}
+				else {
+					return n;
+				}
+			}
+			return n;
+		}
+		return n;
+	}
+	else if (numA.type == 1){
 		if (numB.type == 1){
 			n.type = 1;
 			double a = std::stoi(numA.top);
