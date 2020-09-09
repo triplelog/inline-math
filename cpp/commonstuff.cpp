@@ -743,7 +743,11 @@ std::string removeSolves(std::string input) {
 	}
 	else if (solveType == 'D'){
 		string_log("defining");
-		string_log(oldPostfix.c_str());
+		int si;
+		for (si=0;si<oldPostfix.length();si++){
+			std::string ssi(1,oldPostfix.at(si));
+			string_log(ssi.c_str());
+		}
 		grabFunction(oldPostfix);
 		//oldPostfix = doCalculus(oldPostfix);
 	}

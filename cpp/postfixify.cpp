@@ -119,11 +119,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	
 	bool previousOperand = false;
 	int p;
-	string_log("tokens:");
 	for (i=0;i<idx;i++){
-		
 		std::string token = tokenList[i];
-		string_log(token.c_str());
 		char firstChar = token.at(0);
 		
 		if (firstChar == '('){
@@ -181,13 +178,10 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		pfidx++;
 	}
 	
-	string_log("List:");
+
 	for (i=0;i<pfidx;i++){
 		
 		std::string ci = postfixList[i];
-		string_log(ci.c_str());
-		string_log(expstr.c_str());
-		string_log(intstr.c_str());
 		char firstChar = ci.at(0);
 		if (firstChar == '~'){
 			//expstr += "-";
@@ -262,8 +256,6 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			if (addHash){ expstr += "#"; }
 			
 		}
-		string_log(expstr.c_str());
-		string_log(intstr.c_str());
 
 	}
 	string_log(expstr.c_str());
