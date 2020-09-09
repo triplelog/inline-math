@@ -97,6 +97,7 @@ Range makeRange(std::string input);
 Number solvePostfix(std::string postfix);
 std::string outputNumber(Number n);
 std::string substitute(std::string input);
+std::string solveFunction(std::string input);
 std::string numberType(std::string input);
 Number mulTwo(Number numA, Number numB);
 Number invertOne(Number numA);
