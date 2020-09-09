@@ -1213,7 +1213,7 @@ Number expTwo(const Number numA, const Number numB){
 		}
 		return n;
 	}
-	else if (numA.type == 11 && numA.bottom == "i"){
+	else if (numA.type == 11 && numA.bottom == "complex"){
 		string_log("power");
 		string_log(numB.top.c_str());
 		if (numB.type == 1){
