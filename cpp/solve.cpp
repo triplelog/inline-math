@@ -2311,7 +2311,6 @@ std::string solveFunction(std::string input){
 				return returnStr;
 			}
 			currentOperand = "";
-			idx++;
 		}
 		else if (input.at(i) == '_'){
 			if (idx==0){
@@ -2338,6 +2337,8 @@ std::string solveFunction(std::string input){
 		else {
 			currentOperand += input.at(i);
 		}
+		std::string ssi(1,input.at(i));
+		string_log(ssi.c_str());
 	}
 	string_log(functionName.c_str());
 	string_log(inputLeft.c_str());
