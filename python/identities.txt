@@ -26,6 +26,12 @@ in: 0*A
 out: 0
 ee
 :::
+::: rule
+in: A^0
+out: 1
+A != 0
+ee
+:::
 
 :subtople:prealgebra.identities.one
 :name:One
