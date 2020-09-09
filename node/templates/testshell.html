@@ -18,16 +18,16 @@
   		height: 100vh;
   	}
   	.menu {
-  		height: 100vh;
+  		height: calc(100vh - 1rem);
   		flex: 1;
   	}
   	.editDiv {
-  		height: 100vh;
+  		height: calc(100vh - 1rem);
   		flex: 4;
-  		margin-right: 1rem;
+  		margin-right: .5rem;
   	}
   	.outputDiv {
-  		height: 100vh;
+  		height: calc(100vh - 1rem);
   		flex: 4;
   		border: 1px solid black;
   	}
@@ -40,7 +40,7 @@
   	</div>
   	
 	<div class="editDiv">
-		<textarea id="inline-math" style="height: 100%">
+		<textarea id="inline-math" style="height: 100%; width:100%;">
 			{% block markdown %}
 			{% endblock %}
 		</textarea>
