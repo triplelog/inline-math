@@ -61,48 +61,14 @@ var svg = `<!DOCTYPE html>
 	body {
 	  font-family: 'MyWebFont', Fallback, sans-serif;
 	}
+	.inline {
+		font-size: 30px;
+	}
   </style>
 </head>
 
 <body><svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">`;
 
-for (var i=0;i<100;i++){
-	for (var ii=0;ii<100;ii++){
-		var r = .06;
-		if (i%2==0){
-			r*=1.5;
-		}
-		if (ii%2==0){
-			r*=1.5;
-		}
-		if (i%4==0){
-			r*=1.5;
-		}
-		if (ii%4==0){
-			r*=1.5;
-		}
-		if (i%8==0){
-			r*=1.5;
-		}
-		if (ii%8==0){
-			r*=1.5;
-		}
-		if (i%16==0){
-			r*=1.5;
-		}
-		if (ii%16==0){
-			r*=1.5;
-		}
-		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
-		
-		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
-		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
-	}
-}
-svg += "</svg>Test writing</body></html";
+svg += `<text x="0" y="0" class="inline">Inline</text>`;
+svg += "</svg>Inline Math</body></html";
 fs.writeFileSync("../node/static/logo.html", svg);
