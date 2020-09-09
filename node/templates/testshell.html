@@ -24,6 +24,7 @@
   	.editDiv {
   		height: 100vh;
   		flex: 4;
+  		margin-right: 1rem;
   	}
   	.outputDiv {
   		height: 100vh;
@@ -39,7 +40,7 @@
   	</div>
   	
 	<div class="editDiv">
-		<textarea rows="20" id="inline-math" style="width: 100%">
+		<textarea id="inline-math" style="height: 100%">
 			{% block markdown %}
 			{% endblock %}
 		</textarea>
