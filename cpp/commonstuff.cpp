@@ -598,6 +598,46 @@ std::string removeType11(std::string input) {
 	
 }
 
+void grabFunction(std::string input){ //should have no brackets when inputting
+	int iii;
+	int len = input.length();
+	std::string independentVar = "";
+	std::string functionName = "";
+	std::string postfix = "";
+	int idx = 0;
+	std::string currentOperand = "";
+	if (len<4){return;}
+	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) != -125 ){return;}
+	for (iii=3;iii<len;iii++){
+		if (input.at(iii) == '='){
+			
+		}
+		else if (input.at(iii) == '@'){
+			currentOperand = "";
+			postfix += input.at(iii);
+		}
+		else if (input.at(iii) == '_'){
+			if (idx == 0){
+				functionName = currentOperand;
+			}
+			else if (idx == 1){
+				independentVar = currentOperand;
+			}
+			else {
+				postfix += currentOperand + "_";
+			}
+			currentOperand = "";
+			idx++;
+			
+		}
+		else {
+			postfix += input.at(iii);
+		}
+	}
+	string_log(independentVar.c_str());
+	string_log(functionName.c_str());
+	string_log(postfix.c_str());
+}
 std::string removeSolves(std::string input) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
@@ -700,6 +740,10 @@ std::string removeSolves(std::string input) {
 	}
 	else if (solveType == 'S'){
 		oldPostfix = doCalculus(oldPostfix);
+	}
+	else if (solveType == 'D'){
+		grabFunction(oldPostfix);
+		//oldPostfix = doCalculus(oldPostfix);
 	}
 	//string_log(oldPostfix.c_str());
 	
