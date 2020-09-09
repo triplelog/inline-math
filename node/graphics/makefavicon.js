@@ -60,7 +60,7 @@ var svg = `<!DOCTYPE html>
 	}
 	body {
 	  font-family: 'MyWebFont', Fallback, sans-serif;
-	  background: #AC9C53;
+	  background: #AC6053;
 	}
   </style>
 </head>
