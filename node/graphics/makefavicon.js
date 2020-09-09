@@ -22,4 +22,4 @@ for (var i=0;i<100;i++){
 	}
 }
 svg += "</svg>";
-console.log(svg);
+fs.writeFileSync("../static/"+favicon+".html", svg);
