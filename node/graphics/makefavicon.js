@@ -5,16 +5,22 @@ for (var i=0;i<100;i++){
 	for (var ii=0;ii<100;ii++){
 		var r = .02;
 		if (i%2==0){
-			r*=2;
+			r*=1.5;
 		}
 		if (ii%2==0){
-			r*=2;
+			r*=1.5;
 		}
 		if (i%4==0){
-			r*=2;
+			r*=1.5;
 		}
 		if (ii%4==0){
-			r*=2;
+			r*=1.5;
+		}
+		if (i%8==0){
+			r*=1.5;
+		}
+		if (ii%8==0){
+			r*=1.5;
 		}
 		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"red\"/>";
 		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"red\"/>";
