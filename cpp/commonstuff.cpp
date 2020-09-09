@@ -621,9 +621,10 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	std::vector<int> varOperands;
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
+	int diff = 3;
 	for (iii=3;iii<len;iii++){
 		if (input.at(iii) == '='){
-			
+			diff++;
 		}
 		else if (input.at(iii) == '@'){
 			currentOperand += "@";
@@ -633,13 +634,15 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 		else if (input.at(iii) == '_'){
 			if (idx == 0){
 				functionName = currentOperand;
+				diff += currentOperand.length()+1;
 			}
 			else if (idx == 1){
 				independentVar = currentOperand;
+				diff += currentOperand.length()+1;
 			}
 			else {
 				if (currentOperand == independentVar){
-					rightIdx.push_back(iii-4);//skips the = sign and 1st 3 chars
+					rightIdx.push_back(iii-diff);
 					leftIdx.push_back(operandMap[idx]);
 				}
 				postfix += currentOperand + "_";
@@ -651,7 +654,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 		else {
 			currentOperand += input.at(iii);
 			if (input.at(iii) == '#'){
-				operandMap[iidx]=iii-3;//skips 1st 3 chars
+				operandMap[iidx]=iii-diff;//skips 1st 3 chars
 				iidx++;
 			}
 		}
