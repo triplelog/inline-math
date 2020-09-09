@@ -24,16 +24,21 @@ var dependents = "";
 function setDependents(x) {
 	dependents = x;
 }
+var dependentfunctions = "";
+function setDependentFunctions(x) {
+	dependentfunctions = x;
+}
 
 var latexedInputs = {};
 var currentV = {};
+var currentF = {};
 var inputV = {};
 importScripts('marked.js');
 
 
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
-function mapOrNew(input,varName,forceNew=false,isTree=false){
+function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 	latex = "";
 	
 	var foundMatch = false;
@@ -42,9 +47,20 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 		if (latexedInputs[input].varName != varName){
 			foundMatch = false;
 		}
+		else if (latexedInputs[input].display != isDisplay){
+			foundMatch = false;
+		}
 		else if (latexedInputs[input].dependents){
 			for (var i in latexedInputs[input].dependents){
 				if (latexedInputs[input].dependents[i] != currentV[i]){
+					foundMatch = false;
+					break;
+				}
+			}
+		}
+		else if (latexedInputs[input].dependentfunctions){
+			for (var i in latexedInputs[input].dependentfunctions){
+				if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
 					foundMatch = false;
 					break;
 				}
@@ -67,7 +83,9 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
 					var text = tree.nodes[node].text;
+					katexOptions.displayMode = isDisplay;
 					k = katex.renderToString(text, katexOptions);
+					katexOptions.displayMode = false;
 					outText += "<node id=\""+node+"\">"+k+"</node>";
 					tree.nodes[node].text = "";
 
@@ -77,7 +95,9 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l("|"+varName+":="+input);
+				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
+				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+latex+'"');
 			}
 			
@@ -91,7 +111,9 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
 					var text = tree.nodes[node].text;
+					katexOptions.displayMode = isDisplay;
 					k = katex.renderToString(text, katexOptions);
+					katexOptions.displayMode = false;
 					outText += "<node id=\""+node+"\">"+k+"</node>";
 					tree.nodes[node].text = "";
 
@@ -101,21 +123,26 @@ function mapOrNew(input,varName,forceNew=false,isTree=false){
 			}
 			else {
 				l(input);
+				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
+				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+latex+'"');
 			}
 			
 		}
-		latexedInputs[input]={dependents:{},output:k,varName:varName,latex:latex};
+		latexedInputs[input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
+		}
+		for (var i=0;i<dependentfunctions.length;i++){
+			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
 		}
 		
 	}
 	return k;
 }
 
-function createInputs(input,varName) {
+function createInputs(input,varName,isDisplay) {
 	var html = "";
 	var defaultValue = "";
 	if (input.search(/checkbox\(/)==0){
@@ -159,7 +186,7 @@ function createInputs(input,varName) {
 		defaultValue = options[0];
 		for (var i=0;i<options.length;i++){
 			if (options[i] != ""){
-				k = mapOrNew(options[i],"");
+				k = mapOrNew(options[i],"",false,false,isDisplay);
 				var selected = "";
 				if (inputV[varName]){
 					if (inputV[varName] == options[i]){selected = "checked";}
@@ -224,11 +251,11 @@ function createInputs(input,varName) {
 	if (varName != ""){
 		if (!inputV[varName]){
 			inputV[varName]=defaultValue;
-			var j = mapOrNew(defaultValue,varName,true);
+			var j = mapOrNew(defaultValue,varName,true,false,isDisplay);
 			currentV[varName]=j;
 		}
 		else {
-			var j = mapOrNew(inputV[varName],varName,true);
+			var j = mapOrNew(inputV[varName],varName,true,false,isDisplay);
 			currentV[varName]=j;
 		}
 	}
@@ -259,9 +286,19 @@ const renderer = {
   	text = text.replace(/=([^\( ])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
   	console.log(text);
+  	var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
 	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/);
+	
+	var isDisplay = false;
+	if (matchDisplay && matchDisplay.index == 0){
+		match = text.match(/\$\$+([^\$\n]+?)\$\$+/);
+		matchUpper = text.match(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/);
+		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/);
+		isDisplay = true;
+	}
+	
 	var varName = "";
 	if (matchUpper && matchUpper.index == 0){
 		varName = matchUpper[0][matchUpper[0].length-2];
@@ -271,6 +308,8 @@ const renderer = {
 		console.log(varName);
 	}
 	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
+	
+	
 	
 	if (match && match.index == 0){
 	
@@ -294,7 +333,7 @@ const renderer = {
 		input = input.replace('tree(','');
 		input = input.substr(0,input.length-1);
 		//latex = "";
-		var outText = mapOrNew(input,varName,false,true);
+		var outText = mapOrNew(input,varName,false,true,true);
 		
 		return '<span class="inline-tree">'+outText+'</span>';
 	}
@@ -322,7 +361,7 @@ const renderer = {
 		for (var i=0;i<inputs.length;i++){
 			var inp = inputs[i].trim();
 			if (inp.length > 0){
-				mapOrNew(inputs[i].trim(),"");
+				mapOrNew(inputs[i].trim(),"",false,false,isDisplay);
 				for (var ii=0;ii<aligners.length;ii++){
 					latex = latex.replace(aligners[ii],'&'+aligners[ii]+'&');
 				}
@@ -346,13 +385,13 @@ const renderer = {
 		return k;
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
-		var html = createInputs(input,varName);
+		var html = createInputs(input,varName,isDisplay);
 		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
 		return html;
 	}
 	else {
-		k = mapOrNew(input,varName);
+		k = mapOrNew(input,varName,false,false,isDisplay);
 		if (varName != ""){
 			currentV[varName]=k;
 		}
@@ -381,6 +420,10 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
+		markdown = markdown.replace(/\$\`\$/g,'$$');
+		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/g,'`$&`');
+		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
+		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$``/g,'$`');
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
@@ -401,12 +444,12 @@ onmessage = function(e) {
 		else {
 			input = jsToMath(message[1]);
 		}
-		k = mapOrNew(input,"");
+		k = mapOrNew(input,"",false,false,false);
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "latex"){
 		var input = message[1];
-		k = mapOrNew(input,"");
+		k = mapOrNew(input,"",false,false,false);
 		result = ["latex",message[1],k];
 	}
 	else if (message[0] == "plot"){
