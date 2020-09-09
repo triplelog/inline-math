@@ -2299,6 +2299,56 @@ std::string solveFunction(std::string input){
 	input = removeBracketsOne(input);
 	string_log("solveFunction");
 	string_log(input.c_str());
+	std::string functionName = "";
+	int idx = 0;
+	int iidx = 0;
+	std::string currentOperand = "";
+	std::string inputLeft = "";
+	std::string inputRight = "";
+	for (i=1;i<input.length();i++){
+		if (input.at(i) == '@'){
+			if (i>0 && input.at(i-1) != -125){
+				return returnStr;
+			}
+			currentOperand = "";
+			idx++;
+		}
+		else if (input.at(i) == '_'){
+			if (idx==0){
+				functionName = currentOperand;
+			}
+			else {
+				inputRight += currentOperand + "_";
+			}
+			currentOperand = "";
+			idx++;
+		}
+		else if (input.at(i) == '#'){
+			currentOperand += input.at(i);
+		}
+		else if (input.at(i) == -125){
+			if (i+1<input.length() && input.at(i+1) == '@'){
+				inputLeft = currentOperand;
+				currentOperand = "";
+			}
+			else {
+				currentOperand += input.at(i);
+			}
+		}
+		else {
+			currentOperand += input.at(i);
+		}
+	}
+	string_log(functionName.c_str());
+	string_log(inputLeft.c_str());
+	string_log(inputRight.c_str());
+	if (functionMap.find(functionName) != functionMap.end()){
+		Function f = functionMap[functionName];
+	}
+	else {
+		return returnStr;
+	}
+	
 	return returnStr;
 	/*
 	Function f = functionMap[numA.top];
