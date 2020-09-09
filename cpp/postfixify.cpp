@@ -181,10 +181,13 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		pfidx++;
 	}
 	
-
+	string_log("List:");
 	for (i=0;i<pfidx;i++){
 		
 		std::string ci = postfixList[i];
+		string_log(ci.c_str());
+		string_log(expstr.c_str());
+		string_log(intstr.c_str());
 		char firstChar = ci.at(0);
 		if (firstChar == '~'){
 			//expstr += "-";
@@ -259,6 +262,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			if (addHash){ expstr += "#"; }
 			
 		}
+		string_log(expstr.c_str());
+		string_log(intstr.c_str());
 
 	}
 	string_log(expstr.c_str());
