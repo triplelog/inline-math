@@ -115,7 +115,9 @@ function getInput(parent,parents) {
 function getParents() {
 	var selected = window.getSelection();
 	if (!selected.anchorNode || !selected.focusNode){
-		return [false,[]];
+		commonParent = document.getElementById('output-math');
+		parents = "all";
+		return [commonParent,parents];
 	}
 	var parents = [selected.anchorNode,selected.focusNode];
 	var commonParent = false;
