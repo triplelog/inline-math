@@ -123,6 +123,15 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case -125: {
+			if (ii > 0){
+				s += child+")";
+			}
+			else {
+				s += child+"(";
+			}
+			break;
+		}
 		case -93: {
 			if (ii > 0){
 				if (prec[lastOp] < 100){

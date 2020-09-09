@@ -42,8 +42,37 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 		else{
 			if (iidx != 0){
-				tokenList[idx] = arrayToString(iidx,temptoken);
-				idx++;
+				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
+					if (ie == '(' || (ie >= 'a' && ie <= 'z')){//Number followed by ( or letter is multiplication
+						tokenList[idx] = arrayToString(iidx,temptoken);
+						idx++;
+						std::string s(1,'*');
+						tokenList[idx] = s;
+						idx++;
+					}
+					else {
+						tokenList[idx] = arrayToString(iidx,temptoken);
+						idx++;
+					}
+				}
+				else if (temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z'){
+					if (ie == '('){//Letter followed by ( is function
+						tokenList[idx] = arrayToString(iidx,temptoken);
+						idx++;
+						std::string s(1,-125);
+						tokenList[idx] = s;
+						idx++;
+					}
+					else {
+						tokenList[idx] = arrayToString(iidx,temptoken);
+						idx++;
+					}
+				}
+				else {
+					tokenList[idx] = arrayToString(iidx,temptoken);
+					idx++;
+				}
+				
 			}
 			std::string s(1,ie);
 			tokenList[idx] = s;

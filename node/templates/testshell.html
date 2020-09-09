@@ -141,8 +141,11 @@
 			//els[i].addEventListener('input',updateInputValue);
 		}
 		
-		var treeEl = document.querySelector('.inline-tree');
-		createTree(treeEl,0);
+		var treeEls = document.querySelector('.inline-tree');
+		for (var i=0;i<treeEls.length;i++){
+			createTree(treeEls[i],0);
+		}
+		
 	}
   	function answerDown(evt) {
 		var key = evt.key;
