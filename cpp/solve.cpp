@@ -1267,6 +1267,8 @@ Number expTwo(const Number numA, const Number numB){
 				n.bottom = numA.bottom;
 				if (nb<20){
 					for (i=1;i<nb;i++){
+						string_log(n.top.c_str());
+						string_log(numA.top.c_str());
 						n = mulTwo(n,numA);
 					}
 					return n;
