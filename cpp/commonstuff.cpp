@@ -642,7 +642,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			}
 			else {
 				if (currentOperand == independentVar){
-					rightIdx.push_back(iii-diff);
+					rightIdx.push_back(iii-diff-currentOperand.length());
 					leftIdx.push_back(operandMap[idx]);
 				}
 				postfix += currentOperand + "_";
