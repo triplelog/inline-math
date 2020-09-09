@@ -60,6 +60,7 @@ var svg = `<!DOCTYPE html>
 	}
 	body {
 	  font-family: 'MyWebFont', Fallback, sans-serif;
+	  background: #AC9C53;
 	}
   </style>
 </head>
@@ -67,6 +68,6 @@ var svg = `<!DOCTYPE html>
 <body><svg version=\"1.1\" baseProfile=\"full\" width=\"600\" height=\"300\" xmlns=\"http://www.w3.org/2000/svg\">`;
 svg += ``;
 svg += `<text x="50" y="150" font-size="60px" fill="#5381AC">Inline</text>`;
-svg += `<text x="160" y="125" font-size="60px" fill="#5381AC">Math</text>`;
+svg += `<text x="195" y="120" font-size="60px" fill="#5381AC">math</text>`;
 svg += "</svg></body></html";
 fs.writeFileSync("../node/static/logo.html", svg);
