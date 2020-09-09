@@ -22,7 +22,7 @@
   		flex: 1;
   	}
   	.editDiv {
-  		height: calc(100vh - 1rem);
+  		height: calc(100vh - 2rem);
   		flex: 4;
   		margin-right: .5rem;
   	}
@@ -30,6 +30,7 @@
   		height: calc(100vh - 1rem);
   		flex: 4;
   		border: 1px solid black;
+  		padding: .5rem;
   	}
   </style>
 </head>
@@ -38,10 +39,16 @@
   <div class="main">
   	<div class="menu">
   		<img src="../img/logo.png" style="width: 100%;">
+  		Report Bug
+  		<ul>
+  			<li>Solve</li>
+  			<li>Plot</li>
+  			<li>Trees</li>
+  		</ul>
   	</div>
   	
 	<div class="editDiv">
-		<textarea id="inline-math" style="height: calc(100vh - 1rem); width:100%;">
+		<textarea id="inline-math" style="height: calc(100vh - 2rem); width:100%;">
 			{% block markdown %}
 			{% endblock %}
 		</textarea>
