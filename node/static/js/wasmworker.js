@@ -337,7 +337,9 @@ const renderer = {
 		}
 		
 		console.log(outText);
+		katexOptions.displayMode = true;
 		k = katex.renderToString(outText, katexOptions);
+		katexOptions.displayMode = false;
 		return k;
 	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
