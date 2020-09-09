@@ -677,6 +677,7 @@ Number addTwo(const Number numA, const Number numB){
 			for (i=revsum.length()-1;i>=0;i--){
 				sum += revsum.at(i);
 			}
+			if (sum == ""){sum = "0";}
 			if (numbers.find(sum) == numbers.end()){
 				numberType(sum);
 			}
@@ -728,6 +729,7 @@ Number addTwo(const Number numA, const Number numB){
 				}
 				sum += revsum.at(i);
 			}
+			if (sum == ""){sum = "0";}
 			if (numbers.find(sum) == numbers.end()){
 				numberType(sum);
 			}
