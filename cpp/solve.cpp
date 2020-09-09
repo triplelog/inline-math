@@ -1217,7 +1217,7 @@ Number expTwo(const Number numA, const Number numB){
 		if (numB.type == 1){
 			if (numA.top.substr(0,2) == "0,"){
 				std::string imA = numA.top.substr(2,numA.top.length()-2);
-				if (numbers.find(imA) = numbers.end()){
+				if (numbers.find(imA) == numbers.end()){
 					numberType(imA);
 				}
 				Number newIm = expTwo(numbers[imA],numB);
@@ -1227,7 +1227,7 @@ Number expTwo(const Number numA, const Number numB){
 					return n;
 				}
 				else if (nb%4 == 1){
-					if (numbers.find("i") = numbers.end()){
+					if (numbers.find("i") == numbers.end()){
 						numberType("i");
 					}
 					n = mulTwo(numbers["i"],newIm);
@@ -1239,7 +1239,7 @@ Number expTwo(const Number numA, const Number numB){
 					return n;
 				}
 				else if (nb%4 == 3){
-					if (numbers.find("i") = numbers.end()){
+					if (numbers.find("i") == numbers.end()){
 						numberType("i");
 					}
 					n = mulTwo(numbers["i"],negateOne(newIm));
@@ -1250,7 +1250,7 @@ Number expTwo(const Number numA, const Number numB){
 				int nb = std::stoi(numB.top);
 				int i;
 				if (nb == 0){
-					n.type = "1";
+					n.type = 1;
 					n.top = "1";
 					n.bottom = "1";
 					return n;
