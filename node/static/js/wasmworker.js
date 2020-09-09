@@ -314,6 +314,9 @@ const renderer = {
 		
 		var inputs = input.split(',');
 		var outText = '\\begin{aligned}\n';
+		if (aligners.length>1){
+			outText = '\\begin{alignedat}{'+aligners.length+'}\n';
+		}
 		for (var i=0;i<inputs.length;i++){
 			var inp = inputs[i].trim();
 			if (inp.length > 0){
@@ -326,7 +329,13 @@ const renderer = {
 			}
 			
 		}
-		outText += "\\end{aligned}";
+		if (aligners.length>1){
+			outText += "\\end{alignedat}";
+		}
+		else {
+			outText += "\\end{aligned}";
+		}
+		
 		console.log(outText);
 		k = katex.renderToString(outText, katexOptions);
 		return k;
