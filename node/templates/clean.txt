@@ -1,0 +1,10 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+$3(4)$
+
+$f(4)$
+
+$3x$
+
+{% endblock %}
