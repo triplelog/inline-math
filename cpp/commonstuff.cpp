@@ -665,6 +665,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	string_log(independentVar.c_str());
 	string_log(functionName.c_str());
 	string_log(postfix.c_str());
+	console_log(rightIdx[0]);
 }
 std::string removeSolves(std::string input) {
 	std::map<int,int> operandToIndex;

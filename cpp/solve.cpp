@@ -1785,6 +1785,8 @@ Number solvePostfix(std::string postfix) {
 			if (numbers.find(currentOperand) == numbers.end()){
 				numberType(currentOperand);
 			}
+			string_log("cO:");
+			string_log(currentOperand.c_str());
 			intArray.push_back(numbers[currentOperand]);
 			stack.push_back(numbers[""]);
 
