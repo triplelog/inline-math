@@ -1044,6 +1044,9 @@ Number mulTwo(const Number numA, const Number numB){
 		return n;
 	}
 	else if ((numA.type == 11 && numA.bottom == "e") || (numB.type == 11 && numB.bottom == "e")){
+		string_log("multiply by e");
+		string_log(numA.top.c_str());
+		string_log(numB.top.c_str());
 		std::string realA = "";
 		std::string realB = "";
 		std::string imA = "";
@@ -1078,6 +1081,7 @@ Number mulTwo(const Number numA, const Number numB){
 				arrayA[i*2+1]=mulTwo(arrayA[i*2+1],numB);
 			}
 			n = arrayToE(arrayA);
+			string_log(n.top.c_str());
 			return n;
 		}
 		else if (realA.length()>0){
@@ -1086,6 +1090,7 @@ Number mulTwo(const Number numA, const Number numB){
 				arrayB[i*2+1]=mulTwo(arrayB[i*2+1],numA);
 			}
 			n = arrayToE(arrayB);
+			string_log(n.top.c_str());
 			return n;
 		}
 		else {
@@ -1204,16 +1209,13 @@ Number expTwo(const Number numA, const Number numB){
 		return invertOne(expTwo(numA,n));
 	}
 	if (numA.type == 11 && numA.bottom == "e"){
-		string_log("power of e");
 		if (numB.type > 0 && numB.type < 9){
-			string_log(numA.top.c_str());
 			std::vector<Number> arrayA = eToArray(numA);
 			int i;
 			for (i=0;i<arrayA.size()/2;i++){
 				arrayA[i*2]=mulTwo(arrayA[i*2],numB);
 			}
 			n = arrayToE(arrayA);
-			string_log(n.top.c_str());
 			return n;
 		}
 		return n;
