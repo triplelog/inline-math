@@ -65,7 +65,7 @@ var svg = `<!DOCTYPE html>
 </head>
 
 <body><svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">`;
-svg += `<style>.inline { font: regular 40px MyWebFont;}</style>`;
-svg += `<text x="0" y="0" class="inline">Inline</text>`;
+svg += ``;
+svg += `<text x="0" y="0" font-size="20px" fill="red">Inline</text>`;
 svg += "</svg></body></html";
 fs.writeFileSync("../node/static/logo.html", svg);
