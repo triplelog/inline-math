@@ -23,8 +23,6 @@ std::string numberType(std::string input){
 		return "string";
 	}
 	if (functionMap.find(input) != functionMap.end()){
-		string_log("function");
-		string_log(input.c_str());
 		n.type = 12;
 		n.top = input;
 		n.bottom = "1";
@@ -1732,14 +1730,15 @@ Number functionTwo(const Number numA, const Number numB){
 		Function f = functionMap[numA.top];
 		std::string input = outputNumber(numB);
 		int i;
+		std::string newPostfix = f.postfix;
 		for (i=f.rightIdx.size()-1;i>=0;i--){
-			f.postfix.replace(f.rightIdx[i],f.var.length(),input);
+			newPostfix.replace(f.rightIdx[i],f.var.length(),input);
 		}
 		//for (i=f.leftIdx.size()-1;i>=0;i--){
 		//	postfix.replace(f.leftIdx[i],f.var.length(),input);
 		//}
-		string_log("new postfix");
-		string_log(f.postfix.c_str());
+		string_log(newPostfix.c_str());
+		return solvePostfix(newPostfix);
 	}
 	Number n;
 	return n;
@@ -1785,8 +1784,6 @@ Number solvePostfix(std::string postfix) {
 			if (numbers.find(currentOperand) == numbers.end()){
 				numberType(currentOperand);
 			}
-			string_log("cO:");
-			string_log(currentOperand.c_str());
 			intArray.push_back(numbers[currentOperand]);
 			stack.push_back(numbers[""]);
 
