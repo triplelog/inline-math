@@ -93,6 +93,17 @@ app.get('/comprehensive',
 	}
 );
 
+app.get('/clean',
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/clean.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		
