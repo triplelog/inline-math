@@ -423,6 +423,9 @@ std::string outputNumber(Number n){
 	}
 	return "";
 }
+
+
+
 Number reduceFraction(const Number numA){
 	int a = std::stoi(numA.top);
 	int b = std::stoi(numA.bottom);
@@ -1746,6 +1749,68 @@ Number functionTwo(const Number numA, const Number numB){
 	return n;
 }
 
+Number roundNumber(const Number n){
+	if (n.type == 0 || n.type == 1 || n.type == -1 || n.type == 2 || n.type == -2){
+		return n;
+	}
+	else if (n.type == 3){
+		return n;
+	}
+	else if (n.type == -3){
+		return n;
+	}
+	else if (n.type == 11){
+		if (n.bottom == "complex"){
+			return n;
+		}
+		else if (n.bottom == "\\pi"){
+			if (numbers.find(n.top) == numbers.end()){
+				numberType(n.top);
+			}
+			if (numbers.find("3.14159") == numbers.end()){
+				numberType("3.14159");
+			}
+			Number nn = mulTwo(numbers[n.top],numbers["3.14159"]);
+			return nn;
+		}
+		else if (n.bottom == "e"){
+			Number outputE = numbers["0"];
+			if (numbers.find("2.718") == numbers.end()){
+				numberType("2.718");
+			}
+			int i; bool isReal = true;
+			std::string realA = "";
+			std::string imA = "";
+			for (i=0;i<n.top.length();i++){
+				if (n.top.at(i) == ':'){
+					isReal = false;
+				}
+				else if (n.top.at(i) == ','){
+					isReal = true;
+					if (numbers.find(imA) == numbers.end()){
+						numberType(imA);
+					}
+					if (numbers.find(realA) == numbers.end()){
+						numberType(realA);
+					}
+					outputE = addTwo(outputE,mulTwo(numbers[imA],expTwo(numbers["2.718"],numbers[realA])));
+					realA = "";
+					imA = "";
+				}
+				else if (isReal){
+					realA += n.top.at(i);
+				}
+				else {
+					imA += n.top.at(i);
+				}
+			}
+			return outputE;
+		}
+		return n;
+	}
+	return n;
+}
+
 std::map<std::string,Number> solvedPostfixMap;
 Number solvePostfix(std::string postfix) {
 	if (solvedPostfixMap.find(postfix) != solvedPostfixMap.end()){
@@ -1949,6 +2014,10 @@ Number solvePostfix(std::string postfix) {
 	            //multiandcase '&': if (stack[currentIndex - 5] > 0 && stack[currentIndex - 4] > 0 && stack[currentIndex - 3] > 0 && stack[currentIndex - 2] > 0 && stack[currentIndex - 1] > 0) {stack[currentIndex - 5] = 1;} else {stack[currentIndex - 5] = -1;}; currentIndex--; currentIndex--; currentIndex--; currentIndex--; break; 
             
             } 
+            if (maxDigits >= 0){
+            	stack[currentIndex - 2] = roundNumber(stack[currentIndex - 2]);
+            }
+            
             currentIndex--;
         } 
     } 

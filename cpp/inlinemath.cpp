@@ -25,7 +25,8 @@ std::string removeIdentities(std::string s);
 std::string toCanonical(std::string s);
 std::string doCalculus(std::string s);
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations);
-
+int maxDigits;
+int exactDigits;
 #include <emscripten/emscripten.h>
 
 EM_JS(void, console_log, (int x), {
@@ -381,6 +382,8 @@ void AddRules(char* aa,char* bb) {
 int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
+	maxDigits = -1;
+	exactDigits = -1;
 	initialRun();
 	send_ready();
 	return 1;

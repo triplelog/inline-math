@@ -774,7 +774,9 @@ std::string removeSolves(std::string input) {
 		//}
 		
 		//oldPostfix = approxArithmetic(oldPostfix);
+		maxDigits = 2;
 		oldPostfix = solveArithmetic(oldPostfix);
+		maxDigits = -1;
 		
 		//for (si=0;si<oldPostfix.length();si++){
 		//	std::string ssi(1,oldPostfix.at(si));
