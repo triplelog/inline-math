@@ -85,6 +85,14 @@ struct Range {
 	std::vector<Number> right;
 	std::vector<char> incexc;
 };
+struct Function {
+	std::string var;
+	std::string postfix;
+	std::vector<int> rightIdx;
+	std::vector<int> leftIdx;
+};
+
+std::map<std::string,Function> functionMap;
 Range makeRange(std::string input);
 Number solvePostfix(std::string postfix);
 std::string outputNumber(Number n);
@@ -608,6 +616,11 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	std::string currentOperand = "";
 	if (len<4){return;}
 	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) != -125 ){return;}
+	std::map<int,int> operandMap;
+	int iidx = 0;
+	std::vector<int> varOperands;
+	std::vector<int> rightIdx;
+	std::vector<int> lefttIdx;
 	for (iii=3;iii<len;iii++){
 		if (input.at(iii) == '='){
 			
@@ -625,6 +638,10 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 				independentVar = currentOperand;
 			}
 			else {
+				if (currentOperand == independentVar){
+					rightIdx.push_back(iii-4);//skips the = sign and 1st 3 chars
+					leftIdx.push_back(operandMap[idx]);
+				}
 				postfix += currentOperand + "_";
 			}
 			currentOperand = "";
@@ -633,8 +650,18 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 		}
 		else {
 			currentOperand += input.at(iii);
+			if (input.at(iii) == '#'){
+				operandMap[iidx]=iii-3;//skips 1st 3 chars
+				iidx++;
+			}
 		}
 	}
+	Function f;
+	f.var = independentVar;
+	f.postfix = postfix;
+	f.rightIdx = rightIdx;
+	f.leftIdx = leftIdx;
+	functionMap[functionName]=f;
 	string_log(independentVar.c_str());
 	string_log(functionName.c_str());
 	string_log(postfix.c_str());
@@ -743,12 +770,6 @@ std::string removeSolves(std::string input) {
 		oldPostfix = doCalculus(oldPostfix);
 	}
 	else if (solveType == 'D'){
-		string_log("defining");
-		int si;
-		for (si=0;si<oldPostfix.length();si++){
-			std::string ssi(1,oldPostfix.at(si));
-			string_log(ssi.c_str());
-		}
 		grabFunction(oldPostfix);
 		//oldPostfix = doCalculus(oldPostfix);
 	}

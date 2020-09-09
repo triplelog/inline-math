@@ -22,7 +22,13 @@ std::string numberType(std::string input){
 		numbers[""]=n;
 		return "string";
 	}
-	if (input == "\\pi"){
+	if (functionMap.find(input) != functionMap.end()){
+		n.type = 12;
+		n.top = input;
+		n.bottom = "1";
+		return "num";
+	}
+	else if (input == "\\pi"){
 		n.type = 11;
 		n.top = "1";
 		n.bottom = "\\pi";
@@ -1718,6 +1724,24 @@ Number sqrtOne(const Number numA){
 	return rootNth(numbers["2"],numA);
 }
 
+Number functionTwo(const Number numA, const Number numB){
+	if (numA.type == 12){
+		Function f = functionMap[numA.top];
+		std::string input = outputNumber(numB);
+		int i;
+		for (i=f.rightIdx.size()-1;i>=0;i--){
+			postfix.replace(f.rightIdx[i],f.var.length(),input);
+		}
+		//for (i=f.leftIdx.size()-1;i>=0;i--){
+		//	postfix.replace(f.leftIdx[i],f.var.length(),input);
+		//}
+		string_log("new postfix");
+		string_log(postfix.c_str());
+	}
+	Number n;
+	return n;
+}
+
 std::map<std::string,Number> solvedPostfixMap;
 Number solvePostfix(std::string postfix) {
 	if (solvedPostfixMap.find(postfix) != solvedPostfixMap.end()){
@@ -1912,6 +1936,7 @@ Number solvePostfix(std::string postfix) {
 	            		break;
 	            	}
 	            }
+	            case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            default: n.type = 0; solvedPostfixMap[postfix] = n; return n;
 	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
 	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 
