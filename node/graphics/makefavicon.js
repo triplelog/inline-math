@@ -28,10 +28,10 @@ for (var i=0;i<100;i++){
 		if (ii%16==0){
 			r*=1.5;
 		}
-		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.5)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.5)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.5)+"\" fill=\"#5381AC\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.5)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
 		
 		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
 		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
