@@ -22,7 +22,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	int i;
 	for (i = 0; infixexpr[i]; i++) 
     {
-    	len = i+1;
+    	len = 2*i+1;
     }
 	char temptoken[len];
 	tokenList.resize(len);
