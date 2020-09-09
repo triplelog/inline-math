@@ -55,8 +55,8 @@ var svg = `<!DOCTYPE html>
   <style>
   	@font-face {
 	  font-family: 'MyWebFont';
-	  src: url('../img/Yatra_One/YatraOneRegular.ttf');
-	  src: url('../img/Yatra_One/YatraOneRegular.ttf')  format('truetype');
+	  src: url('../img/Yatra_One/YatraOne-Regular.ttf');
+	  src: url('../img/Yatra_One/YatraOne-Regular.ttf')  format('truetype');
 	}
 	body {
 	  font-family: 'MyWebFont', Fallback, sans-serif;
