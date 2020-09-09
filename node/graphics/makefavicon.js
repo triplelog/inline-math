@@ -3,7 +3,7 @@ var svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100
 
 for (var i=0;i<100;i++){
 	for (var ii=0;ii<100;ii++){
-		var r = .2;
+		var r = .02;
 		if (i%2==0){
 			r*=2;
 		}
