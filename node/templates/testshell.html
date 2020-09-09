@@ -103,8 +103,8 @@
 			var html = e.data[2];
 			var formEl = document.querySelector('#pid-'+e.data[5]+'-'+e.data[3]);
 			formEl.innerHTML = " "+html;
-			formEl.querySelector('.katex').setAttribute('data-input',e.data[1]);
-			formEl.querySelector('.katex').setAttribute('data-latex',e.data[4]);
+			//formEl.querySelector('.katex').setAttribute('data-input',e.data[1]);
+			//formEl.querySelector('.katex').setAttribute('data-latex',e.data[4]);
 		}
 		else if (e.data[0] == "latex"){
 			var latex = e.data[2];
