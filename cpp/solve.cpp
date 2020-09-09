@@ -23,9 +23,12 @@ std::string numberType(std::string input){
 		return "string";
 	}
 	if (functionMap.find(input) != functionMap.end()){
+		string_log("function");
+		string_log(input.c_str());
 		n.type = 12;
 		n.top = input;
 		n.bottom = "1";
+		numbers[input]=n;
 		return "num";
 	}
 	else if (input == "\\pi"){
