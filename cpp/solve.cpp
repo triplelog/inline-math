@@ -1204,20 +1204,21 @@ Number expTwo(const Number numA, const Number numB){
 		return invertOne(expTwo(numA,n));
 	}
 	if (numA.type == 11 && numA.bottom == "e"){
+		string_log("power of e");
 		if (numB.type > 0 && numB.type < 9){
+			string_log(numA.top.c_str());
 			std::vector<Number> arrayA = eToArray(numA);
 			int i;
 			for (i=0;i<arrayA.size()/2;i++){
 				arrayA[i*2]=mulTwo(arrayA[i*2],numB);
 			}
 			n = arrayToE(arrayA);
+			string_log(n.top.c_str());
 			return n;
 		}
 		return n;
 	}
 	else if (numA.type == 11 && numA.bottom == "complex"){
-		string_log("power");
-		string_log(numB.top.c_str());
 		if (numB.type == 1){
 			if (numA.top.substr(0,2) == "0,"){
 				std::string imA = numA.top.substr(2,numA.top.length()-2);
@@ -1251,7 +1252,6 @@ Number expTwo(const Number numA, const Number numB){
 				}
 			}
 			else {
-				string_log("complex to integer power");
 				int nb = std::stoi(numB.top);
 				int i;
 				if (nb == 0){
@@ -1269,8 +1269,6 @@ Number expTwo(const Number numA, const Number numB){
 				n.bottom = numA.bottom;
 				if (nb<20){
 					for (i=1;i<nb;i++){
-						string_log(n.top.c_str());
-						string_log(numA.top.c_str());
 						n = mulTwo(n,numA);
 					}
 					return n;
