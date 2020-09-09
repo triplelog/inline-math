@@ -23,4 +23,4 @@ for (var i=0;i<100;i++){
 	}
 }
 svg += "</svg>";
-fs.writeFileSync("../static/favicon.html", svg);
+fs.writeFileSync("../node/static/favicon.html", svg);
