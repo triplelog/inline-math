@@ -20,7 +20,6 @@ $idx(x^2)$
 
 $id?(t^3;t)$
 
-Multiline expressions must be wrapped in `$$` or `$$[A]`
 
 
 Variable Expressions
@@ -157,5 +156,26 @@ $tree(y=x^2)$
 {% endblock %}
 
 
+Aligned Equations
+-----------------
+
+To use display mode, use double dollar signs.
+
+$align(1=2,3=4)[=]$
+
+$align(x+1<12,135+x<4)[<,x]$
+
+Functions
+---------
+
+$f(4)$
+
+$=(f(x) = 1+x^2)[D]$
+
+$=(g(x) = 1+x)[D]$
+
+$=(f(g(7)))[A]$
+
+$=(ddx(x^3+x^2))[S]$[A]
 
 

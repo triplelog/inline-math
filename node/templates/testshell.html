@@ -11,20 +11,42 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" />
   <link rel="stylesheet" href="css/prism.css" />
   <link rel="stylesheet" href="css/treeflex.css" />
+  <style>
+  	.main {
+  		display: flex;
+  		flex-direction: column;
+  		height: 100vh;
+  	}
+  	.menu {
+  		height: 100vh;
+  		width: 10vw;
+  	}
+  	.editDiv {
+  		height: 100vh;
+  		width:40vw;
+  	}
+  	.outputDiv {
+  		height: 100vh;
+  		width:40vw;
+  		border: 1px solid black;
+  	}
+  </style>
 </head>
 
 <body>
   <div class="main">
-  		<div style="width:45%; height: 60vh; display: inline-block;">
-	  		<textarea rows="20" id="inline-math" style="width: 100%">
-	  			{% block markdown %}
-	  			{% endblock %}
-	  		</textarea>
-	  	</div>
-	  	<div style="width:45%; height: 60vh; border: 1px solid black; display: inline-block;" id="output-math">
-	  		
-	  	</div>
-	  	<button onclick="highlightCode()">Submit</button>
+  	<div class="menu">
+  	</div>
+  	
+	<div class="editDiv">
+		<textarea rows="20" id="inline-math" style="width: 100%">
+			{% block markdown %}
+			{% endblock %}
+		</textarea>
+	</div>
+	<div class="outputDiv" id="output-math">
+		
+	</div>
 
   </div>
   <!--
@@ -268,9 +290,6 @@
 			myWorker.postMessage(["code",formEls[pid].textContent,pid,env.language]);
 		}
 	});
-	function highlightCode(){
-		Prism.highlightAll();
-	}
 	
 	
   </script>
