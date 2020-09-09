@@ -115,10 +115,15 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	
 	tokenList.resize(idx);
 	
+
+	
 	bool previousOperand = false;
 	int p;
+	string_log("tokens:");
 	for (i=0;i<idx;i++){
+		
 		std::string token = tokenList[i];
+		string_log(token.c_str());
 		char firstChar = token.at(0);
 		
 		if (firstChar == '('){
