@@ -268,6 +268,17 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 									isArithmetic = false;
 									break;
 								}
+								if (insidePostfix.at(bi) == -125 && bi+1<insidePostfix.length() && insidePostfix.at(bi+1) == '@'){
+									//std::cout << "ipf1a: " << insidePostfix << "\n";
+									currentOperand = solveFunction(insidePostfix);
+									//std::cout << "ipf2a: " << currentOperand << "\n";
+									if (currentOperand == "("+insidePostfix+")"){
+										cannotSolve = true;
+									}
+									
+									isArithmetic = false;
+									break;
+								}
 							}
 							openPar--;
 							pastInsideKey = false;

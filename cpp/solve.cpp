@@ -17,13 +17,15 @@ std::vector<int> factorList(Number n){
 }
 std::string numberType(std::string input){
 	Number n;
+	n.type = 0;
+	n.top = input;
 	//TODO: add strings to numbers map with type==0
 	if (input.length()==0){
 		numbers[""]=n;
 		return "string";
 	}
 	if (functionMap.find(input) != functionMap.end()){
-		n.type = 12;
+		n.type = 16;
 		n.top = input;
 		n.bottom = "1";
 		numbers[input]=n;
@@ -1726,7 +1728,7 @@ Number sqrtOne(const Number numA){
 }
 
 Number functionTwo(const Number numA, const Number numB){
-	if (numA.type == 12){
+	if (numA.type == 16){
 		Function f = functionMap[numA.top];
 		std::string input = outputNumber(numB);
 		int i;
@@ -1938,7 +1940,7 @@ Number solvePostfix(std::string postfix) {
 	            		break;
 	            	}
 	            }
-	            case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            //case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            default: n.type = 0; solvedPostfixMap[postfix] = n; return n;
 	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
 	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 
@@ -2285,4 +2287,32 @@ std::string substitute(std::string input){
 		//std::cout << input << " andand " << newPostfix << "\n";
 	}
 	return "("+newPostfix+")";
+}
+
+std::string solveFunction(std::string input){
+	std::string returnStr = "("+input+")";
+	if (input.length() < 4){
+		return returnStr;
+	}
+	std::string var = "";
+	int i;
+	input = removeBracketsOne(input);
+	string_log("solveFunction");
+	string_log(input.c_str());
+	return returnStr;
+	/*
+	Function f = functionMap[numA.top];
+	std::string input = outputNumber(numB);
+	int i;
+	std::string newPostfix = f.postfix;
+	for (i=f.rightIdx.size()-1;i>=0;i--){
+		newPostfix.replace(f.rightIdx[i],f.var.length(),input);
+	}
+	for (i=f.leftIdx.size()-1;i>=0;i--){
+		postfix.replace(f.leftIdx[i],f.var.length(),input);
+	}
+	string_log(newPostfix.c_str());*/
+	//return solvePostfix(newPostfix);
+	
+	
 }
