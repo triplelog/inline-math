@@ -20,6 +20,7 @@ $idx(x^2)$
 
 $id?(t^3;t)$
 
+Multiline expressions must be wrapped in `$$` or `$$[A]`
 
 
 Variable Expressions

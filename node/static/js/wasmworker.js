@@ -296,6 +296,24 @@ const renderer = {
 		
 		return '<span class="inline-tree">'+outText+'</span>';
 	}
+	else if (input.search(/align\(/)==0){
+		input = input.replace('align(','');
+		input = input.substr(0,input.length-1);
+		var inputs = input.split(',');
+		var outText = '\\begin{aligned}\n';
+		for (var i=0;i<inputs.length;i++){
+			var inp = inputs[i].trim();
+			if (inp.length > 0){
+				mapOrNew(inputs[i].trim(),"");
+				outText += latex + "\\\\\n";
+			}
+			
+		}
+		outText += "\\end{aligned}";
+		console.log(outText);
+		k = katex.renderToString(outText, katexOptions);
+		return k;
+	}
 	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 		var html = createInputs(input,varName);
 		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
@@ -333,6 +351,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/``\$/g,'`$');
+		markdown = markdown.replace(/\$``/g,'$`');
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
