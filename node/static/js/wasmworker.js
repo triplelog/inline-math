@@ -421,15 +421,19 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		markdown = markdown.replace(/\$\`\$/g,'$$');
+		console.log(markdown);
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$+/g,'`$&`');
+		console.log(markdown);
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$``/g,'$`');
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
+		
+		console.log(markdown);
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
