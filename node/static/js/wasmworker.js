@@ -315,14 +315,14 @@ const renderer = {
 		var inputs = input.split(',');
 		var outText = '\\begin{aligned}\n';
 		if (aligners.length>1){
-			outText = '\\begin{alignedat}{'+aligners.length+'}\n';
+			outText = '\\begin{alignedat}{'+(aligners.length*2)+'}\n';
 		}
 		for (var i=0;i<inputs.length;i++){
 			var inp = inputs[i].trim();
 			if (inp.length > 0){
 				mapOrNew(inputs[i].trim(),"");
 				for (var ii=0;ii<aligners.length;ii++){
-					latex = latex.replace(aligners[ii],'&'+aligners[ii]);
+					latex = latex.replace(aligners[ii],'&'+aligners[ii]+'&');
 				}
 				
 				outText += latex + "\\\\\n";
