@@ -620,7 +620,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	int iidx = 0;
 	std::vector<int> varOperands;
 	std::vector<int> rightIdx;
-	std::vector<int> lefttIdx;
+	std::vector<int> leftIdx;
 	for (iii=3;iii<len;iii++){
 		if (input.at(iii) == '='){
 			

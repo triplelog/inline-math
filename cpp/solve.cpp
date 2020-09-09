@@ -1730,13 +1730,13 @@ Number functionTwo(const Number numA, const Number numB){
 		std::string input = outputNumber(numB);
 		int i;
 		for (i=f.rightIdx.size()-1;i>=0;i--){
-			postfix.replace(f.rightIdx[i],f.var.length(),input);
+			f.postfix.replace(f.rightIdx[i],f.var.length(),input);
 		}
 		//for (i=f.leftIdx.size()-1;i>=0;i--){
 		//	postfix.replace(f.leftIdx[i],f.var.length(),input);
 		//}
 		string_log("new postfix");
-		string_log(postfix.c_str());
+		string_log(f.postfix.c_str());
 	}
 	Number n;
 	return n;
