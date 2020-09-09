@@ -618,7 +618,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	if (len<4){return;}
 	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) != -125 ){return;}
 	std::map<int,int> operandMap;
-	int iidx = 0;
+	int iidx = 2;
 	std::vector<int> varOperands;
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
