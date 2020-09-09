@@ -3,7 +3,7 @@ var svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"-100 -100 100 100
 
 for (var i=0;i<100;i++){
 	for (var ii=0;ii<100;ii++){
-		var r = .05;
+		var r = .04;
 		if (i%2==0){
 			r*=1.5;
 		}
@@ -28,6 +28,11 @@ for (var i=0;i<100;i++){
 		if (ii%16==0){
 			r*=1.5;
 		}
+		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+(r*2)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+(r*2)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+(r*2)+"\" fill=\"#5381AC\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+(r*2)+"\" fill=\"#5381AC\"/>";
+		
 		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
 		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
 		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
