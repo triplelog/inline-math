@@ -320,122 +320,127 @@ const renderer = {
   	text = text.replace(/&gt;/g,'>');
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
-  	var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
-	var match = text.match(/\$+([^\$\n]+?)\$+/);
-	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
-	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!!\[[A-Z]\]+/);
+  	try{
+		var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
+		var match = text.match(/\$+([^\$\n]+?)\$+/);
+		var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
+		var matchInvisible = text.match(/\$+([^\$\n]+?)\$!!\[[A-Z]\]+/);
 	
-	var isDisplay = false;
-	if (matchDisplay && matchDisplay.index == 0){
-		match = text.match(/\$\$+([^\$\n]+?)\$\$+/);
-		matchUpper = text.match(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/);
-		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!\[[A-Z]\]+/);
-		isDisplay = true;
-	}
+		var isDisplay = false;
+		if (matchDisplay && matchDisplay.index == 0){
+			match = text.match(/\$\$+([^\$\n]+?)\$\$+/);
+			matchUpper = text.match(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/);
+			matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!\[[A-Z]\]+/);
+			isDisplay = true;
+		}
 	
-	var varName = "";
-	if (matchUpper && matchUpper.index == 0){
-		varName = matchUpper[0][matchUpper[0].length-2];
-	}
-	else if (matchInvisible && matchInvisible.index == 0){
-		varName = matchInvisible[0][matchInvisible[0].length-2];
-	}
-	else {
-	}
-	matchInvisible = text.match(/\$+([^\$\n]+?)\$!!+/);
-	if (matchDisplay && matchDisplay.index == 0){
-		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!+/);
-	}
-	
-	
-	if (match && match.index == 0){
-	
-	}
-	else {
-		return '<pre><code class="language-js">'+text+'</code></pre>';
-	}
-	
-	var input = match[1].trim();
-	if (input.search(/plot\(/)==0){
-		input = input.replace('plot(','');
-		input = input.substr(0,input.length-1);
-		svg = "<span>";
-		pjs(input,-10,10,-10,10);
-		svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
-		svg += '</span>';
-
-		return svg;
-	}
-	else if (input.search(/tree\(/)==0){
-		input = input.replace('tree(','');
-		input = input.substr(0,input.length-1);
-		//latex = "";
-		var outText = mapOrNew(input,varName,false,true,true);
-		
-		return '<span class="inline-tree">'+outText+'</span>';
-	}
-	else if (input.search(/align\(/)==0){
-		input = input.replace('align(','');
-		var aligners = ["="];
-		if (input[input.length-1] == ']'){
-			var alignSplit = input.split('[');
-			var aSplit = alignSplit[alignSplit.length-1];
-			aSplit = aSplit.substr(0,aSplit.length-1);
-			aligners = aSplit.split(',');
-			input = input.split(')');
-			input = input.slice(0,input.length-1);
-			input = input.join(')');
+		var varName = "";
+		if (matchUpper && matchUpper.index == 0){
+			varName = matchUpper[0][matchUpper[0].length-2];
+		}
+		else if (matchInvisible && matchInvisible.index == 0){
+			varName = matchInvisible[0][matchInvisible[0].length-2];
 		}
 		else {
+		}
+		matchInvisible = text.match(/\$+([^\$\n]+?)\$!!+/);
+		if (matchDisplay && matchDisplay.index == 0){
+			matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!+/);
+		}
+	
+	
+		if (match && match.index == 0){
+	
+		}
+		else {
+			return '<pre><code class="language-js">'+text+'</code></pre>';
+		}
+	
+		var input = match[1].trim();
+		if (input.search(/plot\(/)==0){
+			input = input.replace('plot(','');
 			input = input.substr(0,input.length-1);
+			svg = "<span>";
+			pjs(input,-10,10,-10,10);
+			svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
+			svg += '</span>';
+
+			return svg;
 		}
+		else if (input.search(/tree\(/)==0){
+			input = input.replace('tree(','');
+			input = input.substr(0,input.length-1);
+			//latex = "";
+			var outText = mapOrNew(input,varName,false,true,true);
 		
-		var inputs = input.split(',');
-		var outText = '\\begin{aligned}\n';
-		if (aligners.length>1){
-			outText = '\\begin{alignedat}{'+(aligners.length*2)+'}\n';
+			return '<span class="inline-tree">'+outText+'</span>';
 		}
-		for (var i=0;i<inputs.length;i++){
-			var inp = inputs[i].trim();
-			if (inp.length > 0){
-				mapOrNew(inputs[i].trim(),"",false,false,isDisplay);
-				for (var ii=0;ii<aligners.length;ii++){
-					latex = latex.replace(aligners[ii],'&'+aligners[ii]+'&');
-				}
-				
-				outText += latex + "\\\\\n";
+		else if (input.search(/align\(/)==0){
+			input = input.replace('align(','');
+			var aligners = ["="];
+			if (input[input.length-1] == ']'){
+				var alignSplit = input.split('[');
+				var aSplit = alignSplit[alignSplit.length-1];
+				aSplit = aSplit.substr(0,aSplit.length-1);
+				aligners = aSplit.split(',');
+				input = input.split(')');
+				input = input.slice(0,input.length-1);
+				input = input.join(')');
 			}
+			else {
+				input = input.substr(0,input.length-1);
+			}
+		
+			var inputs = input.split(',');
+			var outText = '\\begin{aligned}\n';
+			if (aligners.length>1){
+				outText = '\\begin{alignedat}{'+(aligners.length*2)+'}\n';
+			}
+			for (var i=0;i<inputs.length;i++){
+				var inp = inputs[i].trim();
+				if (inp.length > 0){
+					mapOrNew(inputs[i].trim(),"",false,false,isDisplay);
+					for (var ii=0;ii<aligners.length;ii++){
+						latex = latex.replace(aligners[ii],'&'+aligners[ii]+'&');
+					}
+				
+					outText += latex + "\\\\\n";
+				}
 			
+			}
+			if (aligners.length>1){
+				outText += "\\end{alignedat}";
+			}
+			else {
+				outText += "\\end{aligned}";
+			}
+		
+			console.log(outText);
+			katexOptions.displayMode = true;
+			k = katex.renderToString(outText, katexOptions);
+			k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+outText+'"');
+			katexOptions.displayMode = false;
+			return k;
 		}
-		if (aligners.length>1){
-			outText += "\\end{alignedat}";
+		else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
+			var html = createInputs(input,varName,isDisplay);
+			//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
+	
+			return html;
 		}
 		else {
-			outText += "\\end{aligned}";
+			k = mapOrNew(input,varName,false,false,isDisplay);
+			if (varName != ""){
+				currentV[varName]=k;
+			}
+			if (matchInvisible && matchInvisible.index == 0){
+				return "";
+			}
+			return k;
 		}
-		
-		console.log(outText);
-		katexOptions.displayMode = true;
-		k = katex.renderToString(outText, katexOptions);
-		k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+outText+'"');
-		katexOptions.displayMode = false;
-		return k;
 	}
-	else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
-		var html = createInputs(input,varName,isDisplay);
-		//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
-	
-		return html;
-	}
-	else {
-		k = mapOrNew(input,varName,false,false,isDisplay);
-		if (varName != ""){
-			currentV[varName]=k;
-		}
-		if (matchInvisible && matchInvisible.index == 0){
-			return "";
-		}
-		return k;
+	catch(err){
+		return text;
 	}
 	
   }
@@ -473,7 +478,7 @@ onmessage = function(e) {
 			html = marked(markdown);
 		}
 		catch(err){
-			html = message[1];
+			html = "";
 		}
 		result = ["markdown",message[1],html];
 	}
