@@ -73,6 +73,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 					if (ie == '('){//Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
 						idx++;
+						dependentFunctions.push_back(temptoken[iidx-1]);
 						std::string s(1,-125);
 						tokenList[idx] = s;
 						idx++;
@@ -86,6 +87,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 					if (ie == '('){//Assume Variable is function: Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
 						idx++;
+						dependentFunctions.push_back(temptoken[iidx-1]);
 						std::string s(1,-125);
 						tokenList[idx] = s;
 						idx++;

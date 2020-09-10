@@ -143,13 +143,21 @@ void LatexIt(char* aa) {
 			return;
 		}
 	}
+	dependentFunctions.clear();
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	int sz = dependentFunctions.size();
+	char* df = new char[sz];
+	for (i=0;i<sz;i++){
+		df[i]=dependentFunctions[i];
+	}
+	df[sz]='\0';
+	output_dependent_functions(df);
 	//string_log("postfixing");
 	//string_log(postfixedV[0].c_str());
 	//string_log(postfixedV[1].c_str());
 	
 	dependentChars = getDependents(postfixedV[1]);
-	int sz = dependentChars.size();
+	sz = dependentChars.size();
 	char* dc = new char[sz];
 	for (i=0;i<sz;i++){
 		dc[i]=dependentChars[i];
