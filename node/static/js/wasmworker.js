@@ -50,19 +50,21 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 		else if (latexedInputs[input].display != isDisplay){
 			foundMatch = false;
 		}
-		else if (latexedInputs[input].dependents){
-			for (var i in latexedInputs[input].dependents){
-				if (latexedInputs[input].dependents[i] != currentV[i]){
-					foundMatch = false;
-					break;
+		else if (latexedInputs[input].dependents || latexedInputs[input].dependentfunctions){
+			if (latexedInputs[input].dependents){
+				for (var i in latexedInputs[input].dependents){
+					if (latexedInputs[input].dependents[i] != currentV[i]){
+						foundMatch = false;
+						break;
+					}
 				}
 			}
-		}
-		else if (latexedInputs[input].dependentfunctions){
-			for (var i in latexedInputs[input].dependentfunctions){
-				if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
-					foundMatch = false;
-					break;
+			if (latexedInputs[input].dependentfunctions){
+				for (var i in latexedInputs[input].dependentfunctions){
+					if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
+						foundMatch = false;
+						break;
+					}
 				}
 			}
 		}
@@ -134,8 +136,6 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
-		console.log(input);
-		console.log(dependentfunctions);
 		for (var i=0;i<dependentfunctions.length;i++){
 			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = 7;//currentF[dependentfunctions[i]];
 		}
