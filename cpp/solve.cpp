@@ -288,9 +288,9 @@ Number negateOne(const Number numA){
 	Number n;
 	if (numA.type == 11){
 		string_log("negate");
-		string_log(outputNumber(numA));
+		string_log(outputNumber(numA).c_str());
 		n = mulTwo(numbers["-1"],numA);
-		string_log(outputNumber(n));
+		string_log(outputNumber(n).c_str());
 		return n;
 	}
 	n.type = -1*numA.type;
