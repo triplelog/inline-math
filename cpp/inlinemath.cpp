@@ -194,6 +194,7 @@ void LatexIt(char* aa) {
 	
 	std::string postfixed = prepareIt(a);
 	if (postfixed == "error"){
+		output_latex("???");
 		return;
 	}
 	//string_log(postfixed.c_str());
@@ -239,6 +240,7 @@ void TreeIt(char* aa) {
 	
 	std::string postfixed = prepareIt(a);
 	if (postfixed == "error"){
+		output_latex("???");
 		return;
 	}
 	
@@ -293,6 +295,7 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	int i;
 	std::string postfixed = prepareIt(fn);
 	if (postfixed == "error"){
+		graph_svg("???");
 		return;
 	}
 	
