@@ -289,13 +289,13 @@ const renderer = {
   	var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
-	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/);
+	var matchInvisible = text.match(/\$+([^\$\n]+?)\$!!\[[A-Z]\]+/);
 	
 	var isDisplay = false;
 	if (matchDisplay && matchDisplay.index == 0){
 		match = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 		matchUpper = text.match(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/);
-		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/);
+		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!\[[A-Z]\]+/);
 		isDisplay = true;
 	}
 	
@@ -310,9 +310,9 @@ const renderer = {
 	else {
 		console.log(text);
 	}
-	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
+	matchInvisible = text.match(/\$+([^\$\n]+?)\$!!+/);
 	if (matchDisplay && matchDisplay.index == 0){
-		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!+/);
+		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!!+/);
 	}
 	
 	
