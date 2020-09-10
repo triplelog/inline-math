@@ -302,7 +302,41 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 			fn = fn;
 		}
 	}
+	
+	
+	dependentChars.clear();
+	int i;
+	for (i=0;i<fn.length();i++){
+		if (fn.at(i) == '{'){
+			fn[i] = '(';
+		}
+		else if (fn.at(i) == '}'){
+			fn[i] = ')';
+		}
+		else if (fn.at(i) < 0){
+			return;
+		}
+		else if (fn.at(i) == '\\'){
+			return;
+		}
+	}
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
+	//string_log(postfixedV[0].c_str());
+	//string_log(postfixedV[1].c_str());
+	dependentChars = getDependents(postfixedV[1]);
+	int sz = dependentChars.size();
+	char* dc = new char[sz];
+	for (i=0;i<sz;i++){
+		dc[i]=dependentChars[i];
+	}
+	dc[sz]='\0';
+	output_dependents(dc);
+	
+
+	postfixedV[1] = removeDependents(postfixedV[1]);
+	
+	
+	
 	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());
