@@ -1866,7 +1866,7 @@ bool checkPostfix(std::string postfix) {
 	string_log(postfix.c_str());
 	console_log(currentIndex);
 	console_log(intArraySz);
-	if (currentIndex == 0 && intArraySz ==0){
+	if (currentIndex == 1 && intArraySz ==0){
 		return true;
 	}
 	else {
