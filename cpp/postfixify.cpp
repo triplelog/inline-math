@@ -1847,7 +1847,7 @@ bool checkPostfix(std::string postfix) {
 	            case ']': break;
 	            case '[': break;
 	            case '!': break;
-	            //case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -125: break;
 	            default: return false;
 	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
 	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 
