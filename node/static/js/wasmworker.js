@@ -309,7 +309,7 @@ const renderer = {
 	}
 	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
 	if (matchDisplay && matchDisplay.index == 0){
-		matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
+		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!+/);
 	}
 	
 	
