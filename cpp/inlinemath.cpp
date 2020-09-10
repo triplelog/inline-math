@@ -332,9 +332,11 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	dc[sz]='\0';
 	output_dependents(dc);
 	
-
+	string_log("before");
+	string_log(postfixedV[1].c_str());
 	postfixedV[1] = removeDependents(postfixedV[1]);
-	
+	string_log("removed");
+	string_log(postfixedV[1].c_str());
 	
 	
 	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
