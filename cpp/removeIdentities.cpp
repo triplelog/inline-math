@@ -92,6 +92,7 @@ std::string solveArithmetic(std::string s){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
+				string_log(someStrings[ii].next.c_str());
 				std::string tempPF = removeBracketsOne(someStrings[ii].next);
 				string_log(tempPF.c_str());
 				for (iii=0;iii<tempPF.length();iii++){
