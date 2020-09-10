@@ -5,10 +5,13 @@ function cpp_ready() {
 importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
-var l = Module.cwrap("LatexIt","string",["string"]);
+var lcpp = Module.cwrap("LatexIt","string",["string"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
-var a = Module.cwrap("AddRules","string",["string","string"]);
 var t = Module.cwrap("TreeIt","string",["string"]);
+
+function l(input){
+	lcpp(input);
+}
 
 var latex = "";
 function addLatex(x) {
@@ -455,20 +458,11 @@ onmessage = function(e) {
 		k = mapOrNew(input,"",false,false,false);
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
-	else if (message[0] == "latex"){
-		var input = message[1];
-		k = mapOrNew(input,"",false,false,false);
-		result = ["latex",message[1],k];
-	}
 	else if (message[0] == "plot"){
 		svg = "";
 		p(message[1],message[2],message[3],message[4],message[5]);
 		svg += '<input type="range" id="domainSlider" min="0" max="'+(message[6]*2)+'" value="'+message[6]+'"></input>';
 		result = ["svg",message[1],svg];
-	}
-	else if (message[0] == "rules"){
-		a(message[1],message[2]);
-		result = ["rules",message[1],"done"];
 	}
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];

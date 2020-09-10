@@ -66,6 +66,9 @@ EM_JS(void, send_ready, (), {
 std::string prepareIt(std::string a){
 	dependentChars.clear();
 	int i;
+	if (a.length()>288){
+		return "error";
+	}
 	for (i=0;i<a.length();i++){
 		if (a.at(i) == '{'){
 			a[i] = '(';
