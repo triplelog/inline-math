@@ -386,6 +386,8 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 			if (!cannotSolve && hasPar && newPostfix.length() >0){
 				
 				//std::cout << newPostfix << " was newPostfix\n";
+				string_log("here");
+				string_log(userString.c_str());
 				string_log(newPostfix.c_str());
 				newPostfix = removeParOne(newPostfix);
 				//std::cout << newPostfix << " was newPostfix after removal\n";
