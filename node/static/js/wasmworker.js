@@ -11,6 +11,7 @@ var p = Module.cwrap("PlotIt","string",["string","number","number","number","num
 var t = Module.cwrap("TreeIt","string",["string"]);
 
 function l(input){
+	kcpp(false);
 	console.log(input);
 	lcpp(input);
 	console.log(input);
