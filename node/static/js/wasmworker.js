@@ -12,7 +12,7 @@ var t = Module.cwrap("TreeIt","string",["string"]);
 
 function resolveKill(input) {
   return new Promise(resolve => {
-      setTimeout(() => {
+      setTimeout( function(input) {
       	  //kcpp(true);
 		  resolve('resolved '+input);
 		}, 1000);
