@@ -100,9 +100,9 @@ struct KillNow {
 		string_log("checkTime");
 		console_log(nowTime - startTime);
 		if (nowTime - startTime > maxTime){
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 };
 std::map<std::string,Function> functionMap;
