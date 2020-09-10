@@ -25,7 +25,6 @@
   	}
   	.editDiv {
   		flex: 4;
-  		padding: .5rem;
   		overflow-y: auto;
   	}
   	.outputDiv {
@@ -54,7 +53,7 @@
   	</div>
   	
 	<div class="editDiv">
-		<textarea id="inline-math" style="height: calc(100vh - 2rem); width: calc(100% - 1rem);">
+		<textarea id="inline-math" style="height: calc(100vh - 2rem); padding: .5rem; width: calc(100% - 1rem);">
 			{% block markdown %}
 			{% endblock %}
 		</textarea>
