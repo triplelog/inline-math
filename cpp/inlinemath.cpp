@@ -296,8 +296,9 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 		return;
 	}
 	
-	postfixedV[0] = "";
-	postfixedV[1] = "";
+	std::vector<std::string> postfixedV;
+	postfixedV.push_back("");
+	postfixedV.push_back("");
 	bool isRight = false;
 	for (i=0;i<postfixed.length();i++){
 		if (postfixed.at(i)=='@'){
