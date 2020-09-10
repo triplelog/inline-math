@@ -58,6 +58,16 @@ out: =(A-B)
 ee
 :::
 ::: rule
+in: C+A-B
+out: C+=(A-B)
+ee
+:::
+::: rule
+in: A+C-B
+out: =(A-B)+C
+ee
+:::
+::: rule
 in: -A
 out: =(0-A)
 ee
