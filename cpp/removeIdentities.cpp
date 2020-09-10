@@ -77,7 +77,7 @@ std::string solveArithmetic(std::string s){
 	std::string newPostfix = removeBracketsOne(s);
 
 	bool foundNext = true;
-	int counter = 0;
+	int counter = 0; int ii; int iii;
 	while (foundNext){
 		if (killNow.check() || counter >1000){
 			newPostfix = removeType11(newPostfix);
@@ -85,10 +85,22 @@ std::string solveArithmetic(std::string s){
 			return newPostfix;
 		}
 		foundNext = false;
-		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
+		std::vector<Step> someStrings = makeTree(newPostfix,10)[0];
 		if (someStrings.size()>0){
-			foundNext = true;
-			newPostfix = removeBracketsOne(someStrings[0].next);
+			
+			int minLeft = 1000;
+			for (ii=0;ii<someStrings.size();ii++){
+				std::string tempPF = removeBracketsOne(someStrings[ii].next);
+				for (iii=0;iii<tempPF.length();iii++){
+					if (tempPF.at(iii)=='@'){
+						if (iii<minLeft){
+							foundNext = true;
+							newPostfix = tempPF;
+							minLeft = iii;
+						}
+					}
+				}
+			}
 		}
 		counter++;
 	}
