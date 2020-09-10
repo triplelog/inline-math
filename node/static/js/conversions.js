@@ -26,6 +26,15 @@ function jsToMath(input){
 }
 
 function pythonToMath(input){
+	input = input.replace(/math\.exp\(/gi,'e^(');
+	input = input.replace(/math\.log2\(/gi,'log_2(');
+	input = input.replace(/math\.log10\(/gi,'log_10(');
+	input = input.replace(/math\.asin\(/gi,'arcsin(');
+	input = input.replace(/math\.acos\(/gi,'arccos(');
+	input = input.replace(/math\.atan\(/gi,'arctan(');
+	input = input.replace(/math\.e/gi,'e');
+	input = input.replace(/math\.pi/gi,'pi');
+	
 	input = input.replace(/math\.(.{1,6})\(/gi,'$1(');
 	return input;
 }
