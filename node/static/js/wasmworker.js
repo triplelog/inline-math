@@ -6,33 +6,15 @@ importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
 var lcpp = Module.cwrap("LatexIt","string",["string"]);
-var kcpp = Module.cwrap("KillIt","string",["bool"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var t = Module.cwrap("TreeIt","string",["string"]);
 
-function resolveKill(input) {
-  return new Promise(resolve => {
-      setTimeout( function(input) {
-      	  //kcpp(true);
-		  resolve('resolved '+input);
-		}, 1000);
-  });
-}
 
-async function asyncKill(input) {
-  console.log('calling');
-  const result = await resolveKill(input);
-  console.log(result);
-  // expected output: "resolved"
-}
 
 function l(input){
-	kcpp(false);
 	console.log(input);
-	asyncKill(input);
 	lcpp(input);
 	console.log("aaa");
-	console.log(input);
 	console.log(input);
 }
 

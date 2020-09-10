@@ -91,7 +91,17 @@ struct Function {
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
 };
-
+struct KillNow {
+	long maxTime; //in 1/1000000 of second
+	long startTime;
+	bool check() {
+		long nowTime = std::chrono::high_resolution_clock::now();
+		if (nowTime - startTime > maxTime){
+			return false;
+		}
+		return true;
+	}
+};
 std::map<std::string,Function> functionMap;
 Range makeRange(std::string input);
 Number solvePostfix(std::string postfix);
@@ -102,7 +112,7 @@ std::string numberType(std::string input);
 Number mulTwo(Number numA, Number numB);
 Number invertOne(Number numA);
 Number negateOne(Number numA);
-
+KillNow killNow;
 inline bool operator>(const Number& a, const Number& b){
 	if (a.type == 0 || b.type == 0){return false;}
 	if (a.type == 1){
@@ -402,7 +412,6 @@ int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;
 std::string maxDepthn1;
-bool killNow;
 
 
 std::string removeBracketsOne(std::string input) {
@@ -461,7 +470,7 @@ std::string removeBracketsOne(std::string input) {
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
 	//std::cout << input << " --c\n";
-	if (killNow){return input;}
+	if (killNow.check()){return input;}
 	return removeBracketsOne(input);
 	
 	
@@ -535,7 +544,7 @@ std::string removeParOne(std::string input) {
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
 	//std::cout << input << " --c\n";
-	if (killNow){return input;}
+	if (killNow.check()){return input;}
 	return removeParOne(input);
 	
 	
@@ -601,7 +610,7 @@ std::string removeType11(std::string input) {
 	input.replace(secondIndex,bracketLength+1,rightString);
 	input.replace(firstIndex,1,leftString);
 	//return retInput;
-	if (killNow){return input;}
+	if (killNow.check()){return input;}
 	return removeType11(input);
 	
 	
@@ -786,7 +795,7 @@ std::string removeSolves(std::string input) {
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
-	if (killNow){return input;}
+	if (killNow.check()){return input;}
 	return removeSolves(input);
 	
 	
@@ -799,15 +808,15 @@ std::string removeBORP(std::string input){
 	for (iii=0;iii<len;iii++){
 		char mychar = input.at(iii);
 		if (mychar == '{'){
-			if (killNow){return input;}
+			if (killNow.check()){return input;}
 			std::string newInput = removeBracketsOne(input);
-			if (killNow){return newInput;}
+			if (killNow.check()){return newInput;}
 			return removeBORP(newInput);
 		}
 		else if (mychar == '('){
-			if (killNow){return input;}
+			if (killNow.check()){return input;}
 			std::string newInput = removeParOne(input);
-			if (killNow){return newInput;}
+			if (killNow.check()){return newInput;}
 			return removeBORP(newInput);
 		}
 	}
@@ -1027,7 +1036,7 @@ std::string outputTree(Step stepS,Step stepE){
 	//std::cout << "before third: " << pfstr << "\n";
 
 	for (i=0;i<pfstr.length();i++){
-		if (killNow){return "killed";}
+		if (killNow.check()){return "killed";}
 		if (pfstr.at(i) == '@'){
 			break;
 		}

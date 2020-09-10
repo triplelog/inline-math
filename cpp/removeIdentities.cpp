@@ -30,7 +30,7 @@ std::string removeIdentities(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow || counter >1000){
+		if (killNow.check() || counter >1000){
 			return newPostfix;
 		}
 		foundNext = false;
@@ -79,7 +79,7 @@ std::string solveArithmetic(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow || counter >1000){
+		if (killNow.check() || counter >1000){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
@@ -130,7 +130,7 @@ std::string toCanonical(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow || counter >1000){
+		if (killNow.check() || counter >1000){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
@@ -186,7 +186,7 @@ std::string doCalculus(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow || counter >1000){
+		if (killNow.check() || counter >1000){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;

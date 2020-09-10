@@ -697,7 +697,7 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 	auto a1 = std::chrono::high_resolution_clock::now();
 	out.resize(2*n+2);
 	for (i=0;i<n+1;i++){
-		if (killNow){
+		if (killNow.check()){
 			out.resize(i*2);
 			return out;
 		}
