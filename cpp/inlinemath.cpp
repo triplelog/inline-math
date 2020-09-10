@@ -145,6 +145,9 @@ void LatexIt(char* aa) {
 	}
 	dependentFunctions.clear();
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		return;
+	}
 	int sz = dependentFunctions.size();
 	char* df = new char[sz];
 	for (i=0;i<sz;i++){

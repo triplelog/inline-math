@@ -1752,3 +1752,120 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	return postVector;
 }
 
+bool checkPostfix(std::string postfix) {
+	
+	int i;
+  	int currentIndex = 0;
+  	int arrayIndex = 0;
+  	std::vector<int> stack;
+  	std::vector<int> intArray;
+  	std::string currentOperand = "";
+	int openPar = 0;
+	int intArraySz = 0;
+  	for (i=0; i<postfix.length(); i++) 
+    {
+    	if (postfix.at(i) == '{' || postfix.at(i) == '('){
+    		openPar++;
+    	}
+    	else if (postfix.at(i) == '}' || postfix.at(i) == ')'){
+    		openPar--;
+    	}
+    	else if (openPar > 0){
+    		continue;
+    	}
+    	else if (openPar < 0){
+    		return false;
+    	}
+        else if (postfix.at(i) == '_') {
+			intArray.push_back(1);
+			stack.push_back(1);
+			intArraySz++;
+
+        }
+    }
+	if (openPar != 0){return false;}
+	
+    for (i=0; i<postfix.length(); i++) { 
+    	//std::cout << "pfi: " << i << "\n";
+        if (postfix.at(i) == '#') {
+        	intArraySz--;
+        	if (intArraySz <0){
+        		return false;
+        	}
+        	stack[currentIndex] = intArray[arrayIndex];
+        	
+        	currentIndex++;
+        	arrayIndex++;
+  
+        } 
+        else if (postfix.at(i) == '@') {
+        	break;
+        }
+        else 
+        { 
+            switch (postfix.at(i)) 
+            { 
+	            //case '>': stack[currentIndex - 2].w = (stack[currentIndex - 2] > stack[currentIndex - 1]) ? 1 : 0; stack[currentIndex - 2].t = 'B'; break; 
+	            //case '<': stack[currentIndex - 2].w = (stack[currentIndex - 2] < stack[currentIndex - 1]) ? 1 : 0; stack[currentIndex - 2].t = 'B'; break;
+	            //case ']': stack[currentIndex - 2].w = (stack[currentIndex - 2] >= stack[currentIndex - 1]) ? 1 : 0; stack[currentIndex - 2].t = 'B'; break; 
+	            //case '[': stack[currentIndex - 2].w = (stack[currentIndex - 2] <= stack[currentIndex - 1]) ? 1 : 0; stack[currentIndex - 2].t = 'B'; break;
+	            case '+': break;
+	            case '-': currentIndex++; break; 
+	            case '*': break; 
+	            case '/': currentIndex++; break;
+	            case '^': break;
+	            case -41: currentIndex++; break;
+	            case -93: break;
+	            case -84: break;
+	            case -82: currentIndex++; break;
+	            case -67: currentIndex++; break;
+	            case -64: currentIndex++; break;
+	            case -63: currentIndex++; break;
+	            case -62: currentIndex++; break;
+	            case -61: currentIndex++; break;
+	            case -60: currentIndex++; break;
+	            case -59: currentIndex++; break;
+	            case -32: currentIndex++; break;
+	            case -31: currentIndex++; break;
+	            case -30: currentIndex++; break;
+	            case -29: currentIndex++; break;
+	            case -28: currentIndex++; break;
+	            case -27: currentIndex++; break;
+	            case -16: currentIndex++; break;
+	            case -15: currentIndex++; break;
+	            case -14: currentIndex++; break;
+	            case -13: currentIndex++; break;
+	            case -12: currentIndex++; break;
+	            case -11: currentIndex++; break;
+	            case '=': break;
+	            case '>': break;
+	            case '<': break;
+	            case ']': break;
+	            case '[': break;
+	            case '!': break;
+	            //case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            default: return false;
+	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
+	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 
+	            //case '&': stack[currentIndex - 2].w = (stack[currentIndex - 2].w + stack[currentIndex - 1].w > 1) ? 1 : 0; stack[currentIndex - 2].t = (stack[currentIndex - 2].t == 'B' && stack[currentIndex - 1].t == 'B') ? 'B' : 'N'; break; 
+	            //case '|': stack[currentIndex - 2].w = (stack[currentIndex - 2].w + stack[currentIndex - 1].w == 0) ? 0 : 1; stack[currentIndex - 2].t = (stack[currentIndex - 2].t == 'B' && stack[currentIndex - 1].t == 'B') ? 'B' : 'N'; break; 
+	            //multiandcase '&': if (stack[currentIndex - 5] > 0 && stack[currentIndex - 4] > 0 && stack[currentIndex - 3] > 0 && stack[currentIndex - 2] > 0 && stack[currentIndex - 1] > 0) {stack[currentIndex - 5] = 1;} else {stack[currentIndex - 5] = -1;}; currentIndex--; currentIndex--; currentIndex--; currentIndex--; break; 
+            
+            }
+            
+            currentIndex--;
+            if (currentIndex < 0){
+            	return false;
+            }
+        } 
+    } 
+
+	if (currentIndex == 0 && intArraySz ==0){
+		return true;
+	}
+	else {
+		return false;
+	}
+	return false;
+}
+
