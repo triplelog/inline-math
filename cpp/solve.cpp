@@ -286,6 +286,10 @@ std::string numberType(std::string input){
 
 Number negateOne(const Number numA){
 	Number n;
+	if (numA.type == 11){
+		n = mulTwo(numbers["-1"],numA);
+		return n;
+	}
 	n.type = -1*numA.type;
 	n.top = numA.top;
 	n.bottom = numA.bottom;
