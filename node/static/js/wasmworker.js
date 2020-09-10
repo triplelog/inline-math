@@ -13,7 +13,9 @@ var t = Module.cwrap("TreeIt","string",["string"]);
 function l(input){
 	console.log(input);
 	lcpp(input);
+	console.log(input);
 	kcpp(true);
+	console.log(input);
 }
 
 var latex = "";
