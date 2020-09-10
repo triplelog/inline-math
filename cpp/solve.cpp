@@ -1405,8 +1405,29 @@ Number logTwo(const Number numA, const Number numB){ //numA is base and numB is 
 	if (numB.top == "0"){
 		return n;
 	}
-
-	if (numA.type == 1){
+	if (numB.type == 1 && numB.top == "1"){
+		n.type = 1;
+		n.top = "0";
+		n.bottom = "1";
+		return n;
+	}
+	
+	if (numA.type == 11 && numA.bottom == "e" && numB.type == 11 && numB.bottom == "e"){
+		if (numA.top == "1:1,"){
+			std::vector<Number> arrayB = eToArray(numB);
+			if (arrayB.size() == 2){
+				
+				if (arrayB[1].type == 1 && arrayB[1].top == "1"){
+					n = arrayB[0];
+					return n;
+				}
+				else {
+					return addTwo(logTwo(numA,arrayB[1]), arrayB[0]);
+				}
+			}
+		}
+	}
+	else if (numA.type == 1){
 		if (numB.type == 1){
 			double a = std::stoi(numA.top);
 			double b = std::stoi(numB.top);
