@@ -181,6 +181,13 @@ void OneRule(char* aa) {
 
 void KillIt(bool kill){
 	killNow = kill;
+	
+	if (killNow){
+		string_log("killed");
+	}
+	else {
+		string_log("unkilled");
+	}
 }
 
 
