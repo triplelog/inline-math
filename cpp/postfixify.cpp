@@ -1762,8 +1762,6 @@ bool checkPostfix(std::string postfix) {
   	std::string currentOperand = "";
 	int openPar = 0;
 	int intArraySz = 0;
-	string_log("Checkpostfix");
-	string_log(postfix.c_str());
   	for (i=0; i<postfix.length(); i++) 
     {
     	if (postfix.at(i) == '{' || postfix.at(i) == '('){
@@ -1785,10 +1783,7 @@ bool checkPostfix(std::string postfix) {
 
         }
     }
-    string_log(postfix.c_str());
-    console_log(intArraySz);
 	if (openPar != 0){return false;}
-	string_log(postfix.c_str());
     for (i=0; i<postfix.length(); i++) { 
     	//std::cout << "pfi: " << i << "\n";
         if (postfix.at(i) == '#') {
@@ -1863,9 +1858,6 @@ bool checkPostfix(std::string postfix) {
             }
         } 
     } 
-	string_log(postfix.c_str());
-	console_log(currentIndex);
-	console_log(intArraySz);
 	if (currentIndex == 1 && intArraySz ==0){
 		return true;
 	}

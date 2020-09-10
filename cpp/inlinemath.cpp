@@ -63,7 +63,72 @@ EM_JS(void, send_ready, (), {
 #include "removeIdentities.cpp"
 
 
+std::string prepareIt(std::string a){
+	dependentChars.clear();
+	int i;
+	for (i=0;i<a.length();i++){
+		if (a.at(i) == '{'){
+			a[i] = '(';
+		}
+		else if (a.at(i) == '}'){
+			a[i] = ')';
+		}
+		else if (a.at(i) < 0){
+			return "error";
+		}
+		else if (a.at(i) == '\\'){
+			return "error";
+		}
+	}
+	dependentFunctions.clear();
+	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		return "error";
+	}
+	int sz = dependentFunctions.size();
+	char* df = new char[sz];
+	for (i=0;i<sz;i++){
+		df[i]=dependentFunctions[i];
+	}
+	df[sz]='\0';
+	output_dependent_functions(df);
+	
+	dependentChars = getDependents(postfixedV[1]);
+	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		return "error";
+	}
+	sz = dependentChars.size();
+	char* dc = new char[sz];
+	for (i=0;i<sz;i++){
+		dc[i]=dependentChars[i];
+	}
+	dc[sz]='\0';
+	output_dependents(dc);
+	
 
+	postfixedV[1] = removeDependents(postfixedV[1]);
+	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		return "error";
+	}
+	//string_log(postfixedV[1].c_str());
+	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	//string_log("postfixed");
+	//int si;
+	//for (si=0;si<postfixed.length();si++){
+	//	std::string ssi(1,postfixed.at(si));
+	//	string_log(ssi.c_str());
+	//}
+	postfixed = removeSolves(postfixed);
+	if (!checkPostfix(postfixed)){
+		return "error";
+	}
+
+	postfixed = removeBracketsOne(postfixed);
+	if (!checkPostfix(postfixed)){
+		return "error";
+	}
+	return postfixed;
+}
 
 
 extern "C" {
@@ -127,65 +192,10 @@ void LatexIt(char* aa) {
 		a = a.substr(4,a.length()-4);
 	}
 	
-	dependentChars.clear();
-	int i;
-	for (i=0;i<a.length();i++){
-		if (a.at(i) == '{'){
-			a[i] = '(';
-		}
-		else if (a.at(i) == '}'){
-			a[i] = ')';
-		}
-		else if (a.at(i) < 0){
-			return;
-		}
-		else if (a.at(i) == '\\'){
-			return;
-		}
-	}
-	dependentFunctions.clear();
-	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+	std::string postfixed = prepareIt(a);
+	if (postfixed == "error"){
 		return;
 	}
-	int sz = dependentFunctions.size();
-	char* df = new char[sz];
-	for (i=0;i<sz;i++){
-		df[i]=dependentFunctions[i];
-	}
-	df[sz]='\0';
-	output_dependent_functions(df);
-	//string_log("postfixing");
-	//string_log(postfixedV[0].c_str());
-	//string_log(postfixedV[1].c_str());
-	
-	dependentChars = getDependents(postfixedV[1]);
-	sz = dependentChars.size();
-	char* dc = new char[sz];
-	for (i=0;i<sz;i++){
-		dc[i]=dependentChars[i];
-	}
-	dc[sz]='\0';
-	output_dependents(dc);
-	
-
-	postfixedV[1] = removeDependents(postfixedV[1]);
-	//string_log(postfixedV[1].c_str());
-	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	//string_log("postfixed");
-	//int si;
-	//for (si=0;si<postfixed.length();si++){
-	//	std::string ssi(1,postfixed.at(si));
-	//	string_log(ssi.c_str());
-	//}
-	postfixed = removeSolves(postfixed);
-	//string_log("solved");
-	//for (si=0;si<postfixed.length();si++){
-	//	std::string ssi(1,postfixed.at(si));
-	//	string_log(ssi.c_str());
-	//}
-	postfixed = removeBracketsOne(postfixed);
-	
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
 		currentV[varName]=removeBORP(postfixed);
@@ -227,52 +237,10 @@ void TreeIt(char* aa) {
 		a = a.substr(4,a.length()-4);
 	}
 	
-	dependentChars.clear();
-	int i;
-	for (i=0;i<a.length();i++){
-		if (a.at(i) == '{'){
-			a[i] = '(';
-		}
-		else if (a.at(i) == '}'){
-			a[i] = ')';
-		}
-		else if (a.at(i) < 0){
-			return;
-		}
-		else if (a.at(i) == '\\'){
-			return;
-		}
+	std::string postfixed = prepareIt(a);
+	if (postfixed == "error"){
+		return;
 	}
-	dependentFunctions.clear();
-	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	int sz = dependentFunctions.size();
-	char* df = new char[sz];
-	for (i=0;i<sz;i++){
-		df[i]=dependentFunctions[i];
-	}
-	df[sz]='\0';
-	output_dependent_functions(df);
-	
-	
-	dependentChars = getDependents(postfixedV[1]);
-	sz = dependentChars.size();
-	char* dc = new char[sz];
-	for (i=0;i<sz;i++){
-		dc[i]=dependentChars[i];
-	}
-	dc[sz]='\0';
-	output_dependents(dc);
-	
-
-	postfixedV[1] = removeDependents(postfixedV[1]);
-	//string_log(postfixedV[1].c_str());
-	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	string_log(postfixed.c_str());
-	
-	
-	postfixed = removeSolves(postfixed);
-	//string_log(postfixed.c_str());
-	postfixed = removeBracketsOne(postfixed);
 	
 	
 	Step step;
@@ -323,49 +291,10 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	}
 	
 	
-	dependentChars.clear();
-	int i;
-	for (i=0;i<fn.length();i++){
-		if (fn.at(i) == '{'){
-			fn[i] = '(';
-		}
-		else if (fn.at(i) == '}'){
-			fn[i] = ')';
-		}
-		else if (fn.at(i) < 0){
-			return;
-		}
-		else if (fn.at(i) == '\\'){
-			return;
-		}
+	std::string postfixed = prepareIt(fn);
+	if (postfixed == "error"){
+		return;
 	}
-	dependentFunctions.clear();
-	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
-	int sz = dependentFunctions.size();
-	char* df = new char[sz];
-	for (i=0;i<sz;i++){
-		df[i]=dependentFunctions[i];
-	}
-	df[sz]='\0';
-	output_dependent_functions(df);
-	
-	dependentChars = getDependents(postfixedV[1]);
-	sz = dependentChars.size();
-	char* dc = new char[sz];
-	for (i=0;i<sz;i++){
-		dc[i]=dependentChars[i];
-	}
-	dc[sz]='\0';
-	output_dependents(dc);
-	
-	postfixedV[1] = removeDependents(postfixedV[1]);
-	
-	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
-	
-	
-	postfixed = removeSolves(postfixed);
-	//string_log(postfixed.c_str());
-	postfixed = removeBracketsOne(postfixed);
 	
 	postfixedV[0] = "";
 	postfixedV[1] = "";
