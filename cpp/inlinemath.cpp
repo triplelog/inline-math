@@ -186,7 +186,7 @@ void OneRule(char* aa) {
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
-	killNow.startTime = duration_cast<nanoseconds>(nanos).count();
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
 	char varName = ' ';
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
@@ -217,7 +217,7 @@ void LatexIt(char* aa) {
 	output_latex(latexed.c_str());
 	latexed = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
 	//console_log(duration);
 }
@@ -225,7 +225,7 @@ void LatexIt(char* aa) {
 void TreeIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
-	killNow.startTime = duration_cast<nanoseconds>(nanos).count();
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
 	char varName = ' ';
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
@@ -275,7 +275,7 @@ void TreeIt(char* aa) {
 	output_latex(treeStr.c_str());
 	treeStr = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
 	//console_log(duration);
 }
@@ -283,7 +283,7 @@ void TreeIt(char* aa) {
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
 	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
-	killNow.startTime = duration_cast<nanoseconds>(nanos).count();
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string fn = std::string(aa);
 	std::string iV = "x";
 	std::string dV = "y";
@@ -330,7 +330,7 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	graph_svg(plot.c_str());
 	plot = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
 	
 	console_log(duration);
@@ -409,7 +409,7 @@ void AddRules(char* aa,char* bb) {
 	
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
 	
 	console_log(duration);
@@ -424,8 +424,8 @@ int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
 	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
-	killNow.startTime = duration_cast<nanoseconds>(nanos).count();
-	killNow.maxTime = 1000000; //nanoseconds: 1 millionth of second
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
+	killNow.maxTime = 1000; //milliseconds: 1 thousandth of second
 	maxDigits = -1;
 	exactDigits = -1;
 	initialRun();
