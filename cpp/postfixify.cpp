@@ -1843,7 +1843,17 @@ bool checkPostfix(std::string postfix) {
 	            case '[': break;
 	            case '!': break;
 	            case -125: break;
-	            default: return false;
+	            default: {
+	            	if (postfix.at(i) <= -69){
+	            		break;
+	            	}
+	            	else if (postfix.at(i) < 0){
+	            		currentIndex++; break;
+	            	}
+	            	else {
+	            		return false;
+	            	}
+	            }
 	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
 	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 
 	            //case '&': stack[currentIndex - 2].w = (stack[currentIndex - 2].w + stack[currentIndex - 1].w > 1) ? 1 : 0; stack[currentIndex - 2].t = (stack[currentIndex - 2].t == 'B' && stack[currentIndex - 1].t == 'B') ? 'B' : 'N'; break; 
