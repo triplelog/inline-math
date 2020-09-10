@@ -302,7 +302,8 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 			fn = fn;
 		}
 	}
-	std::string plot = makeGraph(fn,iV,dV,left,right,bottom,top);
+	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
+	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());
 	plot = "\0";

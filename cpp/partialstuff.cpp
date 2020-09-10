@@ -673,12 +673,12 @@ void oneLesson(std::string s){
 	makeRulesNew(rows);
 }
 
-std::vector<double> getPoints(std::string fn, std::string indVar, std::string depVar,double domainLeft,double domainRight, int n) {
+std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string indVar, std::string depVar,double domainLeft,double domainRight, int n) {
 
 	std::vector<double> out;
 	
 	
-	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
+	
 	std::vector<int> xIdx;
 	
 	int i; int ii;
