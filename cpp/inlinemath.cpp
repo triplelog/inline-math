@@ -201,6 +201,7 @@ void LatexIt(char* aa) {
 	
 	std::string postfixed = prepareIt(a);
 	if (postfixed == "error"){
+		postfixed = "\0";
 		output_latex("???");
 		return;
 	}
@@ -237,6 +238,7 @@ void TreeIt(char* aa) {
 	
 	std::string postfixed = prepareIt(a);
 	if (postfixed == "error"){
+		postfixed = "\0";
 		output_latex("???");
 		return;
 	}
@@ -251,7 +253,14 @@ void TreeIt(char* aa) {
 	//std::vector<int> startNodes;
 	//std::map<char,std::string> partMap;
 	std::string treeStr = outputTree(step,step);
-	
+	if (treeStr == "killed"){
+		postfixed = "\0";
+		//noIdentities = "\0";
+		treeStr += "\0";
+		output_latex("???");
+		treeStr = "\0";
+		return;
+	}
 	
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
@@ -292,6 +301,7 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	int i;
 	std::string postfixed = prepareIt(fn);
 	if (postfixed == "error"){
+		postfixed = "\0";
 		graph_svg("???");
 		return;
 	}

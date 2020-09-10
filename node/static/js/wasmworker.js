@@ -116,7 +116,13 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			if (isTree){
 				t(input);
 				latex = latex.replace(/\\/g,'\\\\');
-				var tree = JSON.parse('{'+latex+'}');
+				var tree;
+				if (latex == "???"){
+					tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
+				}
+				else {
+					tree = JSON.parse('{'+latex+'}');
+				}
 				var outText = "";
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
