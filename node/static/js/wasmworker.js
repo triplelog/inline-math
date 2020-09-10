@@ -308,7 +308,9 @@ const renderer = {
 		console.log(varName);
 	}
 	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
-	
+	if (matchDisplay && matchDisplay.index == 0){
+		matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
+	}
 	
 	
 	if (match && match.index == 0){
@@ -423,7 +425,6 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,'`$&`');
 		
-		console.log(markdown);
 		markdown = markdown.replace(/``\$/g,'`$');
 		markdown = markdown.replace(/\$``/g,'$`');
 		markdown = markdown.replace(/\$`\[[A-Z]\]`/g,replacer);
@@ -431,7 +432,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
 		
-		console.log(markdown);
+
 		var html = marked(markdown);
 		result = ["markdown",message[1],html];
 	}
