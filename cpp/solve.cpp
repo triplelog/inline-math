@@ -287,7 +287,10 @@ std::string numberType(std::string input){
 Number negateOne(const Number numA){
 	Number n;
 	if (numA.type == 11){
+		string_log("negate");
+		string_log(outputNumber(numA));
 		n = mulTwo(numbers["-1"],numA);
+		string_log(outputNumber(n));
 		return n;
 	}
 	n.type = -1*numA.type;
@@ -536,7 +539,7 @@ Number addTwo(const Number numA, const Number numB){
 				numberType(imA);
 			}
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9)){
 			realA = outputNumber(numA);
 			imA = "0";
 		}
@@ -560,7 +563,7 @@ Number addTwo(const Number numA, const Number numB){
 				numberType(imB);
 			}
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 			imB = "0";
 		}
@@ -586,7 +589,7 @@ Number addTwo(const Number numA, const Number numB){
 				numberType(realA);
 			}
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9)){
 			realA = outputNumber(numA);
 		}
 		if (numB.type == 11 && numB.bottom == "\\pi"){
@@ -595,7 +598,7 @@ Number addTwo(const Number numA, const Number numB){
 				numberType(realB);
 			}
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 		}
 		Number realN;
@@ -618,7 +621,7 @@ Number addTwo(const Number numA, const Number numB){
 		if (numA.type == 11 && numA.bottom == "e"){
 			arrayA = eToArray(numA);
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9)){
 			realA = outputNumber(numA);
 		}
 		else {
@@ -627,7 +630,7 @@ Number addTwo(const Number numA, const Number numB){
 		if (numB.type == 11 && numB.bottom == "e"){
 			arrayB = eToArray(numB);
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 		}
 		else {
@@ -983,7 +986,7 @@ Number mulTwo(const Number numA, const Number numB){
 				numberType(imA);
 			}
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9)){
 			realA = outputNumber(numA);
 			imA = "0";
 		}
@@ -1007,7 +1010,7 @@ Number mulTwo(const Number numA, const Number numB){
 				numberType(imB);
 			}
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 			imB = "0";
 		}
@@ -1037,7 +1040,7 @@ Number mulTwo(const Number numA, const Number numB){
 				numberType(realA);
 			}
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9)){
 			realA = outputNumber(numA);
 		}
 		else {
@@ -1049,7 +1052,7 @@ Number mulTwo(const Number numA, const Number numB){
 				numberType(realB);
 			}
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 		}
 		else {
@@ -1075,7 +1078,7 @@ Number mulTwo(const Number numA, const Number numB){
 		if (numA.type == 11 && numA.bottom == "e"){
 			arrayA = eToArray(numA);
 		}
-		else if (numA.type > 0 && numA.type <9){
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type >=9) ){
 			realA = outputNumber(numA);
 		}
 		else {
@@ -1084,7 +1087,7 @@ Number mulTwo(const Number numA, const Number numB){
 		if (numB.type == 11 && numB.bottom == "e"){
 			arrayB = eToArray(numB);
 		}
-		else if (numB.type > 0 && numB.type <9){
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type >=9)){
 			realB = outputNumber(numB);
 		}
 		else {
