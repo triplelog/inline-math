@@ -504,15 +504,21 @@ std::string removeParOne(std::string input) {
 			bracketLength++;
 			break;
 		}
-		else if (mychar == '{'){ //Must always be inside of a par
+		else if (mychar == '{' && foundBracket){ //inside of a par
 			interiorBrackets = true;
 			tempString += mychar;
 			bracketLength++;
 		}
-		else if (mychar == '}') {
+		else if (mychar == '}' && foundBracket) {
 			interiorBrackets = false;
 			tempString += mychar;
 			bracketLength++;
+		}
+		else if (mychar == '{' && !foundBracket){ //not inside of par
+			interiorBrackets = true;
+		}
+		else if (mychar == '}' && !foundBracket) {
+			interiorBrackets = false;
 		}
 		else if (mychar == '#' && !foundBracket && !interiorBrackets) {
 			operandToIndex[idx]=iii;
