@@ -88,7 +88,7 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 
 	
 	for (i=0;i<pfstr.length();i++){
-		if (killNow){return {returnStringsCorrect,returnStringsIncorrect};}
+		if (killNow.check()){return {returnStringsCorrect,returnStringsIncorrect};}
 		char mychar = pfstr.at(i);
 		if (mychar == '@'){
 			break;
