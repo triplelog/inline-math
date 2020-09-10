@@ -10,16 +10,18 @@ var kcpp = Module.cwrap("KillIt","string",["bool"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var t = Module.cwrap("TreeIt","string",["string"]);
 
-function resolveL(input) {
+function resolveKill() {
   return new Promise(resolve => {
-      lcpp(input);
-      resolve('resolved');
+      setTimeout(() => {
+      	  kcpp(true);
+		  resolve('resolved');
+		}, 100);
   });
 }
 
-async function asyncL(input) {
+async function asyncKill() {
   console.log('calling');
-  const result = await resolveL(input);
+  const result = await resolveKill();
   console.log(result);
   // expected output: "resolved"
 }
@@ -27,12 +29,10 @@ async function asyncL(input) {
 function l(input){
 	kcpp(false);
 	console.log(input);
-	asyncL(input);
-	kcpp(true);
-	//lcpp(input);
+	asyncKill();
+	lcpp(input);
 	console.log("aaa");
 	console.log(input);
-	kcpp(true);
 	console.log(input);
 }
 
