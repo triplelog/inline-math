@@ -91,7 +91,18 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			if (isTree){
 				tjs("|"+varName+":="+input);
 				latex = latex.replace(/\\/g,'\\\\');
-				var tree = JSON.parse('{'+latex+'}');
+				var tree;
+				if (latex == "???"){
+					tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
+				}
+				else {
+					try {
+						tree = JSON.parse('{'+latex+'}');
+					}
+					catch(err){
+						tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
+					}
+				}
 				var outText = "";
 				for (var i=0;i<tree.allNodes.length;i++){
 					var node = tree.allNodes[i];
@@ -124,7 +135,12 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 					tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
 				}
 				else {
-					tree = JSON.parse('{'+latex+'}');
+					try {
+						tree = JSON.parse('{'+latex+'}');
+					}
+					catch(err){
+						tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
+					}
 				}
 				var outText = "";
 				for (var i=0;i<tree.allNodes.length;i++){
@@ -452,7 +468,13 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!/g,replacer);
 		
 
-		var html = marked(markdown);
+		var html;
+		try {
+			html = marked(markdown);
+		}
+		catch(err){
+			html = message[1];
+		}
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
