@@ -14,7 +14,6 @@ function l(input){
 	console.log(input);
 	lcpp(input);
 	kcpp(true);
-	kcpp(false);
 }
 
 var latex = "";
