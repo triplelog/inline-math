@@ -1742,7 +1742,6 @@ Number functionTwo(const Number numA, const Number numB){
 		//for (i=f.leftIdx.size()-1;i>=0;i--){
 		//	postfix.replace(f.leftIdx[i],f.var.length(),input);
 		//}
-		string_log(newPostfix.c_str());
 		return solvePostfix(newPostfix);
 	}
 	Number n;
@@ -1823,8 +1822,6 @@ Number solvePostfix(std::string postfix) {
   	std::vector<Number> intArray;
   	std::string currentOperand = "";
   	Number n;
-  	//string_log("solve");
-  	//string_log(postfix.c_str());
   	if (numbers.find("") == numbers.end()){
 		numberType("");
 	}
@@ -2022,15 +2019,6 @@ Number solvePostfix(std::string postfix) {
         } 
     } 
 	
-	//std::cout << "pfb: " << postfix << " and " << stack[0].type << " and " << outputNumber(stack[0]) << "\n";
-	/*if (stack[0].type == 11){
-		std::vector<std::string> pfA = postfixifyVector(outputNumber(stack[0]),false);
-		std::string pfN = pfA[0]+"@"+pfA[1];
-		stack[0].top = pfN;
-		stack[0].bottom = "postfix";
-		string_log("display");
-		string_log(pfN.c_str());
-	}*/
 	solvedPostfixMap[postfix] = stack[0];
 	return stack[0];
 }
@@ -2366,8 +2354,6 @@ std::string solveFunction(std::string input){
 	std::string var = "";
 	int i;
 	input = removeBracketsOne(input);
-	//string_log("solveFunction");
-	//string_log(input.c_str());
 	std::string functionName = "";
 	int idx = 0;
 	int iidx = 0;
@@ -2407,9 +2393,6 @@ std::string solveFunction(std::string input){
 			currentOperand += input.at(i);
 		}
 	}
-	//string_log(functionName.c_str());
-	//string_log(inputLeft.c_str());
-	//string_log(inputRight.c_str());
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
 		int i;
@@ -2417,11 +2400,9 @@ std::string solveFunction(std::string input){
 		for (i=f.rightIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.rightIdx[i],f.var.length()+1,inputRight);
 		}
-		//string_log(newPostfix.c_str());
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		string_log(newPostfix.c_str());
 		return "("+newPostfix+")";
 	}
 	else {

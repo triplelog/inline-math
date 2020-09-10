@@ -595,12 +595,8 @@ std::string removeType11(std::string input) {
 	
 	int firstIndex = operandToIndex[iidx];
 	std::string retInput = input;
-	string_log("type11 replace");
-	string_log(input.c_str());
 	input.replace(secondIndex,bracketLength+1,rightString);
-	string_log(input.c_str());
 	input.replace(firstIndex,1,leftString);
-	string_log(input.c_str());
 	//return retInput;
 	return removeType11(input);
 	
@@ -667,10 +663,6 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	f.rightIdx = rightIdx;
 	f.leftIdx = leftIdx;
 	functionMap[functionName]=f;
-	//string_log(independentVar.c_str());
-	//string_log(functionName.c_str());
-	//string_log(postfix.c_str());
-	//console_log(rightIdx[0]);
 }
 std::string removeSolves(std::string input) {
 	std::map<int,int> operandToIndex;
@@ -740,18 +732,13 @@ std::string removeSolves(std::string input) {
 	}
 	
 	int firstIndex = operandToIndex[iidx];
-	//std::cout << input << " --a\n";
-	//string_log(bracketStrings[0].c_str());
-	//string_log(bracketStrings[1].c_str());
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
 	char solveType = '0';
 	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
 		solveType = bracketStrings[0].at(0);
 		oldPostfix.replace(0,1,"");
 	}
-	//string_log(oldPostfix.c_str());
 	oldPostfix = removeBracketsOne(oldPostfix);
-	//string_log(oldPostfix.c_str());
 	if (solveType == 'A'){
 		//string_log("solving arithmetic");
 		//int si;
@@ -760,29 +747,11 @@ std::string removeSolves(std::string input) {
 		//	string_log(ssi.c_str());
 		//}
 		oldPostfix = solveArithmetic(oldPostfix);
-		
-		//for (si=0;si<oldPostfix.length();si++){
-		//	std::string ssi(1,oldPostfix.at(si));
-		//	string_log(ssi.c_str());
-		//}
 	}
 	else if (solveType == 'R'){
-		//string_log("solving arithmetic");
-		//int si;
-		//for (si=0;si<oldPostfix.length();si++){
-		//	std::string ssi(1,oldPostfix.at(si));
-		//	string_log(ssi.c_str());
-		//}
-		
-		//oldPostfix = approxArithmetic(oldPostfix);
 		maxDigits = 2;
 		oldPostfix = solveArithmetic(oldPostfix);
 		maxDigits = -1;
-		
-		//for (si=0;si<oldPostfix.length();si++){
-		//	std::string ssi(1,oldPostfix.at(si));
-		//	string_log(ssi.c_str());
-		//}
 	}
 	else if (solveType == 'I'){
 		oldPostfix = removeIdentities(oldPostfix);
@@ -795,9 +764,7 @@ std::string removeSolves(std::string input) {
 	}
 	else if (solveType == 'D'){
 		grabFunction(oldPostfix);
-		//oldPostfix = doCalculus(oldPostfix);
 	}
-	//string_log(oldPostfix.c_str());
 	
 	std::string newLeft = "";
 	std::string newRight = "";
@@ -814,11 +781,7 @@ std::string removeSolves(std::string input) {
 		}
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
-	//string_log(input.c_str());
-	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,newLeft);
-	//string_log(input.c_str());
-	//std::cout << input << " --c\n";
 	return removeSolves(input);
 	
 	
