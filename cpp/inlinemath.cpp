@@ -320,9 +320,13 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 			return;
 		}
 	}
+	string_log("beforefn");
+	string_log(fn.c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
 	//string_log(postfixedV[0].c_str());
 	//string_log(postfixedV[1].c_str());
+	string_log("before");
+	string_log(postfixedV[1].c_str());
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
 	char* dc = new char[sz];
