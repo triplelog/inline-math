@@ -28,6 +28,7 @@ function l(input){
 	kcpp(false);
 	console.log(input);
 	asyncL(input);
+	kcpp(true);
 	//lcpp(input);
 	console.log("aaa");
 	console.log(input);
