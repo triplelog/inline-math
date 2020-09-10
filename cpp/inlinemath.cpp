@@ -49,6 +49,10 @@ EM_JS(void, output_dependents, (const char* x), {
   setDependents(UTF8ToString(x));
 });
 
+EM_JS(void, output_dependent_functions, (const char* x), {
+  setDependentFunctions(UTF8ToString(x));
+});
+
 EM_JS(void, send_ready, (), {
   cpp_ready();
 });
@@ -282,9 +286,23 @@ void TreeIt(char* aa) {
 
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	std::string a = std::string(aa);
-	
-	std::string plot = makeGraph(a,left,right,bottom,top);
+	std::string fn = std::string(aa);
+	std::string iV = "x";
+	std::string dV = "y";
+	if (fn.length()>2){
+		if (fn.at(0)=='y' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+		}
+		else if (fn.at(0)=='x' && fn.at(1) == '='){
+			fn = fn.substr(2,fn.length()-2);
+			iV = "y";
+			dV = "x";
+		}
+		else {
+			fn = fn;
+		}
+	}
+	std::string plot = makeGraph(fn,iV,dV,left,right,bottom,top);
 	plot += "\0";
 	graph_svg(plot.c_str());
 	plot = "\0";

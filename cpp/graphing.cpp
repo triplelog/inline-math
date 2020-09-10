@@ -49,7 +49,7 @@ std::string convertY(double y,double bottom,double top,double shift){
 
 }
 
-std::string makeGraph(std::string fn,double left, double right,double bottom,double top){
+std::string makeGraph(std::string fn,std::string iV, std::string dV,double left, double right,double bottom,double top){
 	
 	char* buf;
 	std::string svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
@@ -111,20 +111,9 @@ std::string makeGraph(std::string fn,double left, double right,double bottom,dou
 	
 	int n = 500;
 	std::vector<double> points;
-	if (fn.length()>2){
-		if (fn.at(0)=='y' && fn.at(1) == '='){
-			fn = fn.substr(2,fn.length()-2);
-			points = getPoints(fn,"x","y",left,right,n);
-		}
-		else if (fn.at(0)=='x' && fn.at(1) == '='){
-			fn = fn.substr(2,fn.length()-2);
-			points = getPoints(fn,"y","x",bottom,top,n);
-		}
-		else {
-			fn = fn;
-			points = getPoints(fn,"x","y",bottom,top,n);
-		}
-	}
+
+	points = getPoints(fn,iV,dV,bottom,top,n);
+
 	//console.log(outStr);
 	svg += "<path d=\"M";
 	if (points.size()<2*n+2){

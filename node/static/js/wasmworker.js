@@ -135,7 +135,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
 		for (var i=0;i<dependentfunctions.length;i++){
-			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
+			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = 7;//currentF[dependentfunctions[i]];
 		}
 		
 	}
