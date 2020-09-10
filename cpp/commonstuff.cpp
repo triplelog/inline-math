@@ -95,7 +95,8 @@ struct KillNow {
 	long maxTime; //in 1/1000000 of second
 	long startTime;
 	bool check() {
-		long nowTime = std::chrono::high_resolution_clock::now().time_since_epoch();
+		auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
+		long nowTime = duration_cast<nanoseconds>(nanos).count();
 		if (nowTime - startTime > maxTime){
 			return false;
 		}
