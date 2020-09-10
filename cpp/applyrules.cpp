@@ -401,6 +401,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 			}
 			//std::cout << newPostfix << " was npf\n";
 			string_log("here");
+			string_log(rule.out.c_str());
 			string_log(userString.c_str());
 			string_log(newPostfix.c_str());
 			
