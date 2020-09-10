@@ -320,13 +320,9 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 			return;
 		}
 	}
-	string_log("beforefn");
-	string_log(fn.c_str());
+	
 	std::vector<std::string> postfixedV = postfixifyVector(fn,true);
-	//string_log(postfixedV[0].c_str());
-	//string_log(postfixedV[1].c_str());
-	string_log("before");
-	string_log(postfixedV[1].c_str());
+
 	dependentChars = getDependents(postfixedV[1]);
 	int sz = dependentChars.size();
 	char* dc = new char[sz];
@@ -336,12 +332,29 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	dc[sz]='\0';
 	output_dependents(dc);
 	
-	string_log("before");
-	string_log(postfixedV[1].c_str());
 	postfixedV[1] = removeDependents(postfixedV[1]);
-	string_log("removed");
-	string_log(postfixedV[1].c_str());
 	
+	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
+	
+	
+	postfixed = removeSolves(postfixed);
+	//string_log(postfixed.c_str());
+	postfixed = removeBracketsOne(postfixed);
+	
+	postfixedV[0] = "";
+	postfixedV[1] = "";
+	bool isRight = false;
+	for (i=0;i<postfixed.length();i++){
+		if (postfixed.at(i)=='@'){
+			isRight = true;
+		}
+		else if (isRight){
+			postfixedV[1] += postfixed.at(i);
+		}
+		else {
+			postfixedV[0] += postfixed.at(i);
+		}
+	}
 	
 	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
 	plot += "\0";
