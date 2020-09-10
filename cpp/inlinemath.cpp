@@ -185,7 +185,7 @@ void OneRule(char* aa) {
 
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	killNow.startTime = std::chrono::high_resolution_clock::now();
+	killNow.startTime = std::chrono::high_resolution_clock::now().time_since_epoch();
 	std::string a = std::string(aa);
 	char varName = ' ';
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
@@ -223,7 +223,7 @@ void LatexIt(char* aa) {
 
 void TreeIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	killNow.startTime = std::chrono::high_resolution_clock::now();
+	killNow.startTime = std::chrono::high_resolution_clock::now().time_since_epoch();
 	std::string a = std::string(aa);
 	char varName = ' ';
 	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
@@ -280,7 +280,7 @@ void TreeIt(char* aa) {
 
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	killNow.startTime = std::chrono::high_resolution_clock::now();
+	killNow.startTime = std::chrono::high_resolution_clock::now().time_since_epoch();
 	std::string fn = std::string(aa);
 	std::string iV = "x";
 	std::string dV = "y";
@@ -420,7 +420,7 @@ void AddRules(char* aa,char* bb) {
 int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
-	killNow.startTime = std::chrono::high_resolution_clock::now();
+	killNow.startTime = std::chrono::high_resolution_clock::now().time_since_epoch();
 	killNow.maxTime = 1000000;
 	maxDigits = -1;
 	exactDigits = -1;

@@ -92,10 +92,10 @@ struct Function {
 	std::vector<int> leftIdx;
 };
 struct KillNow {
-	long long maxTime; //in 1/1000000 of second
-	long long startTime;
+	long maxTime; //in 1/1000000 of second
+	long startTime;
 	bool check() {
-		long long nowTime = std::chrono::high_resolution_clock::now();
+		long nowTime = std::chrono::high_resolution_clock::now().time_since_epoch();
 		if (nowTime - startTime > maxTime){
 			return false;
 		}
