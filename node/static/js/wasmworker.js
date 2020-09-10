@@ -15,7 +15,7 @@ function ljs(input){
 	lcpp(input);
 }
 function pjs(input0,input1,input2,input3,input4){
-	pcpp(input);
+	pcpp(input0,input1,input2,input3,input4);
 }
 function tjs(input){
 	tcpp(input);
