@@ -290,7 +290,7 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 		}
 	}
 	
-	
+	int i;
 	std::string postfixed = prepareIt(fn);
 	if (postfixed == "error"){
 		return;
