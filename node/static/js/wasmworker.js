@@ -307,6 +307,9 @@ const renderer = {
 		varName = matchInvisible[0][matchInvisible[0].length-2];
 		console.log(varName);
 	}
+	else {
+		console.log(text);
+	}
 	matchInvisible = text.match(/\$+([^\$\n]+?)\$!+/);
 	if (matchDisplay && matchDisplay.index == 0){
 		matchInvisible = text.match(/\$\$+([^\$\n]+?)\$\$!+/);
