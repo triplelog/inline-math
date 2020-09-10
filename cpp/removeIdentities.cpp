@@ -86,17 +86,21 @@ std::string solveArithmetic(std::string s){
 		}
 		foundNext = false;
 		std::vector<Step> someStrings = makeTree(newPostfix,10)[0];
+		string_log("madeTree");
+		string_log(newPostfix.c_str());
 		if (someStrings.size()>0){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
 				std::string tempPF = removeBracketsOne(someStrings[ii].next);
+				string_log(tempPF.c_str());
 				for (iii=0;iii<tempPF.length();iii++){
 					if (tempPF.at(iii)=='@'){
 						if (iii<minLeft){
 							foundNext = true;
 							newPostfix = tempPF;
 							minLeft = iii;
+							break;
 						}
 					}
 				}
