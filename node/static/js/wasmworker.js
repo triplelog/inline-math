@@ -6,16 +6,19 @@ importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
 var lcpp = Module.cwrap("LatexIt","string",["string"]);
-var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
-var t = Module.cwrap("TreeIt","string",["string"]);
+var pcpp = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
+var tcpp = Module.cwrap("TreeIt","string",["string"]);
 
 
 
-function l(input){
-	console.log(input);
+function ljs(input){
 	lcpp(input);
-	console.log("aaa");
-	console.log(input);
+}
+function pjs(input0,input1,input2,input3,input4){
+	pcpp(input);
+}
+function tjs(input){
+	tcpp(input);
 }
 
 var latex = "";
@@ -86,7 +89,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 	else{
 		if (varName != ""){
 			if (isTree){
-				t("|"+varName+":="+input);
+				tjs("|"+varName+":="+input);
 				latex = latex.replace(/\\/g,'\\\\');
 				var tree = JSON.parse('{'+latex+'}');
 				var outText = "";
@@ -104,7 +107,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				k = outText;
 			}
 			else {
-				l("|"+varName+":="+input);
+				ljs("|"+varName+":="+input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
@@ -114,7 +117,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 		}
 		else{
 			if (isTree){
-				t(input);
+				tjs(input);
 				latex = latex.replace(/\\/g,'\\\\');
 				var tree;
 				if (latex == "???"){
@@ -138,7 +141,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				k = outText;
 			}
 			else {
-				l(input);
+				ljs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
@@ -341,7 +344,7 @@ const renderer = {
 		input = input.replace('plot(','');
 		input = input.substr(0,input.length-1);
 		svg = "<span>";
-		p(input,-10,10,-10,10);
+		pjs(input,-10,10,-10,10);
 		svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
 		svg += '</span>';
 
@@ -468,7 +471,7 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "plot"){
 		svg = "";
-		p(message[1],message[2],message[3],message[4],message[5]);
+		pjs(message[1],message[2],message[3],message[4],message[5]);
 		svg += '<input type="range" id="domainSlider" min="0" max="'+(message[6]*2)+'" value="'+message[6]+'"></input>';
 		result = ["svg",message[1],svg];
 	}

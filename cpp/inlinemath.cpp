@@ -425,7 +425,7 @@ int main() {
 	srand(time(NULL));
 	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
-	killNow.maxTime = 1000; //milliseconds: 1 thousandth of second
+	killNow.maxTime = 3142; //milliseconds: 1 thousandth of second
 	maxDigits = -1;
 	exactDigits = -1;
 	initialRun();
