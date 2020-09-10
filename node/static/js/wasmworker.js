@@ -6,11 +6,15 @@ importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
 var lcpp = Module.cwrap("LatexIt","string",["string"]);
+var kcpp = Module.cwrap("KillIt","string",["bool"]);
 var p = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var t = Module.cwrap("TreeIt","string",["string"]);
 
 function l(input){
+	console.log(input);
 	lcpp(input);
+	kcpp(true);
+	kcpp(false);
 }
 
 var latex = "";
@@ -290,7 +294,6 @@ const renderer = {
   	text = text.replace(/&gt;/g,'>');
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
-  	console.log(text);
   	var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 	var match = text.match(/\$+([^\$\n]+?)\$+/);
 	var matchUpper = text.match(/\$+([^\$\n]+?)\$\[[A-Z]\]+/);
@@ -310,10 +313,8 @@ const renderer = {
 	}
 	else if (matchInvisible && matchInvisible.index == 0){
 		varName = matchInvisible[0][matchInvisible[0].length-2];
-		console.log(varName);
 	}
 	else {
-		console.log(text);
 	}
 	matchInvisible = text.match(/\$+([^\$\n]+?)\$!!+/);
 	if (matchDisplay && matchDisplay.index == 0){

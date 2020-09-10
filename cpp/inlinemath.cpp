@@ -179,6 +179,10 @@ void OneRule(char* aa) {
 
 
 
+void KillIt(bool kill){
+	killNow = kill;
+}
+
 
 
 
@@ -205,16 +209,6 @@ void LatexIt(char* aa) {
 		currentV[varName]=removeBORP(postfixed);
 	}
 	
-	
-	
-	//console_log(sz);
-	//std::string noIdentities = removeIdentities(postfixed);
-	
-	//std::string noIdentities = solveArithmetic(postfixed);
-	
-	//std::string noIdentities = toCanonical(postfixed);
-	
-	//std::string noIdentities = doCalculus(postfixed);
 	
 	std::string latexed = latexOne(postfixed);
 	postfixed = "\0";
@@ -416,6 +410,7 @@ void AddRules(char* aa,char* bb) {
 int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
+	killNow = false;
 	maxDigits = -1;
 	exactDigits = -1;
 	initialRun();

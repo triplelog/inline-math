@@ -402,6 +402,7 @@ int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;
 std::string maxDepth;
 std::string maxDepthn1;
+bool killNow;
 
 
 std::string removeBracketsOne(std::string input) {
@@ -460,6 +461,7 @@ std::string removeBracketsOne(std::string input) {
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
 	//std::cout << input << " --c\n";
+	if (killNow){return input;}
 	return removeBracketsOne(input);
 	
 	
@@ -533,6 +535,7 @@ std::string removeParOne(std::string input) {
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
 	//std::cout << input << " --c\n";
+	if (killNow){return input;}
 	return removeParOne(input);
 	
 	
@@ -598,6 +601,7 @@ std::string removeType11(std::string input) {
 	input.replace(secondIndex,bracketLength+1,rightString);
 	input.replace(firstIndex,1,leftString);
 	//return retInput;
+	if (killNow){return input;}
 	return removeType11(input);
 	
 	
@@ -782,6 +786,7 @@ std::string removeSolves(std::string input) {
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
+	if (killNow){return input;}
 	return removeSolves(input);
 	
 	
@@ -794,11 +799,15 @@ std::string removeBORP(std::string input){
 	for (iii=0;iii<len;iii++){
 		char mychar = input.at(iii);
 		if (mychar == '{'){
+			if (killNow){return input;}
 			std::string newInput = removeBracketsOne(input);
+			if (killNow){return newInput;}
 			return removeBORP(newInput);
 		}
 		else if (mychar == '('){
+			if (killNow){return input;}
 			std::string newInput = removeParOne(input);
+			if (killNow){return newInput;}
 			return removeBORP(newInput);
 		}
 	}
@@ -838,6 +847,7 @@ std::vector<char> getDependents(std::string second){
 	}
 	return dependents;
 }
+
 std::string removeDependents(std::string second){
 	int i;
 	std::string currentOperand = "";
@@ -1017,7 +1027,7 @@ std::string outputTree(Step stepS,Step stepE){
 	//std::cout << "before third: " << pfstr << "\n";
 
 	for (i=0;i<pfstr.length();i++){
-		
+		if (killNow){return "killed";}
 		if (pfstr.at(i) == '@'){
 			break;
 		}
