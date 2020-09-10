@@ -131,6 +131,9 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 			}
 		}
 	}
+	if (svg.at(svg.length()-1) == 'M'){
+		svg += "0,0 0,0";
+	}
 	
 	svg += "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";
 	
