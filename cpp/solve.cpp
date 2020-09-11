@@ -594,6 +594,9 @@ Number addTwo(const Number numA, const Number numB){
 			if (realA != "0"){
 				return n;
 			}
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
 		}
 		if (numB.type == 11 && numB.bottom == "\\pi"){
 			realB = numB.top;
@@ -606,12 +609,18 @@ Number addTwo(const Number numA, const Number numB){
 			if (realB != "0"){
 				return n;
 			}
+			if (numbers.find(realB) == numbers.end()){
+				numberType(realB);
+			}
 		}
 		Number realN;
-		
+		string_log("adding pi");
+		string_log(realA.c_str());
+		string_log(realB.c_str());
 		realN = addTwo(numbers[realA],numbers[realB]);
 		n.type = 11;
 		n.top = outputNumber(realN);
+		string_log(n.top.c_str());
 		n.bottom = "\\pi";
 		return n;
 	}
