@@ -86,7 +86,7 @@ ee
 :::
 ::: rule
 in: -A
-out: =(0-A)
+out: =(-1*A)
 ee
 :::
 

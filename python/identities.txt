@@ -17,6 +17,11 @@ out: A
 ee
 :::
 ::: rule
+in: 0-A
+out: =(-1*A)
+ee
+:::
+::: rule
 in: 0+A
 out: A
 ee
