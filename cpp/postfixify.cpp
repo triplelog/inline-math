@@ -1032,13 +1032,24 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 					}
 					if (openPar == 0){
 						if (ii+3<input_str.length()){
-							if (input_str.at(ii+1) == '[' && input_str.at(ii+3) == ']'){
-								if (input_str.at(ii+2) >= 'A' && input_str.at(ii+2) <= 'Z'){
-									type = "";
-									type += input_str.at(ii+2);
-									ii+=3;
+							if (input_str.at(ii+1) == '['){
+								int ci;
+								type = "";
+								for (ci=ii+2;ci<input_str.length();ci++){
+									if (input_str.at(ci) >= 'A' && input_str.at(ci) <= 'Z'){
+										type += input_str.at(ci);
+									}
+									else if (input_str.at(ci) == ']'){
+										ii = ci;
+										break;
+									}
+									else {
+										type = "";
+										break;
+									}
 								}
-							}
+							} 
+							
 						}
 						break;
 					}
@@ -1063,21 +1074,26 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 	if (checkComputations){
 		int iii;
-		std::string twoChars = "..";
+		std::string checkChars = "";
 		for (iii=0;iii<postVector[1].length()-1;iii++){
-			twoChars = "";
-			twoChars += postVector[1].at(iii);
-			twoChars += postVector[1].at(iii+1);
-			if (repMap.find(twoChars) != repMap.end()){
-				//std::cout << "rmtc: " << repMap[twoChars] << "\n";
-				std::string repText = postfixify(repMap[twoChars]);
-				if (twoChars.at(0) != 'Q'){
-					repText.replace(0,0,twoChars.substr(0,1));
-				}
+			if (postVector[1].at(iii) < 'A' || postVector[1].at(iii) > 'Z' ){
 				
-				postVector[1].replace(iii,2,"("+repText+")");
-				iii += 2+repText.length() - 2;
+				if (checkChars.length()>1 && repMap.find(checkChars) != repMap.end()){
+					//std::cout << "rmtc: " << repMap[twoChars] << "\n";
+					std::string repText = postfixify(repMap[checkChars]);
+					if (checkChars.at(0) != 'Q'){
+						repText.replace(0,0,checkChars.substr(0,checkChars.length()-1));
+					}
+				
+					postVector[1].replace(iii,checkChars.length(),"("+repText+")");
+					iii += checkChars.length()+repText.length() - checkChars.length();
+				}
+				checkChars = "";
 			}
+			else {
+				checkChars += postVector[1].at(iii);
+			}
+			
 		}
 	}
 	//std::cout <<"pv: "<< postVector[1] << "\n";
