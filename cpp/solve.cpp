@@ -287,10 +287,7 @@ std::string numberType(std::string input){
 Number negateOne(const Number numA){
 	Number n;
 	if (numA.type == 11){
-		string_log("negate");
-		string_log(outputNumber(numA).c_str());
 		n = mulTwo(numbers["-1"],numA);
-		string_log(outputNumber(n).c_str());
 		return n;
 	}
 	n.type = -1*numA.type;
@@ -614,13 +611,9 @@ Number addTwo(const Number numA, const Number numB){
 			}
 		}
 		Number realN;
-		string_log("adding pi");
-		string_log(realA.c_str());
-		string_log(realB.c_str());
 		realN = addTwo(numbers[realA],numbers[realB]);
 		n.type = 11;
 		n.top = outputNumber(realN);
-		string_log(n.top.c_str());
 		n.bottom = "\\pi";
 		return n;
 	}
@@ -1561,10 +1554,6 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	if (fn == -63){//cosine
 		
 		Number nn = addTwo(halfpi,negateOne(numA));
-		string_log(outputNumber(negateOne(numA)).c_str());
-		console_log(nn.type);
-		string_log(nn.top.c_str());
-		string_log(nn.bottom.c_str());
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
 		}
@@ -1658,7 +1647,14 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		//std::cout << "n3: " << outputNumber(numA) << " and " << numA.top << " and " << numA.bottom << "\n";
 		
 		if (numA.bottom == "\\pi"){
+			if (numbers.find(numA.top) == numbers.end()){
+				numberType(numA.top);
+			}
 			n = numbers[numA.top];
+			string_log("sineing");
+			console_log(n.type);
+			string_log(n.top.c_str());
+			string_log(n.bottom.c_str());
 			if (n.type < 0){
 				std::string nn = outputNumber(negateOne(n))+"\\pi";
 				if (numbers.find(nn) == numbers.end()){
