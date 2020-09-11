@@ -413,7 +413,7 @@ Number invertOne(const Number numA){
 	else if (numA.type == 11 && numA.bottom == "sqrt"){
 		std::vector<Number> rootCoef = sqrtToN(n.top);
 		Number coef = mulTwo(invertOne(rootCoef[1]), invertOne(rootCoef[0]));
-		if (coef.type == 3 || coef == -3){
+		if (coef.type == 3 || coef.type == -3){
 			coef = reduceFraction(coef);
 		}
 		else if (coef.type == 0){
@@ -1240,8 +1240,8 @@ Number mulTwo(const Number numA, const Number numB){
 		Number newCoef;
 		
 		if ((numA.type == 11 && numA.bottom == "sqrt") && (numB.type == 11 && numB.bottom == "sqrt")){
-			std::vector<Number> rootCoefA = sqrtToN(numA);
-			std::vector<Number> rootCoefB = sqrtToN(numB);
+			std::vector<Number> rootCoefA = sqrtToN(numA.top);
+			std::vector<Number> rootCoefB = sqrtToN(numB.top);
 			newRoot = mulTwo(rootCoefA[0],rootCoefB[0]);
 			newCoef = mulTwo(rootCoefA[1],rootCoefB[1]);
 			n.type = 11;
@@ -1253,7 +1253,7 @@ Number mulTwo(const Number numA, const Number numB){
 		}
 		int i;
 		if (numA.type == 11 && numA.bottom == "sqrt"){
-			std::vector<Number> rootCoef = sqrtToN(numA);
+			std::vector<Number> rootCoef = sqrtToN(numA.top);
 			newRoot = rootCoef[0];
 			newCoef = rootCoef[1];
 		}
@@ -1264,7 +1264,7 @@ Number mulTwo(const Number numA, const Number numB){
 			return n;
 		}
 		if (numB.type == 11 && numB.bottom == "sqrt"){
-			std::vector<Number> rootCoef = sqrtToN(numB);
+			std::vector<Number> rootCoef = sqrtToN(numB.top);
 			newRoot = rootCoef[0];
 			newCoef = mulTwo(newCoef,rootCoef[1]);
 		}
