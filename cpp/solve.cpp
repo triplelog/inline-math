@@ -1546,7 +1546,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	int base = 10;
 	int neg = 1;
 	Number n;
-	string_log(outputNumber(numA));
+	string_log(outputNumber(numA).c_str());
 	if (fn == -63){//cosine
 		if (numbers.find("pi/2") == numbers.end()){
 			numberType("pi/4");
