@@ -164,6 +164,13 @@ std::string numberType(std::string input){
 	if (input.at(0) == '-'){
 		input.replace(0,1,"");
 		std::string rest = "";
+		if (input == "1"){
+			n.type = -1;
+			n.top = "1";
+			n.bottom = "1";
+			numbers["-1"]=n;
+			return "num";
+		}
 		if (numbers.find(input) == numbers.end()){
 			numberType(input);
 		}
