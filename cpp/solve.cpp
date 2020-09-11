@@ -1574,7 +1574,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	}
 	else if (fn == -61){//cosecant
 		Number sina = trigTwo(-64,numA);
-		if (outputNumber(sinA) == "0" || sina.type == 0){
+		if (outputNumber(sina) == "0" || sina.type == 0){
 			return n;
 		}
 		else {
@@ -1676,7 +1676,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 3){
 					std::string base = "sqrt(3)/2";
 					if (numbers.find(base) == numbers.end()){
-						numberType(base)
+						numberType(base);
 					}
 					if (nt%6 == 1 || nt%6 == 2){
 						return numbers[base];
@@ -1688,7 +1688,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 4){
 					std::string base = "sqrt(2)/2";
 					if (numbers.find(base) == numbers.end()){
-						numberType(base)
+						numberType(base);
 					}
 					if (nt%8 == 1 || nt%8 == 3){
 						return numbers[base];
@@ -1700,7 +1700,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 6){
 					std::string base = "1/2";
 					if (numbers.find(base) == numbers.end()){
-						numberType(base)
+						numberType(base);
 					}
 					if (nt%12 == 1 || nt%12 == 5){
 						return numbers[base];
@@ -1712,7 +1712,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 12){
 					std::string base = "(sqrt(6)-sqrt(2))/4";
 					if (numbers.find(base) == numbers.end()){
-						numberType(base)
+						numberType(base);
 					}
 					if (nt%24 == 1 || nt%24 == 11){
 						return numbers[base];
@@ -1724,7 +1724,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 24){
 					std::string base = "(sqrt(2-sqrt(2+sqrt(3))))/2";
 					if (numbers.find(base) == numbers.end()){
-						numberType(base)
+						numberType(base);
 					}
 					if (nt%48 == 1 || nt%48 == 23){
 						return numbers[base];
