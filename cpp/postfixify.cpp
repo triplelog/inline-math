@@ -1085,7 +1085,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 						repText.replace(0,0,checkChars.substr(0,checkChars.length()-1));
 					}
 				
-					postVector[1].replace(iii,checkChars.length(),"("+repText+")");
+					postVector[1].replace(iii-checkChars.length(),checkChars.length(),"("+repText+")");
 					iii += checkChars.length()+repText.length() - checkChars.length();
 				}
 				checkChars = "";
