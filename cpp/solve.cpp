@@ -1099,7 +1099,7 @@ Number addTwo(const Number numA, const Number numB){
 
 }
 
-Number reduceRoot(const number numA){
+Number reduceRoot(const Number numA){
 	std::vector<Number> rootCoef = sqrtToN(numA.top);
 	
 	if (rootCoef[0].type == 1){
@@ -1108,7 +1108,7 @@ Number reduceRoot(const number numA){
 		int f = 1;
 		int sqroot = 1;
 		int notsq = 1;
-		for (i=0;i<factors.length();i++){
+		for (i=0;i<factors.size();i++){
 			if (factors[i] == f){
 				sqroot *= f;
 				notsq /= f;
