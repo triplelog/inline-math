@@ -357,6 +357,9 @@ std::string outputNumber(Number n){
 		return n.top;
 	}
 	else if (n.type == -1){
+		if (n.top == "0"){
+			return "0";
+		}
 		return "-"+n.top;
 	}
 	else if (n.type == 2){
@@ -1651,10 +1654,6 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				numberType(numA.top);
 			}
 			n = numbers[numA.top];
-			string_log("sineing");
-			console_log(n.type);
-			string_log(n.top.c_str());
-			string_log(n.bottom.c_str());
 			if (n.type < 0){
 				std::string nn = outputNumber(negateOne(n))+"\\pi";
 				if (numbers.find(nn) == numbers.end()){
