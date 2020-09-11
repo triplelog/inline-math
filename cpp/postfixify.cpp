@@ -1075,7 +1075,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	if (checkComputations){
 		int iii;
 		std::string checkChars = "";
-		for (iii=0;iii<postVector[1].length()-1;iii++){
+		for (iii=0;iii<postVector[1].length();iii++){
 			if (postVector[1].at(iii) < 'A' || postVector[1].at(iii) > 'Z' ){
 				
 				if (checkChars.length()>1 && repMap.find(checkChars) != repMap.end()){
