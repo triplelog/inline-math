@@ -586,7 +586,12 @@ std::string removeType11(std::string input) {
 				else {
 					Number n = numbers[tempString];
 					if (n.type == 11){
+						
+						string_log("removingtype");
+						string_log(outputNumber(n).c_str());
 						std::vector<std::string> postfixedV = postfixifyVector(outputNumber(n),false);
+						string_log(postfixedV[0].c_str());
+						string_log(postfixedV[1].c_str());
 						leftString = postfixedV[0];
 						rightString = postfixedV[1];
 						bracketLength = tempString.length();

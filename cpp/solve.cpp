@@ -522,6 +522,8 @@ std::string outputNumber(Number n){
 			return outputE;
 		}
 		else if (n.bottom == "sqrt"){
+			char sqrt{-67};
+			std::string sqrtstr(1,sqrt);
 			std::string outputE = "";
 			int i; bool isCoef = false;
 			std::string root = "";
@@ -538,13 +540,13 @@ std::string outputNumber(Number n){
 				}
 			}
 			if (coef == "1"){
-				outputE = "sqrt("+root+")";
+				outputE = sqrtstr+root;
 			}
 			else if (coef == "-1"){
-				outputE = "-1*sqrt("+root+")";
+				outputE = "-1*"+sqrtstr+root;
 			}
 			else {
-				outputE = coef+"*sqrt("+root+")";
+				outputE = coef+"*"+sqrtstr+root;
 			}
 			
 			return outputE;
@@ -1865,8 +1867,6 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				else if (nb == 3){
 					Number base = mulTwo(numbers["sqrt(3)"],numbers["1/2"]);
 					if (nt%6 == 1 || nt%6 == 2){
-						string_log("sinpi/3");
-						string_log(outputNumber(base).c_str());
 						return base;
 					}
 					else if (nt%6 == 5 || nt%6 == 4){
