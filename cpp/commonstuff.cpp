@@ -772,7 +772,7 @@ std::string removeSolves(std::string input) {
 	int i;
 	for (i=0;i<solveTypes.size();i++){
 		if (killNow.check()){break;}
-		std::string solveType = solveTypes[i];
+		char solveType = solveTypes[i];
 		if (solveType == 'A'){
 			//string_log("solving arithmetic");
 			//int si;
