@@ -1048,6 +1048,9 @@ Number mulTwo(const Number numA, const Number numB){
 		}
 		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type > -9)){
 			realA = outputNumber(numA);
+			if (numbers.find(realA) == numbers.end()){
+				numberType(realA);
+			}
 		}
 		else {
 			return n;
@@ -1060,6 +1063,9 @@ Number mulTwo(const Number numA, const Number numB){
 		}
 		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type > -9)){
 			realB = outputNumber(numB);
+			if (numbers.find(realB) == numbers.end()){
+				numberType(realB);
+			}
 		}
 		else {
 			return n;
@@ -1540,6 +1546,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	int base = 10;
 	int neg = 1;
 	Number n;
+	string_log(outputNumber(numA));
 	if (fn == -63){//cosine
 		if (numbers.find("pi/2") == numbers.end()){
 			numberType("pi/4");
