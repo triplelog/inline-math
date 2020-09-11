@@ -1551,11 +1551,16 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	int base = 10;
 	int neg = 1;
 	Number n;
+	if (numbers.find("\\pi") == numbers.end()){
+		numberType("\\pi");
+	}
+	if (numbers.find("1/2") == numbers.end()){
+		numberType("1/2");
+	}
+	Number halfpi = mulTwo(numbers["\\pi"],numbers["1/2"]);
 	if (fn == -63){//cosine
-		if (numbers.find("pi/2") == numbers.end()){
-			numberType("pi/2");
-		}
-		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		
+		Number nn = addTwo(halfpi,negateOne(numA));
 		string_log(outputNumber(negateOne(numA)).c_str());
 		console_log(nn.type);
 		string_log(nn.top.c_str());
@@ -1568,10 +1573,8 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		}
 	}
 	else if (fn == -62){//tangent
-		if (numbers.find("pi/2") == numbers.end()){
-			numberType("pi/4");
-		}
-		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+
+		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			Number cosa = trigTwo(-64,nn);
 			if (outputNumber(cosa) == "0" || cosa.type == 0){
@@ -1597,10 +1600,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		}
 	}
 	else if (fn == -60){//secant
-		if (numbers.find("pi/2") == numbers.end()){
-			numberType("pi/4");
-		}
-		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			Number cosa = trigTwo(-64,nn);
 			if (outputNumber(cosa) == "0" || cosa.type == 0){
@@ -1616,10 +1616,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		}
 	}
 	else if (fn == -59){//cotangent
-		if (numbers.find("pi/2") == numbers.end()){
-			numberType("pi/4");
-		}
-		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			Number cosa = trigTwo(-64,nn);
 			Number sina = trigTwo(-64,numA);
