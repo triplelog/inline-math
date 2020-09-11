@@ -113,3 +113,19 @@ in: A(B)
 out: =(A(B))
 ee
 :::
+
+::: rule
+in: sin(A)
+out: =(sin(A))
+ee
+:::
+::: rule
+in: cos(A)
+out: =(cos(A))
+ee
+:::
+::: rule
+in: tan(A)
+out: =(tan(A))
+ee
+:::

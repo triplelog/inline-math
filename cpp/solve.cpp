@@ -1065,10 +1065,13 @@ Number mulTwo(const Number numA, const Number numB){
 			return n;
 		}
 		Number realN;
-		
+		string_log("multiply pi by constant");
+		string_log(realA.c_str());
+		string_log(realB.c_str());
 		realN = mulTwo(numbers[realA],numbers[realB]);
 		n.type = 11;
 		n.top = outputNumber(realN);
+		string_log(n.top.c_str());
 		n.bottom = "\\pi";
 		return n;
 	}
