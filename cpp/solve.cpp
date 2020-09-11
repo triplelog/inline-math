@@ -12,12 +12,29 @@ std::vector<int> factorList(Number n){
 			nn /= p;
 			list.push_back(p);
 		}
+		p++;
+	}
+	return list;
+}
+std::vector<int> factorFull(Number n){
+	std::vector<int> list;
+	if (n.type != 1 && n.type != 1){
+		return list;
+	}
+	long nn = std::stoi(n.top);
+	int p = 2;
+	while (p <= nn){
+		if (nn%p == 0){
+			nn /= p;
+			list.push_back(p);
+		}
 		else {
 			p++;
 		}
 	}
 	return list;
 }
+
 std::string numberType(std::string input){
 	Number n;
 	n.type = 0;
@@ -1105,7 +1122,7 @@ Number reduceRoot(const Number numA){
 	std::vector<Number> rootCoef = sqrtToN(numA.top);
 	
 	if (rootCoef[0].type == 1){
-		std::vector<int> factors = factorList(rootCoef[0]);
+		std::vector<int> factors = factorFull(rootCoef[0]);
 		int i;
 		int f = 1;
 		int sqroot = 1;
