@@ -681,6 +681,7 @@ Number addTwo(const Number numA, const Number numB){
 	else if ((numA.type == 11 && numA.bottom == "\\pi") || (numB.type == 11 && numB.bottom == "\\pi")){
 		std::string realA = "";
 		std::string realB = "";
+		string_log("adding pis");
 		int i;
 		if (numA.type == 11 && numA.bottom == "\\pi"){
 			realA = numA.top;
@@ -1704,6 +1705,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		string_log("cosine");
 		string_log(outputNumber(numA).c_str());
 		string_log(outputNumber(negateOne(numA)).c_str());
+		string_log(outputNumber(halfpi).c_str());
 		Number nn = addTwo(halfpi,negateOne(numA));
 		string_log(outputNumber(nn).c_str());
 		if (nn.type == 11 && nn.bottom == "\\pi"){
