@@ -579,7 +579,7 @@ Number addTwo(const Number numA, const Number numB){
 		n.top = outputNumber(realN)+","+outputNumber(imN);
 		n.bottom = "complex";
 	}
-	else if ((numA.type == 11 && numA.bottom == "\\pi") && (numB.type == 11 && numB.bottom == "\\pi")){
+	else if ((numA.type == 11 && numA.bottom == "\\pi") || (numB.type == 11 && numB.bottom == "\\pi")){
 		std::string realA = "";
 		std::string realB = "";
 		int i;
