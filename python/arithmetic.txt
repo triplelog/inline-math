@@ -136,3 +136,18 @@ in: tan(A)
 out: =(tan(A))
 ee
 :::
+::: rule
+in: csc(A)
+out: =(csc(A))
+ee
+:::
+::: rule
+in: sec(A)
+out: =(sec(A))
+ee
+:::
+::: rule
+in: cot(A)
+out: =(cot(A))
+ee
+:::
