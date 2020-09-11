@@ -1128,6 +1128,7 @@ Number reduceRoot(const Number numA){
 		if (rootCoef[0].top == "1"){
 			return rootCoef[1];
 		}
+		Number n;
 		n.type = 11;
 		n.top = outputNumber(rootCoef[0])+":"+outputNumber(rootCoef[1]);
 		n.bottom = "sqrt";
