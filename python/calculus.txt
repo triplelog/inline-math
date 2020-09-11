@@ -19,6 +19,12 @@ A does not contain x
 ee
 :::
 ::: rule
+in: ddx(1/A)
+out: -1/A^2*ddx(A)
+A != 0
+ee
+:::
+::: rule
 in: ddx(A*B)
 out: ddx(A)*B+A*ddx(B)
 ee
@@ -43,6 +49,14 @@ ee
 ::: rule
 in: ddx(ln(A))
 out: ddx(A)/A
+ee
+:::
+
+::: rule
+in: ddx(log_A(B))
+out: ddx(B)/(B*ln(A))
+A is 9
+A > 0
 ee
 :::
 
@@ -115,6 +129,11 @@ in: idx(A^x)
 out: 1/ln(A)*A^x+C
 A is 9
 A > 0
+ee
+:::
+::: rule
+in: idx(e^x)
+out: e^x+C
 ee
 :::
 ::: rule

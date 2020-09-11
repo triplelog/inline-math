@@ -8,6 +8,12 @@ ee
 :::
 
 ::: rule
+in: A+B+C
+out: =(A+B)+C
+ee
+:::
+
+::: rule
 in: C+A+B
 out: C+=(A+B)
 ee
@@ -25,6 +31,12 @@ ee
 ::: rule
 in: A*B
 out: =(A*B)
+ee
+:::
+
+::: rule
+in: A*B*C
+out: =(A*B)*C
 ee
 :::
 
@@ -55,6 +67,11 @@ ee
 ::: rule
 in: A-B
 out: =(A-B)
+ee
+:::
+::: rule
+in: A-B+C
+out: =(A-B)+C
 ee
 :::
 ::: rule

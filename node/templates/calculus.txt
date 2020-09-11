@@ -44,7 +44,7 @@ $ddx(G)==(ddx(G))[S]$
 $idx(G)==(idx(G))[S]$
 
 
-$xln(x)$![H]
+$x*ln(x)$![H]
 $ddx(H)==(ddx(H))[S]$
 
 $idx(H)==(idx(H))[S]$
