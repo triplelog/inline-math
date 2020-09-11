@@ -1099,6 +1099,42 @@ Number addTwo(const Number numA, const Number numB){
 
 }
 
+Number reduceRoot(const number numA){
+	std::vector<Number> rootCoef = sqrtToN(numA.top);
+	
+	if (rootCoef[0].type == 1){
+		std::vector<int> factors = factorList(rootCoef[0]);
+		int i;
+		int f = 1;
+		int sqroot = 1;
+		int notsq = 1;
+		for (i=0;i<factors.length();i++){
+			if (factors[i] == f){
+				sqroot *= f;
+				notsq /= f;
+				f = 1;
+			}
+			else {
+				f = factors[i];
+				notsq *= f;
+			}
+		}
+		rootCoef[0].top = std::to_string(notsq);
+		std::string s = std::to_string(sqroot);
+		if (numbers.find(s) == numbers.end()){
+			numberType(s);
+		}
+		rootCoef[1] = mulTwo(rootCoef[1],numbers[s]);
+		if (rootCoef[0].top == "1"){
+			return rootCoef[1];
+		}
+		n.type = 11;
+		n.top = outputNumber(rootCoef[0])+":"+outputNumber(rootCoef[1]);
+		n.bottom = "sqrt";
+		return n;
+	}
+	return numA;
+}
 
 Number mulTwo(const Number numA, const Number numB){
 	int base = 10;
@@ -1288,6 +1324,7 @@ Number mulTwo(const Number numA, const Number numB){
 			n.type = 11;
 			n.top = outputNumber(newRoot)+":"+outputNumber(newCoef);
 			n.bottom = "sqrt";
+			n = reduceRoot(n);
 			return n;
 			//TODO: pull out perfect squares
 			
@@ -2126,6 +2163,7 @@ Number rootNth(const Number numA, const Number numB){ //numA is type of root, nu
 				n.type = 11;
 				n.top = outputNumber(numB)+":1";
 				n.bottom = "sqrt";
+				n = reduceRoot(n);
 				return n;
 			}
 		}
