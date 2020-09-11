@@ -1,0 +1,44 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+$x^7$[A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$x$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$3x^7$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$cos(x^3+1)$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$x/(x^2+3)$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$3^x+e^x$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$log_3(x)$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$xln(x)$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$tan(x)$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+$x^x$![A]
+$ddx(A)==(ddx(A))[S]$
+$idx(A)==(idx(A))[S]$
+
+{% endblock %}

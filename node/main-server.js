@@ -115,6 +115,17 @@ app.get('/trig',
 	}
 );
 
+app.get('/calculus',
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/calculus.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		

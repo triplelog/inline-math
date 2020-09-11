@@ -60,6 +60,14 @@ ee
 :::
 
 ::: rule
+in: ddx(A^B)
+out: e^(B*ln(A))*ddx(B*ln(A))
+A contains x
+B contains x
+ee
+:::
+
+::: rule
 in: ddx(cos(A))
 out: -1*sin(A)*ddx(A)
 ee
@@ -67,5 +75,85 @@ ee
 ::: rule
 in: ddx(sin(A))
 out: cos(A)*ddx(A)
+ee
+:::
+::: rule
+in: ddx(tan(A))
+out: (sec(A))^2*ddx(A)
+ee
+:::
+
+:subtople:algebra.calculus.integrals
+:name:Integrals
+
+
+::: rule
+in: idx(A+B)
+out: idx(A)+idx(B)
+ee
+:::
+::: rule
+in: idx(x^A)
+out: x^(A+1)/A+C
+A != -1
+A != 0
+A is 9
+ee
+:::
+::: rule
+in: idx(1/x)
+out: ln(abs(x))+C
+ee
+:::
+::: rule
+in: idx(x)
+out: x^2/2+C
+ee
+:::
+::: rule
+in: idx(A^x)
+out: 1/ln(A)*A^x+C
+A is 9
+A > 0
+ee
+:::
+::: rule
+in: idx(ln(x))
+out: x*ln(x)-x+C
+ee
+:::
+::: rule
+in: idx(log_A(x))
+out: x*ln(x)/ln(A)-x/ln(A)+C
+A is 9
+A > 0
+ee
+:::
+::: rule
+in: idx(sin(x))
+out: -1*cos(x)+C
+ee
+:::
+::: rule
+in: idx(cos(x))
+out: sin(x)+C
+ee
+:::
+::: rule
+in: idx(A*B)
+out: A*idx(B)
+A does not contain x
+ee
+:::
+::: rule
+in: idx(A*B)
+out: B*idx(A)
+B does not contain x
+ee
+:::
+::: rule
+in: idx(A*B*C)
+out: B*idx(A*C)
+B does not contain x
 ee
 :::
