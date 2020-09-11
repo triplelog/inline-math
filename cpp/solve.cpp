@@ -2102,13 +2102,29 @@ Number roundOne(const Number numA){
 	return n;
 }
 
-Number rootNth(const Number numA, const Number numB){
+Number rootNth(const Number numA, const Number numB){ //numA is type of root, numB is inside
 	int base = 10;
 	int neg = 1;
 	Number n;
 
 	if (numA.type == 1){
 		int a = std::stoi(numA.top);
+		if (a == 2){
+			if (maxDigits < 0){
+				//todo: check if is perfect power or can pull out perfect power
+				n.type = 11;
+				n.top = outputNumber(numB)+":1";
+				n.bottom = "sqrt";
+				return n;
+			}
+		}
+		else {
+			if (maxDigits < 0){
+				//todo: check if is perfect power or can pull out perfect power
+				return n;
+			}
+		}
+		
 		double b;
 		if (numB.type == 1){
 			b = std::stoi(numB.top);

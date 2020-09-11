@@ -115,6 +115,13 @@ ee
 :::
 
 ::: rule
+in: sqrt(A)
+out: =(sqrt(A))
+ee
+:::
+
+
+::: rule
 in: sin(A)
 out: =(sin(A))
 ee

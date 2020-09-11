@@ -586,12 +586,16 @@ std::string removeType11(std::string input) {
 				else {
 					Number n = numbers[tempString];
 					if (n.type == 11){
-						
-						string_log("removingtype");
-						string_log(outputNumber(n).c_str());
-						std::vector<std::string> postfixedV = postfixifyVector(outputNumber(n),false);
-						string_log(postfixedV[0].c_str());
-						string_log(postfixedV[1].c_str());
+						std::string newOut = outputNumber(n);
+						int i;
+						for (i=0;i<newOut.length();i++){
+							if (newOut.at(i)== -67){//sqrt
+								newOut.replace(i+1,0,"(");
+								newOut += ")";
+								break;
+							}
+						}
+						std::vector<std::string> postfixedV = postfixifyVector(newOut,false);
 						leftString = postfixedV[0];
 						rightString = postfixedV[1];
 						bracketLength = tempString.length();
