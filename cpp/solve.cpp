@@ -521,6 +521,34 @@ std::string outputNumber(Number n){
 			}
 			return outputE;
 		}
+		else if (n.bottom == "sqrt"){
+			std::string outputE = "";
+			int i; bool isCoef = false;
+			std::string root = "";
+			std::string coef = "";
+			for (i=0;i<n.top.length();i++){
+				if (n.top.at(i) == ':'){
+					isCoef = true;
+				}
+				else if (isCoef){
+					coef += n.top.at(i);
+				}
+				else {
+					root += n.top.at(i);
+				}
+			}
+			if (coef == "1"){
+				outputE = "sqrt("+root+")";
+			}
+			else if (coef == "-1"){
+				outputE = "-1*sqrt("+root+")";
+			}
+			else {
+				outputE = coef+"*sqrt("+root+")";
+			}
+			
+			return outputE;
+		}
 		return n.top + n.bottom;
 	}
 	return "";
