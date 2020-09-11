@@ -12,7 +12,9 @@ std::vector<int> factorList(Number n){
 			nn /= p;
 			list.push_back(p);
 		}
-		p++;
+		else {
+			p++;
+		}
 	}
 	return list;
 }
