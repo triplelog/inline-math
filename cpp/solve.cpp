@@ -1556,6 +1556,10 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 			numberType("pi/2");
 		}
 		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		string_log(outputNumber(negateOne(numA)).c_str());
+		console_log(nn.type);
+		string_log(nn.top.c_str());
+		string_log(nn.bottom.c_str());
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
 		}
