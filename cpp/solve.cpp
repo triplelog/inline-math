@@ -414,8 +414,9 @@ Number invertOne(const Number numA){
 		//TODO: do rep decimal inversion
 	}
 	else if (numA.type == 11 && numA.bottom == "sqrt"){
-		std::vector<Number> rootCoef = sqrtToN(n.top);
+		std::vector<Number> rootCoef = sqrtToN(numA.top);
 		string_log("rootCoef");
+		string_log(numA.top.c_str());
 		string_log(outputNumber(rootCoef[0]).c_str());
 		string_log(outputNumber(rootCoef[1]).c_str());
 		string_log(outputNumber(invertOne(rootCoef[0])).c_str());
