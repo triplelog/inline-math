@@ -1694,8 +1694,11 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	}
 	Number halfpi = mulTwo(numbers["\\pi"],numbers["1/2"]);
 	if (fn == -63){//cosine
-		
+		string_log("cosine");
+		string_log(outputNumber(numA).c_str());
+		string_log(outputNumber(negateOne(numA)).c_str());
 		Number nn = addTwo(halfpi,negateOne(numA));
+		string_log(outputNumber(nn).c_str());
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
 		}
