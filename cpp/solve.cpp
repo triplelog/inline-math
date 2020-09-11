@@ -174,12 +174,8 @@ std::string numberType(std::string input){
 		if (numbers.find(input) == numbers.end()){
 			numberType(input);
 		}
-		Number nn = mulTwo(numbers["-1"],numbers[input]);
+		Number nn = negateOne(numbers[input]);
 		if (nn.type == 0){
-			numbers["-"+input]= n;
-			return "string";
-		}
-		else if (nn.type < 0){
 			numbers["-"+input]= n;
 			return "string";
 		}
