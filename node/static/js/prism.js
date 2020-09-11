@@ -638,7 +638,7 @@ var _ = {
 		for (i=0;i<env.tokens.length;i++){
 			if ( (env.tokens[i].type && env.tokens[i].type != 'operator' && env.tokens[i].type != 'number' && env.tokens[i].type != 'constant' && env.tokens[i].type != 'function') || env.tokens[i] == '\n'  ){
 				
-				if ( env.tokens[i].type && env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '.' ) ){
+				if ( env.tokens[i].type && env.tokens[i].type == 'punctuation' && (env.tokens[i].content == '(' || env.tokens[i].content == ')' || env.tokens[i].content == '[' || env.tokens[i].content == ']' || env.tokens[i].content == '.' ) ){
 					continue;
 				}
 				if (formulaStart < i && isFormula){
@@ -663,7 +663,7 @@ var _ = {
 			else {
 				
 				//if (env.tokens[i].type && (env.tokens[i].type != 'operator' || env.tokens[i].type == 'function') ){
-				if (env.tokens[i].type){
+				if (env.tokens[i].type && (env.tokens[i].type == 'function' || env.tokens[i].type == 'number' || env.tokens[i].type == 'constant') ){
 					isFormula = true;
 				}
 				

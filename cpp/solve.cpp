@@ -1,4 +1,5 @@
 Number mulTwo(const Number numA, const Number numB);
+Number reduceFraction(const Number numA);
 std::vector<int> factorList(Number n){
 	std::vector<int> list;
 	if (n.type != 1 && n.type != 1){
@@ -110,30 +111,77 @@ std::string numberType(std::string input){
 		//std::cout << "n2: " << outputNumber(n) << "\n";
 		return "num";
 	}
-	
+	else if (input.length()>5 && input.at(0) == 's' && input.at(1) == 'q' && input.at(2) == 'r' && input.at(3) == 't'){
+		int openPar = 0;
+		int i;
+		std::string root = "";
+		if (input.at(4) == '(' && input.at(input.length()-1)==')'){
+			for (i=4;i<input.length();i++){
+				if (input.at(i)=='('){
+					openPar++;
+				}
+				else if (input.at(i)==')'){
+					openPar--;
+				}
+				else if (openPar > 0){
+					root += input.at(i);
+				}
+			}
+		}
+		else {
+			for (i=4;i<input.length();i++){
+				if (input.at(i)=='('){
+					openPar++;
+					numbers[input]=n;
+					return "string";
+				}
+				else if (input.at(i)==')'){
+					openPar--;
+					numbers[input]=n;
+					return "string";
+				}
+				root += input.at(i);
+			}
+		}
+		if (numbers.find(root) == numbers.end()){
+			numberType(root);
+		}
+		Number nn = numbers[root];
+		if (nn.type == 0){
+			numbers[input]=n;
+			return "string";
+		}
+		else {
+			n.type = 11;
+			n.top = outputNumber(nn)+":1";
+			n.bottom = "sqrt";
+			numbers[input]=n;
+			return "num";
+		}
+		
+	}
 	
 	if (input.at(0) == '-'){
 		input.replace(0,1,"");
 		std::string rest = "";
-		if (numbers.find(input) != numbers.end()){
-			if (numbers[input].type == 0){
-				rest = "string";
-			}
+		if (numbers.find(input) == numbers.end()){
+			numberType(input);
+		}
+		Number nn = mulTwo(numbers["-1"],numbers[input]);
+		if (nn.type == 0){
+			numbers["-"+input]= n;
+			return "string";
+		}
+		else if (nn.type < 0){
+			numbers["-"+input]= n;
+			return "string";
 		}
 		else {
-			rest = numberType(input);
-		}
-		 
-		if (rest == "string" || numbers[input].type <= 0){
-			numbers[input]=n; return "string";
-		}
-		else {
-			n.type = numbers[input].type*-1;
-			n.top = numbers[input].top;
-			n.bottom = numbers[input].bottom;
-			numbers["-"+input] = n;
+			numbers["-"+input]= nn;
 			return "num";
 		}
+		
+		
 	}
 	int ii;
 	std::string currentType = "int";
@@ -295,6 +343,36 @@ Number negateOne(const Number numA){
 	n.bottom = numA.bottom;
 	return n;
 }
+
+std::vector<Number> sqrtToN(const std::string top){
+	std::string coef = "";
+	std::string root = "";
+	int i;
+	bool isCoef = false;
+	for (i=0;i<top.length();i++){
+		if (top.at(i)==':'){
+			isCoef = true;
+		}
+		else if (isCoef){
+			coef += top.at(i);
+		}
+		else {
+			root += top.at(i);
+		}
+	}
+	
+	if (numbers.find(coef) == numbers.end()){
+		numberType(coef);
+	}
+	if (numbers.find(root) == numbers.end()){
+		numberType(root);
+	}
+	std::vector<Number> vals;
+	vals.push_back(numbers[root]);
+	vals.push_back(numbers[coef]);
+	return vals;
+}
+
 Number invertOne(const Number numA){
 	Number n;
 	if (numA.type == 0){
@@ -331,6 +409,20 @@ Number invertOne(const Number numA){
 	}
 	else if (numA.type == 5 || numA.type == -5){//rep decimal
 		//TODO: do rep decimal inversion
+	}
+	else if (numA.type == 11 && numA.bottom == "sqrt"){
+		std::vector<Number> rootCoef = sqrtToN(n.top);
+		Number coef = mulTwo(invertOne(rootCoef[1]), invertOne(rootCoef[0]));
+		if (coef.type == 3 || coef == -3){
+			coef = reduceFraction(coef);
+		}
+		else if (coef.type == 0){
+			return n;
+		}
+		n.type = 11;
+		n.top = outputNumber(rootCoef[0])+":"+outputNumber(coef);
+		n.bottom = "sqrt";
+		return n;
 	}
 	//TODO: create number type for division by zero
 	return n;
@@ -1141,6 +1233,53 @@ Number mulTwo(const Number numA, const Number numB){
 		
 		return n;
 	}
+	else if ((numA.type == 11 && numA.bottom == "sqrt") || (numB.type == 11 && numB.bottom == "sqrt")){
+		std::string realA = "";
+		std::string realB = "";
+		Number newRoot;
+		Number newCoef;
+		
+		if ((numA.type == 11 && numA.bottom == "sqrt") && (numB.type == 11 && numB.bottom == "sqrt")){
+			std::vector<Number> rootCoefA = sqrtToN(numA);
+			std::vector<Number> rootCoefB = sqrtToN(numB);
+			newRoot = mulTwo(rootCoefA[0],rootCoefB[0]);
+			newCoef = mulTwo(rootCoefA[1],rootCoefB[1]);
+			n.type = 11;
+			n.top = outputNumber(newRoot)+":"+outputNumber(newCoef);
+			n.bottom = "sqrt";
+			return n;
+			//TODO: pull out perfect squares
+			
+		}
+		int i;
+		if (numA.type == 11 && numA.bottom == "sqrt"){
+			std::vector<Number> rootCoef = sqrtToN(numA);
+			newRoot = rootCoef[0];
+			newCoef = rootCoef[1];
+		}
+		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type > -9)){
+			newCoef = numA;
+		}
+		else {
+			return n;
+		}
+		if (numB.type == 11 && numB.bottom == "sqrt"){
+			std::vector<Number> rootCoef = sqrtToN(numB);
+			newRoot = rootCoef[0];
+			newCoef = mulTwo(newCoef,rootCoef[1]);
+		}
+		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type > -9)){
+			newCoef = mulTwo(newCoef,numB);
+		}
+		else {
+			return n;
+		}
+		
+		n.type = 11;
+		n.top = outputNumber(newRoot)+":"+outputNumber(newCoef);
+		n.bottom = "sqrt";
+		return n;
+	}
 	else if (numA.type == 1){
 		if (numB.type == 1){
 			n.type = 1;
@@ -1666,6 +1805,19 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 				return numbers["0"];
 			}
 			else if (n.type == 3){
+				std::string sqrt3 = "sqrt(3)";
+				if (numbers.find(sqrt3) == numbers.end()){
+					numberType(sqrt3);
+				}
+				std::string sqrt2 = "sqrt(2)";
+				if (numbers.find(sqrt2) == numbers.end()){
+					numberType(sqrt2);
+				}
+				std::string sqrt6 = "sqrt(6)";
+				if (numbers.find(sqrt6) == numbers.end()){
+					numberType(sqrt6);
+				}
+					
 				n = reduceFraction(n);
 				int nb = std::stoi(n.bottom);
 				int nt = std::stoi(n.top) % 48;
@@ -1681,41 +1833,33 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 					}
 				}
 				else if (nb == 3){
-					std::string base = "sqrt(3)/2";
-					if (numbers.find(base) == numbers.end()){
-						numberType(base);
-					}
+					Number base = mulTwo(numbers["sqrt(3)"],numbers["1/2"]);
 					if (nt%6 == 1 || nt%6 == 2){
-						return numbers[base];
+						return base;
 					}
 					else if (nt%6 == 5 || nt%6 == 4){
-						return negateOne(numbers[base]);
+						return negateOne(base);
 					}
 				}
 				else if (nb == 4){
-					std::string base = "sqrt(2)/2";
-					if (numbers.find(base) == numbers.end()){
-						numberType(base);
-					}
+					Number base = mulTwo(numbers["sqrt(2)"],numbers["1/2"]);
 					if (nt%8 == 1 || nt%8 == 3){
-						return numbers[base];
+						return base;
 					}
 					else if (nt%8 == 7 || nt%8 == 5){
-						return negateOne(numbers[base]);
+						return negateOne(base);
 					}
 				}
 				else if (nb == 6){
-					std::string base = "1/2";
-					if (numbers.find(base) == numbers.end()){
-						numberType(base);
-					}
+					Number base = numbers["1/2"];
 					if (nt%12 == 1 || nt%12 == 5){
-						return numbers[base];
+						return base;
 					}
 					else if (nt%12 == 11 || nt%12 == 7){
-						return negateOne(numbers[base]);
+						return negateOne(base);
 					}
 				}
+				/*
 				else if (nb == 12){
 					std::string base = "(sqrt(6)-sqrt(2))/4";
 					if (numbers.find(base) == numbers.end()){
@@ -1739,7 +1883,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 					else if (nt%48 == 3 || nt%48 == 25){
 						return negateOne(numbers[base]);
 					}
-				}
+				}*/
 			}
 			else {
 				return n;
