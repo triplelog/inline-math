@@ -1071,13 +1071,9 @@ Number mulTwo(const Number numA, const Number numB){
 			return n;
 		}
 		Number realN;
-		string_log("multiply pi by constant");
-		string_log(realA.c_str());
-		string_log(realB.c_str());
 		realN = mulTwo(numbers[realA],numbers[realB]);
 		n.type = 11;
 		n.top = outputNumber(realN);
-		string_log(n.top.c_str());
 		n.bottom = "\\pi";
 		return n;
 	}
@@ -1546,10 +1542,9 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	int base = 10;
 	int neg = 1;
 	Number n;
-	string_log(outputNumber(numA).c_str());
 	if (fn == -63){//cosine
 		if (numbers.find("pi/2") == numbers.end()){
-			numberType("pi/4");
+			numberType("pi/2");
 		}
 		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
