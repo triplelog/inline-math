@@ -104,6 +104,17 @@ app.get('/clean',
 	}
 );
 
+app.get('/trig',
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/trig.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		

@@ -1,0 +1,22 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+$cos(pi/3)==(cos(pi/3))[A]$
+
+$cos(0)==(cos(0))[A]$
+
+$cos(pi/2)==(cos(pi/2))[A]$
+
+$sin(pi/3)==(sin(pi/3))[A]$
+
+$sin(0)==(sin(0))[A]$
+
+$sin(pi/2)==(sin(pi/2))[A]$
+
+$tan(pi/3)==(tan(pi/3))[A]$
+
+$tan(0)==(tan(0))[A]$
+
+$tan(pi/2)==(tan(pi/2))[A]$
+
+{% endblock %}
