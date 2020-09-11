@@ -58,8 +58,8 @@ std::string solveArithmetic(std::string s){
 	//makeRulesNew(rows);
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	console_log(duration);
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
+	//console_log(duration);
 	
 	finishedAnswers.resize(0);
 	answerListMap.clear();
@@ -122,8 +122,8 @@ std::string toCanonical(std::string s){
 	//makeRulesNew(rows);
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	console_log(duration);
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
+	//console_log(duration);
 	
 	finishedAnswers.resize(0);
 	answerListMap.clear();
@@ -178,8 +178,8 @@ std::string doCalculus(std::string s){
 	//makeRulesNew(rows);
 	
 	auto a2 = std::chrono::high_resolution_clock::now();
-	int duration = std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
-	console_log(duration);
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
+	//console_log(duration);
 	
 	finishedAnswers.resize(0);
 	answerListMap.clear();

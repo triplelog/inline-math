@@ -185,7 +185,7 @@ void OneRule(char* aa) {
 
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
+	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
 	char varName = ' ';
@@ -219,12 +219,12 @@ void LatexIt(char* aa) {
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
-	//console_log(duration);
+	console_log(duration);
 }
 
 void TreeIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
+	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
 	char varName = ' ';
@@ -282,7 +282,7 @@ void TreeIt(char* aa) {
 
 void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	auto a1 = std::chrono::high_resolution_clock::now();
-	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
+	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string fn = std::string(aa);
 	std::string iV = "x";

@@ -342,7 +342,7 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 							returnStringsIncorrect.push_back(someStringsI[iiiiii]);
 						}
 						auto a2 = std::chrono::high_resolution_clock::now();
-						//duration2 += std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+						//duration2 += std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 						
 						
 
@@ -521,7 +521,7 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 						returnStringsIncorrect.push_back(someStringsI[iiiiii]);
 					}
 					auto a2 = std::chrono::high_resolution_clock::now();
-					//duration2 += std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
+					//duration2 += std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 					
 					
 					
@@ -585,7 +585,7 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 			listMap[fullStr]=fullTrees;
 			
 			//auto a4 = std::chrono::high_resolution_clock::now();
-			//duration3 += std::chrono::duration_cast<std::chrono::microseconds>( a4 - a3 ).count();
+			//duration3 += std::chrono::duration_cast<std::chrono::milliseconds>( a4 - a3 ).count();
 			
 
 			
@@ -734,7 +734,7 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 		
 	}
 	auto a2 = std::chrono::high_resolution_clock::now();
-	//std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count() << "\n\n";
+	//std::cout << "time to solve 1000: " << std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count() << "\n\n";
 	
 	return out;
 }
