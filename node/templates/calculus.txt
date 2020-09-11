@@ -2,43 +2,63 @@
 {% block markdown %}	 
 
 $x^7$[A]
+
 $ddx(A)==(ddx(A))[S]$
+
 $idx(A)==(idx(A))[S]$
+
 
 $x$![B]
 $ddx(B)==(ddx(B))[S]$
+
 $idx(B)==(idx(B))[S]$
+
 
 $3x^7$![C]
 $ddx(C)==(ddx(C))[S]$
+
 $idx(C)==(idx(C))[S]$
+
 
 $cos(x^3+1)$![D]
 $ddx(D)==(ddx(D))[S]$
+
 $idx(D)==(idx(D))[S]$
+
 
 $x/(x^2+3)$![E]
 $ddx(E)==(ddx(E))[S]$
+
 $idx(E)==(idx(E))[S]$
+
 
 $3^x+e^x$![F]
 $ddx(F)==(ddx(F))[S]$
+
 $idx(F)==(idx(F))[S]$
+
 
 $log_3(x)$![G]
 $ddx(G)==(ddx(G))[S]$
+
 $idx(G)==(idx(G))[S]$
+
 
 $xln(x)$![H]
 $ddx(H)==(ddx(H))[S]$
+
 $idx(H)==(idx(H))[S]$
+
 
 $tan(x)$![I]
 $ddx(I)==(ddx(I))[S]$
+
 $idx(I)==(idx(I))[S]$
+
 
 $x^x$![J]
 $ddx(J)==(ddx(J))[S]$
+
 $idx(J)==(idx(J))[S]$
 
 {% endblock %}
