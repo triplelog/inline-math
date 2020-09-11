@@ -761,38 +761,44 @@ std::string removeSolves(std::string input) {
 	}
 	
 	int firstIndex = operandToIndex[iidx];
+	
+	std::vector<char> solveTypes;
+	while (0 < bracketStrings[0].length() && bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
+		solveTypes.push_back(bracketStrings[0].at(0));
+		bracketStrings[0].replace(0,1,"");
+	}
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
-	char solveType = '0';
-	if (bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
-		solveType = bracketStrings[0].at(0);
-		oldPostfix.replace(0,1,"");
-	}
 	oldPostfix = removeBracketsOne(oldPostfix);
-	if (solveType == 'A'){
-		//string_log("solving arithmetic");
-		//int si;
-		//for (si=0;si<oldPostfix.length();si++){
-		//	std::string ssi(1,oldPostfix.at(si));
-		//	string_log(ssi.c_str());
-		//}
-		oldPostfix = solveArithmetic(oldPostfix);
-	}
-	else if (solveType == 'R'){
-		maxDigits = 2;
-		oldPostfix = solveArithmetic(oldPostfix);
-		maxDigits = -1;
-	}
-	else if (solveType == 'I'){
-		oldPostfix = removeIdentities(oldPostfix);
-	}
-	else if (solveType == 'C'){
-		oldPostfix = toCanonical(oldPostfix);
-	}
-	else if (solveType == 'S'){
-		oldPostfix = doCalculus(oldPostfix);
-	}
-	else if (solveType == 'D'){
-		grabFunction(oldPostfix);
+	int i;
+	for (i=0;i<solveTypes.size();i++){
+		if (killNow.check()){break;}
+		std::string solveType = solveTypes[i];
+		if (solveType == 'A'){
+			//string_log("solving arithmetic");
+			//int si;
+			//for (si=0;si<oldPostfix.length();si++){
+			//	std::string ssi(1,oldPostfix.at(si));
+			//	string_log(ssi.c_str());
+			//}
+			oldPostfix = solveArithmetic(oldPostfix);
+		}
+		else if (solveType == 'R'){
+			maxDigits = 2;
+			oldPostfix = solveArithmetic(oldPostfix);
+			maxDigits = -1;
+		}
+		else if (solveType == 'I'){
+			oldPostfix = removeIdentities(oldPostfix);
+		}
+		else if (solveType == 'C'){
+			oldPostfix = toCanonical(oldPostfix);
+		}
+		else if (solveType == 'S'){
+			oldPostfix = doCalculus(oldPostfix);
+		}
+		else if (solveType == 'D'){
+			grabFunction(oldPostfix);
+		}
 	}
 	
 	std::string newLeft = "";
