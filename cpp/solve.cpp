@@ -591,6 +591,9 @@ Number addTwo(const Number numA, const Number numB){
 		}
 		else if ((numA.type > 0 && numA.type <9) || (numA.type < 0 && numA.type > -9)){
 			realA = outputNumber(numA);
+			if (realA != "0"){
+				return n;
+			}
 		}
 		if (numB.type == 11 && numB.bottom == "\\pi"){
 			realB = numB.top;
@@ -600,6 +603,9 @@ Number addTwo(const Number numA, const Number numB){
 		}
 		else if ((numB.type > 0 && numB.type <9) || (numB.type < 0 && numB.type > -9)){
 			realB = outputNumber(numB);
+			if (realB != "0"){
+				return n;
+			}
 		}
 		Number realN;
 		
@@ -1531,30 +1537,203 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	int base = 10;
 	int neg = 1;
 	Number n;
+	if (fn == -63){//cosine
+		if (numbers.find("pi/2") == numbers.end()){
+			numberType("pi/4");
+		}
+		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		if (nn.type == 11 && nn.bottom == "\\pi"){
+			return trigTwo(-64,nn);
+		}
+		else {
+			return n;
+		}
+	}
+	else if (fn == -62){//tangent
+		if (numbers.find("pi/2") == numbers.end()){
+			numberType("pi/4");
+		}
+		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		if (nn.type == 11 && nn.bottom == "\\pi"){
+			Number cosa = trigTwo(-64,nn);
+			if (outputNumber(cosa) == "0" || cosa.type == 0){
+				return n; //replace with infinity
+			}
+			Number sina = trigTwo(-64,numA);
+			if (sina.type == 0){
+				return n;
+			}
+			return mulTwo(sina,invertOne(cosa));
+		}
+		else {
+			return n;
+		}
+	}
+	else if (fn == -61){//cosecant
+		Number sina = trigTwo(-64,numA);
+		if (outputNumber(sinA) == "0" || sina.type == 0){
+			return n;
+		}
+		else {
+			return invertOne(sina);
+		}
+	}
+	else if (fn == -60){//secant
+		if (numbers.find("pi/2") == numbers.end()){
+			numberType("pi/4");
+		}
+		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		if (nn.type == 11 && nn.bottom == "\\pi"){
+			Number cosa = trigTwo(-64,nn);
+			if (outputNumber(cosa) == "0" || cosa.type == 0){
+				return n; //replace with infinity
+			}
+			else {
+				return invertOne(cosa);
+			}
+			
+		}
+		else {
+			return n;
+		}
+	}
+	else if (fn == -59){//cotangent
+		if (numbers.find("pi/2") == numbers.end()){
+			numberType("pi/4");
+		}
+		Number nn = addTwo(numbers["pi/2"],negateOne(numA));
+		if (nn.type == 11 && nn.bottom == "\\pi"){
+			Number cosa = trigTwo(-64,nn);
+			Number sina = trigTwo(-64,numA);
+			if (outputNumber(sina) == "0" || sina.type == 0){
+				return n; //replace with infinity
+			}
+			if (cosa.type == 0){
+				return n;
+			}
+			return mulTwo(cosa,invertOne(sina));
+		}
+		else {
+			return n;
+		}
+	}
+	else if (fn != -64){
+		return n;
+	}
+	
+				
+	//Rest assumes function is sine		
 	if (numA.type == 0){
 		return n;
 	}
 	double a;
 	if (numA.type == 1 || numA.type == -1){
+		if (numA.top == "0"){
+			return numA;
+		}
 		a = std::stoi(numA.top);
 	}
 	else if (numA.type == 2 || numA.type == 3 || numA.type == -2 || numA.type == -3){
 		a = std::stod(numA.top) / std::stod(numA.bottom);
+		if (numA.type < 0){
+			a *= -1;
+		}
 	}
 	else if (numA.type == 11){
 		//std::cout << "n3: " << outputNumber(numA) << " and " << numA.top << " and " << numA.bottom << "\n";
+		
 		if (numA.bottom == "\\pi"){
 			n = numbers[numA.top];
-			if (n.type == 1 || n.type == -1){
-				if (fn == -64){//sine
-					//std::cout << "n4: " << outputNumber(numbers["0"]) << "\n";
+			if (n.type < 0){
+				std::string nn = outputNumber(negateOne(n))+"\\pi";
+				if (numbers.find(nn) == numbers.end()){
+					numberType(nn);
+				}
+				return negateOne(trigTwo(-64,numbers[nn]));
+			}
+			//assume type is positive
+			if (n.type == 1){
+				return numbers["0"];
+			}
+			else if (n.type == 3){
+				n = reduceFraction(n);
+				int nb = std::stoi(n.bottom);
+				int nt = std::stoi(n.top) % 48;
+				if (nb == 1){
 					return numbers["0"];
+				}
+				else if (nb == 2){
+					if (nt%4 == 1){
+						return numbers["1"];
+					}
+					else if (nt%4 == 3){
+						return numbers["-1"];
+					}
+				}
+				else if (nb == 3){
+					std::string base = "sqrt(3)/2";
+					if (numbers.find(base) == numbers.end()){
+						numberType(base)
+					}
+					if (nt%6 == 1 || nt%6 == 2){
+						return numbers[base];
+					}
+					else if (nt%6 == 5 || nt%6 == 4){
+						return negateOne(numbers[base]);
+					}
+				}
+				else if (nb == 4){
+					std::string base = "sqrt(2)/2";
+					if (numbers.find(base) == numbers.end()){
+						numberType(base)
+					}
+					if (nt%8 == 1 || nt%8 == 3){
+						return numbers[base];
+					}
+					else if (nt%8 == 7 || nt%8 == 5){
+						return negateOne(numbers[base]);
+					}
+				}
+				else if (nb == 6){
+					std::string base = "1/2";
+					if (numbers.find(base) == numbers.end()){
+						numberType(base)
+					}
+					if (nt%12 == 1 || nt%12 == 5){
+						return numbers[base];
+					}
+					else if (nt%12 == 11 || nt%12 == 7){
+						return negateOne(numbers[base]);
+					}
+				}
+				else if (nb == 12){
+					std::string base = "(sqrt(6)-sqrt(2))/4";
+					if (numbers.find(base) == numbers.end()){
+						numberType(base)
+					}
+					if (nt%24 == 1 || nt%24 == 11){
+						return numbers[base];
+					}
+					else if (nt%24 == 23 || nt%24 == 13){
+						return negateOne(numbers[base]);
+					}
+				}
+				else if (nb == 24){
+					std::string base = "(sqrt(2-sqrt(2+sqrt(3))))/2";
+					if (numbers.find(base) == numbers.end()){
+						numberType(base)
+					}
+					if (nt%48 == 1 || nt%48 == 23){
+						return numbers[base];
+					}
+					else if (nt%48 == 3 || nt%48 == 25){
+						return negateOne(numbers[base]);
+					}
 				}
 			}
 			else {
 				return n;
 			}
-			//TODO: compute exact value of trig functions of multiples of pi
 		}
 		else {
 			return n;
@@ -1563,7 +1742,10 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	else {
 		return n;
 	}
-
+	
+	if (maxDigits < 0){
+		return n;
+	}
 	std::string prod = "";
 	if (fn == -64){prod = std::to_string(sin(a));}
 	else if (fn == -63){prod = std::to_string(cos(a));} 
@@ -1591,15 +1773,32 @@ Number invTrigTwo(char fn, const Number numA){ //numA is base and numB is inside
 	if (numA.type == 1 || numA.type == -1){
 		a = std::stoi(numA.top);
 	}
-	else if (numA.type == 2 || numA.type == 3 || numA.type == -2 || numA.type == -3){
+	else if (numA.type == 2 || numA.type == -2 ){
 		a = std::stod(numA.top) / std::stod(numA.bottom);
+		if (numA.type < 0){
+			a *= -1;
+		}
+	}
+	else if (numA.type == 3 || numA.type == -3){
+		if (2 == 2){
+			a = std::stod(numA.top) / std::stod(numA.bottom);
+			if (numA.type < 0){
+				a *= -1;
+			}
+		}
+		else {
+			a = std::stod(numA.top) / std::stod(numA.bottom);
+			if (numA.type < 0){
+				a *= -1;
+			}
+		}
 	}
 	else {
 		return n;
 	}
 
 	std::string prod = "";
-	if (fn == -32){
+	if (fn == -32){ //arcsin
 		if (a > 1 || a < -1) {return n;}
 		prod = std::to_string(asin(a));
 	}
