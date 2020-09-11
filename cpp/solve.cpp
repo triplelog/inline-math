@@ -415,7 +415,13 @@ Number invertOne(const Number numA){
 	}
 	else if (numA.type == 11 && numA.bottom == "sqrt"){
 		std::vector<Number> rootCoef = sqrtToN(n.top);
+		string_log("rootCoef");
+		string_log(outputNumber(rootCoef[0]).c_str());
+		string_log(outputNumber(rootCoef[1]).c_str());
+		string_log(outputNumber(invertOne(rootCoef[0])).c_str());
+		string_log(outputNumber(invertOne(rootCoef[1])).c_str());
 		Number coef = mulTwo(invertOne(rootCoef[1]), invertOne(rootCoef[0]));
+		string_log(outputNumber(coef).c_str());
 		if (coef.type == 3 || coef.type == -3){
 			coef = reduceFraction(coef);
 		}
@@ -430,6 +436,7 @@ Number invertOne(const Number numA){
 	//TODO: create number type for division by zero
 	return n;
 }
+
 bool isDecimal(Number n){
 	int i;
 	if (n.bottom.length()<1){
@@ -1739,6 +1746,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 
 		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
+			string_log("tangent");
 			Number cosa = trigTwo(-64,nn);
 			if (outputNumber(cosa) == "0" || cosa.type == 0){
 				return n; //replace with infinity
@@ -1747,6 +1755,8 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 			if (sina.type == 0){
 				return n;
 			}
+			string_log(outputNumber(sina).c_str());
+			string_log(outputNumber(invertOne(cosa)).c_str());
 			return mulTwo(sina,invertOne(cosa));
 		}
 		else {
