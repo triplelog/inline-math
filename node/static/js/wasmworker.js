@@ -320,6 +320,7 @@ const renderer = {
   	text = text.replace(/&gt;/g,'>');
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
+  	text = text.replace(/!$/,'!!');
   	try{
 		var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
