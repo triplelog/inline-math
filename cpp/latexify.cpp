@@ -132,6 +132,18 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case -126: {
+			if (ii > 1){
+				s += child+")";
+			}
+			else if (ii == 1){
+				s += child+",";
+			}
+			else {
+				s += child+"(";
+			}
+			break;
+		}
 		case -93: {
 			if (ii > 0){
 				if (prec[lastOp] < 100){
@@ -469,10 +481,9 @@ std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 					break;
 				}
 			}
-			std::string firstStr = "";
-			std::string firstTtr = "";
-			std::string firstChild = "";
-			std::vector<std::string> fullTrees;
+			std::vector<std::string> firstStr;
+			std::vector<std::string> firstTtr;
+			std::vector<std::string> firstChild;
 			
 			if (pfstr.at(i) != '-' && pfstr.at(i) != '/' && (pfstr.at(i) >= 0 || pfstr.at(i) <= -69 )){ // Is at least binary function
 				
@@ -486,25 +497,65 @@ std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
-						firstStr = s;
-						firstTtr = t;
-						firstChild = s + '@' + t;
+						firstStr.push_back(s);
+						firstTtr.push_back(t);
+						firstChild.push_back(s + '@' + t);
+						maxi = ii;
 						break;
+					}
+				}
+				if (pfstr.at(i) == -126){
+					for (ii=0;ii<maxi;ii++){
+						std::string s = "";
+						std::string t = "";
+						for (iii=ii;iii<maxi;iii++){
+							s += pfstr.at(iii);
+							if (pfstr.at(iii) == '#'){
+								t += operandMap[iii] + '_';
+							}
+						}
+						if (listMap.find(s + '@' + t) != listMap.end()){
+							firstStr.push_back(s);
+							firstTtr.push_back(t);
+							firstChild.push_back(s + '@' + t);
+							maxi = ii;
+							break;
+						}
 					}
 				}
 				
 				
 			}
-			std::string fullStr = firstStr + secondStr + pfstr.at(i) + '@' + firstTtr + secondTtr;
+			
+			std::string fullStr = secondTtr;
+			if (firstTtr.size()>0){
+				fullStr = firstTtr[firstTtr.size()-1] + fullStr;
+			}
+			if (firstTtr.size()>1){
+				fullStr = firstTtr[firstTtr.size()-2] + fullStr;
+			}
+			fullStr = secondStr + pfstr.at(i) + '@' + fullStr;
+			if (firstStr.size()>0){
+				fullStr = firstStr[firstStr.size()-1] + fullStr;
+			}
+			if (firstStr.size()>1){
+				fullStr = firstStr[firstStr.size()-2] + fullStr;
+			}
 			
 			std::string s = "";
-			for (ii=0;ii<2;ii++){
+			for (ii=0;ii<3;ii++){
 				std::string child = secondChild;
-				if (ii==0 && firstChild != ""){
-					child = firstChild;
-				}
-				else if (ii==1 && firstChild == ""){
+				if (ii > firstChild.size()){
 					break;
+				}
+				else if (ii==0 && firstChild.size() > 1){
+					child = firstChild[firstStr.size()-2];
+				}
+				else if (ii==0 && firstChild.size() > 0){
+					child = firstChild[firstStr.size()-1];
+				}
+				else if (ii==1 && firstChild.size() > 1){
+					child = firstChild[firstStr.size()-1];
 				}
 				s = latexLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child]);
 			}
