@@ -260,6 +260,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 
 	}
+	string_log(expstr.c_str());
+	string_log(intstr.c_str());
 	return {expstr,intstr};
 
 
@@ -1191,6 +1193,7 @@ bool checkPostfix(std::string postfix) {
 	            case '[': break;
 	            case '!': break;
 	            case -125: break;
+	            case -126: currentIndex--; break;
 	            default: {
 	            	if (postfix.at(i) <= -69){
 	            		break;
