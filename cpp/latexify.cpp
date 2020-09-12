@@ -527,19 +527,23 @@ std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				
 			}
 			
-			std::string fullStr = secondTtr;
-			if (firstTtr.size()>0){
-				fullStr = firstTtr[firstTtr.size()-1] + fullStr;
+			std::string fullStr =  "";
+			
+			if (firstTtr.size() == 2){
+				fullStr += firstTtr[1];
+				fullStr += firstTtr[0];
 			}
-			if (firstTtr.size()>1){
-				fullStr = firstTtr[firstTtr.size()-2] + fullStr;
+			if (firstTtr.size() == 1){
+				fullStr += firstTtr[0];
 			}
+			fullStr += secondTtr;
+			
 			fullStr = secondStr + pfstr.at(i) + '@' + fullStr;
-			if (firstStr.size()>0){
-				fullStr = firstStr[firstStr.size()-1] + fullStr;
+			if (firstStr.size() == 2){
+				fullStr = firstStr[1]+firstStr[0] + fullStr;
 			}
-			if (firstStr.size()>1){
-				fullStr = firstStr[firstStr.size()-2] + fullStr;
+			if (firstStr.size() == 1){
+				fullStr = firstStr[0] + fullStr;
 			}
 			
 			std::string s = "";
@@ -548,14 +552,14 @@ std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				if (ii > firstChild.size()){
 					break;
 				}
-				else if (ii==0 && firstChild.size() > 1){
-					child = firstChild[firstStr.size()-2];
+				else if (ii==0 && firstChild.size() == 2){
+					child = firstChild[1];
 				}
-				else if (ii==0 && firstChild.size() > 0){
-					child = firstChild[firstStr.size()-1];
+				else if (ii==0 && firstChild.size() == 1){
+					child = firstChild[0];
 				}
-				else if (ii==1 && firstChild.size() > 1){
-					child = firstChild[firstStr.size()-1];
+				else if (ii==1 && firstChild.size() == 2){
+					child = firstChild[0];
 				}
 				s = latexLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child]);
 			}
