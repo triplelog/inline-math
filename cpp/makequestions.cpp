@@ -248,11 +248,14 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 							}
 						}
 					}
-					//if (allSums.size()>4){
-					//	for (ii=0;ii<allSums.size();ii++){
-					//		//std::cout << ii << " with "<< allSums[ii] << "\n";
-					//	}
-					//}
+					if (allSums.size()>4){
+						string_log("three+ terms");
+						string_log(pfstr.c_str());
+						for (ii=0;ii<allSums.size();ii++){
+							//std::cout << ii << " with "<< allSums[ii] << "\n";
+							console_log(allSums[ii]);
+						}
+					}
 					std::vector<std::string> possStr;
 					
 					
@@ -339,15 +342,6 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 						}
 						
 						auto a1 = std::chrono::high_resolution_clock::now();
-						//TODO: make this parallel
-						//std::thread th1(apply1,firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],tempV,pfstr,isCorrect);
-						//th1.join();
-						
-						//pp = tp.push(apply1,firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],tempV,pfstr,isCorrect);
-						//pp.get();
-						//std::future<bool> fut = std::async(apply1,firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],tempV,pfstr,isCorrect);
-						//fut.get();
-						//apply1(0,firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],tempV,pfstr,isCorrect);
 						std::vector<Step> someStringsC = applyRulesVectorOnePart(firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],{startLeftIndex,i+1-startLeftIndex,startRightIndex,rightLength},pfstr,true);
 						std::vector<Step> someStringsI = applyRulesVectorOnePart(firstS[ii] + secondS[iii] + pfstr.at(i) + '@' + firstT[ii] + secondT[iii],{startLeftIndex,i+1-startLeftIndex,startRightIndex,rightLength},pfstr,false);
 						
@@ -361,6 +355,25 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 						for (iiiiii=0;iiiiii<someStringsI.size();iiiiii++){
 							returnStringsIncorrect.push_back(someStringsI[iiiiii]);
 						}
+						
+						/*if (pfstr.at(i) == '+' || pfstr.at(i) == '*'){
+							std::vector<Step> someStringsC = applyRulesVectorOnePart(secondS[ii] + firstS[iii] + pfstr.at(i) + '@' + secondT[ii] + firstT[iii],{startLeftIndex,i+1-startLeftIndex,startRightIndex,rightLength},pfstr,true);
+							std::vector<Step> someStringsI = applyRulesVectorOnePart(secondS[ii] + firstS[iii] + pfstr.at(i) + '@' + secondT[ii] + firstT[iii],{startLeftIndex,i+1-startLeftIndex,startRightIndex,rightLength},pfstr,false);
+						
+							int iiiiii;
+							for (iiiiii=0;iiiiii<someStringsC.size();iiiiii++){
+								returnStringsCorrect.push_back(someStringsC[iiiiii]);
+								if (returnStringsCorrect.size()>= maxList){
+									return {returnStringsCorrect,returnStringsIncorrect};
+								}
+							}
+							for (iiiiii=0;iiiiii<someStringsI.size();iiiiii++){
+								returnStringsIncorrect.push_back(someStringsI[iiiiii]);
+							}
+						
+						}*/
+						
+						
 						auto a2 = std::chrono::high_resolution_clock::now();
 						//duration2 += std::chrono::duration_cast<std::chrono::microseconds>( a2 - a1 ).count();
 						
