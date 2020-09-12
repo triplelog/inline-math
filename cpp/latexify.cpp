@@ -128,7 +128,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+")";
 			}
 			else {
-				s += child+"(";
+				s += "\\text{"+child+"}(";
 			}
 			break;
 		}
@@ -140,7 +140,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+",";
 			}
 			else {
-				s += child+"(";
+				s += "\\text{"+child+"}(";
 			}
 			break;
 		}
