@@ -69,37 +69,44 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 						idx++;
 					}
 				}
-				else if (temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z'){
+				else if ((temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z') || (temptoken[iidx-1] >= 'A' && temptoken[iidx-1] <= 'Z')){
 					if (ie == '('){//Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
 						idx++;
+						int iie;
+						int openPar = 0;
+						int commas = 0;
+						for (iie = i; infixexpr[iie]; iie++) {
+							if (infixexpr[iie] == '('){
+								openPar++;
+							}
+							else if (infixexpr[iie] == ')'){
+								openPar--;
+							}
+							else if (openPar == 1 && infixexpr[iie] == ',' && infixexpr[iie-1] == ','){
+								infixexpr[iie-1] = ')';
+								infixexpr[iie] = '(';
+								commas++;
+							}
+							if (openPar == 0){
+								break;
+							}
+						}
 						dependentFunctions.push_back(temptoken[iidx-1]);
-						std::string s(1,-125);
-						tokenList[idx] = s;
+						if (commas>0){
+							std::string s(1,-126);
+							tokenList[idx] = s;
+						}
+						else {
+							std::string s(1,-125);
+							tokenList[idx] = s;
+						}
 						idx++;
 					}
 					else {
 						tokenList[idx] = arrayToString(iidx,temptoken);
 						idx++;
 					}
-				}
-				else if (temptoken[iidx-1] >= 'A' && temptoken[iidx-1] <= 'Z'){
-					if (ie == '('){//Assume Variable is function: Letter followed by ( is function
-						tokenList[idx] = arrayToString(iidx,temptoken);
-						idx++;
-						dependentFunctions.push_back(temptoken[iidx-1]);
-						std::string s(1,-125);
-						tokenList[idx] = s;
-						idx++;
-					}
-					else {
-						tokenList[idx] = arrayToString(iidx,temptoken);
-						idx++;
-					}
-				}
-				else {
-					tokenList[idx] = arrayToString(iidx,temptoken);
-					idx++;
 				}
 				
 			}
