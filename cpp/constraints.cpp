@@ -12,6 +12,17 @@ bool solveConstraintFix(std::string input){
 	std::vector<std::string> operandList;
 	std::string currentOperand ="";
 	expressionMap["#"]=true;
+	std::string dpostfixed = "";
+	int pii;
+	for (pii=0;pii<input.length();pii++){
+		if (input.at(pii) < 0){
+			dpostfixed += "|";
+		}
+		else {
+			dpostfixed += input.at(pii);
+		}
+	}
+	string_log(dpostfixed.c_str());
 	for (i=0;i<input.length();i++){
 	
 		if (postKey){
