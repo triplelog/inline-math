@@ -297,10 +297,6 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 							//std::cout << "ipf1: " << insidePostfix << "\n";
 							
 							Number opResult = solvePostfix(insidePostfix);
-							string_log("arithmetic");
-							string_log(rule.out.c_str());
-							string_log(insidePostfix.c_str());
-							string_log(outputNumber(opResult).c_str());
 							//std::cout << "ipf2: " << outputNumber(opResult) << "\n";
 							
 							if (opResult.type == 0){
