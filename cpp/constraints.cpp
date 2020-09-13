@@ -12,17 +12,6 @@ bool solveConstraintFix(std::string input){
 	std::vector<std::string> operandList;
 	std::string currentOperand ="";
 	expressionMap["#"]=true;
-	std::string dpostfixed = "";
-	int pii;
-	for (pii=0;pii<input.length();pii++){
-		if (input.at(pii) < 0){
-			dpostfixed += "|";
-		}
-		else {
-			dpostfixed += input.at(pii);
-		}
-	}
-	string_log(dpostfixed.c_str());
 	for (i=0;i<input.length();i++){
 	
 		if (postKey){
@@ -114,8 +103,6 @@ bool solveConstraintFix(std::string input){
 	}
 	firstExp = removeBracketsOne(firstExp);
 	secondExp = removeBracketsOne(secondExp);
-	string_log(firstExp.c_str());
-	string_log(secondExp.c_str());
 	//std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";
 
 	if (lastOp == -94){ //does not contain--secondExp must be single operand

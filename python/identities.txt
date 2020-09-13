@@ -59,6 +59,5 @@ ee
 ::: rule
 in: 1*A
 out: A
-A does not contain /B
 ee
 :::
