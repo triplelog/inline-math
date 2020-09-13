@@ -198,7 +198,7 @@ std::string doCalculus(std::string s){
 	std::string newPostfix = removeBracketsOne(s);
 
 	bool foundNext = true;
-	int counter = 0;
+	int counter = 0; int ii; int iii;
 	while (foundNext){
 		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix);
