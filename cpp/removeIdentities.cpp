@@ -212,11 +212,6 @@ std::string doCalculus(std::string s){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
-				int r = someStrings[ii].rule;
-				Rule rr = ruleIndex[r];
-				string_log(newPostfix.c_str());
-				string_log(rr.key.c_str());
-				string_log(rr.operands.c_str());
 				
 				std::string tempPF = removeBracketsOne(someStrings[ii].next);
 				for (iii=0;iii<tempPF.length();iii++){

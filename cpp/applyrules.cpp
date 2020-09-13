@@ -398,10 +398,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 
 			
 			if (!cannotSolve && hasPar && newPostfix.length() >0){
-				string_log(newPostfix.c_str());
-				string_log(userString.c_str());
 				newPostfix = removeParOne(newPostfix);
-				string_log(newPostfix.c_str());
 				//std::cout << newPostfix << " was newPostfix after removal\n";
 				//newPostfix = removeBracketsOne(newPostfix);
 			}
