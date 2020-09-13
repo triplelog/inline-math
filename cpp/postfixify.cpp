@@ -158,6 +158,9 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			if (firstChar == '-' && !previousOperand){
 				p = prec['~'];
 			}
+			if (firstChar == '/' && !previousOperand){
+				p = prec['`'];
+			}
 			while ((osidx > 0) && (prec[opStack[osidx-1]] >= p)){
 				topToken = opStack[osidx-1];
 				osidx--;
@@ -169,6 +172,9 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			opStack[osidx] = firstChar;
 			if (firstChar == '-' && !previousOperand){
 				opStack[osidx] = '~';
+			}
+			if (firstChar == '/' && !previousOperand){
+				opStack[osidx] = '`';
 			}
 			osidx++;
 			previousOperand = false;
@@ -203,6 +209,10 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		else if (firstChar == '/'){
 			//expstr += "-";
 			expstr += "/*";
+		}
+		else if (firstChar == '`'){
+			//expstr += "-";
+			expstr += "/";
 		}
 		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|') {
 			expstr += ci;
