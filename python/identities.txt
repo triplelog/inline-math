@@ -56,4 +56,8 @@ in: A/1
 out: A
 ee
 :::
-
+::: rule
+in: 1*A
+out: A
+ee
+:::
