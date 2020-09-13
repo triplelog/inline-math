@@ -248,14 +248,16 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 							}
 						}
 					}
-					if (allSums.size()>4){
+					/*if (allSums.size()>4){
 						string_log("three+ terms");
 						string_log(pfstr.c_str());
-						for (ii=0;ii<allSums.size();ii++){
+						for (ii=0;ii<allSums.size()/2;ii++){
 							//std::cout << ii << " with "<< allSums[ii] << "\n";
 							console_log(allSums[ii]);
+							int rightStart = operandMap[allSums[ii*2]]
 						}
-					}
+						
+					}*/
 					std::vector<std::string> possStr;
 					
 					

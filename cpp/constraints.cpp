@@ -107,11 +107,18 @@ bool solveConstraintFix(std::string input){
 	//std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";
 
 	if (lastOp == -94){ //does not contain--secondExp must be single operand
-		currentOperand = "";
-		postKey = false;
-		if (operandList.size()>firstIdx+1){
+		char lastSecondOp = '#';
+		if (secondPart != "#"){
+			string_log("does not contain");
+			string_log(secondPart.c_str());
+			lastSecondOp = secondPart.at(1);
+		}
+		else if (operandList.size()>firstIdx+1){
 			return false;
 		}
+		
+		currentOperand = "";
+		postKey = false;
 		for (i=0;i<firstExp.length();i++){
 	
 			if (postKey){
@@ -126,6 +133,12 @@ bool solveConstraintFix(std::string input){
 				}
 			}
 			else if (firstExp.at(i) == '@'){
+				if (lastSecondOp != '#'){
+					string_log(firstExp.c_str());
+					if (firstExp.at(i-1) == lastSecondOp){
+						return false;
+					}
+				}
 				postKey = true;
 			
 			}
