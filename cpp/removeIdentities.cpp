@@ -206,7 +206,7 @@ std::string doCalculus(std::string s){
 			return newPostfix;
 		}
 		foundNext = false;
-		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
+		std::vector<Step> someStrings = makeTree(newPostfix,10)[0];
 		if (someStrings.size()>0){
 			
 			
