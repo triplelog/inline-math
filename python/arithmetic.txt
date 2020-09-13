@@ -4,36 +4,42 @@
 ::: rule
 in: A+B
 out: =(A+B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: A+(B+C)
 out: =(A+B)+C
+1 = 1
 ee
 :::
 
 ::: rule
 in: C+A+B
 out: C+=(A+B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: C+(A+B)
 out: C+=(A+B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: A+C+B
 out: =(A+B)+C
+1 = 1
 ee
 :::
 
 ::: rule
 in: A+(C+B)
 out: =(A+B)+C
+1 = 1
 ee
 :::
 
@@ -43,42 +49,49 @@ ee
 ::: rule
 in: A*B
 out: =(A*B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: A*B*C
 out: =(A*B)*C
+1 = 1
 ee
 :::
 
 ::: rule
 in: C*A*B
 out: C*=(A*B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: A*C*B
 out: =(A*B)*C
+1 = 1
 ee
 :::
 
 ::: rule
 in: A*(B*C)
 out: =(A*B)*C
+1 = 1
 ee
 :::
 
 ::: rule
 in: C*(A*B)
 out: C*=(A*B)
+1 = 1
 ee
 :::
 
 ::: rule
 in: A*(C*B)
 out: =(A*B)*C
+1 = 1
 ee
 :::
 
@@ -88,6 +101,7 @@ ee
 ::: rule
 in: A/B
 out: =(A/B)
+1 = 1
 ee
 :::
 
@@ -97,26 +111,31 @@ ee
 ::: rule
 in: A-B
 out: =(A-B)
+1 = 1
 ee
 :::
 ::: rule
 in: A-B+C
 out: =(A-B)+C
+1 = 1
 ee
 :::
 ::: rule
 in: C+A-B
 out: C+=(A-B)
+1 = 1
 ee
 :::
 ::: rule
 in: A+C-B
 out: =(A-B)+C
+1 = 1
 ee
 :::
 ::: rule
 in: -A
 out: =(-1*A)
+1 = 1
 ee
 :::
 
@@ -126,6 +145,7 @@ ee
 ::: rule
 in: A^B
 out: =(A^B)
+1 = 1
 ee
 :::
 
@@ -135,11 +155,13 @@ ee
 ::: rule
 in: log_B(A)
 out: =(log_B(A))
+1 = 1
 ee
 :::
 ::: rule
 in: log(A)
 out: =(log(A))
+1 = 1
 ee
 :::
 
@@ -149,6 +171,7 @@ ee
 ::: rule
 in: A!!
 out: =(A!!)
+1 = 1
 ee
 :::
 
@@ -158,12 +181,14 @@ ee
 ::: rule
 in: A(B)
 out: =(A(B))
+1 = 1
 ee
 :::
 
 ::: rule
 in: sqrt(A)
 out: =(sqrt(A))
+1 = 1
 ee
 :::
 
@@ -171,30 +196,36 @@ ee
 ::: rule
 in: sin(A)
 out: =(sin(A))
+1 = 1
 ee
 :::
 ::: rule
 in: cos(A)
 out: =(cos(A))
+1 = 1
 ee
 :::
 ::: rule
 in: tan(A)
 out: =(tan(A))
+1 = 1
 ee
 :::
 ::: rule
 in: csc(A)
 out: =(csc(A))
+1 = 1
 ee
 :::
 ::: rule
 in: sec(A)
 out: =(sec(A))
+1 = 1
 ee
 :::
 ::: rule
 in: cot(A)
 out: =(cot(A))
+1 = 1
 ee
 :::
