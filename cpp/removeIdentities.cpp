@@ -90,6 +90,7 @@ std::string solveArithmetic(std::string s){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
+				
 				std::string tempPF = removeBracketsOne(someStrings[ii].next);
 				for (iii=0;iii<tempPF.length();iii++){
 					if (tempPF.at(iii)=='@'){
@@ -207,6 +208,11 @@ std::string doCalculus(std::string s){
 		foundNext = false;
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
+			int r = someStrings[0].rule;
+			Rule rr = ruleIdx[r];
+			string_log(newPostfix.c_str());
+			string_log(rr.key.c_str());
+			string_log(rr.operands.c_str());
 			foundNext = true;
 			newPostfix = removeBracketsOne(someStrings[0].next);
 		}
