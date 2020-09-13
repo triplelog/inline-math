@@ -25,6 +25,12 @@ A != 0
 ee
 :::
 ::: rule
+in: ddx(/A)
+out: -1/A^2*ddx(A)
+A != 0
+ee
+:::
+::: rule
 in: ddx(A*B)
 out: ddx(A)*B+A*ddx(B)
 A != 1
