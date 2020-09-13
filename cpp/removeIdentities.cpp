@@ -30,7 +30,7 @@ std::string removeIdentities(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow.check() || counter >1000){
+		if (killNow.check() || counter >100){
 			return newPostfix;
 		}
 		foundNext = false;
@@ -79,7 +79,7 @@ std::string solveArithmetic(std::string s){
 	bool foundNext = true;
 	int counter = 0; int ii; int iii;
 	while (foundNext){
-		if (killNow.check() || counter >1000){
+		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
@@ -144,7 +144,7 @@ std::string toCanonical(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow.check() || counter >1000){
+		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
@@ -200,7 +200,7 @@ std::string doCalculus(std::string s){
 	bool foundNext = true;
 	int counter = 0;
 	while (foundNext){
-		if (killNow.check() || counter >1000){
+		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
@@ -208,13 +208,28 @@ std::string doCalculus(std::string s){
 		foundNext = false;
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
-			int r = someStrings[0].rule;
-			Rule rr = ruleIndex[r];
-			string_log(newPostfix.c_str());
-			string_log(rr.key.c_str());
-			string_log(rr.operands.c_str());
-			foundNext = true;
-			newPostfix = removeBracketsOne(someStrings[0].next);
+			
+			
+			int minLeft = 1000;
+			for (ii=0;ii<someStrings.size();ii++){
+				int r = someStrings[ii].rule;
+				Rule rr = ruleIndex[r];
+				string_log(newPostfix.c_str());
+				string_log(rr.key.c_str());
+				string_log(rr.operands.c_str());
+				
+				std::string tempPF = removeBracketsOne(someStrings[ii].next);
+				for (iii=0;iii<tempPF.length();iii++){
+					if (tempPF.at(iii)=='@'){
+						if (iii<minLeft){
+							foundNext = true;
+							newPostfix = tempPF;
+							minLeft = iii;
+							break;
+						}
+					}
+				}
+			}
 		}
 		counter++;
 	}
