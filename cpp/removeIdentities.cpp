@@ -209,7 +209,7 @@ std::string doCalculus(std::string s){
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
 			int r = someStrings[0].rule;
-			Rule rr = ruleIdx[r];
+			Rule rr = ruleIndex[r];
 			string_log(newPostfix.c_str());
 			string_log(rr.key.c_str());
 			string_log(rr.operands.c_str());
