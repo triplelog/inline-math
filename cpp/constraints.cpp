@@ -12,6 +12,17 @@ bool solveConstraintFix(std::string input){
 	std::vector<std::string> operandList;
 	std::string currentOperand ="";
 	expressionMap["#"]=true;
+	std::string dpostfixed = "";
+	int pii;
+	for (pii=0;pii<input.length();pii++){
+		if (input.at(pii) < 0){
+			dpostfixed += "|";
+		}
+		else {
+			dpostfixed += input.at(pii);
+		}
+	}
+	string_log(dpostfixed.c_str());
 	for (i=0;i<input.length();i++){
 	
 		if (postKey){
@@ -112,7 +123,7 @@ bool solveConstraintFix(std::string input){
 		if (secondPart != "#"){
 			string_log("does not contain");
 			string_log(secondPart.c_str());
-			lastSecondOp = secondPart.at(2);
+			lastSecondOp = secondPart.at(1);
 		}
 		else if (operandList.size()>firstIdx+1){
 			return false;
@@ -136,7 +147,7 @@ bool solveConstraintFix(std::string input){
 			else if (firstExp.at(i) == '@'){
 				if (lastSecondOp != '#'){
 					string_log(firstExp.c_str());
-					if (i>=2 && firstExp.at(i-2) == lastSecondOp){
+					if (firstExp.at(i-1) == lastSecondOp){
 						return false;
 					}
 				}
