@@ -135,7 +135,17 @@ void makeRulesNew(std::vector<std::string> rows){
 			for (ii=4;ii<rawRules[i].size();ii++){
 				std::string constraint = constraintify(rawRules[i][ii]);
 				std::string postfixed = postfixify(constraint);
-				//std::cout <<" constraint postfixed " << postfixed << "\n";
+				std::string dpostfixed = "";
+				int pii;
+				for (pii=0;pii<postfixed.length();pii++){
+					if (postfixed.at(pii) < 0){
+						dpostfixed += "|";
+					}
+					else {
+						dpostfixed += postfixed.at(pii);
+					}
+				}
+				string_log(dpostfixed.c_str());
 				rule.constraints.push_back(postfixed);
 			}
 		}

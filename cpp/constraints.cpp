@@ -12,7 +12,6 @@ bool solveConstraintFix(std::string input){
 	std::vector<std::string> operandList;
 	std::string currentOperand ="";
 	expressionMap["#"]=true;
-	string_log(input.c_str());
 	for (i=0;i<input.length();i++){
 	
 		if (postKey){
