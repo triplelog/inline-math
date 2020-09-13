@@ -300,6 +300,9 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 							
 							if (opResult.type == 0){
 								//std::cout << "ipf2or: \n";
+								if (rule.constraints.size()>0 && rule.constraints[0] == "##=@1_1_"){
+									cannotSolve = true;
+								}
 								currentOperand = "("+insidePostfix+")";
 							}
 							else {
