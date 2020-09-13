@@ -105,6 +105,13 @@ out: =(A/B)
 ee
 :::
 
+::: rule
+in: /B
+out: =(/B)
+1 = 1
+ee
+:::
+
 :subtople:prealgebra.arithmetic.subtraction
 :name:Subtraction
 
