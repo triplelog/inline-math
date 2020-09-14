@@ -1801,6 +1801,7 @@ Number trigTwo(char fn, const Number numA){
 	if (maxDigits >=0){
 		nna = addTwo(mulTwo(numbers["3.14159"],numbers["1/2"]),negateOne(numA));
 	}
+	string_log(outputNumber(numA).c_str());
 	if (fn == -63){//cosine
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
@@ -1911,7 +1912,7 @@ Number trigTwo(char fn, const Number numA){
 		return n;
 	}
 	
-				
+	string_log(outputNumber(numA).c_str());			
 	//Rest assumes function is sine		
 	if (numA.type == 0){
 		return n;
@@ -2041,7 +2042,7 @@ Number trigTwo(char fn, const Number numA){
 	else {
 		return n;
 	}
-	
+	string_log(outputNumber(numA).c_str());
 	if (maxDigits < 0){
 		return n;
 	}

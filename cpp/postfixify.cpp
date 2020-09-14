@@ -423,7 +423,7 @@ std::string replaceFunctions(std::string input_str){
 	rawrep3["!= "]= "!";
 	rawrep3["<= "]= "[";
 	rawrep3[">= "]= "]";
-	rawrep3["\pm"]= pmstr;
+	rawrep3["\\pm"]= pmstr;
 	rawrep2["+-"]= "-";
 	char factorial{-41};
 	std::string factorialstr(1,factorial);
