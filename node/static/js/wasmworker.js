@@ -552,7 +552,7 @@ onmessage = function(e) {
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "plot"){
-		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
+		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">";
 		pjs(message[1],message[3],message[4],message[5],message[6]);
 		svg += "</svg>";
 		if (message[9].search('D')>-1){
