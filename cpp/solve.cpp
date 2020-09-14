@@ -1789,22 +1789,21 @@ Number trigTwo(char fn, const Number numA){
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
-	string_log(outputNumber(numA).c_str());
 	if (numbers.find("3.14159") == numbers.end()){
 		numberType("3.14159");
 	}
-	string_log(outputNumber(numA).c_str());
 	if (numbers.find("1/2") == numbers.end()){
 		numberType("1/2");
 	}
-	string_log(outputNumber(numA).c_str());
 	Number halfpi = mulTwo(numbers["\\pi"],numbers["1/2"]);
-	string_log(outputNumber(numA).c_str());
 	Number nn = addTwo(halfpi,negateOne(numA));
-	string_log(outputNumber(numA).c_str());
 	Number nna;
 	if (maxDigits >=0){
+		string_log(outputNumber(numA).c_str());
+		string_log(outputNumber(negateOne(numA)).c_str());
+		string_log(outputNumber(mulTwo(numbers["3.14159"],numbers["1/2"])).c_str());
 		nna = addTwo(mulTwo(numbers["3.14159"],numbers["1/2"]),negateOne(numA));
+		string_log(outputNumber(nna).c_str());
 	}
 	string_log(outputNumber(numA).c_str());
 	if (fn == -63){//cosine
