@@ -1785,7 +1785,7 @@ Number trigTwo(char fn, const Number numA){
 	int neg = 1;
 	Number n;
 	string_log(outputNumber(numA).c_str());
-	string_log(numA.type.c_str());
+	string_log(std::to_string(numA.type).c_str());
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
