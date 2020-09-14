@@ -361,11 +361,28 @@ const renderer = {
 		if (input.search(/plot\(/)==0){
 			input = input.replace('plot(','');
 			input = input.substr(0,input.length-1);
-			svg = "<span>";
-			pjs(input,-10,10,-10,10);
-			svg += '<br><input type="range" id="domainSlider" min="0" max="'+(20*2)+'" value="'+20+'"></input>';
+			var inputs = input.split(',');
+			var fn = inputs[0];
+			var left = -10;
+			var right = 10;
+			var bottom = -10;
+			var top = 10;
+			if (inputs.length()>1){
+				left = parseInt(inputs[1]);
+				if (inputs.length()>2){
+					right = parseInt(inputs[2]);
+					if (inputs.length()>3){
+						bottom = parseInt(inputs[3]);
+						if (inputs.length()>4){
+							top = parseInt(inputs[4]);
+						}
+					}
+				}
+			}
+			svg = '<span class=="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+			//pjs(fn,left,right,bottom,top);
+			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
 			svg += '</span>';
-
 			return svg;
 		}
 		else if (input.search(/tree\(/)==0){
@@ -500,7 +517,7 @@ onmessage = function(e) {
 	else if (message[0] == "plot"){
 		svg = "";
 		pjs(message[1],message[3],message[4],message[5],message[6]);
-		svg += '<input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';
+		svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
 		result = ["svg",message[1],svg,message[2]];
 	}
 	else if (message[0] == "inputValue"){

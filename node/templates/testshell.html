@@ -112,9 +112,9 @@
 		}
 		else if (e.data[0] == "svg"){
 			//if (autoNow == e.data[1]){
-				var svg = e.data[2];
-				document.getElementById("output-graph").innerHTML = svg;
-				document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
+			var svg = e.data[2];
+			document.getElementById(e.data[3]).innerHTML = svg;
+			document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
 			//}
 			//else {
 			//	var latex = e.data[2];
@@ -172,6 +172,27 @@
 		var treeEls = document.querySelectorAll('.inline-tree');
 		for (var i=0;i<treeEls.length;i++){
 			createTree(treeEls[i],0);
+		}
+		
+		var plotEls = document.querySelectorAll('.plotSpan');
+		for (var i=0;i<plotEls.length;i++){
+			var left = -10;
+			var right = 10;
+			var spread = 20;
+			var bottom = -10;
+			var top = 10;
+			var input = "";
+			var id = "";
+			if (evt){
+				left = parseInt(plotEls[i].getAttribute('data-left'));
+				right = parseInt(plotEls[i].getAttribute('data-right'));
+				bottom = parseInt(plotEls[i].getAttribute('data-bottom'));
+				top = parseInt(plotEls[i].getAttribute('data-top'));
+				input = plotEls[i].getAttribute('data-formula');
+				id = plotEls[i].id;
+				spread = right-left;
+			}
+			myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread]);
 		}
 		
 	}
