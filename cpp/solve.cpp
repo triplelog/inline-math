@@ -1780,14 +1780,14 @@ Number logTwo(const Number numA, const Number numB){ //numA is base and numB is 
 	return n;
 }
 
-Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside part, of course
+Number trigTwo(char fn, const Number numA){ 
 	int base = 10;
 	int neg = 1;
 	Number n;
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
-	if (numbers.find("3.141519") == numbers.end()){
+	if (numbers.find("3.14159") == numbers.end()){
 		numberType("3.14159");
 	}
 	if (numbers.find("1/2") == numbers.end()){
@@ -1804,6 +1804,7 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 			return trigTwo(-64,nn);
 		}
 		else if (nna.type != 0 && maxDigits >= 0){
+			string_log(outputNumber(nna).c_str());
 			return trigTwo(-64,nna);
 		}
 		else {
