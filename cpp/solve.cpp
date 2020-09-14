@@ -1793,13 +1793,8 @@ Number trigTwo(char fn, const Number numA){
 	Number nn = addTwo(halfpi,negateOne(numA));
 	Number nna;
 	if (maxDigits >=0){
-		string_log(outputNumber(numA).c_str());
-		string_log(outputNumber(negateOne(numA)).c_str());
-		string_log(outputNumber(mulTwo(numbers["3.14159"],numbers["1/2"])).c_str());
 		nna = addTwo(mulTwo(numbers["3.14159"],numbers["1/2"]),negateOne(numA));
-		string_log(outputNumber(nna).c_str());
 	}
-	string_log(outputNumber(numA).c_str());
 	if (fn == -63){//cosine
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
