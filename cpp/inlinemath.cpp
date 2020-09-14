@@ -107,7 +107,7 @@ std::string prepareIt(std::string a){
 	dependentFunctions.clear();
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return "error";
+		return postfixedV[0]+"@"+postfixedV[1];
 	}
 	int sz = dependentFunctions.size();
 	char* df = new char[sz];
