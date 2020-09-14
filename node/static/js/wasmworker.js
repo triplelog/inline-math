@@ -362,17 +362,14 @@ const renderer = {
 			input = input.replace('plot(','');
 			input = input.substr(0,input.length-1);
 			var inputs = input.split(',');
-			console.log(inputs);
 			var fn = inputs[0];
-			console.log(fn);
 			var left = -10;
 			var right = 10;
 			var bottom = -10;
 			var top = 10;
-			console.log(inputs.length);
-			/*if (1 > 1){
+			
+			if (inputs.length > 1){
 				left = parseInt(inputs[1]);
-				console.log(left);
 				if (inputs.length>2){
 					right = parseInt(inputs[2]);
 					if (inputs.length>3){
@@ -382,8 +379,8 @@ const renderer = {
 						}
 					}
 				}
-			}*/
-			cosole.log(fn);
+			}
+			console.log(fn);
 			
 			svg = '<span class=="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
 			//pjs(fn,left,right,bottom,top);
