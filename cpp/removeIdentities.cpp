@@ -167,6 +167,7 @@ std::string toCanonical(std::string s){
 	return newPostfix;
 }
 
+/*
 std::string doCalculus(std::string s){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
@@ -234,6 +235,6 @@ std::string doCalculus(std::string s){
 	return newPostfix;
 
 }
-
+*/
 
 

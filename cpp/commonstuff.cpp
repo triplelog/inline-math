@@ -793,9 +793,9 @@ std::string removeSolves(std::string input) {
 		else if (solveType == 'C'){
 			oldPostfix = toCanonical(oldPostfix);
 		}
-		else if (solveType == 'S'){
-			oldPostfix = doCalculus(oldPostfix);
-		}
+		//else if (solveType == 'S'){
+		//	oldPostfix = doCalculus(oldPostfix);
+		//}
 		else if (solveType == 'D'){
 			grabFunction(oldPostfix);
 		}
@@ -1436,17 +1436,12 @@ void initialRun(){
 	rulesMap["identities"]=rules;
 	ruleIndexMap["identities"]=ruleIndex;
 	
-	auto t2 = std::chrono::high_resolution_clock::now();
-	int duration2 = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-	console_log(duration2);
+
 	std::vector<std::string> rows2 = createArithmetic();
-	auto t3 = std::chrono::high_resolution_clock::now();
-	int duration3 = std::chrono::duration_cast<std::chrono::milliseconds>( t3 - t2 ).count();
-	console_log(duration3);
 	makeRulesNew(rows2);
-	auto t4 = std::chrono::high_resolution_clock::now();
-	int duration4 = std::chrono::duration_cast<std::chrono::milliseconds>( t4 - t3 ).count();
-	console_log(duration4);
+	
+	std::vector<std::string> rows4 = createCalculus();
+	makeRulesNew(rows4);
 	rulesMap["arithmetic"]=rules;
 	ruleIndexMap["arithmetic"]=ruleIndex;
 	
@@ -1459,15 +1454,7 @@ void initialRun(){
 	rulesMap["canonical"]=rules;
 	ruleIndexMap["canonical"]=ruleIndex;
 	
-	rules.clear();
-	ruleIndex.clear();
-	ridx = 0;
-	makeRulesNew(rows1);
-	makeRulesNew(rows2);
-	std::vector<std::string> rows4 = createCalculus();
-	makeRulesNew(rows4);
-	rulesMap["calculus"]=rules;
-	ruleIndexMap["calculus"]=ruleIndex;
+
 
 	auto t5 = std::chrono::high_resolution_clock::now();
 }
