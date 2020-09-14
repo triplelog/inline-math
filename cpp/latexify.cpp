@@ -202,11 +202,27 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 		}
 		case -79: {
-			if (prec[-79] >= prec[lastOp]){
-				s += "\\pm ("+child+")";
+			if (ii>0){
+				if (prec[-79] >= prec[lastOp]){
+					s += "\\pm ("+child+")";
+				}
+				else {
+					s += "\\pm"+child;
+				}
 			}
 			else {
-				s += "\\pm"+child;
+				if (child == "0"){
+					//skip
+				}
+				else {
+					if (prec[-79] >= prec[lastOp]){
+						s += "("+child+")";
+					}
+					else {
+						s += child;
+					}
+				}
+				
 			}
 			break;
 		}
