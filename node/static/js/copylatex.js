@@ -112,6 +112,63 @@ function getInput(parent,parents) {
 	return fullInput;
 }
 
+function getHTML(parent,parents) {
+	var children = parent.childNodes;
+	var startCopy = false;
+	if (parents == "all"){
+		startCopy = true;
+	}
+	var fullInput = "";
+	if (!children || children.length == 0){
+		fullInput += parent.outerHTML;
+		return fullInput;
+	}
+	for (var i=0;i<children.length;i++){
+		var isParent = false;
+		for (var ii in parents){
+			var p = parents[ii];
+			if (p == children[i]){
+				isParent = true;
+				break;
+			}
+		}
+		if (!startCopy){
+			
+			if (isParent){
+				startCopy = true;
+				
+				var child = children[i];
+				if (!child.classList || !child.classList.contains('katex')){
+					fullInput += getHTML(child,parents);
+				}
+				else{
+					fullInput += child.outerHTML;
+				}
+			}
+		}
+		else {
+			var child = children[i];
+			if (!child.classList || !child.classList.contains('katex')){
+				if (isParent){
+					fullInput += getHTML(child,parents);
+				}
+				else {
+					fullInput += getHTML(child,"all");
+				}
+				
+			}
+			else{
+				fullInput += child.outerHTML;
+			}
+			if (isParent){
+				startCopy = false;
+			}
+		}
+		
+	}
+	return fullInput;
+}
+
 function getParents() {
 	var selected = window.getSelection();
 	if (!selected.anchorNode || !selected.focusNode){
@@ -174,6 +231,9 @@ function getCopied(evt) {
 	if (el.classList && el.classList.contains('copy-text')){
 		output = 'code';
 	}
+	if (el.classList && el.classList.contains('copy-html')){
+		output = 'html';
+	}
 	var el = el.parentElement.querySelector('textarea');
 
 	var p = getParents();
@@ -201,6 +261,10 @@ function getCopied(evt) {
 			var fI = katexParent.getAttribute('data-input');
 			el.value = fI;
 		}
+		else if (output == 'html'){
+			var fH = katexParent.outerHTML;
+			el.value = fH;
+		}
 		else {
 			var fL = katexParent.getAttribute('data-latex');
 			el.value = fL;
@@ -216,6 +280,10 @@ function getCopied(evt) {
 		else if (output == 'code'){
 			var fI = getInput(commonParent,parents);
 			el.value = fI;
+		}
+		else if (output == 'html'){
+			var fH = getHTML(commonParent,parents);
+			el.value = fH;
 		}
 		else {
 			var fL = getLatex(commonParent,parents);
@@ -236,3 +304,4 @@ function getCopied(evt) {
 //codeParent.parentElement.appendChild(div);
 document.querySelector('button.copy-latex').addEventListener('click',getCopied);
 document.querySelector('button.copy-text').addEventListener('click',getCopied);
+document.querySelector('button.copy-html').addEventListener('click',getCopied);

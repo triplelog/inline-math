@@ -166,8 +166,8 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 
 		}
 		case -41: {
-			if (ii > 0){
-				s += child + "!";
+			if (prec[-41] >= prec[lastOp]){
+				s += "("+child + ")!";
 			}
 			else {
 				s += child + "!";
@@ -198,6 +198,15 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				s += child;
+			}
+			break;
+		}
+		case -79: {
+			if (prec[-79] >= prec[lastOp]){
+				s += "\\pm ("+child+")";
+			}
+			else {
+				s += "\\pm"+child;
 			}
 			break;
 		}

@@ -1,0 +1,5 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+$plot(3*x+3)$
+{% endblock %}

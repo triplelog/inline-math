@@ -413,14 +413,17 @@ std::string replaceFunctions(std::string input_str){
 	rawrep4[" or "]="|";
 	char plusequal{-105};
 	char minusequal{-106};
+	char plusminus{-79};
 	std::string pestr(1,plusequal);
 	std::string mestr(1,minusequal);
+	std::string pmstr(1,plusminus);
 	rawrep3["+= "]= pestr;
 	rawrep3["-= "]= mestr;
 	rawrep3["== "]= "= ";
 	rawrep3["!= "]= "!";
 	rawrep3["<= "]= "[";
 	rawrep3[">= "]= "]";
+	rawrep3["\pm"]= pmstr;
 	rawrep2["+-"]= "-";
 	char factorial{-41};
 	std::string factorialstr(1,factorial);

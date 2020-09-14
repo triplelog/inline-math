@@ -126,6 +126,41 @@ app.get('/calculus',
 	}
 );
 
+app.get(['/plots','/plots.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/plots.txt',{
+
+		}));
+		res.end();
+	}
+);
+
+app.get(['/trees','/trees.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/trees.txt',{
+
+		}));
+		res.end();
+	}
+);
+
+app.get(['/latex','/latex.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/latex.txt',{
+
+		}));
+		res.end();
+	}
+);
+
+
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		

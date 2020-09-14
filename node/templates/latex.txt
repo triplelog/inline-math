@@ -1,0 +1,30 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+The Basics
+
+Display $(-b \pm sqrt(4*x+7))/(7)$
+
+aligned
+
+display mode
+
+boxed equation
+
+greek letters
+
+Coming Soon
+-----------
+
+Vectors and matrices
+
+piecewise functions
+
+sets
+
+sums and products
+
+more customization
+
+direct latex input 
+{% endblock %}
