@@ -81,7 +81,23 @@ std::string prepareIt(std::string a){
 		}
 		else if (a.at(i) == '\\'){
 			if (i+2 < a.length() && a.at(i+1) == 'p' && a.at(i+2) == 'm'){
-			
+				if (i==0){
+					a = "0"+a;
+				}
+				else if (a.at(i-1)=='='){
+					a.replace(i,0,"0");
+				}
+				else if (a.at(i-1)=='('){
+					a.replace(i,0,"0");
+				}
+				else if (i>1 && a.at(i-1)== ' '){
+					if (a.at(i-2)=='='){
+						a.replace(i,0,"0");
+					}
+					else if (a.at(i-2)=='('){
+						a.replace(i,0,"0");
+					}
+				}
 			}
 			else {
 				return "error";
