@@ -309,6 +309,8 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 		return;
 	}
 	
+	string_log("postfixed");
+	string_log(postfixed.c_str());
 	std::vector<std::string> postfixedV;
 	postfixedV.push_back("");
 	postfixedV.push_back("");

@@ -703,12 +703,24 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 		}
 		double x = domainLeft + i*(domainRight-domainLeft)/n;
 		std::string solvableR = postfixedV[1];
+		
 		for (ii=xIdx.size()-1;ii>=0;ii--){
 			solvableR.replace(xIdx[ii]-indVar.length(),indVar.length(),std::to_string(x));
 		}
 		std::string solvable = postfixedV[0] + "@" + solvableR;
 		//std::cout << "solvable: " << solvable << "\n";
-		string_log(solvable.c_str());
+		std::string displaySolvable = "";
+		for (ii=0;ii<solvable.length();ii++){
+			if (solvable.at(ii)<0){
+				int si = solvable.at(ii) - '0';
+				displaySolvable += std::to_string(si);
+			}
+			else {
+				displaySolvable += solvable.at(ii);
+			}
+			
+		}
+		string_log(displaySolvable.c_str());
 		Number y = solvePostfix(solvable);
 		
 		if (depVar == "y"){
