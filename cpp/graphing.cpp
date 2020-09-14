@@ -78,13 +78,13 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 		if (top-bottom>5){
 			for (ii=floor(bottom)+1;ii<floor(top)+1;ii++){
 				if (i%xMajor==0 && ii%5 == 0){
-					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
+					svg += "<circle class=\"largeDot\" cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".6\" fill=\"red\"/>";
 				}
 				else if (i%xMajor==0 || ii%5 == 0){
-					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
+					svg += "<circle class=\"mediumDot\" cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".4\" fill=\"red\"/>";
 				}
 				else {
-					svg += "<circle cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
+					svg += "<circle class=\"smallDot\" cx=\"" + convertX(i,left,right,0) + "\" cy=\"" + convertY(ii,bottom,top,0) + "\" r=\".2\" fill=\"red\"/>";
 				}
 				
 			}
@@ -106,7 +106,7 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 		}	
 	}
 	
-	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
+	svg += "<path class=\"gridLine\" d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
 
 	
 	int n = 100;
@@ -115,7 +115,7 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 	points = getPoints(postfixedV,iV,dV,left,right,n);
 	maxDigits = -1;
 	//console.log(outStr);
-	svg += "<path d=\"M";
+	svg += "<path class=\"functionLine\" d=\"M";
 	if (points.size()<2*n+2){
 		for (i=0;i<points.size()/2;i++){
 			if (points[i*2]!=-10001 || points[i*2+1]!=-10001){
