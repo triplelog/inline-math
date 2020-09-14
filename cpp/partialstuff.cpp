@@ -708,6 +708,7 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 		}
 		std::string solvable = postfixedV[0] + "@" + solvableR;
 		//std::cout << "solvable: " << solvable << "\n";
+		string_log(solvable.c_str());
 		Number y = solvePostfix(solvable);
 		
 		if (depVar == "y"){

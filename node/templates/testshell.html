@@ -139,11 +139,11 @@
 		
 		els = document.querySelectorAll('input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
-			console.log(els[i]);
-			console.log(els[i].checked);
+			//console.log(els[i]);
+			//console.log(els[i].checked);
 			var varName = els[i].getAttribute('name').substr(7);
 			if (els[i].checked){
-				console.log("checked");
+				//console.log("checked");
 				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes')]);
 			}
 			else {
@@ -229,7 +229,7 @@
 		var top = 10;
 		var input = "";
 		var id = "";
-		console.log(evt.target);
+		//console.log(evt.target);
 		if (evt){
 			spread = evt.target.value;
 			if (spread == 0){return;}

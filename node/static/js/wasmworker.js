@@ -540,7 +540,6 @@ onmessage = function(e) {
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "plot"){
-		console.log(message);
 		svg = "";
 		pjs(message[1],message[3],message[4],message[5],message[6]);
 		svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
