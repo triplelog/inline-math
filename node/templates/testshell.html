@@ -245,16 +245,23 @@
 			if (evt.target.id.substr(0,5) == 'domai'){
 				left = -.5*spread;
 				right = .5*spread;
+				bottom = parseInt(evt.target.parentElement.getAttribute('data-bottom'));
+				top = parseInt(evt.target.parentElement.getAttribute('data-top'));
+				spreadtb = top-bottom;
 			}
 			else if (evt.target.id.substr(0,5) == 'range'){
 				bottom = -.5*spread;
 				top = .5*spread;
+				left = parseInt(evt.target.parentElement.getAttribute('data-left'));
+				right = parseInt(evt.target.parentElement.getAttribute('data-right'));
+				spread = right-left;
 			}
+			sliders = evt.target.parentElement.getAttribute('data-sliders');
 			
 			input = evt.target.getAttribute('data-formula');
 			id = evt.target.id.substr(13);
 		}
-		myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread]);
+		myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread,spreadtb,sliders]);
 		
 	}
 	
