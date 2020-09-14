@@ -371,17 +371,7 @@ const renderer = {
 			var top = 10;
 			console.log(inputs.length);
 			if (inputs.length > 1){
-				left = parseInt(inputs[1]);
-				console.log(left);
-				if (inputs.length>2){
-					right = parseInt(inputs[2]);
-					if (inputs.length>3){
-						bottom = parseInt(inputs[3]);
-						if (inputs.length>4){
-							top = parseInt(inputs[4]);
-						}
-					}
-				}
+				
 			}
 			cosole.log(fn);
 			svg = '<span class=="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
