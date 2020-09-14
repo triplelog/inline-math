@@ -415,7 +415,6 @@ const renderer = {
 			//pjs(fn,left,right,bottom,top);
 			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
 			svg += '</span>';
-			console.log(svg);
 			return svg;
 		}
 		else if (input.search(/tree\(/)==0){

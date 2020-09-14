@@ -80,7 +80,12 @@ std::string prepareIt(std::string a){
 			return "error";
 		}
 		else if (a.at(i) == '\\'){
-			return "error";
+			if (i+2 < a.length() && a.at(i+1) == 'p' && a.at(i+2) == 'm'){
+			
+			}
+			else {
+				return "error";
+			}
 		}
 	}
 	dependentFunctions.clear();
