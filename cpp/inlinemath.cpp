@@ -423,12 +423,16 @@ void AddRules(char* aa,char* bb) {
 int main() {
 	//std::string jsonmessage = "var rule = {};";
 	srand(time(NULL));
-	auto nanos = std::chrono::high_resolution_clock::now().time_since_epoch();
+	auto a1 = std::chrono::high_resolution_clock::now();
+	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	killNow.maxTime = 3142; //milliseconds: 1 thousandth of second
 	maxDigits = -1;
 	exactDigits = -1;
 	initialRun();
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
+	console_log(duration);
 	send_ready();
 	return 1;
 }
