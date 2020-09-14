@@ -44,6 +44,7 @@ var latexedInputs = {};
 var currentV = {};
 var currentF = {};
 var inputV = {};
+var plotid = 0;
 importScripts('marked.js');
 
 
@@ -401,7 +402,8 @@ const renderer = {
 				top = bottom + 20;
 			}
 			
-			svg = '<span class="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+			svg = '<span class="plotSpan" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+			plotid++;
 			//pjs(fn,left,right,bottom,top);
 			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
 			svg += '</span>';
@@ -513,7 +515,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
 
-
+		plotid = 0;
 		var html;
 		try {
 			html = marked(markdown);
