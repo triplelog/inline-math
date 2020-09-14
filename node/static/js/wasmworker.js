@@ -499,9 +499,9 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "plot"){
 		svg = "";
-		pjs(message[1],message[2],message[3],message[4],message[5]);
-		svg += '<input type="range" id="domainSlider" min="0" max="'+(message[6]*2)+'" value="'+message[6]+'"></input>';
-		result = ["svg",message[1],svg];
+		pjs(message[1],message[3],message[4],message[5],message[6]);
+		svg += '<input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';
+		result = ["svg",message[1],svg,message[2]];
 	}
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];

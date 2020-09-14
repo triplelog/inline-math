@@ -114,7 +114,7 @@
 			//if (autoNow == e.data[1]){
 				var svg = e.data[2];
 				document.getElementById("output-graph").innerHTML = svg;
-				document.getElementById("domainSlider").addEventListener('change',plotChange);
+				document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
 			//}
 			//else {
 			//	var latex = e.data[2];
@@ -210,18 +210,17 @@
 		var spread = 20;
 		var bottom = -10;
 		var top = 10;
+		var input = "";
+		var id = "";
+		console.log(evt.target);
 		if (evt){
 			spread = evt.target.value;
 			left = -.5*spread;
 			right = .5*spread;
+			input = evt.target.getAttribute('data-formula');
+			id = evt.target.id;
 		}
-		else if (document.getElementById("domainSlider")){
-			spread = document.getElementById("domainSlider").value;
-			left = -.5*spread;
-			right = .5*spread;
-		}
-		var input = document.getElementById("inline-graph").value;
-		myWorker.postMessage(["plot",input,left,right,bottom,top,spread]);
+		myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread]);
 		
 	}
 	

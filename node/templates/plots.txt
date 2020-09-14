@@ -2,4 +2,10 @@
 {% block markdown %}	 
 
 $plot(3*x+3)$
+
+
+Coming Soon
+-----------
+
+More control over formatting
 {% endblock %}
