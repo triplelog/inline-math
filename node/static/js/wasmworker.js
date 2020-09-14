@@ -369,7 +369,9 @@ const renderer = {
 			var top = 10;
 			
 			if (inputs.length > 1){
+				console.log(inputs[1]);
 				left = parseInt(inputs[1]);
+				console.log(left);
 				if (inputs.length>2){
 					right = parseInt(inputs[2]);
 					if (inputs.length>3){
