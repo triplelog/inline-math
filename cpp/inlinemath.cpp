@@ -118,9 +118,7 @@ std::string prepareIt(std::string a){
 	output_dependent_functions(df);
 	
 	dependentChars = getDependents(postfixedV[1]);
-	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return "error";
-	}
+	
 	sz = dependentChars.size();
 	char* dc = new char[sz];
 	for (i=0;i<sz;i++){
@@ -129,10 +127,13 @@ std::string prepareIt(std::string a){
 	dc[sz]='\0';
 	output_dependents(dc);
 	
+	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		return postfixedV[0]+"@"+postfixedV[1];
+	}
 
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return "error";
+		return postfixedV[0]+"@"+postfixedV[1];
 	}
 	//string_log(postfixedV[1].c_str());
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
@@ -144,12 +145,12 @@ std::string prepareIt(std::string a){
 	//}
 	postfixed = removeSolves(postfixed);
 	if (!checkPostfix(postfixed)){
-		return "error";
+		return postfixed;
 	}
 
 	postfixed = removeBracketsOne(postfixed);
 	if (!checkPostfix(postfixed)){
-		return "error";
+		return postfixed;
 	}
 	return postfixed;
 }
