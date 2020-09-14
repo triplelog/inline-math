@@ -1435,9 +1435,18 @@ void initialRun(){
 	makeRulesNew(rows1);
 	rulesMap["identities"]=rules;
 	ruleIndexMap["identities"]=ruleIndex;
-
+	
+	auto t2 = std::chrono::high_resolution_clock::now();
+	int duration2 = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
+	console_log(duration2);
 	std::vector<std::string> rows2 = createArithmetic();
+	auto t3 = std::chrono::high_resolution_clock::now();
+	int duration3 = std::chrono::duration_cast<std::chrono::milliseconds>( a3 - a2 ).count();
+	console_log(duration3);
 	makeRulesNew(rows2);
+	auto t4 = std::chrono::high_resolution_clock::now();
+	int duration4 = std::chrono::duration_cast<std::chrono::milliseconds>( a4 - a3 ).count();
+	console_log(duration4);
 	rulesMap["arithmetic"]=rules;
 	ruleIndexMap["arithmetic"]=ruleIndex;
 	
@@ -1460,6 +1469,6 @@ void initialRun(){
 	rulesMap["calculus"]=rules;
 	ruleIndexMap["calculus"]=ruleIndex;
 
-	auto t2 = std::chrono::high_resolution_clock::now();
+	auto t5 = std::chrono::high_resolution_clock::now();
 }
 
