@@ -370,7 +370,7 @@ const renderer = {
 			var bottom = -10;
 			var top = 10;
 			console.log(inputs.length);
-			if (1 > 1){
+			/*if (1 > 1){
 				left = parseInt(inputs[1]);
 				console.log(left);
 				if (inputs.length>2){
@@ -382,8 +382,9 @@ const renderer = {
 						}
 					}
 				}
-			}
+			}*/
 			cosole.log(fn);
+			
 			svg = '<span class=="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
 			//pjs(fn,left,right,bottom,top);
 			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
