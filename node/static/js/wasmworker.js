@@ -359,11 +359,12 @@ const renderer = {
 	
 		var input = match[1].trim();
 		if (input.search(/plot\(/)==0){
-			console.log(input);
 			input = input.replace('plot(','');
 			input = input.substr(0,input.length-1);
 			var inputs = input.split(',');
+			console.log(inputs);
 			var fn = inputs[0];
+			console.log(fn);
 			var left = -10;
 			var right = 10;
 			var bottom = -10;
@@ -492,7 +493,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
-		console.log(markdown);
+
 
 		var html;
 		try {
