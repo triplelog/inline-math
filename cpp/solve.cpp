@@ -590,9 +590,9 @@ Number reduceFraction(const Number numA){
 	string_log(numA.top.c_str());
 	string_log("bottom");
 	string_log(numA.bottom.c_str());
-	long la = std::stol(numA.top);
-	long lb = std::stol(numA.bottom);
-	while (la > 1000000000 || lb > 1000000000){
+	long long la = std::stoll(numA.top);
+	long long lb = std::stoll(numA.bottom);
+	while (la > 1000000000 || lb > 1000000000 || la < -1000000000 || lb < -1000000000){
 		la /= 10;
 		lb /= 10;
 		//TODO: convert to decimal
