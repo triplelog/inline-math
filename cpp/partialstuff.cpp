@@ -720,9 +720,11 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 			}
 			
 		}
+		string_log("in");
 		string_log(displaySolvable.c_str());
 		Number y = solvePostfix(solvable);
-		
+		string_log("out");
+		string_log(outputNumber(y).c_str());
 		if (depVar == "y"){
 			if (y.type == 0){
 				out[i*2]=-10001;

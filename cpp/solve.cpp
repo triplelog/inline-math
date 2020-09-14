@@ -1778,8 +1778,6 @@ Number trigTwo(char fn, const Number numA){
 	int base = 10;
 	int neg = 1;
 	Number n;
-	string_log(outputNumber(numA).c_str());
-	string_log(std::to_string(numA.type).c_str());
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
@@ -1800,7 +1798,6 @@ Number trigTwo(char fn, const Number numA){
 			return trigTwo(-64,nn);
 		}
 		else if (nna.type != 0 && maxDigits >= 0){
-			string_log(outputNumber(nna).c_str());
 			return trigTwo(-64,nna);
 		}
 		else {
@@ -1818,8 +1815,6 @@ Number trigTwo(char fn, const Number numA){
 			if (sina.type == 0){
 				return n;
 			}
-			string_log(outputNumber(sina).c_str());
-			string_log(outputNumber(invertOne(cosa)).c_str());
 			return mulTwo(sina,invertOne(cosa));
 		}
 		else if (nna.type != 0 && maxDigits >= 0){
@@ -1831,8 +1826,6 @@ Number trigTwo(char fn, const Number numA){
 			if (sina.type == 0){
 				return n;
 			}
-			string_log(outputNumber(sina).c_str());
-			string_log(outputNumber(invertOne(cosa)).c_str());
 			return mulTwo(sina,invertOne(cosa));
 		}
 		else {
@@ -1904,8 +1897,7 @@ Number trigTwo(char fn, const Number numA){
 	else if (fn != -64){
 		return n;
 	}
-	
-	string_log(outputNumber(numA).c_str());			
+			
 	//Rest assumes function is sine		
 	if (numA.type == 0){
 		return n;
@@ -1919,7 +1911,6 @@ Number trigTwo(char fn, const Number numA){
 	}
 	else if (numA.type == 2 || numA.type == 3 || numA.type == -2 || numA.type == -3){
 		a = std::stod(numA.top) / std::stod(numA.bottom);
-		string_log(std::to_string(a).c_str());
 		if (numA.type < 0){
 			a *= -1;
 		}
@@ -2035,7 +2026,6 @@ Number trigTwo(char fn, const Number numA){
 	else {
 		return n;
 	}
-	string_log(outputNumber(numA).c_str());
 	if (maxDigits < 0){
 		return n;
 	}
@@ -2046,7 +2036,6 @@ Number trigTwo(char fn, const Number numA){
 		numberType(prod);
 	}
 	n = numbers[prod];
-	string_log(outputNumber(n).c_str());
 	return n;
 
 }
