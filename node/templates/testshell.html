@@ -230,7 +230,7 @@
 			left = -.5*spread;
 			right = .5*spread;
 			input = evt.target.getAttribute('data-formula');
-			id = evt.target.id;
+			id = evt.target.id.substr(13);
 		}
 		myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread]);
 		
