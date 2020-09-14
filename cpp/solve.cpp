@@ -1064,6 +1064,12 @@ Number addTwo(const Number numA, const Number numB){
 				string_log("sum");
 				string_log(outputNumber(numA).c_str());
 				string_log(outputNumber(numB).c_str());
+				string_log(numA.top.c_str());
+				string_log(numA.bottom.c_str());
+				string_log(numB.top.c_str());
+				string_log(numB.bottom.c_str());
+				string_log(outputNumber(mulTwo(numbers[numA.top],numbers[numB.bottom])).c_str());
+				string_log(outputNumber(mulTwo(negateOne(numbers[numB.top]),numbers[numA.bottom])).c_str());
 				n = addTwo(mulTwo(numbers[numA.top],numbers[numB.bottom]),mulTwo(negateOne(numbers[numB.top]),numbers[numA.bottom]));
 				string_log(outputNumber(n).c_str());
 				nb = mulTwo(numbers[numA.bottom],numbers[numB.bottom]);
