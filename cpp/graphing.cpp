@@ -109,7 +109,7 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 	svg += "<path d=\"M" + convertCoordinates(0,top,left,right,bottom,top) + " V100 M" + convertCoordinates(left,0,left,right,bottom,top) + " H100\" stroke=\"rgb(160,160,160)\"/>";
 
 	
-	int n = 10;
+	int n = 100;
 	std::vector<double> points;
 	maxDigits = 2;
 	points = getPoints(postfixedV,iV,dV,left,right,n);

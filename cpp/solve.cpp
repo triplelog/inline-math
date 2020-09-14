@@ -586,10 +586,6 @@ std::string outputNumber(Number n){
 
 
 Number reduceFraction(const Number numA){
-	string_log("top");
-	string_log(numA.top.c_str());
-	string_log("bottom");
-	string_log(numA.bottom.c_str());
 	long long la = std::stoll(numA.top);
 	long long lb = std::stoll(numA.bottom);
 	while (la > 1000000000 || lb > 1000000000 || la < -1000000000 || lb < -1000000000){
