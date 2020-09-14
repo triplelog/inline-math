@@ -1787,14 +1787,24 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
+	if (numbers.find("3.141519") == numbers.end()){
+		numberType("3.14159");
+	}
 	if (numbers.find("1/2") == numbers.end()){
 		numberType("1/2");
 	}
 	Number halfpi = mulTwo(numbers["\\pi"],numbers["1/2"]);
+	Number nn = addTwo(halfpi,negateOne(numA));
+	Number nna;
+	if (maxDigits >=0){
+		nna = addTwo(mulTwo(numbers["3.14159"],numbers["1/2"]),negateOne(numA));
+	}
 	if (fn == -63){//cosine
-		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			return trigTwo(-64,nn);
+		}
+		else if (nna.type != 0 && maxDigits >= 0){
+			return trigTwo(-64,nna);
 		}
 		else {
 			return n;
@@ -1802,10 +1812,21 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	}
 	else if (fn == -62){//tangent
 
-		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
-			string_log("tangent");
 			Number cosa = trigTwo(-64,nn);
+			if (outputNumber(cosa) == "0" || cosa.type == 0){
+				return n; //replace with infinity
+			}
+			Number sina = trigTwo(-64,numA);
+			if (sina.type == 0){
+				return n;
+			}
+			string_log(outputNumber(sina).c_str());
+			string_log(outputNumber(invertOne(cosa)).c_str());
+			return mulTwo(sina,invertOne(cosa));
+		}
+		else if (nna.type != 0 && maxDigits >= 0){
+			Number cosa = trigTwo(-64,nna);
 			if (outputNumber(cosa) == "0" || cosa.type == 0){
 				return n; //replace with infinity
 			}
@@ -1842,6 +1863,15 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 			}
 			
 		}
+		else if (nna.type != 0 && maxDigits >= 0){
+			Number cosa = trigTwo(-64,nna);
+			if (outputNumber(cosa) == "0" || cosa.type == 0){
+				return n; //replace with infinity
+			}
+			else {
+				return invertOne(cosa);
+			}
+		}
 		else {
 			return n;
 		}
@@ -1850,6 +1880,17 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 		Number nn = addTwo(halfpi,negateOne(numA));
 		if (nn.type == 11 && nn.bottom == "\\pi"){
 			Number cosa = trigTwo(-64,nn);
+			Number sina = trigTwo(-64,numA);
+			if (outputNumber(sina) == "0" || sina.type == 0){
+				return n; //replace with infinity
+			}
+			if (cosa.type == 0){
+				return n;
+			}
+			return mulTwo(cosa,invertOne(sina));
+		}
+		else if (nna.type != 0 && maxDigits >= 0){
+			Number cosa = trigTwo(-64,nna);
 			Number sina = trigTwo(-64,numA);
 			if (outputNumber(sina) == "0" || sina.type == 0){
 				return n; //replace with infinity
@@ -2002,11 +2043,6 @@ Number trigTwo(char fn, const Number numA){ //numA is base and numB is inside pa
 	}
 	std::string prod = "";
 	if (fn == -64){prod = std::to_string(sin(a));}
-	else if (fn == -63){prod = std::to_string(cos(a));} 
-	else if (fn == -62){double ca = cos(a); if (ca != 0){prod = std::to_string(sin(a)/ca);}} 
-	else if (fn == -61){double sa = sin(a); if (sa != 0){prod = std::to_string(1.0/sa);}} 
-	else if (fn == -60){double ca = cos(a); if (ca != 0){prod = std::to_string(1.0/ca);}} 
-	else if (fn == -59){double sa = sin(a); if (sa != 0){prod = std::to_string(cos(a)/sa);}} 
 	
 	if (numbers.find(prod) == numbers.end()){
 		numberType(prod);

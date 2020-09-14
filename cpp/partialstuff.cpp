@@ -712,7 +712,7 @@ std::vector<double> getPoints(std::vector<std::string> postfixedV, std::string i
 		std::string displaySolvable = "";
 		for (ii=0;ii<solvable.length();ii++){
 			if (solvable.at(ii)<0){
-				int si = solvable.at(ii) - '0';
+				int si = solvable.at(ii) - '0' + '0';
 				displaySolvable += std::to_string(si);
 			}
 			else {
