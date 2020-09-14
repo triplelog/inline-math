@@ -369,18 +369,36 @@ const renderer = {
 			var top = 10;
 			
 			if (inputs.length > 1){
-				console.log(inputs[1]);
 				left = parseInt(inputs[1]);
-				console.log(left);
+				if (isNaN(left)){
+					left = -10;
+				}
 				if (inputs.length>2){
 					right = parseInt(inputs[2]);
+					if (isNaN(right)){
+						right = 10;
+					}
+					
 					if (inputs.length>3){
 						bottom = parseInt(inputs[3]);
+						if (isNaN(bottom)){
+							bottom = -10;
+						}
 						if (inputs.length>4){
 							top = parseInt(inputs[4]);
+							if (isNaN(top)){
+								top = 10;
+							}
+							
 						}
 					}
 				}
+			}
+			if (right <= left){
+				right = left + 20;
+			}
+			if (top <= bottom){
+				top = bottom + 20;
 			}
 			
 			svg = '<span class="plotSpan" id="plot-'+0+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
