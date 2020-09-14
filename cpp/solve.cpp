@@ -1784,6 +1784,8 @@ Number trigTwo(char fn, const Number numA){
 	int base = 10;
 	int neg = 1;
 	Number n;
+	string_log(outputNumber(numA).c_str());
+	string_log(numA.type.c_str());
 	if (numbers.find("\\pi") == numbers.end()){
 		numberType("\\pi");
 	}
