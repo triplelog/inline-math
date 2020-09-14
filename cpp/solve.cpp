@@ -485,13 +485,13 @@ std::string outputNumber(Number n){
 		return "-"+n.top;
 	}
 	else if (n.type == 2){
-		double d = std::stoi(n.top);
-		d /= std::stoi(n.bottom);
+		double d = std::stod(n.top);
+		d /= std::stod(n.bottom);
 		return std::to_string(d);
 	}
 	else if (n.type == -2){
-		double d = std::stoi(n.top);
-		d /= std::stoi(n.bottom);
+		double d = std::stod(n.top);
+		d /= std::stod(n.bottom);
 		return "-"+std::to_string(d);
 	}
 	else if (n.type == 3){
@@ -586,8 +586,16 @@ std::string outputNumber(Number n){
 
 
 Number reduceFraction(const Number numA){
-	int a = std::stoi(numA.top);
-	int b = std::stoi(numA.bottom);
+	long la = std::stol(numA.top);
+	long lb = std::stol(numA.bottom);
+	while (la > 1000000000 || lb > 1000000000){
+		la /= 10;
+		lb /= 10;
+		//TODO: convert to decimal
+	}
+	int a = la;
+	int b = lb;
+	
 	std::vector<int> primes = {2,3,5,7,11,13,17,19,23,29};
 	int i;
 	for (i=0;i<10;i++){
