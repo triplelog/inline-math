@@ -1055,8 +1055,6 @@ Number addTwo(const Number numA, const Number numB){
 					numberType(nd);
 				}
 				n = numbers[nd];
-				string_log(outputNumber(n).c_str());
-				string_log("done sum");
 			}
 		}
 		else if (numB.type == 1 || numB.type == -1){
@@ -1907,7 +1905,7 @@ Number trigTwo(char fn, const Number numA){
 		if (numA.top == "0"){
 			return numA;
 		}
-		a = std::stoi(numA.top);
+		a = std::stod(numA.top);
 	}
 	else if (numA.type == 2 || numA.type == 3 || numA.type == -2 || numA.type == -3){
 		a = std::stod(numA.top) / std::stod(numA.bottom);
