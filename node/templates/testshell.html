@@ -250,11 +250,13 @@
 				spreadtb = top-bottom;
 			}
 			else if (evt.target.id.substr(0,5) == 'range'){
+				spreadtb = evt.target.value;
 				bottom = -.5*spread;
 				top = .5*spread;
 				left = parseInt(evt.target.parentElement.getAttribute('data-left'));
 				right = parseInt(evt.target.parentElement.getAttribute('data-right'));
 				spread = right-left;
+				
 			}
 			sliders = evt.target.parentElement.getAttribute('data-sliders');
 			
