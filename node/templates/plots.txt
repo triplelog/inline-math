@@ -1,11 +1,28 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	 
 
-$plot(3*x+3)$
+Any single variable function wrapped in plot() will return a simple plot.
+$plot(y=x^2)$
 
+Trig functions (in radians).
+$plot(y=cos(x))$
+
+Square roots.
+$plot(y=sqrt(x))$
+
+Variables can be called from inside.
+$range(0,10)$[A]
+$plot(y=x+A)$
+
+The domain and range can be changed by adding arguments in plot(function,left,right,bottom,top) order.
+$plot(y=x^2,-5,5,-1,26)$
 
 Coming Soon
 -----------
 
 More control over formatting
+
+Polar coordinates
+
+
 {% endblock %}

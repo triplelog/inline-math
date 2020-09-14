@@ -111,9 +111,9 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 	
 	int n = 500;
 	std::vector<double> points;
-
+	maxDigits = 2;
 	points = getPoints(postfixedV,iV,dV,bottom,top,n);
-
+	maxDigits = -1;
 	//console.log(outStr);
 	svg += "<path d=\"M";
 	if (points.size()<2*n+2){

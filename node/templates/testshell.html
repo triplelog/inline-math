@@ -227,6 +227,7 @@
 		console.log(evt.target);
 		if (evt){
 			spread = evt.target.value;
+			if (spread == 0){return;}
 			left = -.5*spread;
 			right = .5*spread;
 			input = evt.target.getAttribute('data-formula');
