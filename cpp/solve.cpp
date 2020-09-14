@@ -1030,11 +1030,7 @@ Number addTwo(const Number numA, const Number numB){
 					nb.top = numB.top;
 					n.type = 1;
 					n.top = numA.top;
-					string_log("sum");
-					string_log(outputNumber(n).c_str());
-					string_log(outputNumber(nb).c_str());
 					n = addTwo(n,nb);
-					string_log(outputNumber(n).c_str());
 					n.bottom = numA.bottom;
 					
 					while (n.top.length() >= 1 && n.top.at(n.top.length()-1)=='0' && n.bottom.length()>1){
@@ -1044,41 +1040,21 @@ Number addTwo(const Number numA, const Number numB){
 					if (n.bottom != "1"){
 						n.type = 2 * n.type;
 					}
-					string_log(outputNumber(n).c_str());
-					string_log("done sum");
 				}
 			}
 			else {
-				if (numbers.find(numA.top) == numbers.end()){
-					numberType(numA.top);
+				
+				double topa = std::stod(numA.top);
+				double topb = std::stod(numB.top);
+				double bota = std::stod(numA.bottom);
+				double botb = std::stod(numB.bottom);
+				double top = topa*botb-topb*bota;
+				double bot = bota*botb;
+				std::string nd = std::to_string(top/bot);
+				if (numbers.find(nd) == numbers.end()){
+					numberType(nd);
 				}
-				if (numbers.find(numB.top) == numbers.end()){
-					numberType(numB.top);
-				}
-				if (numbers.find(numA.bottom) == numbers.end()){
-					numberType(numA.bottom);
-				}
-				if (numbers.find(numB.bottom) == numbers.end()){
-					numberType(numB.bottom);
-				}
-				string_log("sum");
-				string_log(outputNumber(numA).c_str());
-				string_log(outputNumber(numB).c_str());
-				string_log(numA.top.c_str());
-				string_log(numA.bottom.c_str());
-				string_log(numB.top.c_str());
-				string_log(numB.bottom.c_str());
-				string_log(outputNumber(mulTwo(numbers[numA.top],numbers[numB.bottom])).c_str());
-				string_log(outputNumber(mulTwo(negateOne(numbers[numB.top]),numbers[numA.bottom])).c_str());
-				n = addTwo(mulTwo(numbers[numA.top],numbers[numB.bottom]),mulTwo(negateOne(numbers[numB.top]),numbers[numA.bottom]));
-				string_log(outputNumber(n).c_str());
-				nb = mulTwo(numbers[numA.bottom],numbers[numB.bottom]);
-				string_log(outputNumber(nb).c_str());
-				n.type = 2 * n.type;
-				n.top = n.top;
-				n.bottom = nb.top;
-				string_log(outputNumber(n).c_str());
-				n = reduceFraction(n);
+				n = numbers[nd];
 				string_log(outputNumber(n).c_str());
 				string_log("done sum");
 			}
