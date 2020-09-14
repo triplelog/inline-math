@@ -1061,14 +1061,20 @@ Number addTwo(const Number numA, const Number numB){
 				if (numbers.find(numB.bottom) == numbers.end()){
 					numberType(numB.bottom);
 				}
-				
+				string_log("sum");
+				string_log(outputNumber(numA).c_str());
+				string_log(outputNumber(numB).c_str());
 				n = addTwo(mulTwo(numbers[numA.top],numbers[numB.bottom]),mulTwo(negateOne(numbers[numB.top]),numbers[numA.bottom]));
-				
+				string_log(outputNumber(n).c_str());
 				nb = mulTwo(numbers[numA.bottom],numbers[numB.bottom]);
+				string_log(outputNumber(nb).c_str());
 				n.type = 2 * n.type;
 				n.top = n.top;
 				n.bottom = nb.top;
+				string_log(outputNumber(n).c_str());
 				n = reduceFraction(n);
+				string_log(outputNumber(n).c_str());
+				string_log("done sum");
 			}
 		}
 		else if (numB.type == 1 || numB.type == -1){
