@@ -553,7 +553,7 @@ onmessage = function(e) {
 		if (message[9].search('D')>-1){
 			svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
 		}
-		else if (message[9].search('R')>-1){
+		if (message[9].search('R')>-1){
 			svg += '<br><input type="range" data-formula="'+message[1]+'" id="rangeSlider-'+message[2]+'" min="0" max="'+(message[8]*2)+'" value="'+message[8]+'"></input>';	
 		}
 		result = ["svg",message[1],svg,message[2]];
