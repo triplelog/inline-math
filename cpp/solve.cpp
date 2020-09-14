@@ -1030,16 +1030,22 @@ Number addTwo(const Number numA, const Number numB){
 					nb.top = numB.top;
 					n.type = 1;
 					n.top = numA.top;
+					string_log("sum");
+					string_log(outputNumber(n).c_str());
+					string_log(outputNumber(nb).c_str());
 					n = addTwo(n,nb);
+					string_log(outputNumber(n).c_str());
 					n.bottom = numA.bottom;
-				
-					while (n.top.at(n.top.length()-1)=='0' && n.bottom.length()>1){
+					
+					while (n.top.length() >= 1 && n.top.at(n.top.length()-1)=='0' && n.bottom.length()>1){
 						n.top = n.top.substr(0,n.top.length()-1);
 						n.bottom = n.bottom.substr(0,n.bottom.length()-1);
 					}
 					if (n.bottom != "1"){
 						n.type = 2 * n.type;
 					}
+					string_log(outputNumber(n).c_str());
+					string_log("done sum");
 				}
 			}
 			else {
