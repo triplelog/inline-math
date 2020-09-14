@@ -36,7 +36,7 @@
   		overflow-y: auto;
   	}
   	.plotSpan {
-  		display: inline-block;
+  		display: block;
   		width: 200px;
   		height: 200px;
   	}
@@ -119,7 +119,14 @@
 			//if (autoNow == e.data[1]){
 			var svg = e.data[2];
 			document.getElementById(e.data[3]).innerHTML = svg;
-			document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
+			if (document.getElementById("domainSlider-"+e.data[3])){
+				document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
+			}
+			if (document.getElementById("rangeSlider-"+e.data[3])) {
+				document.getElementById("rangeSlider-"+e.data[3]).addEventListener('change',plotChange);
+			}
+			
+			
 			//}
 			//else {
 			//	var latex = e.data[2];
@@ -187,8 +194,10 @@
 			var top = parseInt(plotEls[i].getAttribute('data-top'));
 			var input = plotEls[i].getAttribute('data-formula');
 			var id = plotEls[i].id;
+			var sliders = plotEls[i].getAttribute('data-sliders');
 			var spread = right-left;
-			myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread]);
+			var spreadtb = top-bottom;
+			myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread,spreadtb,sliders]);
 		}
 		
 	}
@@ -233,8 +242,15 @@
 		if (evt){
 			spread = evt.target.value;
 			if (spread == 0){return;}
-			left = -.5*spread;
-			right = .5*spread;
+			if (evt.target.id.substr(0,5) == 'domai'){
+				left = -.5*spread;
+				right = .5*spread;
+			}
+			else if (evt.target.id.substr(0,5) == 'range'){
+				bottom = -.5*spread;
+				top = .5*spread;
+			}
+			
 			input = evt.target.getAttribute('data-formula');
 			id = evt.target.id.substr(13);
 		}

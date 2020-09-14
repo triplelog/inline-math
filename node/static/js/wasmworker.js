@@ -361,7 +361,15 @@ const renderer = {
 		var input = match[1].trim();
 		if (input.search(/plot\(/)==0){
 			input = input.replace('plot(','');
-			input = input.substr(0,input.length-1);
+			var dr = input.split(')');
+			if (dr.length>1){
+				input = dr.slice(0,dr.length-1).join(')');
+				dr = dr[dr.length-1].replace('[','').replace(']','');
+			}
+			else {
+				input = dr.join(')');
+				dr = "";
+			}
 			var inputs = input.split(',');
 			var fn = inputs[0];
 			var left = -10;
@@ -402,7 +410,7 @@ const renderer = {
 				top = bottom + 20;
 			}
 			
-			svg = '<span class="plotSpan" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+			svg = '<span class="plotSpan" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
 			plotid++;
 			//pjs(fn,left,right,bottom,top);
 			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
@@ -542,7 +550,12 @@ onmessage = function(e) {
 	else if (message[0] == "plot"){
 		svg = "";
 		pjs(message[1],message[3],message[4],message[5],message[6]);
-		svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
+		if (message[9].search('D')>-1){
+			svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
+		}
+		else if (message[9].search('R')>-1){
+			svg += '<br><input type="range" data-formula="'+message[1]+'" id="rangeSlider-'+message[2]+'" min="0" max="'+(message[8]*2)+'" value="'+message[8]+'"></input>';	
+		}
 		result = ["svg",message[1],svg,message[2]];
 	}
 	else if (message[0] == "inputValue"){
