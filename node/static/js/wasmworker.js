@@ -410,11 +410,16 @@ const renderer = {
 				top = bottom + 20;
 			}
 			
-			svg = '<span class="plotSpan" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+			if (isDisplay){
+				svg = '<div class="plotDiv" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg += '</div>';
+			}
+			else {
+				svg = '<span class="plotSpan" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg += '</span>';
+			}
 			plotid++;
-			//pjs(fn,left,right,bottom,top);
-			//svg += '<br><input type="range" data-formula="'+fn+'" id="domainSlider-'+0+'" min="0" max="'+((right-left)*2)+'" value="'+(right-left)+'"></input>';
-			svg += '</span>';
+			
 			return svg;
 		}
 		else if (input.search(/tree\(/)==0){
@@ -547,8 +552,9 @@ onmessage = function(e) {
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "plot"){
-		svg = "";
+		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
 		pjs(message[1],message[3],message[4],message[5],message[6]);
+		svg += "</svg>";
 		if (message[9].search('D')>-1){
 			svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
 		}

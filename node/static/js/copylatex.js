@@ -314,3 +314,4 @@ function getCopied(evt) {
 document.querySelector('button.copy-latex').addEventListener('click',getCopied);
 document.querySelector('button.copy-text').addEventListener('click',getCopied);
 document.querySelector('button.copy-html').addEventListener('click',getCopied);
+

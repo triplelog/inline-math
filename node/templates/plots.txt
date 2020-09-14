@@ -2,9 +2,12 @@
 {% block markdown %}	 
 
 Any single variable function wrapped in plot() will return a simple plot.
-$plot(y=x^2)$
+$plot(x^2)$
 
-Trig functions (in radians).
+
+
+Trig functions (in radians), square roots, logarithms, and basic arithmetic operations of +,-,*,/, and ^ should work. Division by zero or other non numerical outputs should be skipped.
+
 $plot(y=cos(x))$
 
 Square roots.
@@ -20,10 +23,17 @@ $plot(y=x^2,-5,5,-3,30)$
 Domain and range sliders can be added by adding [DR] after plot(). Or use plot()[D] to just add a domain slider.
 $plot(y=x^2)[DR]$
 
-Coming Soon
------------
+Functions are assumed to have $x$ as the independent variable and $y$ as the dependent variable. To change the dependent variable, start with something like $y=$. Although at the moment the name of the dependent variable is largely irrelevant. To change the independent variable, start with something like $y(t)=$.
 
-More control over formatting
+If the dependent variable is $x$ then the horizontal axis will remain the x-axis and the independent variable will take the vertical axis. To use the vertical axis for the independent variable in other cases requires adding the capital letter F inside [] between the end of plot() and the closing dollar sign.
+
+Using the double dollar signs will produce a div that is 15 rem tall and 15 rem wide. Using single dollar signs will produce a span that is 2 rem tall and 2 rem wide.
+
+
+Coming Soonish
+--------------
+
+More control over formatting, sizing, coloring, labeling, etc.
 
 Polar coordinates
 

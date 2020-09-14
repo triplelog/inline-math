@@ -35,10 +35,17 @@
   		padding: .5rem;
   		overflow-y: auto;
   	}
-  	.plotSpan {
+  	.plotDiv {
   		display: block;
   		width: 200px;
   		height: 250px;
+  		padding: .5rem;
+  	}
+  	.plotSpan {
+  		display: inline-block;
+  		width: 100px;
+  		height: 120px;
+  		padding: .1rem;
   	}
   </style>
 </head>
@@ -186,7 +193,7 @@
 			createTree(treeEls[i],0);
 		}
 		
-		var plotEls = document.querySelectorAll('.plotSpan');
+		var plotEls = document.querySelectorAll('.plotSpan, .plotDiv');
 		for (var i=0;i<plotEls.length;i++){
 			var left = parseInt(plotEls[i].getAttribute('data-left'));
 			var right = parseInt(plotEls[i].getAttribute('data-right'));

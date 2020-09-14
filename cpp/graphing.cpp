@@ -52,7 +52,7 @@ std::string convertY(double y,double bottom,double top,double shift){
 std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::string dV,double left, double right,double bottom,double top){
 	
 	char* buf;
-	std::string svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">";
+	std::string svg = "";
 
 	int i; int ii;
 	int xMinor = 1;
@@ -137,7 +137,7 @@ std::string makeGraph(std::vector<std::string> postfixedV,std::string iV, std::s
 	
 	svg += "\" stroke=\"rgb(60,60,60)\" fill=\"none\"/>";
 	
-	svg += "</svg>";
+	svg += "";
 	svg += "\0";
 	return svg;
 
