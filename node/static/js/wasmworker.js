@@ -369,13 +369,13 @@ const renderer = {
 			var right = 10;
 			var bottom = -10;
 			var top = 10;
-			if (inputs.length()>1){
+			if (inputs.length>1){
 				left = parseInt(inputs[1]);
-				if (inputs.length()>2){
+				if (inputs.length>2){
 					right = parseInt(inputs[2]);
-					if (inputs.length()>3){
+					if (inputs.length>3){
 						bottom = parseInt(inputs[3]);
-						if (inputs.length()>4){
+						if (inputs.length>4){
 							top = parseInt(inputs[4]);
 						}
 					}
