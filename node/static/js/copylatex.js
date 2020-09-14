@@ -120,7 +120,16 @@ function getHTML(parent,parents) {
 	}
 	var fullInput = "";
 	if (!children || children.length == 0){
-		fullInput += parent.outerHTML;
+		if (parent.outerHTML){
+			fullInput += parent.outerHTML;
+		}
+		else if (parent.textContent){
+			fullInput += parent.textContent;
+		}
+		else {
+			fullInput += parent;
+		}
+		
 		return fullInput;
 	}
 	for (var i=0;i<children.length;i++){
@@ -138,27 +147,27 @@ function getHTML(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (!child.classList || !child.classList.contains('katex')){
-					fullInput += getHTML(child,parents);
-				}
-				else{
+				if (child.outerHTML){
 					fullInput += child.outerHTML;
+				}
+				else if (child.textContent){
+					fullInput += child.textContent;
+				}
+				else {
+					fullInput += child;
 				}
 			}
 		}
 		else {
 			var child = children[i];
-			if (!child.classList || !child.classList.contains('katex')){
-				if (isParent){
-					fullInput += getHTML(child,parents);
-				}
-				else {
-					fullInput += getHTML(child,"all");
-				}
-				
-			}
-			else{
+			if (child.outerHTML){
 				fullInput += child.outerHTML;
+			}
+			else if (child.textContent){
+				fullInput += child.textContent;
+			}
+			else {
+				fullInput += child;
 			}
 			if (isParent){
 				startCopy = false;

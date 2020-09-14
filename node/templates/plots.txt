@@ -17,6 +17,9 @@ $plot(y=x+A)$
 The domain and range can be changed by adding arguments in plot(function,left,right,bottom,top) order.
 $plot(y=x^2,-5,5,-3,30)$
 
+Domain and range sliders can be added by adding [DR] after plot(). Or use plot()[D] to just add a domain slider.
+$plot(y=x^2)[DR]$
+
 Coming Soon
 -----------
 
@@ -28,3 +31,4 @@ Multiple function on 1 graph
 
 
 {% endblock %}
+
