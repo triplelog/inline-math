@@ -2922,13 +2922,17 @@ std::string solveFunction(std::string input){
 			currentOperand += input.at(i);
 		}
 	}
-
+	if (inputLeft != "#"){
+		return returnStr;
+	}
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
+		
 		std::string finput = inputLeft+"@"+inputRight;
 		string_log("function found");
 		string_log(input.c_str());
 		string_log(finput.c_str());
+		
 		if (f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
 			string_log(f.initial[inputLeft+"@"+inputRight].c_str());
 			return "("+f.initial[inputLeft+"@"+inputRight]+")";
