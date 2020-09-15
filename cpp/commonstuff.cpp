@@ -649,6 +649,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) > -125 ){
 		if (input.at(0) == '#' && input.at(1) == '#' && input.at(2) == '-' && input.at(3) == -125){
 			input.replace(2,1,"");
+			string_log(input.c_str());
 			len--;
 			varNegative = true;
 		}
@@ -685,6 +686,8 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 				else{
 					independentVar = currentOperand;
 				}
+				string_log("indVar");
+				string_log(independentVar.c_str());
 				diff += currentOperand.length()+1;
 			}
 			else {
@@ -727,6 +730,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			break;
 		}
 	}
+	string_log(intValue.c_str());
 	if (isInteger){
 		if (functionMap.find(functionName) != functionMap.end()){
 			functionMap[functionName].initial["#@"+intValue+"_"]= postfix;
