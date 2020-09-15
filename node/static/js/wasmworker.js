@@ -552,6 +552,10 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "code"){
 		var input;
+		console.log(message[1]);
+		message[1] = message[1].replace(/&lt;/g,'<');
+  		message[1] = message[1].replace(/&gt;/g,'>');
+		console.log(message[1]);
 		if (message[3] == 'js'){
 			input = jsToMath(message[1]);
 		}
