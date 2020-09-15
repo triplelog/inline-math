@@ -2934,6 +2934,7 @@ std::string solveFunction(std::string input){
 		string_log(finput.c_str());
 		
 		if (f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
+			string_log("function exists");
 			string_log(f.initial[inputLeft+"@"+inputRight].c_str());
 			return "("+f.initial[inputLeft+"@"+inputRight]+")";
 		}
@@ -2960,7 +2961,7 @@ std::string solveFunction(std::string input){
 				std::string solved = solveArithmetic(fpostfix);
 				string_log(solved.c_str());
 				string_log("function computed");
-				f.initial["#@"+std::to_string(ci)+"_"] = solveArithmetic(fpostfix);
+				f.initial["#@"+std::to_string(ci)+"_"] = solved;
 			}
 		}
 		return "("+newPostfix+")";
