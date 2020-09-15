@@ -2935,25 +2935,14 @@ std::string solveFunction(std::string input){
 		
 		int i;
 		std::string newPostfix = f.postfix;
+		string_log(newPostfix.c_str());
 		for (i=f.rightIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.rightIdx[i],f.var.length()+1,inputRight);
 		}
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		if (inputRight != "1_"){
-			int ci;
-			for (ci=1;ci<10;ci++){
-				char fnc{-125};
-				std::string fnstr(1,fnc);
-				std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
-				string_log("function computing");
-				string_log(fpostfix.c_str());
-				finput = "#@"+std::to_string(ci)+"_";
-				string_log(finput.c_str());
-				f.initial["#@"+std::to_string(ci)+"_"] = solveArithmetic(fpostfix);
-			}
-		}
+		string_log(newPostfix.c_str());
 		return "("+newPostfix+")";
 	}
 	else {
