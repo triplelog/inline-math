@@ -2964,7 +2964,7 @@ std::string solveFunction(std::string input){
 					string_log("function computed");
 					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
 				}
-				return "("+f.initial[inputLeft+"@"+inputRight]+")";
+				return "("+functionMap[functionName].initial[inputLeft+"@"+inputRight]+")";
 			
 			}
 			
