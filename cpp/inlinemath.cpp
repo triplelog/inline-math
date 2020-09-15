@@ -58,7 +58,7 @@ EM_JS(void, output_dependent_functions, (const char* x), {
 });
 
 EM_JS(void, update_currentF, (const char* x), {
-  int y = 7;
+  var y = 7;
   updateCurrentFunctions(UTF8ToString(x),y);
 });
 
