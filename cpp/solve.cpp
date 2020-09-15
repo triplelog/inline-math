@@ -2942,7 +2942,7 @@ std::string solveFunction(std::string input){
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		if (inputRight != "1_" && firstCheck){
+		if (inputRight != "1_" && f.initial.find("#@1_") == f.initial.end()){
 			int ci;
 			firstCheck = false;
 			for (ci=1;ci<3;ci++){
@@ -2956,7 +2956,7 @@ std::string solveFunction(std::string input){
 				std::string solved = solveArithmetic(fpostfix);
 				string_log(solved.c_str());
 				string_log("function computed");
-				//f.initial["#@"+std::to_string(ci)+"_"] = solveArithmetic(fpostfix);
+				f.initial["#@"+std::to_string(ci)+"_"] = solveArithmetic(fpostfix);
 			}
 		}
 		return "("+newPostfix+")";
