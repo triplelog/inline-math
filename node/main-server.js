@@ -170,6 +170,17 @@ app.get(['/code','/code.html'],
 	}
 );
 
+app.get(['/functions','/functions.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/functions.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 
 app.get(['/','/index','/index.html'],
 	function(req, res){
