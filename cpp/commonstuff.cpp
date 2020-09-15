@@ -1393,7 +1393,6 @@ bool firstCorrect;
 #include "rules/canonical.cpp"
 #include "rules/calculus.cpp"
 
-bool firstCheck;
 void initialRun(){
 	prec['~'] = 101;
 	prec['`'] = 101;
@@ -1456,8 +1455,7 @@ void initialRun(){
 	rulesMap["canonical"]=rules;
 	ruleIndexMap["canonical"]=ruleIndex;
 	
-	
-	firstCheck = true;
+
 
 
 	auto t5 = std::chrono::high_resolution_clock::now();

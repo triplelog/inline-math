@@ -2931,36 +2931,51 @@ std::string solveFunction(std::string input){
 		string_log(input.c_str());
 		string_log(finput.c_str());
 		
-		if (inputLeft == "#" && f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
-			string_log("function exists");
-			string_log(f.initial[inputLeft+"@"+inputRight].c_str());
-			return "("+f.initial[inputLeft+"@"+inputRight]+")";
+		if (inputLeft == "#"){
+			if (f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
+				string_log("function exists");
+				string_log(f.initial[inputLeft+"@"+inputRight].c_str());
+				return "("+f.initial[inputLeft+"@"+inputRight]+")";
+			}
+			int maxIter = -10001;
+			int goalIter = std::stoi(inputRight.substr(0,inputRight.length()-1));
+			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
+				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
+				if (v == goalIter){
+					return "("+iter->second+")";
+				}
+				if (v > maxIter){
+					maxIter = v;
+				}
+			}
+			if (maxIter>-10001){
+			
+			
+				for (ci=maxIter+1;ci<=goalIter;ci++){
+					char fnc{-125};
+					std::string fnstr(1,fnc);
+					std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
+					string_log("function computing");
+					string_log(fpostfix.c_str());
+					finput = "#@"+std::to_string(ci)+"_";
+					string_log(finput.c_str());
+					std::string solved = solveArithmetic(fpostfix);
+					string_log(solved.c_str());
+					string_log("function computed");
+					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
+				}
+				return "("+f.initial[inputLeft+"@"+inputRight]+")";
+			
+			}
+			
 		}
-		
-		int i;
+
 		std::string newPostfix = f.postfix;
 		for (i=f.rightIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.rightIdx[i],f.var.length()+1,inputRight);
 		}
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
-		}
-		if (inputRight != "1_" && firstCheck){
-			int ci;
-			firstCheck = false;
-			for (ci=1;ci<5;ci++){
-				char fnc{-125};
-				std::string fnstr(1,fnc);
-				std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
-				string_log("function computing");
-				string_log(fpostfix.c_str());
-				finput = "#@"+std::to_string(ci)+"_";
-				string_log(finput.c_str());
-				std::string solved = solveArithmetic(fpostfix);
-				string_log(solved.c_str());
-				string_log("function computed");
-				functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
-			}
 		}
 		return "("+newPostfix+")";
 	}
