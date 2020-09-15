@@ -58,9 +58,7 @@ EM_JS(void, output_dependent_functions, (const char* x), {
 });
 
 EM_JS(void, update_currentF, (const char* x), {
-  auto a1 = std::chrono::high_resolution_clock::now();
-  auto nanos = a1.time_since_epoch();
-  int y = duration_cast<std::chrono::milliseconds>(nanos).count();
+  int y = 7;
   updateCurrentFunctions(UTF8ToString(x),y);
 });
 
