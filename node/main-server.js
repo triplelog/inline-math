@@ -159,6 +159,16 @@ app.get(['/latex','/latex.html'],
 	}
 );
 
+app.get(['/code','/code.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/code.txt',{
+
+		}));
+		res.end();
+	}
+);
 
 
 app.get(['/','/index','/index.html'],
