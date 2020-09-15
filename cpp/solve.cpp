@@ -2927,9 +2927,9 @@ std::string solveFunction(std::string input){
 		Function f = functionMap[functionName];
 		
 		std::string finput = inputLeft+"@"+inputRight;
-		string_log("function found");
-		string_log(input.c_str());
-		string_log(finput.c_str());
+		//string_log("function found");
+		//string_log(input.c_str());
+		//string_log(finput.c_str());
 		
 		if (inputLeft == "#"){
 			if (f.initial.find(finput) != f.initial.end()){
@@ -2947,7 +2947,8 @@ std::string solveFunction(std::string input){
 				}
 			}
 			if (maxIter>-10001 && goalIter > maxIter+1){
-			
+				string_log("maxIter");
+				console_log(maxIter);
 				int ci;
 				for (ci=maxIter+1;ci<=goalIter;ci++){
 					char fnc{-125};
@@ -2972,8 +2973,8 @@ std::string solveFunction(std::string input){
 			}
 			int np1 = std::stoi(inputRight.substr(0,inputRight.length()-3));
 			finput = "#@"+std::to_string(np1-diff)+"_";
-			string_log("np1");
-			string_log(finput.c_str());
+			//string_log("np1");
+			//string_log(finput.c_str());
 			if (f.initial.find(finput) != f.initial.end()){
 				//string_log("function exists");
 				//string_log(f.initial[finput].c_str());
