@@ -201,6 +201,24 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case '<': {
+			if (ii > 0){
+				s += "\< "+child;
+			}
+			else {
+				s += child;
+			}
+			break;
+		}
+		case '>': {
+			if (ii > 0){
+				s += "\> "+child;
+			}
+			else {
+				s += child;
+			}
+			break;
+		}
 		case -79: {
 			if (ii>0){
 				if (prec[-79] > prec[lastOp]){
