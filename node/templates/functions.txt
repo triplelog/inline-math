@@ -1,0 +1,37 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	
+
+Functions can be defined by writing something like =(f(x)=x^2)[D] inside of dollar signs. The function must have exactly one variable inside of parentheses, although the definition can depend on external variables or constants.
+
+$=(f(x)=x^2)[D]$
+
+$f(3)==(f(3))[A]$
+
+$7$![A]
+$=(g(x)=x^2+A-f(3))[D]$
+
+$g(3)==(g(3))[A]$
+
+The function name should be lower case letters only. Digits are likely to cause issues.  Special characters (including _) are likely to cause issues. Upper case letters should work, but are not officially supported at the moment.
+
+Calling the function is as simple as including it inside of an expression that is being computed. So =(f(3))[A] returns 9 when f(x) is x^2.
+
+
+$=(f(0)=0)[D]$
+$range(1,10)$[A]
+$=(f(1)=A)[D]$
+
+$=(f(x)=f(x-1)+f(x-2))[D]$
+
+$=(f(8))[A]$
+
+$=(f(x)=3*x)[D]$
+
+$=(f(8))[A]$
+
+
+Coming soonish
+--------------
+
+Multivariate functions
+{% endblock %}
