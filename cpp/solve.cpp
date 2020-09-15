@@ -2942,7 +2942,7 @@ std::string solveFunction(std::string input){
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		if (inputRight != "1_" && f.initial.find("#@1_") == f.initial.end()){
+		if (inputRight != "1_" && firstCheck){
 			int ci;
 			firstCheck = false;
 			for (ci=1;ci<3;ci++){
