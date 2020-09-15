@@ -23,11 +23,11 @@ $$plot(y=x^2,-5,5,-3,30)$$
 Domain and range sliders can be added by adding [DR] after plot(). Or use plot()[D] to just add a domain slider.
 $$plot(y=x^2)[DR]$$
 
-Functions are assumed to have $x$ as the independent variable and $y$ as the dependent variable. To change the dependent variable, start with something like $y=$. Although at the moment the name of the dependent variable is largely irrelevant. To change the independent variable, start with something like $y(t)=$.
+Functions are assumed to have $x$ as the independent variable and $y$ as the dependent variable. To change the dependent variable, start with something like "y=". Although at the moment the name of the dependent variable is largely irrelevant. To change the independent variable, start with something like "y(t)=".
 
 If the dependent variable is $x$ then the horizontal axis will remain the x-axis and the independent variable will take the vertical axis. To use the vertical axis for the independent variable in other cases requires adding the capital letter F inside [] between the end of plot() and the closing dollar sign.
 
-Using the double dollar signs will produce a div that is 15 rem tall and 15 rem wide. Using single dollar signs will produce a span that is 1.5 rem tall and 1.5 rem wide. If you need an inline plot like $plot(x^2-6)$, the small plots can look okay but there is very little room for complex data.
+Using the double dollar signs will produce a div that is 15 rem tall and 15 rem wide. Using single dollar signs will produce a span that is 1.5 rem tall and 1.5 rem wide. If you need a basic inline plot like $plot(x^2-6)$, the small plots can look okay but there is very little room for complex data.
 
 
 Coming Soonish

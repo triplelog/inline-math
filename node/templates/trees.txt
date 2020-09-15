@@ -1,6 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	 
 
-$tree(3*4*(5+2-6+11*2))$
+To display a tree that organizes the operations, just include an expression inside of tree().
+$tree(ddx(3*4*(5+2-6+11*2)+x))$
 
 {% endblock %}
