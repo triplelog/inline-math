@@ -2939,7 +2939,7 @@ std::string solveFunction(std::string input){
 			int goalIter = std::stoi(inputRight.substr(0,inputRight.length()-1));
 			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
 				string_log("oneIter");
-				string_log(iter->first);
+				string_log(iter->first.c_str());
 				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
 				console_log(v);
 				if (v == goalIter){
