@@ -1486,7 +1486,10 @@ void initialRun(){
 	prec['`'] = 101;
 	prec['#'] = 100;
 	int i;
-	for (i=-128;i<0;i++){
+	for (i=-128;i<=-69;i++){
+		prec[i]=2;
+	}
+	for (i=-68;i<0;i++){
 		prec[i]=7;
 	}
     prec['^'] = 5;
