@@ -46,7 +46,8 @@ function setDependentFunctions(x) {
 }
 
 var currentF = {};
-function updateCurrentFunctions(x,y) {
+function updateCurrentFunctions(x) {
+	const y = Date.now();
 	currentF[x]=y;
 }
 
