@@ -1393,7 +1393,7 @@ bool firstCorrect;
 #include "rules/canonical.cpp"
 #include "rules/calculus.cpp"
 
-
+bool firstCheck;
 void initialRun(){
 	prec['~'] = 101;
 	prec['`'] = 101;

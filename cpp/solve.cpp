@@ -2874,7 +2874,7 @@ std::string substitute(std::string input){
 	return "("+newPostfix+")";
 }
 
-bool firstCheck;
+
 std::string solveFunction(std::string input){
 	std::string returnStr = "("+input+")";
 	if (input.length() < 4){
