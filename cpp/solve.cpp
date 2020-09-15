@@ -2948,7 +2948,7 @@ std::string solveFunction(std::string input){
 		if (inputRight != "1_" && firstCheck){
 			int ci;
 			firstCheck = false;
-			for (ci=1;ci<3;ci++){
+			for (ci=1;ci<5;ci++){
 				char fnc{-125};
 				std::string fnstr(1,fnc);
 				std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
