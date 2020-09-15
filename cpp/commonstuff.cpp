@@ -91,6 +91,7 @@ struct Function {
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
 	std::map<std::string,std::string> initial;
+	std::map<std::string,std::string> computed;
 };
 struct KillNow {
 	long maxTime; //in 1/1000000 of second
