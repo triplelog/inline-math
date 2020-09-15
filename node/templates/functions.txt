@@ -29,10 +29,16 @@ $=(f(x)=f(x-1)+f(x-2))[D]$
 
 $=(f(2))[A]$
 
+$=(h(x)=x+3)[D]$
+
+$$plot(y=h(x))$$
 
 
 Coming soonish
 --------------
 
 Multivariate functions
+
+plot recursive functions
+
 {% endblock %}
