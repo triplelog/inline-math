@@ -707,10 +707,16 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	}
 	if (isInteger){
 		if (functionMap.find(functionName) != functionMap.end()){
+			string_log("old");
+			string_log(intValue.c_str());
+			string_log(postfix.c_str());
 			functionMap[functionName].initial["#@"+intValue+"_"]= postfix;
 		}
 		else {
 			Function f;
+			string_log("new");
+			string_log(intValue.c_str());
+			string_log(postfix.c_str());
 			f.initial["#@"+intValue+"_"]= postfix;
 			functionMap[functionName]=f;
 		}
