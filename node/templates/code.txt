@@ -39,4 +39,6 @@ Ability to copy/paste to a particular language after evaluation of external vari
 
 Color the parts.
 
+Properly handle indentation and whitespace. Make tabs work.
+
 {% endblock %}

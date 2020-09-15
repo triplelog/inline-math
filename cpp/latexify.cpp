@@ -203,7 +203,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '<': {
 			if (ii > 0){
-				s += "\< "+child;
+				s += "< "+child;
 			}
 			else {
 				s += child;
@@ -212,7 +212,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '>': {
 			if (ii > 0){
-				s += "\> "+child;
+				s += "> "+child;
 			}
 			else {
 				s += child;
