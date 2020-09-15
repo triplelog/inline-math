@@ -26,6 +26,11 @@ function addLatex(x) {
 	latex += x;
 }
 
+var inputted = "";
+function addInputted(x) {
+	inputted += x;
+}
+
 var svg = "";
 function addSVG(x) {
 	svg += x;
@@ -119,11 +124,12 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				k = outText;
 			}
 			else {
+				inputted = "";
 				ljs("|"+varName+":="+input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
-				k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+latex+'"');
+				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');
 			}
 			
 		}
@@ -158,11 +164,12 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				k = outText;
 			}
 			else {
+				inputted = "";
 				ljs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
-				k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+latex+'"');
+				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');
 			}
 			
 		}

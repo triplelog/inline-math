@@ -45,6 +45,10 @@ EM_JS(void, output_latex, (const char* x), {
   addLatex(UTF8ToString(x));
 });
 
+EM_JS(void, output_inputted, (const char* x), {
+  addInputted(UTF8ToString(x));
+});
+
 EM_JS(void, output_dependents, (const char* x), {
   setDependents(UTF8ToString(x));
 });
@@ -233,10 +237,12 @@ void LatexIt(char* aa) {
 	
 	
 	std::string latexed = latexOne(postfixed);
-	postfixed = "\0";
+	
 	//noIdentities = "\0";
 	latexed += "\0";
 	output_latex(latexed.c_str());
+	output_inputted(codify(postfixed).c_str());
+	postfixed = "\0";
 	latexed = "\0";
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();

@@ -1,10 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	 
 
-To display a tree that organizes the operations, just include an expression inside of tree().
-$tree(ddx(3*4*(5+2-6+11*2)+x))$
-
-
+$7$[A]
 
 ```
 var x=math.cos(2);
