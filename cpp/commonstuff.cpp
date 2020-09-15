@@ -687,15 +687,52 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			}
 		}
 	}
-	Function f;
-	f.var = independentVar;
-	f.postfix = postfix;
-	f.rightIdx = rightIdx;
-	f.leftIdx = leftIdx;
-	f.initial["#@0_"]="#@0_";
-	f.initial["#@1_"]="#@1_";
+	
+	if (independentVar == ""){
+		return;
+	}
+	bool isInteger = true;
+	std::string intValue = "";
+	for (iii=0;iii<independentVar.length();iii++){
+		if (independentVar.at(iii)=='-' && iii==0){
+			intValue += "-";
+		}
+		if (independentVar.at(iii)>= '0' && independentVar.at(iii)<= '9'){
+			intValue += independentVar.at(iii);
+		}
+		else {
+			isInteger = false;
+			break;
+		}
+	}
+	if (isInteger){
+		if (functionMap.find(functionName) != functionMap.end()){
+			functionMap[functionName].initial["#@"+intValue+"_"]= postfix;
+		}
+		else {
+			Function f;
+			f.initial["#@"+intValue+"_"]= postfix;
+			functionMap[functionName]=f;
+		}
+	}
+	else {
+		if (functionMap.find(functionName) != functionMap.end()){
+			functionMap[functionName].var = independentVar;
+			functionMap[functionName].postfix = postfix;
+			functionMap[functionName].rightIdx = rightIdx;
+			functionMap[functionName].leftIdx = leftIdx;
+		}
+		else {
+			Function f;
+			f.var = independentVar;
+			f.postfix = postfix;
+			f.rightIdx = rightIdx;
+			f.leftIdx = leftIdx;
+			functionMap[functionName]=f;
+		}
+	}
 	update_currentF(functionName.c_str());
-	functionMap[functionName]=f;
+	
 }
 std::string removeSolves(std::string input) {
 	std::map<int,int> operandToIndex;
