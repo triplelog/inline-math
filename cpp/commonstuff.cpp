@@ -92,6 +92,7 @@ struct Function {
 	std::vector<int> leftIdx;
 	std::map<std::string,std::string> initial;
 	std::map<std::string,std::string> computed;
+	bool recursive;
 };
 struct KillNow {
 	long maxTime; //in 1/1000000 of second
@@ -651,6 +652,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
 	int diff = 3;
+	bool recursive = false;
 	for (iii=3;iii<len;iii++){
 		if (input.at(iii) == '='){
 			diff++;
@@ -673,6 +675,9 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 				if (currentOperand == independentVar){
 					rightIdx.push_back(iii-diff-currentOperand.length());
 					leftIdx.push_back(operandMap[idx]);
+				}
+				if (currentOperand == functionName){
+					recursive = true;
 				}
 				postfix += currentOperand + "_";
 			}
@@ -708,35 +713,55 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	}
 	if (isInteger){
 		if (functionMap.find(functionName) != functionMap.end()){
-			string_log("old");
-			string_log(intValue.c_str());
-			string_log(postfix.c_str());
 			functionMap[functionName].initial["#@"+intValue+"_"]= postfix;
 		}
 		else {
 			Function f;
-			string_log("new");
-			string_log(intValue.c_str());
-			string_log(postfix.c_str());
 			f.initial["#@"+intValue+"_"]= postfix;
+			f.recursive = false;//this will become true once the function has been defined recursively
 			functionMap[functionName]=f;
 		}
 	}
 	else {
-		if (functionMap.find(functionName) != functionMap.end()){
-			functionMap[functionName].var = independentVar;
-			functionMap[functionName].postfix = postfix;
-			functionMap[functionName].rightIdx = rightIdx;
-			functionMap[functionName].leftIdx = leftIdx;
+		if (recursive){
+			if (functionMap.find(functionName) != functionMap.end()){
+				functionMap[functionName].var = independentVar;
+				functionMap[functionName].postfix = postfix;
+				functionMap[functionName].rightIdx = rightIdx;
+				functionMap[functionName].leftIdx = leftIdx;
+				functionMap[functionName].recursive = true;
+			}
+			else {
+				Function f;
+				f.var = independentVar;
+				f.postfix = postfix;
+				f.rightIdx = rightIdx;
+				f.leftIdx = leftIdx;
+				functionMap[functionName]=f;
+				functionMap[functionName].recursive = true;
+			}
 		}
 		else {
-			Function f;
-			f.var = independentVar;
-			f.postfix = postfix;
-			f.rightIdx = rightIdx;
-			f.leftIdx = leftIdx;
-			functionMap[functionName]=f;
+			if (functionMap.find(functionName) != functionMap.end()){
+				functionMap[functionName].var = independentVar;
+				functionMap[functionName].postfix = postfix;
+				functionMap[functionName].rightIdx = rightIdx;
+				functionMap[functionName].leftIdx = leftIdx;
+				functionMap[functionName].recursive = false;
+				functionMap[functionName].initial.clear();
+			}
+			else {
+				Function f;
+				f.var = independentVar;
+				f.postfix = postfix;
+				f.rightIdx = rightIdx;
+				f.leftIdx = leftIdx;
+				functionMap[functionName]=f;
+				functionMap[functionName].recursive = false;
+				functionMap[functionName].initial.clear();
+			}
 		}
+		
 	}
 	functionMap[functionName].computed.clear();
 	update_currentF(functionName.c_str());
