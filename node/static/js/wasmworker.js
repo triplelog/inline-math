@@ -79,7 +79,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			if (latexedInputs[input].dependentfunctions){
 				for (var i in latexedInputs[input].dependentfunctions){
 					if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
-						foundMatch = false;
+						//foundMatch = false;
 						break;
 					}
 				}
