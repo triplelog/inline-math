@@ -2261,9 +2261,7 @@ Number sqrtOne(const Number numA){
 
 Number functionTwo(const Number numA, const Number numB){
 	string_log("function");
-	console_log(numA.type);
-	string_log(numA.top.c_str());
-	if (numA.type == 0){
+	if (numA.type == 16){
 		if (functionMap.find(numA.top) != functionMap.end()){
 			Function f = functionMap[numA.top];
 			if (f.recursive){
@@ -2274,9 +2272,11 @@ Number functionTwo(const Number numA, const Number numB){
 			string_log(input.c_str());
 			int i;
 			std::string newPostfix = f.postfix;
+			string_log(newPostfix.c_str());
 			for (i=f.rightIdx.size()-1;i>=0;i--){
 				newPostfix.replace(f.rightIdx[i],f.var.length(),input);
 			}
+			string_log(newPostfix.c_str());
 			//for (i=f.leftIdx.size()-1;i>=0;i--){
 			//	postfix.replace(f.leftIdx[i],f.var.length(),input);
 			//}
