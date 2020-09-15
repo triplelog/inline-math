@@ -4,4 +4,15 @@
 To display a tree that organizes the operations, just include an expression inside of tree().
 $tree(ddx(3*4*(5+2-6+11*2)+x))$
 
+
+
+Coming Soonish
+--------------
+
+Interactive elements to collapse and/or calculate branches.
+
+Highlighting important nodes.
+
+Better design.
+
 {% endblock %}

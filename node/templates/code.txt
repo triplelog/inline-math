@@ -1,0 +1,45 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	 
+
+To display a tree that organizes the operations, just include an expression inside of tree().
+$tree(ddx(3*4*(5+2-6+11*2)+x))$
+
+
+
+```
+var x=math.cos(2);
+var x= Math.sin(2);
+var z=A+4;
+```
+
+By default the language is assumed to be javascript, but python is also supported by adding python to the first line. 
+``` python
+x=math.cos(2)
+x= math.exp(2)*3+7
+z=A+4
+```
+
+The formatter does not check for the validity of the underlying code. For example, using cos(x) and Math.cos(x) will produce the same result but only Math.cos(x) is valid javascript for computing cosine. The pretty print can help identify use of the wrong formula that passes every check as valid javascript. 
+
+
+``` javascript
+var x=Math.cos(2);
+var x= Math.sin(2);
+var z=A+4;
+b+= 4;
+```
+
+
+If you select some lines of code, then click the "copy text" button you should get exactly what was inputted rather than messy latex.
+
+
+Coming Soonish
+--------------
+
+Support for more languages.
+
+Ability to copy/paste to a particular language after evaluation of external variables.
+
+Color the parts.
+
+{% endblock %}
