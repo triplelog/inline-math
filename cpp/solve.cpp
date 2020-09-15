@@ -1,5 +1,6 @@
 Number mulTwo(const Number numA, const Number numB);
 Number reduceFraction(const Number numA);
+std::string solveFunction(std::string input);
 std::vector<int> factorList(Number n){
 	std::vector<int> list;
 	if (n.type != 1 && n.type != 1){
@@ -2259,18 +2260,30 @@ Number sqrtOne(const Number numA){
 }
 
 Number functionTwo(const Number numA, const Number numB){
-	if (numA.type == 16){
-		Function f = functionMap[numA.top];
-		std::string input = outputNumber(numB);
-		int i;
-		std::string newPostfix = f.postfix;
-		for (i=f.rightIdx.size()-1;i>=0;i--){
-			newPostfix.replace(f.rightIdx[i],f.var.length(),input);
+	string_log("function");
+	if (numA.type == 0){
+		if (functionMap.find(numA.top) != functionMap.end()){
+			Function f = functionMap[numA.top];
+			if (f.recursive){
+				Number n;
+				return n;
+			}
+			std::string input = outputNumber(numB);
+			string_log(input.c_str());
+			int i;
+			std::string newPostfix = f.postfix;
+			for (i=f.rightIdx.size()-1;i>=0;i--){
+				newPostfix.replace(f.rightIdx[i],f.var.length(),input);
+			}
+			//for (i=f.leftIdx.size()-1;i>=0;i--){
+			//	postfix.replace(f.leftIdx[i],f.var.length(),input);
+			//}
+			return solvePostfix(newPostfix);
 		}
-		//for (i=f.leftIdx.size()-1;i>=0;i--){
-		//	postfix.replace(f.leftIdx[i],f.var.length(),input);
-		//}
-		return solvePostfix(newPostfix);
+		else {
+			Number n;
+			return n;
+		}
 	}
 	Number n;
 	return n;
@@ -2530,7 +2543,7 @@ Number solvePostfix(std::string postfix) {
 	            		break;
 	            	}
 	            }
-	            //case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -125: stack[currentIndex - 2] = functionTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            default: n.type = 0; solvedPostfixMap[postfix] = n; return n;
 	            //case '!': stack[currentIndex - 2] = stack[currentIndex - 2] != stack[currentIndex - 1]; break;
 	            //case '%': stack[currentIndex - 2] = stack[currentIndex - 2] % stack[currentIndex - 1]; break; 

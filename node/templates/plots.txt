@@ -15,7 +15,7 @@ $$plot(y=sqrt(x))$$
 
 Variables can be called from inside.
 $range(0,10)$[A]
-$$plot(y=x+A)$
+$$plot(y=x+A)$$
 
 The domain and range can be changed by adding arguments in plot(function,left,right,bottom,top) order.
 $$plot(y=x^2,-5,5,-3,30)$$
