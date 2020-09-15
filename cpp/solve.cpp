@@ -2962,9 +2962,16 @@ std::string solveFunction(std::string input){
 			}
 			
 		}
-		else if (inputLeft == "##-+" && inputRight.substr(inputRight.length()-3,3) == "_1_"){
+		else if (inputLeft == "##-+" && ){
+			int diff = 0;
+			if (inputRight.at(inputRight.length()-3) == "_" && inputRight.at(inputRight.length()-1) == "_"){
+				diff = inputRight.at(inputRight.length()-2) - '0';
+			}
+			else {
+				return returnStr;
+			}
 			int np1 = std::stoi(inputRight.substr(0,inputRight.length()-3));
-			finput = "#@"+std::to_string(np1-1)+"_";
+			finput = "#@"+std::to_string(np1-diff)+"_";
 			string_log("np1");
 			string_log(finput.c_str());
 			if (f.initial.find(finput) != f.initial.end()){
@@ -2973,7 +2980,7 @@ std::string solveFunction(std::string input){
 				return "("+f.initial[finput]+")";
 			}
 			int maxIter = -10001;
-			int goalIter = np1-1;
+			int goalIter = np1-diff;
 			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
 				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
 				if (v == goalIter){
@@ -3004,6 +3011,7 @@ std::string solveFunction(std::string input){
 			}
 			
 		}
+		
 		else {
 			string_log("none");
 			string_log(inputLeft.c_str());
