@@ -2950,7 +2950,7 @@ std::string solveFunction(std::string input){
 			}
 			if (maxIter>-10001){
 			
-			
+				int ci;
 				for (ci=maxIter+1;ci<=goalIter;ci++){
 					char fnc{-125};
 					std::string fnstr(1,fnc);
