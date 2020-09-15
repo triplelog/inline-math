@@ -2940,7 +2940,7 @@ std::string solveFunction(std::string input){
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		f.initial[inputLeft+"@"+inputRight] = newPostfix;
+		f.initial[inputLeft+"@"+inputRight] = solveArithmetic(newPostfix);
 		return "("+newPostfix+")";
 	}
 	else {
