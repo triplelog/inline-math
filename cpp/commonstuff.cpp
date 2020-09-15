@@ -694,6 +694,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	f.leftIdx = leftIdx;
 	f.initial["#@0_"]="#@0_";
 	f.initial["#@1_"]="#@1_";
+	update_currentF(functionName.c_str());
 	functionMap[functionName]=f;
 }
 std::string removeSolves(std::string input) {

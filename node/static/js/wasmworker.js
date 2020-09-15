@@ -45,9 +45,14 @@ function setDependentFunctions(x) {
 	dependentfunctions = x;
 }
 
+var currentF = {};
+function updateCurrentFunctions(x,y) {
+	currentF[x]=y;
+}
+
 var latexedInputs = {};
 var currentV = {};
-var currentF = {};
+
 var inputV = {};
 var plotid = 0;
 importScripts('marked.js');
@@ -79,7 +84,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			if (latexedInputs[input].dependentfunctions){
 				for (var i in latexedInputs[input].dependentfunctions){
 					if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
-						//foundMatch = false;
+						foundMatch = false;
 						break;
 					}
 				}
@@ -178,7 +183,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
 		for (var i=0;i<dependentfunctions.length;i++){
-			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = 7;//currentF[dependentfunctions[i]];
+			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
 		}
 		
 	}

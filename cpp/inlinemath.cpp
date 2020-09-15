@@ -57,6 +57,13 @@ EM_JS(void, output_dependent_functions, (const char* x), {
   setDependentFunctions(UTF8ToString(x));
 });
 
+EM_JS(void, update_currentF, (const char* x), {
+  auto a1 = std::chrono::high_resolution_clock::now();
+  auto nanos = a1.time_since_epoch();
+  long long y = duration_cast<std::chrono::milliseconds>(nanos).count();
+  updateCurrentFunctions(UTF8ToString(x),y);
+});
+
 EM_JS(void, send_ready, (), {
   cpp_ready();
 });
