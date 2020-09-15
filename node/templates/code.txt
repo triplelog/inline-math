@@ -20,10 +20,10 @@ The formatter does not check for the validity of the underlying code. For exampl
 
 
 ``` javascript
-var x=Math.cos(2);
-var x= Math.sin(2);
-var z=A+4;
-b+= 4;
+var x = 0;
+for (var i=0;i<10;i++){
+	x += i^2-1;
+}
 ```
 
 
