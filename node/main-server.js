@@ -181,6 +181,16 @@ app.get(['/functions','/functions.html'],
 	}
 );
 
+app.get(['/inputs','/inputs.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/inputs.txt',{
+
+		}));
+		res.end();
+	}
+);
 
 app.get(['/','/index','/index.html'],
 	function(req, res){

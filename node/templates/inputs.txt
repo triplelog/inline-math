@@ -1,0 +1,37 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	
+
+User input can be asked for by including the appropriate function within dollar signs and appending the desired variable as normal.
+
+checkbox(Yes,No) produces a checkbox with the first argument representing the value of the expression when checked and the second argument is the value of the expression when unchecked. If no arguments are used, the default is 1 and 0 for yes and no, respectively.
+$checkbox(x^2,0)$[C]
+
+$C$
+
+radio(0,1,2,3) produces a series of radio buttons. The arguments are the values of each radio button.
+$radio(1+3^2,2,3^2)$[D]
+
+$D$
+
+number(min,max) produces a input box that accepts numbers. The arguments are optional minimum and maximum values.
+$number(10,70)$[E]
+
+$E$
+
+range(min,max) produces a range slider with the arguments representing minimum and maximum values.
+$range(10,70)$[F]
+
+$F$
+
+input() produces a text box that accepts any text.
+$input()$[G]
+
+$G$
+
+
+Coming soonish
+--------------
+
+
+
+{% endblock %}
