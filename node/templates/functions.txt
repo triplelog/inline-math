@@ -5,29 +5,30 @@ Functions can be defined by writing something like =(f(x)=x^2)[D] inside of doll
 
 $=(f(x)=x^2)[D]$
 
+Calling the function is as simple as including it inside of an expression that is being computed. So =(f(3))[A] returns 9 when f(x) is x^2.
+
 $f(3)==(f(3))[A]$
 
 $7$![A]
-$=(g(x)=x^2+A-f(3))[D]$
+$=(g(x)=x^2+A-f(3)+c)[D]$
 
 $g(3)==(g(3))[A]$
 
-The function name should be lower case letters only. Digits are likely to cause issues.  Special characters (including _) are likely to cause issues. Upper case letters should work, but are not officially supported at the moment.
-
-Calling the function is as simple as including it inside of an expression that is being computed. So =(f(3))[A] returns 9 when f(x) is x^2.
+The function name should be lower case letters only. Digits are likely to cause issues.  Special characters (including _) are likely to cause issues. Upper case letters should work, but are not officially supported at the moment. Avoid naming it after any function that is built-in (i.e. trig functions, sqrt, etc.).
 
 
-$=(f(0)=0)[D]$
+Functions can be defined recursively. Define one or more initial values along with the recursive definition. The initial value inputs must be integers, the recursive definition can presently only call f(x-1),f(x-2),..., up to f(x-9). If there are not enough initial values to compute a requested value or if the inputs are not integers the function might loop until killed after a few seconds. The computations can be slow so complicated or large recursions might get killed before finishing.
+
+$=(f(-2)=0)[D]$
+
 $range(1,10)$[A]
-$=(f(1)=A)[D]$
+
+$=(f(-1)=A)[D]$
 
 $=(f(x)=f(x-1)+f(x-2))[D]$
 
 $=(f(8))[A]$
 
-$=(f(x)=3*x)[D]$
-
-$=(f(8))[A]$
 
 
 Coming soonish
