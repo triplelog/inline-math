@@ -2948,7 +2948,7 @@ std::string solveFunction(std::string input){
 					maxIter = v;
 				}
 			}
-			if (maxIter>-10001){
+			if (maxIter>-10001 && goalIter > maxIter+1){
 			
 				int ci;
 				for (ci=maxIter+1;ci<=goalIter;ci++){
