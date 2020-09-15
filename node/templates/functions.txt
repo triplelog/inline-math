@@ -29,9 +29,10 @@ $=(f(x)=f(x-1)+f(x-2))[D]$
 
 $=(f(2))[A]$
 
+Defined functions can be used in plots
 $=(h(x)=x+3)[D]$
 
-$$plot(y=h(x))$$
+$$plot(y=2*h(x))$$
 
 
 Coming soonish
