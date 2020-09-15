@@ -2931,8 +2931,7 @@ std::string solveFunction(std::string input){
 		string_log(input.c_str());
 		string_log(finput.c_str());
 		
-		//if (inputLeft == "#"){
-		if (2 == 2){
+		if (inputLeft == "#"){
 			if (f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
 				string_log("function exists");
 				string_log(f.initial[inputLeft+"@"+inputRight].c_str());
@@ -2969,6 +2968,9 @@ std::string solveFunction(std::string input){
 			
 			}
 			
+		}
+		else {
+			return returnStr;
 		}
 
 		std::string newPostfix = f.postfix;
