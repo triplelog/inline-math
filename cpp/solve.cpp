@@ -2938,7 +2938,10 @@ std::string solveFunction(std::string input){
 			int maxIter = -10001;
 			int goalIter = std::stoi(inputRight.substr(0,inputRight.length()-1));
 			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
+				string_log("oneIter");
+				string_log(iter->first);
 				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
+				console_log(v);
 				if (v == goalIter){
 					return "("+iter->second+")";
 				}
