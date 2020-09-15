@@ -644,8 +644,20 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	std::string postfix = "";
 	int idx = 0;
 	std::string currentOperand = "";
+	bool varNegative = false;
 	if (len<4){return;}
-	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) > -125 ){return;}
+	if (input.at(0) != '#' || input.at(1) != '#' || input.at(2) > -125 ){
+		string_log(input.c_str());
+		if (input.at(0) == '#' && input.at(1) == '#' && input.at(2) == '-' && input.at(3) == -125){
+			input.replace(2,1,"");
+			len--;
+			varNegative = true;
+		}
+		else {
+			return;
+		}
+		
+	}
 	std::map<int,int> operandMap;
 	int iidx = 2;
 	std::vector<int> varOperands;
@@ -668,7 +680,12 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 				diff += currentOperand.length()+1;
 			}
 			else if (idx == 1){
-				independentVar = currentOperand;
+				if (varNegative){
+					independentVar = "-"+currentOperand;
+				}
+				else{
+					independentVar = currentOperand;
+				}
 				diff += currentOperand.length()+1;
 			}
 			else {
