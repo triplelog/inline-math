@@ -2932,9 +2932,21 @@ std::string solveFunction(std::string input){
 			if (f.initial.find(finput) != f.initial.end()){
 				return "("+f.initial[finput]+")";
 			}
+			else if (f.computed.find(finput) != f.computed.end()){
+				return "("+f.computed[finput]+")";
+			}
 			int maxIter = -10001;
 			int goalIter = std::stoi(inputRight.substr(0,inputRight.length()-1));
 			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
+				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
+				if (v == goalIter){
+					return "("+iter->second+")";
+				}
+				if (v > maxIter){
+					maxIter = v;
+				}
+			}
+			for (std::map<std::string,std::string>::iterator iter = f.computed.begin(); iter != f.computed.end(); ++iter){
 				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
 				if (v == goalIter){
 					return "("+iter->second+")";
@@ -2951,9 +2963,9 @@ std::string solveFunction(std::string input){
 					std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
 					finput = "#@"+std::to_string(ci)+"_";
 					std::string solved = solveArithmetic(fpostfix);
-					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
+					functionMap[functionName].computed["#@"+std::to_string(ci)+"_"] = solved;
 				}
-				return "("+functionMap[functionName].initial[finput]+")";
+				return "("+functionMap[functionName].computed[finput]+")";
 			
 			}
 			
@@ -2971,9 +2983,21 @@ std::string solveFunction(std::string input){
 			if (f.initial.find(finput) != f.initial.end()){
 				return "("+f.initial[finput]+")";
 			}
+			else if (f.computed.find(finput) != f.computed.end()){
+				return "("+f.computed[finput]+")";
+			}
 			int maxIter = -10001;
 			int goalIter = np1-diff;
 			for (std::map<std::string,std::string>::iterator iter = f.initial.begin(); iter != f.initial.end(); ++iter){
+				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
+				if (v == goalIter){
+					return "("+iter->second+")";
+				}
+				if (v > maxIter){
+					maxIter = v;
+				}
+			}
+			for (std::map<std::string,std::string>::iterator iter = f.computed.begin(); iter != f.computed.end(); ++iter){
 				int v = std::stoi(iter->first.substr(2,iter->first.length()-3));
 				if (v == goalIter){
 					return "("+iter->second+")";
@@ -2996,9 +3020,9 @@ std::string solveFunction(std::string input){
 					std::string solved = solveArithmetic(fpostfix);
 					//string_log(solved.c_str());
 					//string_log("function computed");
-					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
+					functionMap[functionName].computed["#@"+std::to_string(ci)+"_"] = solved;
 				}
-				return "("+functionMap[functionName].initial[finput]+")";
+				return "("+functionMap[functionName].computed[finput]+")";
 			
 			}
 			

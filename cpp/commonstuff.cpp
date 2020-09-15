@@ -737,6 +737,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			functionMap[functionName]=f;
 		}
 	}
+	functionMap[functionName].computed.clear();
 	update_currentF(functionName.c_str());
 	
 }
