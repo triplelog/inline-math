@@ -2874,6 +2874,7 @@ std::string substitute(std::string input){
 	return "("+newPostfix+")";
 }
 
+bool firstCheck;
 std::string solveFunction(std::string input){
 	std::string returnStr = "("+input+")";
 	if (input.length() < 4){
@@ -2941,8 +2942,9 @@ std::string solveFunction(std::string input){
 		for (i=f.leftIdx.size()-1;i>=0;i--){
 			newPostfix.replace(f.leftIdx[i],1,inputLeft);
 		}
-		if (inputRight != "1_"){
+		if (inputRight != "1_" && firstCheck){
 			int ci;
+			firstCheck = false;
 			for (ci=1;ci<3;ci++){
 				char fnc{-125};
 				std::string fnstr(1,fnc);

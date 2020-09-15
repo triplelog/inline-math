@@ -1456,6 +1456,8 @@ void initialRun(){
 	rulesMap["canonical"]=rules;
 	ruleIndexMap["canonical"]=ruleIndex;
 	
+	
+	firstCheck = true;
 
 
 	auto t5 = std::chrono::high_resolution_clock::now();
