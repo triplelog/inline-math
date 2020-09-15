@@ -2933,8 +2933,6 @@ std::string solveFunction(std::string input){
 		
 		if (inputLeft == "#"){
 			if (f.initial.find(finput) != f.initial.end()){
-				string_log("function exists");
-				string_log(f.initial[finput].c_str());
 				return "("+f.initial[finput]+")";
 			}
 			int maxIter = -10001;
@@ -2955,13 +2953,8 @@ std::string solveFunction(std::string input){
 					char fnc{-125};
 					std::string fnstr(1,fnc);
 					std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
-					string_log("function computing");
-					string_log(fpostfix.c_str());
 					finput = "#@"+std::to_string(ci)+"_";
-					string_log(finput.c_str());
 					std::string solved = solveArithmetic(fpostfix);
-					string_log(solved.c_str());
-					string_log("function computed");
 					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
 				}
 				return "("+functionMap[functionName].initial[finput]+")";
@@ -2972,9 +2965,11 @@ std::string solveFunction(std::string input){
 		else if (inputLeft == "##-+" && inputRight.substr(inputRight.length()-3,3) == "_1_"){
 			int np1 = std::stoi(inputRight.substr(0,inputRight.length()-3));
 			finput = "#@"+std::to_string(np1-1)+"_";
+			string_log("np1");
+			string_log(finput.c_str());
 			if (f.initial.find(finput) != f.initial.end()){
-				string_log("function exists");
-				string_log(f.initial[finput].c_str());
+				//string_log("function exists");
+				//string_log(f.initial[finput].c_str());
 				return "("+f.initial[finput]+")";
 			}
 			int maxIter = -10001;
@@ -2995,13 +2990,13 @@ std::string solveFunction(std::string input){
 					char fnc{-125};
 					std::string fnstr(1,fnc);
 					std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
-					string_log("function computing");
-					string_log(fpostfix.c_str());
+					//string_log("function computing");
+					//string_log(fpostfix.c_str());
 					finput = "#@"+std::to_string(ci)+"_";
-					string_log(finput.c_str());
+					//string_log(finput.c_str());
 					std::string solved = solveArithmetic(fpostfix);
-					string_log(solved.c_str());
-					string_log("function computed");
+					//string_log(solved.c_str());
+					//string_log("function computed");
 					functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
 				}
 				return "("+functionMap[functionName].initial[finput]+")";
@@ -3010,6 +3005,9 @@ std::string solveFunction(std::string input){
 			
 		}
 		else {
+			string_log("none");
+			string_log(inputLeft.c_str());
+			string_log(inputRight.c_str());
 			return returnStr;
 		}
 
