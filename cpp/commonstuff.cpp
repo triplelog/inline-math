@@ -90,6 +90,7 @@ struct Function {
 	std::string postfix;
 	std::vector<int> rightIdx;
 	std::vector<int> leftIdx;
+	std::map<std::string,std::string> initial;
 };
 struct KillNow {
 	long maxTime; //in 1/1000000 of second
@@ -691,6 +692,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	f.postfix = postfix;
 	f.rightIdx = rightIdx;
 	f.leftIdx = leftIdx;
+	f.initial["#@0"]="#@0";
 	functionMap[functionName]=f;
 }
 std::string removeSolves(std::string input) {

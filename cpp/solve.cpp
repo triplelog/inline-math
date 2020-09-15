@@ -2921,8 +2921,12 @@ std::string solveFunction(std::string input){
 			currentOperand += input.at(i);
 		}
 	}
+
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
+		if (f.initial.find(inputLeft+"@"+inputRight) != f.initial.end()){
+			return "("+f.initial[inputLeft+"@"+inputRight]+")";
+		}
 		int i;
 		std::string newPostfix = f.postfix;
 		for (i=f.rightIdx.size()-1;i>=0;i--){
