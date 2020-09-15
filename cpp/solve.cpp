@@ -2961,7 +2961,7 @@ std::string solveFunction(std::string input){
 				std::string solved = solveArithmetic(fpostfix);
 				string_log(solved.c_str());
 				string_log("function computed");
-				f.initial["#@"+std::to_string(ci)+"_"] = solved;
+				functionMap[functionName].initial["#@"+std::to_string(ci)+"_"] = solved;
 			}
 		}
 		return "("+newPostfix+")";
