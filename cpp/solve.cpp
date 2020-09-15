@@ -2928,6 +2928,7 @@ std::string solveFunction(std::string input){
 		
 		std::string finput = inputLeft+"@"+inputRight;
 		if (f.recursive){
+			string_log(finput.c_str());
 			if (inputLeft == "#"){
 				if (f.initial.find(finput) != f.initial.end()){
 					return "("+f.initial[finput]+")";
