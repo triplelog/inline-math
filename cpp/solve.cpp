@@ -2932,7 +2932,7 @@ std::string solveFunction(std::string input){
 		string_log(finput.c_str());
 		bool isRight = false;
 		inputLeft = "";
-		inputRight = "":
+		inputRight = "";
 		for (i=1;i<finput.length();i++){
 			if (finput.at(i) == '@'){
 				isRight = true;
