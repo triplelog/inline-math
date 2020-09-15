@@ -2964,7 +2964,7 @@ std::string solveFunction(std::string input){
 		}
 		else if (inputLeft == "##-+" && ){
 			int diff = 0;
-			if (inputRight.at(inputRight.length()-3) == "_" && inputRight.at(inputRight.length()-1) == "_"){
+			if (inputRight.at(inputRight.length()-3) == '_' && inputRight.at(inputRight.length()-1) == '_'){
 				diff = inputRight.at(inputRight.length()-2) - '0';
 			}
 			else {
