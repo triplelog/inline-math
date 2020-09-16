@@ -122,18 +122,40 @@
 }
 
 
-.content-33 .title {
-	background-image: url("../img/baseballbg.jpg");
-  	background-size: 100% 100%;
-  	background-repeat: no-repeat;
+.content-31 .title {
+	transition: opacity 1s linear;
+  	background: transparent;
+  	background-image: url("../img/solve.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position-x: 50%;
+	z-index:2;
 }
-.content-33 .titleBG {
-	background-image: url("../img/baseballfg.png");
-  	background-size: auto 100%;
-  	background-repeat: no-repeat;
-  	width: 100%;
-  	height: 100%;
+.content-31 .titleBGL {
+  	left: 21%;
+  	width: 8%;
+  	top: calc(0 * var(--border-radius));
+  	height: calc(2 * var(--border-radius));
+  	background-image: linear-gradient(to left, #5381AC , #5381AC);
 }
+.content-31 .titleBGR {
+  	left: 80%;
+  	width: 10%;
+  	top: calc(0 * var(--border-radius));
+  	height: calc(2 * var(--border-radius));
+  	background-image: linear-gradient(to right, #5381AC , #5381AC);
+}
+.content-31 .title:hover + .titleBGL {
+  	left: 29%;
+  	width: 0%;
+  	transition: all 2s linear;
+}
+.content-31 .title:hover + div + .titleBGR {
+	left: 90%;
+  	width: 0%;
+  	transition: all 2s linear;
+}
+
 div:Not(.content-22) > .content {
 	overflow-y: auto;
 	overflow-x: auto;
