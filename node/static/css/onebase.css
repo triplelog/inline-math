@@ -210,8 +210,6 @@ div:Not(.content-22) > .content {
 	overflow-y: auto;
 	overflow-x: auto;
 	overflow: auto;
-	height: calc(100% - 2 * var(--border-radius));
-	padding: calc(.5 * var(--border-radius));
 	text-align: center;
 }
 
@@ -290,7 +288,7 @@ div:Not(.content-22) > .content {
 	overflow-x: auto;
 	overflow: auto;
 	padding: calc(.5 * var(--border-radius));
-	height: calc(100% - 3 * var(--border-radius));
+	height: calc(100% - 3.75 * var(--border-radius));
 }
 
 .logoDiv {
