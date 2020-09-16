@@ -28,18 +28,18 @@
 }
 .content-11 .titleBGL {
   	position: absolute;
-  	top: calc(.6 * var(--border-radius));
+  	top: calc(-1.45 * var(--border-radius));
   	left: 0px;
   	width: 50%;
-  	height: calc(.8 * var(--border-radius));
+  	height: calc(.9 * var(--border-radius));
   	background: black;
 }
 .content-11 .titleBGR {
   	position: absolute;
-  	top: calc(.6 * var(--border-radius));
-  	left: 50%;
+  	top: calc(-1.45 * var(--border-radius));
+  	right: 0%;
   	width: 50%;
-  	height: calc(.8 * var(--border-radius));
+  	height: calc(.9 * var(--border-radius));
   	background: red;
 }
 .content-11 {
@@ -216,10 +216,7 @@ input {
 
 
 {% block title11 %}
-<div class="titleBGL">
-</div>
-<div class="titleBGR">
-</div>
+
 <div class="title">
 	
 	<span class="titleLeft">
@@ -233,6 +230,10 @@ input {
 		<label for="radio11-2"><i class="fas fa-expand-alt"></i></label>
 		<label for="radio11-3"><i class="fas fa-expand"></i></label>
 	</span>
+</div>
+<div class="titleBGL">
+</div>
+<div class="titleBGR">
 </div>
 {% endblock %}
 {% block content11 %}
