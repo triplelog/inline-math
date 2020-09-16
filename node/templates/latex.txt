@@ -13,6 +13,20 @@ boxed equation
 
 greek letters
 
+
+If you know $display(\LaTeX)$ you can input it directly by wrapping $display(\LaTeX)$ syntax inside the display() function. This will be plugged into $display(\KaTeX)$ so any of their <a href="https://katex.org/docs/supported.html">supported functions</a> should work. Despite the name, using single dollar signs will use inline mode while double dollar signs are required for display mode.
+
+The expression will not be parsed and thus cannot include external variables or be saved as a variable.
+
+$display(\frac{3^{12}}{4})$
+
+If you just want to generate the $display(\LaTeX)$ syntax you can use the latex() function. Any valid mathematical expression will be latexified. Variables can be included and arithmetic can be performed inside. If you include a name after the dollar signs then the parsed expression will be saved not the latex output.
+
+$4^11$[A]
+
+$latex(3^12/7+A+=(3+4)[A])$
+
+
 Coming Soon
 -----------
 
