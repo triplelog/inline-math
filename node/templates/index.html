@@ -85,6 +85,8 @@
   	left: 50%;
   	background-image: linear-gradient(to right, red , white);
 }
+
+
 .content-31 .title {
 	transition: opacity 1s linear;
   	background: transparent;
@@ -94,14 +96,26 @@
 	background-position-x: 50%;
 	z-index:2;
 }
-.content-13 .titleBGL {
-  	right: 50%;
-  	background-image: linear-gradient(to left, red , white);
+.content-31 .titleBGL {
+  	left: 10%;
+  	width: 20%;
+  	top: calc(0 * var(--border-radius));
+  	height: calc(2 * var(--border-radius));
+  	background-image: linear-gradient(to left, white , white);
 }
-.content-13 .titleBGR {
+.content-31 .titleBGR {
   	left: 50%;
-  	background-image: linear-gradient(to right, red , white);
+  	background-image: linear-gradient(to right, white , white);
 }
+.content-31 .title:hover + .titleBGL {
+  	width: 40%;
+  	transition: all 2s linear;
+}
+.content-31 .title:hover + div + .titleBGR {
+  	width: 50%;
+  	transition: all 2s linear;
+}
+
 
 .content-33 .title {
 	background-image: url("../img/baseballbg.jpg");
