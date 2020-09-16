@@ -158,7 +158,9 @@ ul {
 	list-style-type: none;
 	padding-inline-start: 1rem;
 }
-
+input {
+	vertical-align: middle;
+}
 
 {% endblock %}
 
@@ -220,7 +222,7 @@ var x = Math.cos(theta);
 <div style="margin-left: 1rem; margin-right: 1rem; display: flex; overflow-y: auto;">
 	<div style="flex: 1; font-size: 1rem; border: 1px solid black; padding: .5rem;">
 $x=$ $range(0,10)$[X]<br>
-$x^2==(X^2)[A]$
+$f(x)=$ $input()$[F]
 	</div>
 	<div style="flex: 1; font-size: 1rem; border: 1px solid black; padding: .5rem;">
 	
