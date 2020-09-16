@@ -122,39 +122,16 @@
 }
 
 
-.content-31 .title {
+.content-33 .title {
 	transition: opacity 1s linear;
   	background: transparent;
-  	background-image: url("../img/solve.png");
+  	background-image: url("../img/blank.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position-x: 50%;
 	z-index:2;
 }
-.content-31 .titleBGL {
-  	left: 21%;
-  	width: 8%;
-  	top: calc(0 * var(--border-radius));
-  	height: calc(2 * var(--border-radius));
-  	background-image: linear-gradient(to left, #5381AC , #5381AC);
-}
-.content-31 .titleBGR {
-  	left: 80%;
-  	width: 10%;
-  	top: calc(0 * var(--border-radius));
-  	height: calc(2 * var(--border-radius));
-  	background-image: linear-gradient(to right, #5381AC , #5381AC);
-}
-.content-31 .title:hover + .titleBGL {
-  	left: 29%;
-  	width: 0%;
-  	transition: all 2s linear;
-}
-.content-31 .title:hover + div + .titleBGR {
-	left: 90%;
-  	width: 0%;
-  	transition: all 2s linear;
-}
+
 
 div:Not(.content-22) > .content {
 	overflow-y: auto;
@@ -168,7 +145,7 @@ div:Not(.content-22) > .content {
 
 .logoDiv img {
 	width:24rem;
-	left:-9rem;
+	left:-8.5rem;
 	position:absolute;
 	top:0rem;
 }
@@ -181,7 +158,7 @@ div.container .titleRight i {
 	.logoDiv img {
 		width:24rem;
 		top: 0rem;
-		left:-9rem;
+		left:-8.5rem;
 	}
 	.title {
 		font-size: 1.6rem;
@@ -425,8 +402,6 @@ $f(x)=$ $input()$[F]
 
 {% block title33 %}
 <div class="title">
-	<div class="titleBG">
-	</div>
 	<span class="titleLeft">
 	
 	</span>
