@@ -176,46 +176,55 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '!': {
 			if (ii > 0){
-				s += "\\neq "+child;
+				s += child;
 			}
 			else {
-				s += child;
+				s += child+"\\neq ";
 			}
 			break;
 		}
 		case '[': {
 			if (ii > 0){
-				s += "\\leq "+child;
+				s += child;
 			}
 			else {
-				s += child;
+				s += child + "\\leq ";
 			}
 			break;
 		}
 		case ']': {
 			if (ii > 0){
-				s += "\\geq "+child;
+				s += child;
 			}
 			else {
-				s += child;
+				s += child + "\\geq ";
 			}
 			break;
 		}
 		case '<': {
 			if (ii > 0){
-				s += "< "+child;
+				s += child;
 			}
 			else {
-				s += child;
+				s += child+"< ";
 			}
 			break;
 		}
 		case '>': {
 			if (ii > 0){
-				s += "> "+child;
+				s += child;
 			}
 			else {
+				s += child+"> ";
+			}
+			break;
+		}
+		case '=': {
+			if (ii > 0){
 				s += child;
+			}
+			else {
+				s += child+"= ";
 			}
 			break;
 		}
