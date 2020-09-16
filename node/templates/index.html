@@ -161,6 +161,33 @@ ul {
 input {
 	vertical-align: middle;
 }
+#content11-radio-1:checked ~ ul label[for="content11-radio-1"] {
+	color: red;
+}
+#content11-radio-1 ~ div:nth-child(1) {
+	display: none;
+}
+#content11-radio-1:checked ~ div:nth-child(1) {
+	display: flex;
+}
+#content11-radio-2:checked ~ ul label[for="content11-radio-2"] {
+	color: red;
+}
+#content11-radio-2 ~ div:nth-child(2) {
+	display: none;
+}
+#content11-radio-2:checked ~ div:nth-child(2) {
+	display: flex;
+}
+#content11-radio-3:checked ~ ul label[for="content11-radio-3"] {
+	color: red;
+}
+#content11-radio-3 ~ div:nth-child(3) {
+	display: none;
+}
+#content11-radio-3:checked ~ div:nth-child(3) {
+	display: flex;
+}
 
 {% endblock %}
 
@@ -191,7 +218,7 @@ input {
 	<li><label for="content11-radio-2">X</label> Make math pretty inside your <a href="../code">code</a>.</li>
 	<li><label for="content11-radio-3">X</label> Integrate standard user <a href="../inputs">inputs</a>.</li>
 </ul>
-<div style="margin-left: 1rem; margin-right: 1rem; display: none; overflow-y: auto;">
+<div style="margin-left: 1rem; margin-right: 1rem; overflow-y: auto;">
 	<div style="flex: 1; font-size: 1rem; border: 1px solid black; padding: .5rem;">
 		Write **text** or math: $x = pi^12+sqrt(3)/4$.
 	</div>
@@ -211,7 +238,7 @@ M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist
 	</div>
 	
 </div>
-<div style="margin-left: 1rem; margin-right: 1rem; display: none; overflow-y: auto;">
+<div style="margin-left: 1rem; margin-right: 1rem; overflow-y: auto;">
 	<!--<div style="flex: 1; font-size: 1rem; border: 1px solid black; padding: .5rem;">
 var theta = 2*Math.pi;<br>
 var x = Math.cos(theta);
@@ -222,7 +249,7 @@ var x = Math.cos(theta);
 	</div>
 	
 </div>
-<div style="margin-left: 1rem; margin-right: 1rem; display: flex; overflow-y: auto;">
+<div style="margin-left: 1rem; margin-right: 1rem; overflow-y: auto;">
 	<!--<div style="flex: 1; font-size: 1rem; border: 1px solid black; padding: .5rem;">
 $x=$ $range(0,10)$[X]<br>
 $f(x)=$ $input()$[F]
