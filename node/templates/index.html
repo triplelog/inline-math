@@ -27,25 +27,25 @@
 	background-position-x: 50%;
 	z-index:2;
 }
-.content-11 .titleBGL {
+.titleBGL {
   	position: absolute;
   	top: calc(.5 * var(--border-radius));
   	left: 0px;
   	width: 0%;
   	height: calc(1 * var(--border-radius));
   	background: black;
-  	background-image: linear-gradient(to right, black , white);
+  	background-image: linear-gradient(to right, red , white);
   	z-index:1;
   	transition: all 2s linear;
 }
-.content-11 .titleBGR {
+.titleBGR {
   	position: absolute;
   	top: calc(.5 * var(--border-radius));
   	right: 0%;
   	width: 0%;
   	height: calc(1 * var(--border-radius));
   	background: black;
-  	background-image: linear-gradient(to left, black , white);
+  	background-image: linear-gradient(to left, red , white);
   	z-index:1;
   	transition: all 2s linear;
 }
@@ -63,17 +63,15 @@
 .content-11 .content {
 	text-align: left;
 }
-.content-11 .title:hover {
-  	opacity: 1;
-  	transition: opacity 1s linear;
-}
+
 .content-13 .title {
-	transition: opacity 1s linear;
-  	background: rgb(228,242,228);
-	background-image: url("../sudokubannercolor.jpg");
+  	transition: opacity 1s linear;
+  	background: transparent;
+  	background-image: url("../img/output.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position-x: 50%;
+	z-index:2;
 }
 .content-31 .title {
 	background-image: url("../img/pencilscrop.jpg");
@@ -309,8 +307,6 @@ $f(x)=$ $input()$[F]
 
 {% block title13 %}
 <div class="title">
-	<div class="titleBG">
-	</div>
 	<span class="titleLeft">
 	
 	</span>
@@ -323,6 +319,10 @@ $f(x)=$ $input()$[F]
 		<label for="radio13-1"><i class="fas fa-compress-alt"></i></label>
 	</span>
 	
+</div>
+<div class="titleBGL">
+</div>
+<div class="titleBGR">
 </div>
 {% endblock %}
 {% block content13 %}
