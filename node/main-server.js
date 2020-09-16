@@ -192,6 +192,17 @@ app.get(['/inputs','/inputs.html'],
 	}
 );
 
+app.get(['/markdown','/markdown.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/markdown.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		

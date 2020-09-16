@@ -496,6 +496,30 @@ const renderer = {
 	
 			return html;
 		}
+		else if (input.search(/display\(/)==0){
+			input = input.replace('display(','');
+			input = input.substr(0,input.length-1);
+			
+			katexOptions.displayMode = isDisplay;
+			k = katex.renderToString(input, katexOptions);
+			katexOptions.displayMode = false;
+			k = k.replace('class="katex"','class="katex" data-input="" data-latex="'+input+'"');
+		
+			return k;
+		}
+		else if (input.search(/latex\(/)==0){
+			input = input.replace('latex(','');
+			input = input.substr(0,input.length-1);
+			//latex = "";
+			var k = mapOrNew(input,varName,false,false,isDisplay);
+			if (isDisplay){
+				return '<div>'+latex+'</div>';
+			}
+			else {
+				return '<span>'+latex+'</span>';
+			}
+			
+		}
 		else {
 			k = mapOrNew(input,varName,false,false,isDisplay);
 			if (varName != ""){
