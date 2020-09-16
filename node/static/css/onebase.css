@@ -388,7 +388,7 @@ a.basic:hover {
 }
 body {
 	background-image: url("../img/bg.png");
-	background-size: auto;
+	background-size: contain;
 	background-repeat: repeat;
 	
 }
