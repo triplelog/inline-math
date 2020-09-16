@@ -1,0 +1,18 @@
+{% extends "templates/testshell.html" %}
+{% block markdown %}	
+
+Use markdown to render the non-math parts of text.
+
+$display(\latex)$
+
+$latex(3^12)$
+
+
+Coming soonish
+--------------
+
+various general improvements
+
+
+
+{% endblock %}
