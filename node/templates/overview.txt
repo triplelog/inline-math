@@ -3,10 +3,13 @@
 
 Use markdown to render the non-math parts of text.
 
-$display(\latex)$
+$display(\LaTeX)$
 
 $latex(3^12)$
 
+$display(\frac{3^{12}}{4})$
+
+$latex(3^12/7)$
 
 Coming soonish
 --------------
