@@ -26,6 +26,14 @@
 	background-repeat: no-repeat;
 	background-position-x: 50%;
 }
+.content-11 .titleBG {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 100%;
+  	height: calc(2 * var(--border-radius));
+  	background: black;
+}
 .content-11 {
 	background: white;
 }
@@ -200,9 +208,10 @@ input {
 
 
 {% block title11 %}
+<div class="titleBG">
+</div>
 <div class="title">
-	<div class="titleBG">
-	</div>
+	
 	<span class="titleLeft">
 		
 	</span>
