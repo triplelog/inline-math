@@ -26,13 +26,21 @@
 	background-repeat: no-repeat;
 	background-position-x: 50%;
 }
-.content-11 .titleBG {
+.content-11 .titleBGL {
   	position: absolute;
-  	top: calc(.67 * var(--border-radius));
+  	top: calc(.6 * var(--border-radius));
   	left: 0px;
-  	width: 100%;
-  	height: calc(.67 * var(--border-radius));
+  	width: 50%;
+  	height: calc(.8 * var(--border-radius));
   	background: black;
+}
+.content-11 .titleBGR {
+  	position: absolute;
+  	top: calc(.6 * var(--border-radius));
+  	left: 50%;
+  	width: 50%;
+  	height: calc(.8 * var(--border-radius));
+  	background: red;
 }
 .content-11 {
 	background: white;
@@ -208,7 +216,9 @@ input {
 
 
 {% block title11 %}
-<div class="titleBG">
+<div class="titleBGL">
+</div>
+<div class="titleBGR">
 </div>
 <div class="title">
 	
