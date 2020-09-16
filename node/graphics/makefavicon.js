@@ -55,32 +55,32 @@ for (var i=0;i<129;i++){
 			r*=1.5;
 		}
 		if (i%4==0){
-			r*=1.4;
+			r*=1.3;
 		}
 		if (ii%4==0){
-			r*=1.4;
+			r*=1.3;
 		}
 		if (i%8==0){
-			r*=1.3;
+			r*=1.2;
 		}
 		if (ii%8==0){
-			r*=1.3;
+			r*=1.2;
 		}
 		if (i%16==0){
-			r*=1.2;
+			r*=1.1;
 		}
 		if (ii%16==0){
-			r*=1.2;
+			r*=1.1;
 		}
 		//svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
 		//svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
 		//svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
 		//svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+(r*1.7)+"\" fill=\"#5381AC\"/>";
 		
-		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#ACAC53\"/>";
-		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#ACAC53\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#ACAC53\"/>";
-		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#ACAC53\"/>";
+		svg += "<circle cx=\"" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
+		svg += "<circle cx=\"" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
+		svg += "<circle cx=\"-" + i + "\" cy=\"-" + ii + "\" r=\""+r+"\" fill=\"#AC6053\"/>";
 	}
 }
 svg += "</svg>";
