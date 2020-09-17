@@ -86,14 +86,6 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		else if (latexedInputs[type+input].display != isDisplay){
 			foundMatch = false;
 		}
-		else if (isTreePlot == 'plot'){
-			for (var i=0;i<5;i++){
-				if (latexedInputs[type+input].options.dr[i] != inputFull[i]) {
-					foundMatch = false;
-					break;
-				}
-			}
-		}
 		else if (latexedInputs[type+input].dependents || latexedInputs[type+input].dependentfunctions){
 			if (latexedInputs[type+input].dependents){
 				for (var i in latexedInputs[type+input].dependents){
@@ -109,6 +101,14 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 						foundMatch = false;
 						break;
 					}
+				}
+			}
+		}
+		if (isTreePlot == 'plot'){
+			for (var i=0;i<5;i++){
+				if (latexedInputs[type+input].options.dr[i] != inputFull[i]) {
+					foundMatch = false;
+					break;
 				}
 			}
 		}
