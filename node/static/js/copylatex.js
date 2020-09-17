@@ -24,7 +24,7 @@ function getLatex(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (!child.classList || !child.classList.contains('katex')){
+				if (!child.hasAttribute('data-latex')){
 					fullLatex += getLatex(child,parents);
 				}
 				else{
@@ -34,7 +34,7 @@ function getLatex(parent,parents) {
 		}
 		else {
 			var child = children[i];
-			if (!child.classList || !child.classList.contains('katex')){
+			if (!child.hasAttribute('data-latex')){
 				if (isParent){
 					fullLatex += getLatex(child,parents);
 				}
@@ -81,7 +81,7 @@ function getInput(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (!child.classList || !child.classList.contains('katex')){
+				if (!child.hasAttribute('data-latex')){
 					fullInput += getInput(child,parents);
 				}
 				else{
@@ -91,7 +91,7 @@ function getInput(parent,parents) {
 		}
 		else {
 			var child = children[i];
-			if (!child.classList || !child.classList.contains('katex')){
+			if (!child.hasAttribute('data-latex')){
 				if (isParent){
 					fullInput += getInput(child,parents);
 				}
