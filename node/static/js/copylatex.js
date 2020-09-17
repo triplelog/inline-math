@@ -24,7 +24,7 @@ function getLatex(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (!child.hasAttribute('data-latex')){
+				if (!child.hasAttribute || !child.hasAttribute('data-latex')){
 					fullLatex += getLatex(child,parents);
 				}
 				else{
@@ -34,7 +34,7 @@ function getLatex(parent,parents) {
 		}
 		else {
 			var child = children[i];
-			if (!child.hasAttribute('data-latex')){
+			if (!child.hasAttribute || !child.hasAttribute('data-latex')){
 				if (isParent){
 					fullLatex += getLatex(child,parents);
 				}
@@ -81,7 +81,7 @@ function getInput(parent,parents) {
 				startCopy = true;
 				
 				var child = children[i];
-				if (!child.hasAttribute('data-latex')){
+				if (!child.hasAttribute || !child.hasAttribute('data-latex')){
 					fullInput += getInput(child,parents);
 				}
 				else{
@@ -91,7 +91,7 @@ function getInput(parent,parents) {
 		}
 		else {
 			var child = children[i];
-			if (!child.hasAttribute('data-latex')){
+			if (!child.hasAttribute || !child.hasAttribute('data-latex')){
 				if (isParent){
 					fullInput += getInput(child,parents);
 				}
@@ -255,7 +255,7 @@ function getCopied(evt) {
 	var katexParent = false;
 	var superParent = commonParent;
 	while (superParent){
-		if (superParent.hasAttribute('data-latex')){
+		if (superParent.hasAttribute && superParent.hasAttribute('data-latex')){
 			katexParent = superParent;
 			break;
 		}
