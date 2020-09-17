@@ -167,9 +167,7 @@ std::string prepareIt(std::string a){
 	//	std::string ssi(1,postfixed.at(si));
 	//	string_log(ssi.c_str());
 	//}
-	string_log(postfixed.c_str());
 	postfixed = removeSolves(postfixed);
-	string_log(postfixed.c_str());
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
 	}
