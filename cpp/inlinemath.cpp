@@ -133,8 +133,6 @@ std::string prepareIt(std::string a){
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		string_log(postfixedV[0].c_str());
-		string_log(postfixedV[1].c_str());
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	int sz = dependentFunctions.size();
@@ -250,13 +248,13 @@ void LatexIt(char* aa) {
 	
 	std::string postfixed = prepareIt(a);
 	if (postfixed.substr(0,5) == "error"){
-		//std::string latexed = latexOne(postfixed.substr(5));
-		//latexed += "\0";
-		//output_latex(latexed.c_str());
-		//output_inputted(codify(postfixed.substr(5)).c_str());
+		std::string latexed = latexOne(postfixed.substr(5));
+		latexed += "\0";
+		output_latex(latexed.c_str());
+		output_inputted(codify(postfixed.substr(5)).c_str());
 		string_log(postfixed.c_str());
 		postfixed = "\0";
-		//latexed = "\0";
+		latexed = "\0";
 		return;
 		string_log(postfixed.c_str());
 	}
