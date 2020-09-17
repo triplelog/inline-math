@@ -63,7 +63,6 @@ var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
-	pjs(message[1],message[3],message[4],message[5],message[6]);
 	if (isTreePlot == 'plot'){
 		inputFull = [];
 		for (var i=0;i<5;i++){
