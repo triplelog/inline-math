@@ -42,7 +42,6 @@ function setDependents(x) {
 }
 var dependentfunctions = [];
 function addDependentFunction(x) {
-	console.log(x);
 	dependentfunctions.push(x);
 }
 
@@ -425,6 +424,7 @@ const renderer = {
 				dr = "";
 			}
 			var inputs = input.split(',');
+			console.log(inputs);
 			var fn = inputs[0];
 			var left = -10;
 			var right = 10;
