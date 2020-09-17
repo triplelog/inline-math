@@ -77,12 +77,21 @@ std::string prepareIt(std::string a){
 	if (a.length()>288){
 		return "error";
 	}
+	int openPar = 0;
 	for (i=0;i<a.length();i++){
 		if (a.at(i) == '{'){
 			a[i] = '(';
+			openPar++;
 		}
 		else if (a.at(i) == '}'){
 			a[i] = ')';
+			openPar--;
+		}
+		else if (a.at(i) == '('){
+			openPar++;
+		}
+		else if (a.at(i) == ')'){
+			openPar--;
 		}
 		else if (a.at(i) < 0){
 			return "error";
@@ -113,9 +122,16 @@ std::string prepareIt(std::string a){
 		}
 	}
 	dependentFunctions.clear();
+	while (openPar < 0){
+		a.replace(0,0,"(");
+		openPar++;
+	}
+	while (openPar > 0){
+		a.replace(a.length()-1,0,")");
+		openPar--;
+	}
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
+
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		string_log(postfixedV[0].c_str());
 		string_log(postfixedV[1].c_str());
