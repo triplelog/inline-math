@@ -232,8 +232,8 @@ void LatexIt(char* aa) {
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
 		latexed += "\0";
-		output_latex(latexed.c_str());
-		output_inputted(codify(postfixed.substr(5)).c_str());
+		//output_latex(latexed.c_str());
+		//output_inputted(codify(postfixed.substr(5)).c_str());
 		postfixed = "\0";
 		latexed = "\0";
 		return;
