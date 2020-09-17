@@ -130,6 +130,7 @@ std::string prepareIt(std::string a){
 		a.replace(a.length()-1,0,")");
 		openPar--;
 	}
+	string_log(a.c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
@@ -137,7 +138,7 @@ std::string prepareIt(std::string a){
 	}
 	int sz = dependentFunctions.size();
 	for (i=0;i<sz;i++){
-		string_log(dependentFunctions[i].c_str());
+		//string_log(dependentFunctions[i].c_str());
 		add_dependent_function(dependentFunctions[i].c_str());
 	}
 	dependentFunctions.resize(0);
