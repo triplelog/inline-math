@@ -311,13 +311,32 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 						//This is the * right after /
 						//TODO: deal with fraction in s
 						//TODO: deal with non-1 in numerator of child
-						int iii; int openBracket = 1;
+						string_log("mul");
+						string_log(child.c_str());
+						string_log(s.c_str());
+						int iii; int openBracket = 0;
+						for (iii=0;iii<s.length();iii++){
+							if (s.at(iii) == ')'){openBracket--;}
+							else if (s.at(iii) == '('){openBracket++;}
+							else if (iii == 0 || iii == s.length()-1){
+								break;
+							}
+							
+							if (openBracket == 0 && iii == s.length()-1){
+								s.replace(0,1,"");
+								s.replace(s.length()-1,1,"");
+								string_log(s.c_str());
+								break;
+							}
+						}
+						openBracket = 1;
 						for (iii=6;iii<child.length();iii++){
 							if (child.at(iii) == '}'){openBracket--;}
 							else if (child.at(iii) == '{'){openBracket++;}
 							
 							if (openBracket == 0){
 								s = child.replace(6,iii-6,s);
+								string_log(s.c_str());
 								break;
 							}
 						}
