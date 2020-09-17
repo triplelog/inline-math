@@ -275,8 +275,9 @@
 			spread = evt.target.value;
 			if (spread == 0){return;}
 			if (evt.target.id.substr(0,5) == 'domai'){
-				left = -.5*spread;
-				right = .5*spread;
+				var center = Math.floor(parseInt(evt.target.parentElement.getAttribute('data-right')) + parseInt(evt.target.parentElement.getAttribute('data-left')) + 1)/2;
+				left = center-.5*spread;
+				right = center+.5*spread;
 				bottom = parseInt(evt.target.parentElement.getAttribute('data-bottom'));
 				top = parseInt(evt.target.parentElement.getAttribute('data-top'));
 				spreadtb = top-bottom;
@@ -286,8 +287,10 @@
 			}
 			else if (evt.target.id.substr(0,5) == 'range'){
 				spreadtb = evt.target.value;
-				bottom = -.5*spread;
-				top = .5*spread;
+				var center = Math.floor(parseInt(evt.target.parentElement.getAttribute('data-top')) + parseInt(evt.target.parentElement.getAttribute('data-bottom')) + 1)/2;
+				
+				bottom = center-.5*spread;
+				top = center+.5*spread;
 				left = parseInt(evt.target.parentElement.getAttribute('data-left'));
 				right = parseInt(evt.target.parentElement.getAttribute('data-right'));
 				spread = right-left;
