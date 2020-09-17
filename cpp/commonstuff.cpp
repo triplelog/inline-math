@@ -1492,6 +1492,7 @@ void initialRun(){
 	for (i=-68;i<0;i++){
 		prec[i]=7;
 	}
+	prec[-125]=7;//function
     prec['^'] = 5;
 	prec['*'] = 4;
 	prec['/'] = 4;
