@@ -241,8 +241,8 @@ input[type="range"] {
 	overflow-y: auto;
 	display: none;
 }
-#content11-radio-1:checked ~ ul label[for="content11-radio-1"] {
-	color: red;
+#content11-radio-1:checked ~ ul label[for="content11-radio-1"] use {
+	display: none;
 }
 #content11-radio-1:checked ~ #content11-div-1 {
 	display: flex;
@@ -310,7 +310,7 @@ div pre[class*="language-"]{
 	padding: .5rem;
 }
 .listCircle {
-	vertical-align: middle;
+	vertical-align: text-top;
 }
 
 {% endblock %}
