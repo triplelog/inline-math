@@ -87,7 +87,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			foundMatch = false;
 		}
 		else if (isTreePlot == 'plot'){
-			for (var i=0;i<5){
+			for (var i=0;i<5;i++){
 				if (latexedInputs[type+input].options.dr[i] != inputFull[i]) {
 					foundMatch = false;
 					break;
