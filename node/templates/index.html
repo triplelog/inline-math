@@ -339,7 +339,7 @@ div pre[class*="language-"]{
 <input type="radio" name="content11-radio" id="content11-radio-2" style="display:none;"></input>
 <input type="radio" name="content11-radio" id="content11-radio-3" style="display:none;"></input>
 <ul>
-	<li><label for="content11-radio-1"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><use href="#visibleCircle" /></svg></label> Easily embed math in <a href="../overview">markdown</a>.</li>
+	<li><label for="content11-radio-1" style="height: 1rem; width: 1rem;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><use href="#visibleCircle" /></svg></label> Easily embed math in <a href="../overview">markdown</a>.</li>
 	<li><label for="content11-radio-2">X</label> Make math pretty inside your <a href="../code">code</a>.</li>
 	<li><label for="content11-radio-3">X</label> Integrate standard user <a href="../inputs">inputs</a>.</li>
 </ul>
@@ -575,7 +575,7 @@ $f(3)==(f(3))[A]$
 
 
 {% block bodyStart %}
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <circle id="visibleCircle" cx="50" cy="50" r="25" stroke="blue"/>
 </svg>
 {% endblock %}
