@@ -320,7 +320,7 @@ function createInputs(input,varName,isDisplay) {
 
 	}
 	else if (input.search(/range\(/)==0){
-		input = input.replace('number(','');
+		input = input.replace('range(','');
 		input = input.substr(0,input.length-1);
 		var minRange = "0";
 		var maxRange = "100";
