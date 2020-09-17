@@ -241,22 +241,22 @@ input[type="range"] {
 	overflow-y: auto;
 	display: none;
 }
-use[href="visibleCircle"] {
+.visibleCircle {
 	display: none;
 }
-#content11-radio-1:checked ~ ul label[for="content11-radio-1"] use[href="visibleCircle"] {
+#content11-radio-1:checked ~ ul label[for="content11-radio-1"] .visibleCircle {
 	display: inline;
 }
 #content11-radio-1:checked ~ #content11-div-1 {
 	display: flex;
 }
-#content11-radio-2:checked ~ ul label[for="content11-radio-2"] use[href="visibleCircle"] {
+#content11-radio-2:checked ~ ul label[for="content11-radio-2"] .visibleCircle {
 	display: inline;
 }
 #content11-radio-2:checked ~ #content11-div-2 {
 	display: flex;
 }
-#content11-radio-3:checked ~ ul label[for="content11-radio-3"] use[href="visibleCircle"] {
+#content11-radio-3:checked ~ ul label[for="content11-radio-3"] .visibleCircle {
 	display: inline;
 }
 #content11-radio-3:checked ~ #content11-div-3 {
@@ -348,19 +348,19 @@ div pre[class*="language-"]{
 	<li><label for="content11-radio-1">
 		<svg class="listCircle" viewBox="0 0 100 100" width="1.1rem" height="1.1rem" xmlns="http://www.w3.org/2000/svg">
 			<use href="#borderCircle" />
-			<use href="#visibleCircle" />
+			<use class="visibleCircle" href="#visibleCircle" />
 		</svg>
 		</label> Easily embed math in <a href="../overview">markdown</a>.</li>
 	<li><label for="content11-radio-2">
 		<svg class="listCircle" viewBox="0 0 100 100" width="1.1rem" height="1.1rem" xmlns="http://www.w3.org/2000/svg">
 			<use href="#borderCircle" />
-			<use href="#visibleCircle" />
+			<use class="visibleCircle" href="#visibleCircle" />
 		</svg>
 		</label> Make math pretty inside your <a href="../code">code</a>.</li>
 	<li><label for="content11-radio-3">
 		<svg class="listCircle" viewBox="0 0 100 100" width="1.1rem" height="1.1rem" xmlns="http://www.w3.org/2000/svg">
 			<use href="#borderCircle" />
-			<use href="#visibleCircle" />
+			<use class="visibleCircle" href="#visibleCircle" />
 		</svg>
 		</label> Integrate standard user <a href="../inputs">inputs</a>.</li>
 </ul>
