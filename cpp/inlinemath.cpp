@@ -53,8 +53,8 @@ EM_JS(void, output_dependents, (const char* x), {
   setDependents(UTF8ToString(x));
 });
 
-EM_JS(void, output_dependent_functions, (const char* x), {
-  setDependentFunctions(UTF8ToString(x));
+EM_JS(void, add_dependent_function, (const char* x), {
+  addDependentFunction(UTF8ToString(x));
 });
 
 EM_JS(void, update_currentF, (const char* x), {
@@ -136,12 +136,10 @@ std::string prepareIt(std::string a){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	int sz = dependentFunctions.size();
-	char* df = new char[sz];
 	for (i=0;i<sz;i++){
-		df[i]=dependentFunctions[i];
+		add_dependent_function(dependentFunctions[i].c_str());
 	}
-	df[sz]='\0';
-	output_dependent_functions(df);
+	dependentFunctions.resize(0);
 	
 	dependentChars = getDependents(postfixedV[1]);
 	
@@ -252,11 +250,9 @@ void LatexIt(char* aa) {
 		latexed += "\0";
 		output_latex(latexed.c_str());
 		output_inputted(codify(postfixed.substr(5)).c_str());
-		string_log(postfixed.c_str());
 		postfixed = "\0";
 		latexed = "\0";
 		return;
-		string_log(postfixed.c_str());
 	}
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){

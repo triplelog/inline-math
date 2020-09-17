@@ -410,7 +410,7 @@ std::map<std::string,std::map<std::string,std::vector<Rule>>> rulesMap;
 std::map<std::string,std::map<int,Rule>> ruleIndexMap;
 
 std::vector<char> dependentChars;
-std::vector<char> dependentFunctions;
+std::vector<std::string> dependentFunctions;
 std::map<char,std::string> currentV;
 int ridx;
 std::map<std::string,std::vector<Rule>> answerConstraints;

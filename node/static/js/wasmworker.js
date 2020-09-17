@@ -40,9 +40,9 @@ var dependents = "";
 function setDependents(x) {
 	dependents = x;
 }
-var dependentfunctions = "";
-function setDependentFunctions(x) {
-	dependentfunctions = x;
+var dependentfunctions = [];
+function addDependentFunction(x) {
+	dependentfunctions.push(x);
 }
 
 var currentF = {};
@@ -63,6 +63,7 @@ var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
+	dependentFunctions = [];
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
 		type = 'tree';

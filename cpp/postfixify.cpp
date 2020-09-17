@@ -72,6 +72,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				else if ((temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z') || (temptoken[iidx-1] >= 'A' && temptoken[iidx-1] <= 'Z')){
 					if (ie == '('){//Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						dependentFunctions.push_back(tokenList[idx]);
 						idx++;
 						int iie;
 						int openPar = 0;
@@ -92,7 +93,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 								break;
 							}
 						}
-						dependentFunctions.push_back(temptoken[iidx-1]);
+						
 						if (commas>0){
 							std::string s(1,-126);
 							tokenList[idx] = s;
