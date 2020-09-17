@@ -387,9 +387,7 @@ a.basic:hover {
 	cursor: pointer;
 }
 body {
-	background-image: url("../img/bg.png");
-	background-size: contain;
-	background-repeat: repeat;
+	background: #EDDDDA;
 	
 }
 
