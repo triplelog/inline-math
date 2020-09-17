@@ -42,6 +42,7 @@ function setDependents(x) {
 }
 var dependentfunctions = [];
 function addDependentFunction(x) {
+	console.log(x);
 	dependentfunctions.push(x);
 }
 
@@ -63,7 +64,7 @@ var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
-	dependentFunctions = [];
+	dependentfunctions = [];
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
 		type = 'tree';

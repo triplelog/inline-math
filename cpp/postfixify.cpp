@@ -72,6 +72,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				else if ((temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z') || (temptoken[iidx-1] >= 'A' && temptoken[iidx-1] <= 'Z')){
 					if (ie == '('){//Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						string_log(tokenList[idx].c_str());
 						dependentFunctions.push_back(tokenList[idx]);
 						idx++;
 						int iie;

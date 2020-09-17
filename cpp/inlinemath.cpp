@@ -121,7 +121,7 @@ std::string prepareIt(std::string a){
 			}
 		}
 	}
-	dependentFunctions.clear();
+	dependentFunctions.resize(0);
 	while (openPar < 0){
 		a.replace(0,0,"(");
 		openPar++;
@@ -137,6 +137,7 @@ std::string prepareIt(std::string a){
 	}
 	int sz = dependentFunctions.size();
 	for (i=0;i<sz;i++){
+		string_log(dependentFunctions[i].c_str());
 		add_dependent_function(dependentFunctions[i].c_str());
 	}
 	dependentFunctions.resize(0);
