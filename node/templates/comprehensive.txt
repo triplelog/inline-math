@@ -5,6 +5,12 @@ Comprehensive Test Suite
 
 The following examples showcase almost every feature of Inline Math. The markdown on the left shows the exact syntax used and can be edited to see what happens. Anything not inside of dollar signs or a code block will be parsed as markdown using markedjs. For more details, each header can be clicked on to go to a dedicated page with more examples.
 
+Errors
+------
+
+$3*7*(x+1)/4)$
+
+
 Mathematical Expressions
 ------------------------
 
