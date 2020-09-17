@@ -63,7 +63,12 @@ var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
-	if (isTreePlot == 'plot'){
+	var type = 'latex';
+	if (isTreePlot == 'tree'){
+		type = 'tree';
+	}
+	else if (isTreePlot == 'plot'){
+		type = 'plot';
 		inputFull = [];
 		for (var i=0;i<5;i++){
 			inputFull.push(input[i]);
@@ -72,26 +77,35 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		svg = "";
 	}
 	var foundMatch = false;
-	if (latexedInputs[input]){
+	
+	if (latexedInputs[type+input]){
 		foundMatch = true;
-		if (latexedInputs[input].varName != varName){
+		if (latexedInputs[type+input].varName != varName){
 			foundMatch = false;
 		}
-		else if (latexedInputs[input].display != isDisplay){
+		else if (latexedInputs[type+input].display != isDisplay){
 			foundMatch = false;
 		}
-		else if (latexedInputs[input].dependents || latexedInputs[input].dependentfunctions){
-			if (latexedInputs[input].dependents){
-				for (var i in latexedInputs[input].dependents){
-					if (latexedInputs[input].dependents[i] != currentV[i]){
+		else if (isTreePlot == 'plot'){
+			for (var i=0;i<5){
+				if (latexedInputs[type+input].options.dr[i] != inputFull[i]) {
+					foundMatch = false;
+					break;
+				}
+			}
+		}
+		else if (latexedInputs[type+input].dependents || latexedInputs[type+input].dependentfunctions){
+			if (latexedInputs[type+input].dependents){
+				for (var i in latexedInputs[type+input].dependents){
+					if (latexedInputs[type+input].dependents[i] != currentV[i]){
 						foundMatch = false;
 						break;
 					}
 				}
 			}
-			if (latexedInputs[input].dependentfunctions){
-				for (var i in latexedInputs[input].dependentfunctions){
-					if (latexedInputs[input].dependentfunctions[i] != currentF[i]){
+			if (latexedInputs[type+input].dependentfunctions){
+				for (var i in latexedInputs[type+input].dependentfunctions){
+					if (latexedInputs[type+input].dependentfunctions[i] != currentF[i]){
 						foundMatch = false;
 						break;
 					}
@@ -102,8 +116,8 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 	}
 	var k;
 	if (foundMatch && !forceNew){
-		latex = latexedInputs[input].latex;
-		k = latexedInputs[input].output;
+		latex = latexedInputs[type+input].latex;
+		k = latexedInputs[type+input].output;
 	}
 	else{
 		if (varName != ""){
@@ -201,12 +215,15 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			}
 			
 		}
-		latexedInputs[input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay,isTreePlot:isTreePlot};
+		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay,options:{}};
 		for (var i=0;i<dependents.length;i++){
-			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
+			latexedInputs[type+input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
 		for (var i=0;i<dependentfunctions.length;i++){
-			latexedInputs[input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
+			latexedInputs[type+input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
+		}
+		if (isTreePlot == 'plot'){
+			latexedInputs[type+input].options.dr = inputFull; 
 		}
 		
 	}
