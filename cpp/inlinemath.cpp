@@ -132,7 +132,8 @@ std::string prepareIt(std::string a){
 	}
 	string_log(a.c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
-
+	string_log(postfixedV[0].c_str());
+	string_log(postfixedV[1].c_str());
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
@@ -169,7 +170,9 @@ std::string prepareIt(std::string a){
 	//	std::string ssi(1,postfixed.at(si));
 	//	string_log(ssi.c_str());
 	//}
+	string_log(postfixed.c_str());
 	postfixed = removeSolves(postfixed);
+	string_log(postfixed.c_str());
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
 	}
