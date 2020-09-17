@@ -484,7 +484,7 @@ const renderer = {
 			//latex = "";
 			var outText = mapOrNew(input,varName,false,'tree',true);
 		
-			return '<span class="inline-tree" data-input="tree('+inputted+')" data-latex="tree('+latex+')">'+outText+'</span>';
+			return '<span class="inline-tree">'+outText+'</span>';
 		}
 		else if (input.search(/align\(/)==0){
 			input = input.replace('align(','');
