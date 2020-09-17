@@ -281,6 +281,8 @@
 				top = parseInt(evt.target.parentElement.getAttribute('data-top'));
 				spreadtb = top-bottom;
 				id = evt.target.id.substr(13);
+				evt.target.parentElement.setAttribute('data-left',left);
+				evt.target.parentElement.setAttribute('data-right',right);
 			}
 			else if (evt.target.id.substr(0,5) == 'range'){
 				spreadtb = evt.target.value;
@@ -290,6 +292,8 @@
 				right = parseInt(evt.target.parentElement.getAttribute('data-right'));
 				spread = right-left;
 				id = evt.target.id.substr(12);
+				evt.target.parentElement.setAttribute('data-bottom',bottom);
+				evt.target.parentElement.setAttribute('data-top',top);
 				
 			}
 			sliders = evt.target.parentElement.getAttribute('data-sliders');
@@ -297,6 +301,7 @@
 			input = evt.target.getAttribute('data-formula');
 			
 		}
+		
 		myWorker.postMessage(["plot",input,id,left,right,bottom,top,spread,spreadtb,sliders]);
 		
 	}
