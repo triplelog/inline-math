@@ -115,7 +115,7 @@ std::string prepareIt(std::string a){
 	dependentFunctions.clear();
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return postfixedV[0]+"@"+postfixedV[1];
+		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	int sz = dependentFunctions.size();
 	char* df = new char[sz];
@@ -136,12 +136,12 @@ std::string prepareIt(std::string a){
 	output_dependents(dc);
 	
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return postfixedV[0]+"@"+postfixedV[1];
+		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 
 	postfixedV[1] = removeDependents(postfixedV[1]);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
-		return postfixedV[0]+"@"+postfixedV[1];
+		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	//string_log(postfixedV[1].c_str());
 	std::string postfixed = postfixedV[0]+"@"+postfixedV[1];
@@ -153,12 +153,12 @@ std::string prepareIt(std::string a){
 	//}
 	postfixed = removeSolves(postfixed);
 	if (!checkPostfix(postfixed)){
-		return postfixed;
+		return "error"+postfixed;
 	}
 
 	postfixed = removeBracketsOne(postfixed);
 	if (!checkPostfix(postfixed)){
-		return postfixed;
+		return "error"+postfixed;
 	}
 	return postfixed;
 }
@@ -229,9 +229,13 @@ void LatexIt(char* aa) {
 	}
 	
 	std::string postfixed = prepareIt(a);
-	if (postfixed == "error"){
+	if (postfixed.substr(0,5) == "error"){
+		std::string latexed = latexOne(postfixed.substr(5));
+		latexed += "\0";
+		output_latex(latexed.c_str());
+		output_inputted(codify(postfixed.substr(5)).c_str());
 		postfixed = "\0";
-		output_latex("???");
+		latexed = "\0";
 		return;
 	}
 	//string_log(postfixed.c_str());
@@ -270,7 +274,8 @@ void TreeIt(char* aa) {
 	}
 	
 	std::string postfixed = prepareIt(a);
-	if (postfixed == "error"){
+
+	if (postfixed.substr(0,5) == "error"){
 		postfixed = "\0";
 		output_latex("???");
 		return;
@@ -335,7 +340,8 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	
 	int i;
 	std::string postfixed = prepareIt(fn);
-	if (postfixed == "error"){
+
+	if (postfixed.substr(0,5) == "error"){
 		postfixed = "\0";
 		graph_svg("???");
 		return;
@@ -359,8 +365,12 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	
 	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
 	plot += "\0";
+	output_inputted(codify(postfixedV[0]+"@"+postfixedV[1]).c_str());
 	graph_svg(plot.c_str());
 	plot = "\0";
+	postfixedV[0] = "\0";
+	postfixedV[1] = "\0";
+	postfixedV.resize(0);
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 

@@ -1,6 +1,12 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	 
 
+To create a code block, add a line with 3 tick marks (i.e. \`\`\`). Then add lines of code and finally close with another line of 3 tick marks.
+
+```
+var x=math.cos(0);
+```
+
 $7$[A]
 
 ```

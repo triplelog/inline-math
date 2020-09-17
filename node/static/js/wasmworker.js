@@ -61,9 +61,17 @@ importScripts('marked.js');
 
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
-function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
+function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
-	
+	pjs(message[1],message[3],message[4],message[5],message[6]);
+	if (isTreePlot == 'plot'){
+		inputFull = [];
+		for (var i=0;i<5;i++){
+			inputFull.push(input[i]);
+		}
+		input = inputFull[0];
+		svg = "";
+	}
 	var foundMatch = false;
 	if (latexedInputs[input]){
 		foundMatch = true;
@@ -100,7 +108,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 	}
 	else{
 		if (varName != ""){
-			if (isTree){
+			if (isTreePlot == 'tree'){
 				tjs("|"+varName+":="+input);
 				latex = latex.replace(/\\/g,'\\\\');
 				var tree;
@@ -129,6 +137,9 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				outText += JSON.stringify(tree);
 				k = outText;
 			}
+			//else if (isTreePlot == 'plot'){
+			//	pjs(inputFull[0],inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
+			//}
 			else {
 				inputted = "";
 				ljs("|"+varName+":="+input);
@@ -140,7 +151,7 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 			
 		}
 		else{
-			if (isTree){
+			if (isTreePlot == 'tree'){
 				tjs(input);
 				latex = latex.replace(/\\/g,'\\\\');
 				var tree;
@@ -168,6 +179,18 @@ function mapOrNew(input,varName,forceNew=false,isTree=false,isDisplay=false){
 				}
 				outText += JSON.stringify(tree);
 				k = outText;
+			}
+			else if (isTreePlot == 'plot'){
+				inputted = "";
+				pjs(inputFull[0],inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
+				if (svg == "???"){
+					latex = "";
+					k = "";
+				}
+				else {
+					latex = inputted;
+					k = svg;
+				}
 			}
 			else {
 				inputted = "";
@@ -288,7 +311,7 @@ function createInputs(input,varName,isDisplay) {
 			minRange = options[0];
 			maxRange = options[1];
 		}
-		defaultValue = "50";
+		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
 		
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
@@ -439,7 +462,7 @@ const renderer = {
 			input = input.replace('tree(','');
 			input = input.substr(0,input.length-1);
 			//latex = "";
-			var outText = mapOrNew(input,varName,false,true,true);
+			var outText = mapOrNew(input,varName,false,'tree',true);
 		
 			return '<span class="inline-tree">'+outText+'</span>';
 		}
@@ -591,8 +614,11 @@ onmessage = function(e) {
 		result = ["code",message[1],k,message[2],latex,message[3]];
 	}
 	else if (message[0] == "plot"){
+		
+		//pjs(message[1],message[3],message[4],message[5],message[6]);
+		k = mapOrNew([message[1],message[3],message[4],message[5],message[6]],"",false,'plot',false);
 		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">";
-		pjs(message[1],message[3],message[4],message[5],message[6]);
+		svg += k;
 		svg += "</svg>";
 		if (message[9].search('D')>-1){
 			svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
