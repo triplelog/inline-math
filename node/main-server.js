@@ -203,6 +203,38 @@ app.get(['/overview','/overview.html'],
 	}
 );
 
+app.get(['/variables','/variables.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/variables.txt',{
+
+		}));
+		res.end();
+	}
+);
+app.get(['/partial','/partial.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/partial.txt',{
+
+		}));
+		res.end();
+	}
+);
+app.get(['/solve','/solve.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/solve.txt',{
+
+		}));
+		res.end();
+	}
+);
+
+
 app.get(['/','/index','/index.html'],
 	function(req, res){
 		
