@@ -114,7 +114,11 @@ std::string prepareIt(std::string a){
 	}
 	dependentFunctions.clear();
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	string_log(postfixedV[0].c_str());
+	string_log(postfixedV[1].c_str());
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
+		string_log(postfixedV[0].c_str());
+		string_log(postfixedV[1].c_str());
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	int sz = dependentFunctions.size();
