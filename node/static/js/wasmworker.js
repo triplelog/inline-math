@@ -201,7 +201,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			}
 			
 		}
-		latexedInputs[input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay};
+		latexedInputs[input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay,isTreePlot:isTreePlot};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
