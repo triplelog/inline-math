@@ -1,6 +1,6 @@
 div.container {
 	display: grid;
-	--height-container: calc(100vh - 3rem);
+	--height-container: calc(100vh - 1rem);
 	--width-container: calc(100vw - 3rem);
 	height: var(--height-container);
 	width: var(--width-container);
@@ -448,13 +448,13 @@ body {
 	overflow-x: hidden;
 }
 div.container {
-	--height-center: 9rem;
+	--height-center: 7rem;
 	--width-center: 9rem;
 }
 @media screen and (max-width: 959px) {
 	div.container {
-		--height-center: 7rem;
-		--width-center: 7rem;
+		--height-center: 5rem;
+		--width-center: 6rem;
 	}
 }
 @media screen and (max-width: 719px) {
