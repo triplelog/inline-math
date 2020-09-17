@@ -382,6 +382,7 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	std::string plot = makeGraph(postfixedV,iV,dV,left,right,bottom,top);
 	plot += "\0";
 	output_inputted(codify(postfixedV[0]+"@"+postfixedV[1]).c_str());
+	output_latex(latexOne(postfixedV[0]+"@"+postfixedV[1]).c_str());
 	graph_svg(plot.c_str());
 	plot = "\0";
 	postfixedV[0] = "\0";

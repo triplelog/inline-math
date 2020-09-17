@@ -255,7 +255,7 @@ function getCopied(evt) {
 	var katexParent = false;
 	var superParent = commonParent;
 	while (superParent){
-		if (superParent.classList.contains('katex')){
+		if (superParent.hasAttribute('data-latex')){
 			katexParent = superParent;
 			break;
 		}

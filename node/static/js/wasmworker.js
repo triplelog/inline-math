@@ -117,6 +117,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 	}
 	var k;
 	if (foundMatch && !forceNew){
+		inputted = latexedInputs[type+input].inputted;
 		latex = latexedInputs[type+input].latex;
 		k = latexedInputs[type+input].output;
 	}
@@ -196,13 +197,14 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			}
 			else if (isTreePlot == 'plot'){
 				inputted = "";
+				latex = "";
 				pjs(inputFull[0],inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
 				if (svg == "???"){
 					latex = "";
+					inputted = "";
 					k = "";
 				}
 				else {
-					latex = inputted;
 					k = svg;
 				}
 			}
@@ -216,7 +218,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			}
 			
 		}
-		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,display:isDisplay,options:{}};
+		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,inputted:inputted,display:isDisplay,options:{}};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[type+input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
@@ -465,11 +467,11 @@ const renderer = {
 			}
 			
 			if (isDisplay){
-				svg = '<div class="plotDiv" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg = '<div class="plotDiv" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
 				svg += '</div>';
 			}
 			else {
-				svg = '<span class="plotSpan" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg = '<span class="plotSpan" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
 				svg += '</span>';
 			}
 			plotid++;
@@ -482,7 +484,7 @@ const renderer = {
 			//latex = "";
 			var outText = mapOrNew(input,varName,false,'tree',true);
 		
-			return '<span class="inline-tree">'+outText+'</span>';
+			return '<span class="inline-tree" data-input="tree('+inputted+')" data-latex="tree('+latex+')">'+outText+'</span>';
 		}
 		else if (input.search(/align\(/)==0){
 			input = input.replace('align(','');
@@ -644,7 +646,7 @@ onmessage = function(e) {
 		if (message[9].search('R')>-1){
 			svg += '<br><input type="range" data-formula="'+message[1]+'" id="rangeSlider-'+message[2]+'" min="0" max="'+(message[8]*2)+'" value="'+message[8]+'"></input>';	
 		}
-		result = ["svg",message[1],svg,message[2]];
+		result = ["svg",message[1],svg,message[2],inputted,latex];
 	}
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];

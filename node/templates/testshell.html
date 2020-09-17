@@ -151,6 +151,8 @@
 			//if (autoNow == e.data[1]){
 			var svg = e.data[2];
 			document.getElementById(e.data[3]).innerHTML = svg;
+			document.getElementById(e.data[3]).setAttribute('data-input','plot('+e.data[4]+')');
+			document.getElementById(e.data[3]).setAttribute('data-latex','plot('+e.data[5]+')');
 			if (document.getElementById("domainSlider-"+e.data[3])){
 				document.getElementById("domainSlider-"+e.data[3]).addEventListener('change',plotChange);
 			}
