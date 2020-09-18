@@ -441,9 +441,9 @@ std::string replaceFunctions(std::string input_str){
 	char permc{-98};
 	std::string permstr(1,permc);
 	rawrep6[" perm "]= permstr;
-	char compc{-97};
-	std::string compstr(1,compc);
-	rawrep6[" comp "]= compstr;
+	char combc{-97};
+	std::string combstr(1,combc);
+	rawrep6[" comb "]= combstr;
 	char gcdc{-99};
 	std::string gcdstr(1,gcdc);
 	rawrep5[" gcd "]= gcdstr;

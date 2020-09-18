@@ -236,3 +236,22 @@ out: =(cot(A))
 1 = 1
 ee
 :::
+
+::: rule
+in: A max B
+out: =(A max B)
+1 = 1
+ee
+:::
+::: rule
+in: A min B
+out: =(A min B)
+1 = 1
+ee
+:::
+::: rule
+in: abs(A)
+out: =(abs(A))
+1 = 1
+ee
+:::
