@@ -323,6 +323,7 @@ function createInputs(input,varName,isDisplay) {
 	else if (input.search(/range\(/)==0){
 		input = input.replace('range(','');
 		input = input.substr(0,input.length-1);
+		console.log(input);
 		var minRange = "0";
 		var maxRange = "100";
 		var options = input.split(',');
