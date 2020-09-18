@@ -11,11 +11,11 @@ A = $number(0,10)$[A]
 
 B = $range(0,10)$[B]
 
-$A+B$![C]
+$A+B==(A+B)[A]$
 
 $f(A,B)=$ $input()$[C]
 
-$C==(C)[A]$
+$f(A,B)=C==(C)[A]$
 
 The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags.
 
