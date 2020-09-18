@@ -520,7 +520,7 @@ std::string outputNumber(Number n){
 			return realA+"+"+imA+"i";
 		}
 		else if (n.bottom == "\\pi"){
-			return n.top+"\\pi";
+			return n.top+"*\\pi";
 		}
 		else if (n.bottom == "e"){
 			std::string outputE = "";
