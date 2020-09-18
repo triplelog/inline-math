@@ -346,6 +346,25 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}*/
 			break;
 		}
+		case '%': {
+			if (ii>0){
+				if (prec['%'] > prec[lastOp]){
+					s += "\\pmod{("+child+")}";
+				}
+				else {
+					s += "\\pmod{"+child+"}";
+				}
+			}
+			else {
+				if (prec['%'] > prec[lastOp]){
+					s += "("+child+")";
+				}
+				else {
+					s += child;
+				}
+			}
+			break;
+		}
 		default: {
 			if (prec[c] > prec[lastOp]){
 				if (ii > 0){

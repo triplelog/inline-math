@@ -273,3 +273,9 @@ out: =(A comb B)
 1 = 1
 ee
 :::
+::: rule
+in: A mod B
+out: =(A mod B)
+1 = 1
+ee
+:::
