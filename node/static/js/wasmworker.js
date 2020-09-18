@@ -654,14 +654,24 @@ onmessage = function(e) {
 }
 
 function cleanInput(input){
-	var maxStr = input.match(/max\(/);
-	while (maxStr){
-		var inside = insidePar(input.substr(maxStr.index+3));
-		var insideSplit = inside.split(',').join(") max (");
-		input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+5);
-		maxStr = input.match(/max\(/);
-		console.log(input);
+	var fns = ['max','min','perm','comb','gcd','pow'];
+	for (var i=0;i<fns.length;i++){
+		var re = new RegExp(fns[i]+'\\(',"g");
+		var maxStr = input.match(re);
+		while (maxStr){
+			var inside = insidePar(input.substr(maxStr.index+fns[i].length));
+			var insideSplit;
+			if (fns[i] == 'pow'){
+				insideSplit = inside.split(',').join(") ^ (");
+			}
+			else {
+				insideSplit = inside.split(',').join(") "+fns[i]+" (");
+			} 
+			input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
+			maxStr = input.match(re);
+		}
 	}
+	input.replace(/ choose /g, ' comb ');
 	return input;
 }
 
