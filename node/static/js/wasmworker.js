@@ -332,13 +332,13 @@ function createInputs(input,varName,isDisplay) {
 			maxRange = options[1];
 		}
 		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
-		console.log(defaultValue);
+		console.log(defaultValue, varName);
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
-		
+		console.log(html);
 		html += '<input type="range" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
-
+		console.log(html);
 	}
 	if (varName != ""){
 		if (!inputV[varName]){
