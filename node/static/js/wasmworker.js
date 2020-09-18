@@ -612,6 +612,7 @@ onmessage = function(e) {
 			html = marked(markdown);
 		}
 		catch(err){
+			console.log(err);
 			html = "";
 		}
 		console.log(html);
