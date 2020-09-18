@@ -7,7 +7,7 @@ External variables will be inserted and evaluated as expected.
 
 $number(0,10)$[A]
 
-$number(0,10)$[B]
+$range(0,10)$[B]
 
 $A+B==(A+B)[A]$
 

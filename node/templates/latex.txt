@@ -7,6 +7,10 @@ Display $(-b \pm sqrt(4*x+7))/(7)$
 
 aligned
 
+$align(1=2,3=4)[=]$
+
+$align(x+1<12,135+x<4)[<,x]$
+
 display mode
 
 boxed equation

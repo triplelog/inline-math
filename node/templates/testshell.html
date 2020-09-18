@@ -135,6 +135,7 @@
   		}
 		else if (e.data[0] == "markdown"){
 			var html = e.data[2];
+			console.log(html);
 			autoComplete[e.data[1]] = html;
 			if (autoNow == e.data[1]){
   				chgAuto(e.data[1]);
