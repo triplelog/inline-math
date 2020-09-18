@@ -2259,6 +2259,53 @@ Number sqrtOne(const Number numA){
 	return rootNth(numbers["2"],numA);
 }
 
+Number absOne(const Number numA){
+	if (numA.type > 0 && numA.type < 9){
+		return numA;
+	}
+	else if (numA.type < 0 && numA.type > -9){
+		return negateOne(numA);
+	}
+	Number n;
+	return n;
+}
+
+Number gcdTwo(const Number numA, const Number numB){
+
+	Number n;
+	return n;
+}
+Number maxTwo(const Number numA, const Number numB){
+	if (numA > numB){
+		return numA;
+	}
+	else {
+		return numB;
+	}
+	Number n;
+	return n;
+}
+Number minTwo(const Number numA, const Number numB){
+	if (numA < numB){
+		return numA;
+	}
+	else {
+		return numB;
+	}
+	Number n;
+	return n;
+}
+Number permTwo(const Number numA, const Number numB){
+
+	Number n;
+	return n;
+}
+Number combTwo(const Number numA, const Number numB){
+
+	Number n;
+	return n;
+}
+
 Number functionTwo(const Number numA, const Number numB){
 	if (numA.type == 16){
 		if (functionMap.find(numA.top) != functionMap.end()){
@@ -2445,6 +2492,12 @@ Number solvePostfix(std::string postfix) {
 	            case -13: stack[currentIndex - 1] = hypTrigTwo(-13,stack[currentIndex - 1]); currentIndex++; break;
 	            case -12: stack[currentIndex - 1] = hypTrigTwo(-12,stack[currentIndex - 1]); currentIndex++; break;
 	            case -11: stack[currentIndex - 1] = hypTrigTwo(-11,stack[currentIndex - 1]); currentIndex++; break;
+	            case -34: stack[currentIndex - 1] = absOne(stack[currentIndex - 1]); currentIndex++; break;
+	            case -101: stack[currentIndex - 2] = maxTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -100: stack[currentIndex - 2] = minTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -98: stack[currentIndex - 2] = permTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -97: stack[currentIndex - 2] = combTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case -99: stack[currentIndex - 2] = gcdTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            case '=': {
 	            	if (stack[currentIndex - 2] == stack[currentIndex - 1]){
 	            		Number nn;

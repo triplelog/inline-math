@@ -304,6 +304,7 @@ std::string replaceFunctions(std::string input_str){
 	std::map<std::string,std::string> replacements7;
 	std::map<std::string,std::string> replacements8;
 	
+	std::map<std::string,std::string> rawrep6;
 	std::map<std::string,std::string> rawrep5;
 	std::map<std::string,std::string> rawrep4;
 	std::map<std::string,std::string> rawrep3;
@@ -431,6 +432,22 @@ std::string replaceFunctions(std::string input_str){
 	std::string factorialstr(1,factorial);
 	rawrep2["!!"]= factorialstr;
 	
+	char maxc{-101};
+	std::string maxstr(1,maxc);
+	rawrep5[" max "]= maxstr;
+	char minc{-100};
+	std::string minstr(1,minc);
+	rawrep5[" min "]= minstr;
+	char permc{-101};
+	std::string permstr(1,permc);
+	rawrep6[" perm "]= permstr;
+	char compc{-100};
+	std::string compstr(1,compc);
+	rawrep6[" comp "]= compstr;
+	char gcdc{-100};
+	std::string gcdstr(1,gcdc);
+	rawrep5[" gcd "]= gcdstr;
+	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
 	std::string fourChars = "....";
@@ -462,6 +479,11 @@ std::string replaceFunctions(std::string input_str){
 			i += -3;
 			//std::cout << i << " : " << input_str << " char: " << element << '\n';
 			
+		}
+		else if (rawrep6.find(sixChars) != rawrep6.end()){
+			input_str.replace(i-5,6,rawrep6[sixChars]);
+			sixChars = ".....";
+			i+= rawrep6[sixChars].length() - 6;
 		}
 		else if (rawrep5.find(fiveChars) != rawrep5.end()){
 			input_str.replace(i-4,5,rawrep5[fiveChars]);
@@ -1196,6 +1218,7 @@ bool checkPostfix(std::string postfix) {
 	            case -61: currentIndex++; break;
 	            case -60: currentIndex++; break;
 	            case -59: currentIndex++; break;
+	            case -34: currentIndex++; break;
 	            case -32: currentIndex++; break;
 	            case -31: currentIndex++; break;
 	            case -30: currentIndex++; break;

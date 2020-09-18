@@ -35,6 +35,56 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 
 		}
+		case -101: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "max("+child;
+			}
+			break;
+		}
+		case -100: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "min("+child;
+			}
+			break;
+		}
+		case -97: {
+			if (ii > 0){
+				s += " \\choose ";
+				s += child+"}";
+			}
+			else {
+				s += "{"+child;
+			}
+			break;
+		}
+		case -98: {
+			if (ii > 0){
+				s += "}\!P_{";
+				s += child+"}";
+			}
+			else {
+				s += "{}^{"+child;
+			}
+			break;
+		}
+		case -99: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "gcd("+child;
+			}
+			break;
+		}
 		case -34:
 			s += "|"+child+"|";
 			break;
