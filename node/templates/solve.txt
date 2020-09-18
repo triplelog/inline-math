@@ -1,6 +1,10 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
+Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $3*4+5==(3*4)[A]+5==(3*4+5)[A]$ are possible.
+
+
+
 $max(3,4,5,2,3)$
 
 $=(max(3,4,5,2,3))[A]$
