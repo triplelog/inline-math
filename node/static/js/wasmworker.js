@@ -606,6 +606,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
 		plotid = 0;
+		console.log(markdown);
 		var html;
 		try {
 			html = marked(markdown);
@@ -613,6 +614,7 @@ onmessage = function(e) {
 		catch(err){
 			html = "";
 		}
+		console.log(html);
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
