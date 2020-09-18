@@ -42,7 +42,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				if (lastOp == -101){
-					s = s.substr(0,s.length()-1);
+					s += child.substr(0,child.length()-1);
 				}
 				else {
 					s += "\\max("+child;
