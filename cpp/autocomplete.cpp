@@ -843,7 +843,17 @@ std::string codeLogic(char c, std::string s, int ii, std::string child, char las
 
 		}
 		case -101: {
-			if (ii > 0){
+			if (ii > 1){
+				s.replace(s.length()-1,1,"");
+				if (lastOp == -101){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
+			}
+			else if (ii > 0){
 				if (lastOp == -101){
 					s += ","+child.substr(5,child.length()-6)+")";
 				}
@@ -864,7 +874,17 @@ std::string codeLogic(char c, std::string s, int ii, std::string child, char las
 			break;
 		}
 		case -100: {
-			if (ii > 0){
+			if (ii > 1){
+				s.replace(s.length()-1,1,"");
+				if (lastOp == -100){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
+			}
+			else if (ii > 0){
 				if (lastOp == -100){
 					s += ","+child.substr(5,child.length()-6)+")";
 				}
