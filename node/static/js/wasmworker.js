@@ -536,6 +536,7 @@ const renderer = {
 		}
 		else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 			var html = createInputs(input,varName,isDisplay);
+			console.log(html);
 			//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
 			return html;
