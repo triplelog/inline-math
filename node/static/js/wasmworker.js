@@ -605,17 +605,14 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
-		console.log(markdown);
 		plotid = 0;
 		var html;
 		try {
 			html = marked(markdown);
 		}
 		catch(err){
-			console.log(err);
 			html = "";
 		}
-		console.log(html);
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
