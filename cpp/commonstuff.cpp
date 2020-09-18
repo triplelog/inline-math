@@ -1234,6 +1234,11 @@ std::string outputTree(Step stepS,Step stepE){
 				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100) ){
 					std::vector<std::string> revList;
 					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						string_log("a");
+						string_log(iter->first.c_str());
+						string_log(iter->second[0].c_str());
+						string_log(iter->second[1].c_str());
+						string_log(iter->second[2].c_str());
 						if (iter->second[1] == nodeList[nodeText][0]){
 							nodeList[iter->first][1] = pname;
 							revList.push_back(iter->first);
@@ -1261,6 +1266,11 @@ std::string outputTree(Step stepS,Step stepE){
 				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 					std::vector<std::string> revList;
 					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+						string_log("b");
+						string_log(iter->first.c_str());
+						string_log(iter->second[0].c_str());
+						string_log(iter->second[1].c_str());
+						string_log(iter->second[2].c_str());
 						if (iter->second[1] == name){
 							nodeList[iter->first][1] = pname;
 							revList.push_back(iter->first);
@@ -1289,6 +1299,11 @@ std::string outputTree(Step stepS,Step stepE){
 					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 						std::vector<std::string> revList;
 						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+							string_log("c");
+							string_log(iter->first.c_str());
+							string_log(iter->second[0].c_str());
+							string_log(iter->second[1].c_str());
+							string_log(iter->second[2].c_str());
 							if (iter->second[1] == nodeList[nodeText][0]){
 								nodeList[iter->first][1] = pname;
 								revList.push_back(iter->first);
@@ -1315,6 +1330,11 @@ std::string outputTree(Step stepS,Step stepE){
 					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 						std::vector<std::string> revList;
 						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
+							string_log("d");
+							string_log(iter->first.c_str());
+							string_log(iter->second[0].c_str());
+							string_log(iter->second[1].c_str());
+							string_log(iter->second[2].c_str());
 							if (iter->second[1] == name){
 								nodeList[iter->first][1] = pname;
 								revList.push_back(iter->first);
