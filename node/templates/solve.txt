@@ -5,9 +5,9 @@ Expressions wrapped inside =()[A] will be evaluated as much as possible. The bas
 
 External variables will be inserted and evaluated as expected.
 
-$range(0,10)$[A]
+$number(0,10)$[A]
 
-$range(0,10)$[B]
+$number(0,10)$[B]
 
 $A+B==(A+B)[A]$
 
