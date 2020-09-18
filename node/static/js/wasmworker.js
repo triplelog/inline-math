@@ -312,7 +312,7 @@ function createInputs(input,varName,isDisplay) {
 			minRange = options[0];
 			maxRange = options[1];
 		}
-		defaultValue = "50";
+		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
 		
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
@@ -336,7 +336,7 @@ function createInputs(input,varName,isDisplay) {
 			defaultValue = inputV[varName];
 		}
 		html += '<input type="range" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
-
+		console.log(html, varName);
 	}
 	if (varName != ""){
 		if (!inputV[varName]){
