@@ -15,7 +15,17 @@ $A+B==(A+B)[A]$
 
 $f(A,B)=$ $input()$[C]
 
-$f(A,B)=C==(C)[A]$
+$C==(C)[A]$
+
+Trigonometric functions will be computed exactly for rational multiples of $pi$ with denominator of $display(1,2,3,4,6, \text{or} 12$. Infinite values will fail.
+
+$range(0,10)$[D]
+$sin(D*pi/6)==(sin(D*pi/6))[A]$
+$cos(D*pi/6)==(cos(D*pi/6))[A]$
+$tan(D*pi/6)==(tan(D*pi/6))[A]$
+$csc(D*pi/6)==(csc(D*pi/6))[A]$
+$sec(D*pi/6)==(sec(D*pi/6))[A]$
+$cot(D*pi/6)==(cot(D*pi/6))[A]$
 
 The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags.
 
