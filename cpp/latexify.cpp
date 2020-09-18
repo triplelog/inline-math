@@ -41,7 +41,13 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+")";
 			}
 			else {
-				s += "\\max("+child;
+				if (lastOp == -101){
+					s = s.substr(0,s.length()-1);
+				}
+				else {
+					s += "\\max("+child;
+				}
+				
 			}
 			break;
 		}
