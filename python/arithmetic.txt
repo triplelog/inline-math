@@ -255,3 +255,21 @@ out: =(abs(A))
 1 = 1
 ee
 :::
+::: rule
+in: A gcd B
+out: =(A gcd B)
+1 = 1
+ee
+:::
+::: rule
+in: A perm B
+out: =(A perm B)
+1 = 1
+ee
+:::
+::: rule
+in: A comb B
+out: =(A comb B)
+1 = 1
+ee
+:::

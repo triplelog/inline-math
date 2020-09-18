@@ -67,7 +67,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -98: {
 			if (ii > 0){
-				s += "}P_{";
+				s += "}\\!P_{";
 				s += child+"}";
 			}
 			else {

@@ -2273,6 +2273,38 @@ Number absOne(const Number numA){
 Number gcdTwo(const Number numA, const Number numB){
 
 	Number n;
+	if (numA.type != 1 || numB.type != 1){
+		return n;
+	}
+	if (numA.top == "0" || numB.top == "0"){
+		return n;
+	}
+	long long la = std::stoll(numA.top);
+	long long lb = std::stoll(numB.top);
+	if (la > 1000000000 || lb > 1000000000 || la < -1000000000 || lb < -1000000000){
+		return n;
+	}
+	int a = la;
+	int b = lb;
+	
+	std::vector<int> primes = {2,3,5,7,11,13,17,19,23,29,31};
+	int i;
+	int gcd = 1;
+	for (i=0;i<11;i++){
+		while (a%primes[i] == 0 && b%primes[i] == 0){
+			a = a/primes[i];
+			b = b/primes[i];
+			gcd *= primes[i];
+		}
+		if (b < primes[i] || a < primes[i]){
+			break;
+		}
+	}
+
+	n.type = 1;
+	n.top = std::to_string(gcd);
+	n.bottom = "1";
+
 	return n;
 }
 Number maxTwo(const Number numA, const Number numB){
@@ -2296,13 +2328,23 @@ Number minTwo(const Number numA, const Number numB){
 	return n;
 }
 Number permTwo(const Number numA, const Number numB){
-
 	Number n;
+	if (numA.type == 1 && numB.type == 1){
+		if (numA.top == "0" || numB.top == "0"){
+			return n;
+		}
+		return mulTwo(factorialOne(numA),invertOne(factorialOne(addTwo(numA,negateOne(numB)))));
+	}
 	return n;
 }
 Number combTwo(const Number numA, const Number numB){
-
 	Number n;
+	if (numA.type == 1 && numB.type == 1){
+		if (numA.top == "0" || numB.top == "0"){
+			return n;
+		}
+		return mulTwo(factorialOne(numA),invertOne(  mulTwo(factorialOne(numB),factorialOne(addTwo(numA,negateOne(numB)))) ));
+	}
 	return n;
 }
 
