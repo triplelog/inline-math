@@ -312,7 +312,7 @@ function createInputs(input,varName,isDisplay) {
 			minRange = options[0];
 			maxRange = options[1];
 		}
-		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
+		defaultValue = ""+Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
 		
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
@@ -331,7 +331,7 @@ function createInputs(input,varName,isDisplay) {
 			minRange = options[0];
 			maxRange = options[1];
 		}
-		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
+		defaultValue = ""+Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
@@ -341,9 +341,13 @@ function createInputs(input,varName,isDisplay) {
 	console.log(html);
 	if (varName != ""){
 		if (!inputV[varName]){
+			console.log(html);
 			inputV[varName]=defaultValue;
+			console.log(html);
 			var j = mapOrNew(defaultValue,varName,true,false,isDisplay);
+			console.log(html);
 			currentV[varName]=j;
+			console.log(html);
 		}
 		else {
 			var j = mapOrNew(inputV[varName],varName,true,false,isDisplay);
