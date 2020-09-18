@@ -438,13 +438,13 @@ std::string replaceFunctions(std::string input_str){
 	char minc{-100};
 	std::string minstr(1,minc);
 	rawrep5[" min "]= minstr;
-	char permc{-101};
+	char permc{-98};
 	std::string permstr(1,permc);
 	rawrep6[" perm "]= permstr;
-	char compc{-100};
+	char compc{-97};
 	std::string compstr(1,compc);
 	rawrep6[" comp "]= compstr;
-	char gcdc{-100};
+	char gcdc{-99};
 	std::string gcdstr(1,gcdc);
 	rawrep5[" gcd "]= gcdstr;
 	

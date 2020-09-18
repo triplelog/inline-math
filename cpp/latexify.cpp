@@ -41,7 +41,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+")";
 			}
 			else {
-				s += "max("+child;
+				s += "\\max("+child;
 			}
 			break;
 		}
@@ -51,7 +51,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+")";
 			}
 			else {
-				s += "min("+child;
+				s += "\\min("+child;
 			}
 			break;
 		}
@@ -81,7 +81,7 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 				s += child+")";
 			}
 			else {
-				s += "gcd("+child;
+				s += "\\gcd("+child;
 			}
 			break;
 		}
