@@ -37,8 +37,13 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -101: {
 			if (ii > 0){
-				s += ",";
-				s += child+")";
+				if (lastOp == -101){
+					s = "\\max("+s+","+child.substr(4,child.length()-5);
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
 			}
 			else {
 				if (lastOp == -101){
@@ -53,11 +58,22 @@ std::string latexLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -100: {
 			if (ii > 0){
-				s += ",";
-				s += child+")";
+				if (lastOp == -100){
+					s = "\\min("+s+","+child.substr(4,child.length()-5);
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
 			}
 			else {
-				s += "\\min("+child;
+				if (lastOp == -100){
+					s += child.substr(0,child.length()-1);
+				}
+				else {
+					s += "\\min("+child;
+				}
+				
 			}
 			break;
 		}
