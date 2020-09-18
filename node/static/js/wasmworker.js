@@ -671,7 +671,7 @@ function cleanInput(input){
 				input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
 			} 
 			counter++;
-			if (counter>100){
+			if (counter>1){
 				break;
 			}
 			console.log(input);
