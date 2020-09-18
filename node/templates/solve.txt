@@ -5,6 +5,8 @@ Expressions wrapped inside =()[A] will be evaluated as much as possible. The bas
 
 External variables will be inserted and evaluated as expected.
 
+$A+B$![C]
+
 A = $number(0,10)$[A]
 
 B = $range(0,10)$[B]
