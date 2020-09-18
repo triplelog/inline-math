@@ -1231,7 +1231,7 @@ std::string outputTree(Step stepS,Step stepE){
 			nodeText = secondStr + '@' + secondTtr;
 			if (nodeList.find(nodeText) != nodeList.end()){
 				
-				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*') ){
+				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100) ){
 					std::vector<std::string> revList;
 					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 						if (iter->second[1] == nodeList[nodeText][0]){
@@ -1258,7 +1258,7 @@ std::string outputTree(Step stepS,Step stepE){
 			else {
 				//name = "node"+std::to_string(treeIdx)+"f";
 				treeIdx++;
-				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+				if (secondStr.at(secondStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 					std::vector<std::string> revList;
 					for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 						if (iter->second[1] == name){
@@ -1286,7 +1286,7 @@ std::string outputTree(Step stepS,Step stepE){
 				//Child 2
 				nodeText = firstStr + '@' + firstTtr;
 				if (nodeList.find(nodeText) != nodeList.end()){
-					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 						std::vector<std::string> revList;
 						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 							if (iter->second[1] == nodeList[nodeText][0]){
@@ -1312,7 +1312,7 @@ std::string outputTree(Step stepS,Step stepE){
 				else {
 					//name = "node"+std::to_string(treeIdx)+"f";
 					treeIdx++;
-					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*')){
+					if (firstStr.at(firstStr.length()-1) == pfstr.at(i) && ( pfstr.at(i) == '+' || pfstr.at(i) == '*' || pfstr.at(i) == -101 || pfstr.at(i) == -100)){
 						std::vector<std::string> revList;
 						for (std::map<std::string,std::vector<std::string>>::iterator iter = nodeList.begin(); iter != nodeList.end(); ++iter){
 							if (iter->second[1] == name){
