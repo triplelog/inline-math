@@ -668,7 +668,7 @@ function insidePar(input){
 	if (input == "" || input[0] != "("){
 		return "";
 	}
-	int openPar = 1;
+	var openPar = 1;
 	for (var i=1;i<input.length;i++){
 		if (input[i]=="("){
 			openPar++;
