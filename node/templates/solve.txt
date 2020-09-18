@@ -1,7 +1,17 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
-Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $3*4+5==(3*4)[A]+5==(3*4+5)[A]$ are possible.
+Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers (for now, up to ~1000000000) and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $3*4+5==(3*4)[A]+5==(3*4+5)[A]$ are possible.
+
+External variables will be inserted and evaluated as expected.
+
+$range(0,10)$[A]
+
+$range(0,10)$[B]
+
+$A+B==(A+B)[A]$
+
+The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags.
 
 
 
