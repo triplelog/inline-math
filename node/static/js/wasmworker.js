@@ -658,7 +658,8 @@ function cleanInput(input){
 	for (var i=0;i<fns.length;i++){
 		var re = new RegExp(fns[i]+'\\(',"g");
 		var maxStr = input.match(re);
-		while (maxStr){
+		console.log(maxStr);
+		/*while (maxStr){
 			var inside = insidePar(input.substr(maxStr.index+fns[i].length));
 			var insideSplit;
 			if (fns[i] == 'pow'){
@@ -669,9 +670,9 @@ function cleanInput(input){
 			} 
 			input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
 			maxStr = input.match(re);
-		}
+		}*/
 	}
-	input.replace(/ choose /g, ' comb ');
+	input = input.replace(/ choose /g, ' comb ');
 	return input;
 }
 
