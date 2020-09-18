@@ -1,7 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
-$3 max 4$
+$max(3,4)$
 
 $=(3 max 4)[A]$
 

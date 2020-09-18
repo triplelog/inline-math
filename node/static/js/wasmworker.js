@@ -78,7 +78,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		svg = "";
 	}
 	var foundMatch = false;
-	
+	input = cleanInput(input);
 	if (latexedInputs[type+input]){
 		foundMatch = true;
 		if (latexedInputs[type+input].varName != varName){
@@ -198,7 +198,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			else if (isTreePlot == 'plot'){
 				inputted = "";
 				latex = "";
-				pjs(inputFull[0],inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
+				pjs(input,inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
 				if (svg == "???"){
 					latex = "";
 					inputted = "";
@@ -635,7 +635,6 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "plot"){
 		
-		//pjs(message[1],message[3],message[4],message[5],message[6]);
 		k = mapOrNew([message[1],message[3],message[4],message[5],message[6]],"",false,'plot',false);
 		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">";
 		svg += k;
@@ -652,4 +651,35 @@ onmessage = function(e) {
 		inputV[message[1]]=message[2];
 	}
 	postMessage(result);
+}
+
+function cleanInput(input){
+	var maxStr = input.match(/max\(/);
+	while (maxStr){
+		var inside = insidePar(input.substr(maxStr.index+3));
+		var insideSplit = inside.split(',').join(") max (");
+		input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+5);
+		maxStr = input.match(/max\(/);
+		console.log(maxStr);
+	}
+}
+
+function insidePar(input){
+	if (input == "" || input[0] != "("){
+		return "";
+	}
+	int openPar = 1;
+	for (var i=1;i<input.length;i++){
+		if (input[i]=="("){
+			openPar++;
+		}
+		else if (input[i]==")"){
+			openPar--;
+		}
+		
+		if (openPar == 0){
+			return input.substr(1,i-1);
+		}
+	}
+	return "";
 }
