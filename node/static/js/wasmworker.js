@@ -656,7 +656,7 @@ onmessage = function(e) {
 function cleanInput(input){
 	var fns = ['max','min','perm','comb','gcd','pow'];
 	for (var i=0;i<fns.length;i++){
-		var re = new RegExp(fns[i]+'\\(',"g");
+		var re = new RegExp(fns[i]+'\\(');
 		var maxStr = input.match(re);
 		var counter = 0;
 		while (maxStr){
