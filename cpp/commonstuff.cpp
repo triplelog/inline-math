@@ -1493,6 +1493,7 @@ void initialRun(){
 		prec[i]=7;
 	}
 	prec[-125]=7;//function
+	prec['%'] = 6;
     prec['^'] = 5;
 	prec['*'] = 4;
 	prec['/'] = 4;

@@ -2307,6 +2307,37 @@ Number gcdTwo(const Number numA, const Number numB){
 
 	return n;
 }
+Number modTwo(const Number numA, const Number numB){
+
+	Number n;
+	if (numA.type != 1 && numA.type != -1){
+		return n;
+	}
+	if (numB.type != 1){
+		return n;
+	}
+	if (numB.top == "0"){
+		return n;
+	}
+	long long la = std::stoll(numA.top);
+	long long lb = std::stoll(numB.top);
+	if (la > 1000000000 || lb > 1000000000 || la < -1000000000 || lb < -1000000000){
+		return n;
+	}
+	int a = la;
+	int b = lb;
+	if (numA.type == -1){
+		a *= -1;
+	}
+	
+	
+
+	n.type = 1;
+	n.top = std::to_string(a%b);
+	n.bottom = "1";
+
+	return n;
+}
 Number maxTwo(const Number numA, const Number numB){
 	if (numA > numB){
 		return numA;
@@ -2511,6 +2542,7 @@ Number solvePostfix(std::string postfix) {
 	            case '*': stack[currentIndex - 2] = mulTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break; 
 	            case '/': stack[currentIndex - 1] = invertOne(stack[currentIndex - 1]); currentIndex++; break;
 	            case '^': stack[currentIndex - 2] = expTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
+	            case '%': stack[currentIndex - 2] = modTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            case -41: stack[currentIndex - 1] = factorialOne(stack[currentIndex - 1]); currentIndex++; break;
 	            case -93: stack[currentIndex - 2] = logTwo(stack[currentIndex - 2],stack[currentIndex - 1]); break;
 	            case -84: stack[currentIndex - 2] = rootNth(stack[currentIndex - 2],stack[currentIndex - 1]); break;

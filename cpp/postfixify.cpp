@@ -155,7 +155,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			previousOperand = true;
 			
 		}
-		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '/' || firstChar == '-' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|') {
+		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '/' || firstChar == '-' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|' || firstChar == '%') {
 			p = prec[firstChar];
 			if (firstChar == '-' && !previousOperand){
 				p = prec['~'];
@@ -216,7 +216,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			//expstr += "-";
 			expstr += "/";
 		}
-		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|') {
+		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|' || firstChar == '%') {
 			expstr += ci;
 		}
 		else {
@@ -237,6 +237,12 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			}
 			else if (ci == "theta"){
 				intstr += "\\theta";
+			}
+			else if (ci == "mu"){
+				intstr += "\\mu";
+			}
+			else if (ci == "sigma"){
+				intstr += "\\sigma";
 			}
 			else if (ci == "pi" || ci == "Pi" || ci == "PI"){
 				intstr += "\\pi";
@@ -447,6 +453,7 @@ std::string replaceFunctions(std::string input_str){
 	char gcdc{-99};
 	std::string gcdstr(1,gcdc);
 	rawrep5[" gcd "]= gcdstr;
+	rawrep5[" mod "]= "%";
 	
 	std::string twoChars = "..";
 	std::string threeChars = "...";
@@ -1207,6 +1214,7 @@ bool checkPostfix(std::string postfix) {
 	            case '*': break; 
 	            case '/': currentIndex++; break;
 	            case '^': break;
+	            case '%': break; 
 	            case -41: currentIndex++; break;
 	            case -93: break;
 	            case -84: break;

@@ -10,7 +10,6 @@ function jsToMath(input){
 	input = input.replace(/math\.exp\(/gi,'e^(');
 	
 	input = input.replace(/math\.(.{1,6})\(/gi,'$1(');
-	//math.pow(b,exponent)
 	//rounding functions
 	//max and min
 	
@@ -64,6 +63,7 @@ function pythonToMath(input){
 	input = input.replace(/math\.gcd\(/gi,'gcd(');
 	input = input.replace(/math\.comb\(/gi,'comb(');
 	input = input.replace(/math\.perm\(/gi,'perm(');
+	input = input.replace(/math\.fmod\(/gi,'mod(');
 	
 	//input = input.replace(/math\.factorial\(/gi,'abs(');
 	input = input.replace(/math\.e/gi,'e');

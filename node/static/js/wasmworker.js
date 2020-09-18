@@ -654,7 +654,7 @@ onmessage = function(e) {
 }
 
 function cleanInput(input){
-	var fns = ['max','min','perm','comb','gcd','pow'];
+	var fns = ['max','min','perm','comb','gcd','pow','mod'];
 	for (var i=0;i<fns.length;i++){
 		var re = new RegExp(fns[i]+'\\(');
 		var maxStr = input.match(re);
@@ -664,7 +664,6 @@ function cleanInput(input){
 			if (fns[i] == 'pow'){
 				var insideSplit = inside.split(',').join(") ^ (");
 				input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
-
 			}
 			else {
 				var insideSplit = inside.split(',').join(") "+fns[i]+" (");
