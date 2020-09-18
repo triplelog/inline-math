@@ -332,13 +332,11 @@ function createInputs(input,varName,isDisplay) {
 			maxRange = options[1];
 		}
 		defaultValue = Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
-		console.log(defaultValue, varName);
 		if (inputV[varName]){
 			defaultValue = inputV[varName];
 		}
-		console.log(html);
 		html += '<input type="range" class="inline-input" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
-		console.log(html);
+
 	}
 	if (varName != ""){
 		if (!inputV[varName]){
@@ -536,7 +534,6 @@ const renderer = {
 		}
 		else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 			var html = createInputs(input,varName,isDisplay);
-			console.log(html);
 			//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
 	
 			return html;
@@ -608,7 +605,7 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
-
+		console.log(markdown);
 		plotid = 0;
 		var html;
 		try {
@@ -617,6 +614,7 @@ onmessage = function(e) {
 		catch(err){
 			html = "";
 		}
+		console.log(html);
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
