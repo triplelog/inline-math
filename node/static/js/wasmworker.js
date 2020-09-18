@@ -658,19 +658,25 @@ function cleanInput(input){
 	for (var i=0;i<fns.length;i++){
 		var re = new RegExp(fns[i]+'\\(',"g");
 		var maxStr = input.match(re);
-		console.log(maxStr);
-		/*while (maxStr){
+		var counter = 0;
+		while (maxStr){
 			var inside = insidePar(input.substr(maxStr.index+fns[i].length));
-			var insideSplit;
 			if (fns[i] == 'pow'){
-				insideSplit = inside.split(',').join(") ^ (");
+				var insideSplit = inside.split(',').join(") ^ (");
+				input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
+
 			}
 			else {
-				insideSplit = inside.split(',').join(") "+fns[i]+" (");
+				var insideSplit = inside.split(',').join(") "+fns[i]+" (");
+				input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
 			} 
-			input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+fns[i].length+2);
+			counter++;
+			if (counter>100){
+				break;
+			}
+			console.log(input);
 			maxStr = input.match(re);
-		}*/
+		}
 	}
 	input = input.replace(/ choose /g, ' comb ');
 	return input;
