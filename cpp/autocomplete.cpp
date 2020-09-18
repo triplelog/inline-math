@@ -605,6 +605,78 @@ std::string inputLogic(char c, std::string s, int ii, std::string child, char la
 			}*/
 			break;
 		}
+		case -101: {
+			if (ii > 0){
+				if (lastOp == -101){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
+			}
+			else {
+				if (lastOp == -101){
+					s += child.substr(0,child.length()-1);
+				}
+				else {
+					s += "max("+child;
+				}
+				
+			}
+			break;
+		}
+		case -100: {
+			if (ii > 0){
+				if (lastOp == -100){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
+			}
+			else {
+				if (lastOp == -100){
+					s += child.substr(0,child.length()-1);
+				}
+				else {
+					s += "min("+child;
+				}
+				
+			}
+			break;
+		}
+		case -97: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "comb("+child;
+			}
+			break;
+		}
+		case -98: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "perm("+child;
+			}
+			break;
+		}
+		case -99: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "gcd("+child;
+			}
+			break;
+		}
 		default: {
 			if (prec[c] > prec[lastOp]){
 				if (ii > 0){
@@ -662,123 +734,88 @@ std::string inputLogic(char c, std::string s, int ii, std::string child, char la
 }
 
 std::string codeLogic(char c, std::string s, int ii, std::string child, char lastOp){
+	if (child == "\\pi"){
+		child = "Math.PI";
+	}
+	else if (child == "e"){
+		child = "Math.E";
+	}
 	switch (c){
 		case '^': {
 			if (ii > 0){
-				s += "^";
-				if (prec[lastOp] < 100){
-					s += "("+child+")";
-				}
-				else {
-					s += child;
-				}
+				s += ","+child+")";
 			}
 			else {
-				if (prec[lastOp] < 100){
-					s += "("+child+")";
-				}
-				else {
-					s += child;
-				}
+				s += "Math.pow("+child;
 			}
 			break;
-		}
-		case -69: {
-			if (ii > 0){
-				s += child+"]";
-			}
-			else {
-				s += "d/d"+child+"[";
-			}
-			break;
-
-		}
-		case -85: {
-			if (ii > 0){
-				s.replace(6,0,child+" d");
-			}
-			else {
-				s += "int "+child+"}";
-			}
-			break;
-
-		}
-		case -89: {
-			if (ii > 0){
-				s += child+")";
-			}
-			else {
-				s += child+"(";
-			}
-			break;
-
 		}
 		case -34:
-			s += "abs("+child+")";
+			s += "Math.abs("+child+")";
 			break;
 		case -64:
-			s += "sin("+child+")";
+			s += "Math.sin("+child+")";
 			break;
 		case -63:
-			s += "cos("+child+")";
+			s += "Math.cos("+child+")";
 			break;
 		case -62:
-			s += "tan("+child+")";
+			s += "Math.tan("+child+")";
 			break;
 		case -61:
-			s += "csc("+child+")";
+			s += "Math.csc("+child+")";
 			break;
 		case -60:
-			s += "sec("+child+")";
+			s += "Math.sec("+child+")";
 			break;
 		case -59:
-			s += "cot("+child+")";
+			s += "Math.cot("+child+")";
 			break;
 		case -32:
-			s += "arcsin("+child+")";
+			s += "Math.asin("+child+")";
 			break;
 		case -31:
-			s += "arccos("+child+")";
+			s += "Math.acos("+child+")";
 			break;
 		case -30:
-			s += "arctan("+child+")";
+			s += "Math.atan("+child+")";
 			break;
 		case -29:
-			s += "arccsc("+child+")";
+			s += "Math.acsc("+child+")";
 			break;
 		case -28:
-			s += "arcsec("+child+")";
+			s += "Math.asec("+child+")";
 			break;
 		case -27:
-			s += "arccot("+child+")";
+			s += "Math.acot("+child+")";
 			break;
 		case -16:
-			s += "sinh("+child+")";
+			s += "Math.sinh("+child+")";
 			break;
 		case -15:
-			s += "cosh("+child+")";
+			s += "Math.cosh("+child+")";
 			break;
 		case -14:
-			s += "tanh("+child+")";
+			s += "Math.tanh("+child+")";
 			break;
 		case -13:
-			s += "csch("+child+")";
+			s += "Math.csch("+child+")";
 			break;
 		case -12:
-			s += "sech("+child+")";
+			s += "Math.sech("+child+")";
 			break;
 		case -11:
-			s += "coth("+child+")";
+			s += "Math.coth("+child+")";
 			break;
 		case -67:
-			s += "sqrt("+child+")";
+			s += "Math.sqrt("+child+")";
 			break;
 		case -84: {
 			if (ii > 0){
 				s += child+")";
 			}
 			else {
-				s += "sqrt["+child+"](";
+				s += "Math.root["+child+"](";
 			}
 			break;
 
@@ -790,86 +827,95 @@ std::string codeLogic(char c, std::string s, int ii, std::string child, char las
 			}
 			else {
 				if (child == "e"){
-					s += "ln";
+					s += "Math.ln";
+				}
+				else if (child == "10"){
+					s += "Math.log10";
+				}
+				else if (child == "2"){
+					s += "Math.log2";
 				}
 				else {
-					s += "log_"+child;
+					s += "Math.log_"+child;
 				}
 			}
 			break;
 
 		}
-		case '-': {
-			if (prec[c] >= prec[lastOp]){
-				s += "-("+child+")";
+		case -101: {
+			if (ii > 0){
+				if (lastOp == -101){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
 			}
 			else {
-				s += "-"+child;
+				if (lastOp == -101){
+					s += child.substr(0,child.length()-1);
+				}
+				else {
+					s += "Math.max("+child;
+				}
+				
 			}
 			break;
 		}
-		case '/': {
-			s += "1/("+child+")";
-			/*
-			if (prec[c] >= prec[lastOp]){
-				s += "/("+child+")";
+		case -100: {
+			if (ii > 0){
+				if (lastOp == -100){
+					s += ","+child.substr(5,child.length()-6)+")";
+				}
+				else {
+					s += ",";
+					s += child+")";
+				}
 			}
 			else {
-				s += "/"+child;
-			}*/
+				if (lastOp == -100){
+					s += child.substr(0,child.length()-1);
+				}
+				else {
+					s += "Math.min("+child;
+				}
+				
+			}
+			break;
+		}
+		case -97: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "Math.comb("+child;
+			}
+			break;
+		}
+		case -98: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "Math.perm("+child;
+			}
+			break;
+		}
+		case -99: {
+			if (ii > 0){
+				s += ",";
+				s += child+")";
+			}
+			else {
+				s += "Math.gcd("+child;
+			}
 			break;
 		}
 		default: {
-			if (prec[c] > prec[lastOp]){
-				if (ii > 0){
-					if (c == '*'){
-						s += "*("+child+")";
-					}
-					else {
-						s += c+"("+child+")";
-					}
-				}
-				else {
-					s += "("+child+")";
-				}
-			}
-			else if (prec[c] == prec[lastOp] && c != lastOp){
-				if (ii > 0){
-					if (c == '*'){
-						s += "*"+child;//want to move this into numerator somehow
-					}
-					else if (c == '+'){
-						s += child;
-					}
-					else {
-						s += c+"("+child+")";
-					}
-				}
-				else {
-					if (c == '*'){
-						s += child;
-					}
-					else if (c == '+'){
-						s += child;
-					}
-					else {
-						s += "("+child+")";
-					}
-				}
-			}
-			else {
-				if (ii > 0){
-					if (c == '*'){
-						s += "*"+child;
-					}
-					else {
-						s += c+child;
-					}
-				}
-				else {
-					s += child;
-				}
-			}
+			return inputLogic(c, s, ii, child, lastOp);
 		}
 	}
 	return s;
