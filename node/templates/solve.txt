@@ -5,11 +5,13 @@ Expressions wrapped inside =()[A] will be evaluated as much as possible. The bas
 
 External variables will be inserted and evaluated as expected.
 
-$number(0,10)$[A]
+A = $number(0,10)$[A]
 
-$range(0,10)$[B]
+B = $range(0,10)$[B]
 
-$A+B==(A+B)[A]$
+$f(A,B)=$ $input()$[C]
+
+$C==(C)[A]$
 
 The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags.
 
