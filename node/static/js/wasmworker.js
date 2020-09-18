@@ -660,8 +660,9 @@ function cleanInput(input){
 		var insideSplit = inside.split(',').join(") max (");
 		input = input.substr(0,maxStr.index)+"(("+insideSplit+"))"+input.substr(maxStr.index+inside.length+5);
 		maxStr = input.match(/max\(/);
-		console.log(maxStr);
+		console.log(input);
 	}
+	return input;
 }
 
 function insidePar(input){
