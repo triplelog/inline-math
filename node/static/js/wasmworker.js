@@ -336,25 +336,19 @@ function createInputs(input,varName,isDisplay) {
 			defaultValue = inputV[varName];
 		}
 		html += '<input type="range" class="inline-range" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
-		console.log(html, varName);
+
 	}
-	console.log(html);
 	if (varName != ""){
 		if (!inputV[varName]){
-			console.log(html);
 			inputV[varName]=defaultValue;
-			console.log(html);
 			var j = mapOrNew(defaultValue,varName,true,false,isDisplay);
-			console.log(html);
 			currentV[varName]=j;
-			console.log(html);
 		}
 		else {
 			var j = mapOrNew(inputV[varName],varName,true,false,isDisplay);
 			currentV[varName]=j;
 		}
 	}
-	console.log(html);
 	return html;
 }
 
@@ -431,7 +425,6 @@ const renderer = {
 				dr = "";
 			}
 			var inputs = input.split(',');
-			console.log(inputs);
 			var fn = inputs[0];
 			var left = -10;
 			var right = 10;
@@ -531,7 +524,6 @@ const renderer = {
 				outText += "\\end{aligned}";
 			}
 		
-			console.log(outText);
 			katexOptions.displayMode = true;
 			k = katex.renderToString(outText, katexOptions);
 			k = k.replace('class="katex"','class="katex" data-input="'+input+'" data-latex="'+outText+'"');
@@ -540,8 +532,6 @@ const renderer = {
 		}
 		else if (input.search(/checkbox\(/)==0 || input.search(/radio\(/)==0 || input.search(/input\(/)==0 || input.search(/number\(/)==0 || input.search(/range\(/)==0){
 			var html = createInputs(input,varName,isDisplay);
-			//html += '<script>document.getElementById("inline-A").addEventListener();</script>';
-			console.log(html);
 			return html;
 		}
 		else if (input.search(/display\(/)==0){
@@ -612,7 +602,6 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
 		plotid = 0;
-		console.log(markdown);
 		var html;
 		try {
 			html = marked(markdown);
@@ -620,7 +609,6 @@ onmessage = function(e) {
 		catch(err){
 			html = "";
 		}
-		console.log(html);
 		result = ["markdown",message[1],html];
 	}
 	else if (message[0] == "code"){
