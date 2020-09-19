@@ -517,10 +517,23 @@ std::string outputNumber(Number n){
 					imA += n.top.at(i);
 				}
 			}
-			return realA+"+"+imA+"i";
+			return realA+"+"+imA+"*i";
 		}
 		else if (n.bottom == "\\pi"){
-			return n.top+"*\\pi";
+			int i;
+			bool isFrac = false;
+			std::string retn = n.top;
+			for (i=0;i<retn.length();i++){
+				if (retn.at(i) == '/'){
+					retn.replace(i,0,"*\\pi");
+					isFrac = true;
+					break;
+				}
+			}
+			if (!isFrac){
+				retn += "*\\pi";
+			}
+			return retn;
 		}
 		else if (n.bottom == "e"){
 			std::string outputE = "";
@@ -574,7 +587,20 @@ std::string outputNumber(Number n){
 				outputE = "-1*"+sqrtstr+root;
 			}
 			else {
-				outputE = coef+"*"+sqrtstr+root;
+				int i;
+				bool isFrac = false;
+				std::string retn = coef;
+				for (i=0;i<retn.length();i++){
+					if (retn.at(i) == '/'){
+						retn.replace(i,0,"*"+sqrtstr+root);
+						isFrac = true;
+						break;
+					}
+				}
+				if (!isFrac){
+					retn += "*"+sqrtstr+root;
+				}
+				outputE = retn;
 			}
 			
 			return outputE;
