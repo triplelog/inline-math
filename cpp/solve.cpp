@@ -581,10 +581,10 @@ std::string outputNumber(Number n){
 				}
 			}
 			if (coef == "1"){
-				outputE = sqrtstr+root;
+				outputE = sqrtstr+"("+root+")";
 			}
 			else if (coef == "-1"){
-				outputE = "-1*"+sqrtstr+root;
+				outputE = "-1*"+sqrtstr+"("+root+")";
 			}
 			else {
 				int i;

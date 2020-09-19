@@ -591,13 +591,6 @@ std::string removeType11(std::string input) {
 					if (n.type == 11){
 						std::string newOut = outputNumber(n);
 						int i;
-						for (i=0;i<newOut.length();i++){
-							if (newOut.at(i)== -67){//sqrt
-								//newOut.replace(i+1,0,"(");
-								//newOut += ")";
-								break;
-							}
-						}
 						std::vector<std::string> postfixedV = postfixifyVector(newOut,false);
 						leftString = postfixedV[0];
 						rightString = postfixedV[1];
