@@ -1,7 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
-Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers (for now, up to ~1000000000) and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $3*4+5==(3*4)[A]+5==(3*4+5)[A]$ are possible.
+Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers (for now, up to ~1000000000) and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $$3*sqrt(4)+5^2=3*=(sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4)+5^2)[A]$$ are fairly simple to input.
 
 External variables will be inserted and evaluated as expected.
 
@@ -33,44 +33,30 @@ $sec(=(D*pi/E)[A])==(sec(D*pi/6))[A]$
 
 $cot(=(D*pi/E)[A])==(cot(D*pi/6))[A]$
 
-The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags.
 
 
 
-$max(3,4,5,2,3)$
+Other functions that work in most simple cases:
 
-$=(max(3,4,5,2,3))[A]$
+$max(3,4,5,2+7,3)=(max(3,4,5,2+7,3))[A]$
 
-$min(3,4,5,2,3)$
+$min(3,4,5,2,3)=(min(3,4,5,2,3))[A]$
 
-$=(min(3,4,5,2,3))[A]$
+$perm(6,3)=(perm(6,3))[A]$
 
-$perm(6,3)$
+$comb(6,3)=(comb(6,3))[A]$
 
-$=(perm(6,3))[A]$
+$7*2 choose 3=(7*2 choose 3)[A]$
 
-$comb(6,3)$
+$abs(3-7)=(abs(3-7))[A]$
 
-$=(comb(6,3))[A]$
+$gcd(36,16)=(gcd(36,16))[A]$
 
-$6 choose 3$
-
-$=(6 choose 3)[A]$
-
-$abs(-7)$
-
-$=(abs(-7))[A]$
-
-$gcd(36,16)$
-
-$=(gcd(36,16))[A]$
-
-$pow(36,16)$
-
-$=(pow(36,16))[A]$
+$pow(3,11)=(pow(3,11))[A]$
 
 
-Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
+
+The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags. Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
 
 $=(ddx(cos(x)))[I]==(ddx(cos(x)))[S]$
 
