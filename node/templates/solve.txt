@@ -15,30 +15,46 @@ B = $range(0,10)$[B]
 $A+B==(A+B)[A]$
 
 $A+B$![C]
+$\display(\text{f}(\text{A},\text{B})=)$ $input()$[C]
 
 $C==(C)[A]$
 
+Trigonometric functions will be computed exactly for rational multiples of $pi$ with denominator of $display(1,2,3,4,6, \text{or } 12)$. Infinite values will fail.
+
+$range(-24,24)$[D] $6$![E]
+
+$sin(=(D*pi/E)[A])==(sin(D*pi/6))[A]$
+
+$cos(=(D*pi/E)[A])==(cos(D*pi/6))[A]$
+
+$tan(=(D*pi/E)[A])==(tan(D*pi/6))[A]$
+
+$csc(=(D*pi/E)[A])==(csc(D*pi/6))[A]$
+
+$sec(=(D*pi/E)[A])==(sec(D*pi/6))[A]$
+
+$cot(=(D*pi/E)[A])==(cot(D*pi/6))[A]$
 
 
 
 
 Other functions that work in most simple cases:
 
-$max(3,4,5,2+7,3)=(max(3,4,5,2+7,3))[A]$
+$max(3,4,5,2+7,3)==(max(3,4,5,2+7,3))[A]$
 
-$min(3,4,5,2,3)=(min(3,4,5,2,3))[A]$
+$min(3,4,5,2,3)==(min(3,4,5,2,3))[A]$
 
-$perm(6,3)=(perm(6,3))[A]$
+$perm(6,3)==(perm(6,3))[A]$
 
-$comb(6,3)=(comb(6,3))[A]$
+$comb(6,3)==(comb(6,3))[A]$
 
-$7*2 choose 3=(7*2 choose 3)[A]$
+$7*2 choose 3==(7*2 choose 3)[A]$
 
-$abs(3-7)=(abs(3-7))[A]$
+$abs(3-7)==(abs(3-7))[A]$
 
-$gcd(36,16)=(gcd(36,16))[A]$
+$gcd(36,16)==(gcd(36,16))[A]$
 
-$pow(3,11)=(pow(3,11))[A]$
+$pow(3,11)==(pow(3,11))[A]$
 
 
 
