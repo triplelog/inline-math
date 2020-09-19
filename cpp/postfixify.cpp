@@ -502,7 +502,7 @@ std::string replaceFunctions(std::string input_str){
 		}
 		else if (rawrep6.find(sixChars) != rawrep6.end()){
 			input_str.replace(i-5,6,rawrep6[sixChars]);
-			sixChars = ".....";
+			sixChars = "......";
 			i+= rawrep6[sixChars].length() - 6;
 		}
 		else if (rawrep5.find(fiveChars) != rawrep5.end()){
