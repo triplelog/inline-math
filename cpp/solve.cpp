@@ -985,24 +985,25 @@ Number addTwo(const Number numA, const Number numB){
 				}
 			}
 			else {
-				long long topa = std::stoll(numA.top);
-				long long topb = std::stoll(numB.top);
-				long long bota = std::stoll(numA.bottom);
-				long long botb = std::stoll(numB.bottom);
-				long long top = topa*botb+topb*bota;
-				long long bot = bota*botb;
-				while (top > 1000000000 || bot > 1000000000 || top < -1000000000){
-					top /= 10;
-					bot /= 10;
-					//TODO: convert to decimal
+				if (numbers.find(numA.top) == numbers.end()){
+					numberType(numA.top);
 				}
+				if (numbers.find(numB.top) == numbers.end()){
+					numberType(numB.top);
+				}
+				if (numbers.find(numA.bottom) == numbers.end()){
+					numberType(numA.bottom);
+				}
+				if (numbers.find(numB.bottom) == numbers.end()){
+					numberType(numB.bottom);
+				}
+				
+				n = addTwo(mulTwo(numbers[numA.top],numbers[numB.bottom]),mulTwo(numbers[numB.top],numbers[numA.bottom]));
+				
+				nb = mulTwo(numbers[numA.bottom],numbers[numB.bottom]);
 				n.type = 2;
-				if (top < 0){
-					n.type = -2;
-					top *= -1;
-				}
-				n.top = top;
-				n.bottom = bot;
+				n.top = n.top;
+				n.bottom = nb.top;
 				n = reduceFraction(n);
 			}
 		}
@@ -1052,24 +1053,25 @@ Number addTwo(const Number numA, const Number numB){
 			}
 			else {
 				
-				long long topa = std::stoll(numA.top);
-				long long topb = std::stoll(numB.top);
-				long long bota = std::stoll(numA.bottom);
-				long long botb = std::stoll(numB.bottom);
-				long long top = topa*botb-topb*bota;
-				long long bot = bota*botb;
-				while (top > 1000000000 || bot > 1000000000 || top < -1000000000){
-					top /= 10;
-					bot /= 10;
-					//TODO: convert to decimal
+				if (numbers.find(numA.top) == numbers.end()){
+					numberType(numA.top);
 				}
+				if (numbers.find(numB.top) == numbers.end()){
+					numberType(numB.top);
+				}
+				if (numbers.find(numA.bottom) == numbers.end()){
+					numberType(numA.bottom);
+				}
+				if (numbers.find(numB.bottom) == numbers.end()){
+					numberType(numB.bottom);
+				}
+				
+				n = addTwo(mulTwo(numbers[numA.top],numbers[numB.bottom]),negateOne(mulTwo(numbers[numB.top],numbers[numA.bottom])));
+				
+				nb = mulTwo(numbers[numA.bottom],numbers[numB.bottom]);
 				n.type = 2;
-				if (top < 0){
-					n.type = -2;
-					top *= -1;
-				}
-				n.top = top;
-				n.bottom = bot;
+				n.top = n.top;
+				n.bottom = nb.top;
 				n = reduceFraction(n);
 			}
 		}
