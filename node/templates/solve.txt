@@ -8,7 +8,6 @@ The ability to outsource computation is convenient when using user inputs. Exter
 
 A = $number(0,10)$[A]
 
-$$A*sqrt(4)+5^2=A*=(sqrt(4))[A]+=(5^2)[A]==(A*sqrt(4))[A]+=(5^2)[A]==(A*sqrt(4)+5^2)[A]$$
 
 B = $range(0,10)$[B]
 
