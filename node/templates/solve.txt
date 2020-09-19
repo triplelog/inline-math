@@ -17,7 +17,7 @@ $f(A,B)=$ $input()$[C]
 
 $C==(C)[A]$
 
-Trigonometric functions will be computed exactly for rational multiples of $pi$ with denominator of $display(1,2,3,4,6, \text{or} 12$. Infinite values will fail.
+Trigonometric functions will be computed exactly for rational multiples of $pi$ with denominator of $display(1,2,3,4,6, \text{or } 12)$. Infinite values will fail.
 
 $range(-24,24)$[D] $6$![E]
 

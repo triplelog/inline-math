@@ -598,7 +598,7 @@ std::string outputNumber(Number n){
 					}
 				}
 				if (!isFrac){
-					retn += "*"+sqrtstr+root;
+					retn += "*"+sqrtstr+"("+root+")";
 				}
 				outputE = retn;
 			}
