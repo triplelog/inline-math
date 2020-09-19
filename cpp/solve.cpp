@@ -600,7 +600,7 @@ std::string outputNumber(Number n){
 				if (!isFrac){
 					retn += "*"+sqrtstr+root;
 				}
-				string_log(retn);
+				string_log(retn.c_str());
 				outputE = retn;
 			}
 			
