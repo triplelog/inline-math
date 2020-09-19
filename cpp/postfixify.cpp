@@ -10,12 +10,12 @@ std::string arrayToString(int n, char input[]) {
 std::vector<std::string> makePostVector(char infixexpr[]) {
 	int i;
 	
-	std::string displayinp = "";
-	for (i=0;infixexpr[i];i++){
-		if (infixexpr[i]<0){displayinp += "?";}
-		else {displayinp += infixexpr[i];}
-	}
-	string_log(displayinp.c_str());
+	//std::string displayinp = "";
+	//for (i=0;infixexpr[i];i++){
+	//	if (infixexpr[i]<0){displayinp += "?";}
+	//	else {displayinp += infixexpr[i];}
+	//}
+	//string_log(displayinp.c_str());
 	
 	std::string intstr = "";
 	std::string expstr = "";
@@ -293,13 +293,13 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 
 	}
-	std::string displayexp = "";
-	for (i=0;i<expstr.length();i++){
-		if (expstr.at(i)<0){displayexp += "?";}
-		else {displayexp += expstr.at(i);}
-	}
-	string_log(displayexp.c_str());
-	string_log(intstr.c_str());
+	//std::string displayexp = "";
+	//for (i=0;i<expstr.length();i++){
+	//	if (expstr.at(i)<0){displayexp += "?";}
+	//	else {displayexp += expstr.at(i);}
+	//}
+	//string_log(displayexp.c_str());
+	//string_log(intstr.c_str());
 	return {expstr,intstr};
 
 
