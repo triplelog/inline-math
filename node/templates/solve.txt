@@ -18,21 +18,6 @@ $A+B$![C]
 
 $C==(C)[A]$
 
-Trigonometric functions will be computed exactly for rational multiples of $pi$ with denominator of $display(1,2,3,4,6, \text{or } 12)$. Infinite values will fail.
-
-$range(-24,24)$[D] $6$![E]
-
-$sin(=(D*pi/E)[A])==(sin(D*pi/6))[A]$
-
-$cos(=(D*pi/E)[A])==(cos(D*pi/6))[A]$
-
-$tan(=(D*pi/E)[A])==(tan(D*pi/6))[A]$
-
-$csc(=(D*pi/E)[A])==(csc(D*pi/6))[A]$
-
-$sec(=(D*pi/E)[A])==(sec(D*pi/6))[A]$
-
-$cot(=(D*pi/E)[A])==(cot(D*pi/6))[A]$
 
 
 
