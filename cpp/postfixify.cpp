@@ -8,6 +8,14 @@ std::string arrayToString(int n, char input[]) {
 }
 
 std::vector<std::string> makePostVector(char infixexpr[]) {
+	int i;
+	
+	std::string displayinp = "";
+	for (i=0;infixexpr[i];i++){
+		if (infixexpr[i]<0){displayinp += "?";}
+		else {displayinp += infixexpr[i];}
+	}
+	string_log(displayinp.c_str());
 	
 	std::string intstr = "";
 	std::string expstr = "";
@@ -19,7 +27,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	std::vector<std::string> tokenList;
 	int idx = 0;
 	int len=0;
-	int i;
+	
 	for (i = 0; infixexpr[i]; i++) 
     {
     	len = 2*i+1;
