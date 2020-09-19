@@ -1,11 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	 
 
-$number(0,10)$[A]
-
-$range(0,10)$[B]
-
-
+$6 perm 3==(perm(6,3))[A]$
 
 
 

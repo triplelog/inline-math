@@ -285,13 +285,13 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 		}
 
 	}
-	//std::string displayexp = "";
-	//for (i=0;i<expstr.length();i++){
-	//	if (expstr.at(i)<0){displayexp += "?";}
-	//	else {displayexp += expstr.at(i);}
-	//}
-	//string_log(displayexp.c_str());
-	//string_log(intstr.c_str());
+	std::string displayexp = "";
+	for (i=0;i<expstr.length();i++){
+		if (expstr.at(i)<0){displayexp += "?";}
+		else {displayexp += expstr.at(i);}
+	}
+	string_log(displayexp.c_str());
+	string_log(intstr.c_str());
 	return {expstr,intstr};
 
 
