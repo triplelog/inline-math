@@ -1,13 +1,14 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
-Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers (for now, up to ~1000000000) and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $$3*sqrt(4)+5^2=3*=(sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4)+5^2)[A]$$ are fairly simple to input.
+Expressions wrapped inside =()[A] will be evaluated as much as possible. The basic arithmetic operations should work on integers (for now, up to ~1000000000) and usually decimals and fractions. One expression can include parts that are not evaluated and parts that are evaluated. So equations like $$3*sqrt(4)+5^2=3*=(sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4))[A]+=(5^2)[A]==(3*sqrt(4)+5^2)[A]$$ are fairly simple to input without precomputing each expression.
 
-External variables will be inserted and evaluated as expected.
-
+The ability to outsource computation is convenient when using user inputs. External variables will be inserted and evaluated as expected.
 
 
 A = $number(0,10)$[A]
+
+$$A*sqrt(4)+5^2=A*=(sqrt(4))[A]+=(5^2)[A]==(A*sqrt(4))[A]+=(5^2)[A]==(A*sqrt(4)+5^2)[A]$$
 
 B = $range(0,10)$[B]
 
