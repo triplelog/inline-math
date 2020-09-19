@@ -15,7 +15,6 @@ B = $range(0,10)$[B]
 $A+B==(A+B)[A]$
 
 $A+B$![C]
-$\display(\text{f}(\text{A},\text{B})=)$ $input()$[C]
 
 $C==(C)[A]$
 
