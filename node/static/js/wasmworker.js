@@ -670,6 +670,7 @@ function cleanInput(input){
 			maxStr = input.match(re);
 		}
 	}
+	console.log(input);
 	input = input.replace(/ choose /g, ' comb ');
 	return input;
 }
