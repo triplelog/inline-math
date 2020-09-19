@@ -309,6 +309,15 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 							else {
 								//std::cout << "ipf2or: " << outputNumber(opResult) << "\n";
 								std::string outputN = outputNumber(opResult);
+								int oni;
+								for (oni=0;oni<outputN.length();oni++){
+									if (outputN.at(oni) == '('){
+										outputN.at(oni) = -1;
+									}
+									else if (outputN.at(oni) == ')'){
+										outputN.at(oni) = -2;
+									}
+								}
 								currentOperand = "(#@"+outputN+"_)";
 								if (numbers.find(outputN) == numbers.end()){
 									numbers[outputN]=opResult;

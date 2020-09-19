@@ -592,7 +592,7 @@ std::string outputNumber(Number n){
 				std::string retn = coef;
 				for (i=0;i<retn.length();i++){
 					if (retn.at(i) == '/'){
-						retn.replace(i,0,"*"+sqrtstr+root);
+						retn.replace(i,0,"*"+sqrtstr+"("+root+")");
 						isFrac = true;
 						break;
 					}
@@ -600,7 +600,6 @@ std::string outputNumber(Number n){
 				if (!isFrac){
 					retn += "*"+sqrtstr+root;
 				}
-				string_log(retn.c_str());
 				outputE = retn;
 			}
 			
