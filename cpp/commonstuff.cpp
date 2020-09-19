@@ -593,8 +593,8 @@ std::string removeType11(std::string input) {
 						int i;
 						for (i=0;i<newOut.length();i++){
 							if (newOut.at(i)== -67){//sqrt
-								newOut.replace(i+1,0,"(");
-								newOut += ")";
+								//newOut.replace(i+1,0,"(");
+								//newOut += ")";
 								break;
 							}
 						}
