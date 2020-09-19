@@ -14,7 +14,7 @@ B = $range(0,10)$[B]
 
 $A+B==(A+B)[A]$
 
-$f(A,B)=$ $input()$[C]
+$\display(\text{f}(\text{A},\text{B})=)$ $input()$[C]
 
 $C==(C)[A]$
 
