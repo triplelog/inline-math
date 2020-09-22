@@ -77,6 +77,18 @@ $A+2*B$
 
 For more info, go to the [variables](https://inlinemath.com/variables) section.
 
+Functions
+-----
+
+Define custom functions that can used later. There is at least some support for recursively defined functions.
+
+$f(x)=$ $input()$[K]
+$=(f(x)=K)[D]$!
+$f(3)==(f(3))[A]$
+
+
+For more info, go to the [functions](https://inlinemath.com/functions) section.
+
 Inputs
 -----
 
