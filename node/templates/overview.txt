@@ -12,21 +12,23 @@ Solve
 
 Many expressions can be computed before rendering if desired. Easily evaluate user inputs or simply save yourself the trouble of calculating the answer.
 
-$E+F==(E+F)[A]$
+$2+2==(2+2)[A]$
 
-Differentiate: $input()$[H]
+Differentiate $f(x)=$ $input()$[H]
 
 $ddx(H)==(ddx(H))[A]$
 
-$sin(=(7*pi/6)[A])==(sin(7*pi/6))[A]$
+$range(7,20)$[J]
 
-$max(3,4,5,2+7,3)==(max(3,4,5,2+7,3))[A]$
+$sin(=(J*pi/6)[A])==(sin(J*pi/6))[A]$
 
-$7 choose 3==(7*2 choose 3)[A]$
+$max(3,4,5,2+J,3)==(max(3,4,5,2+J,3))[A]$
 
-$abs(3-7)==(abs(3-7))[A]$
+$J choose 3==(J choose 3)[A]$
 
-$gcd(36,16)==(gcd(36,16))[A]$
+$abs(3-J)==(abs(3-J))[A]$
+
+$gcd(120,J)==(gcd(120,J))[A]$
 
 
 
@@ -58,6 +60,8 @@ Code can be displayed with any mathematical expressions automatically displayed 
 
 ```
 var x = 3^10+4;
+var theta = pi/6;
+var y = Math.cos(theta);
 ```
 
 For more info, go to the [code](https://inlinemath.com/code) section.
@@ -99,6 +103,7 @@ More Features
 Custom functions
 display the latex
 output from latex
+copy/paste
 
 $display(\LaTeX)$
 
