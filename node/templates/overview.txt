@@ -124,9 +124,7 @@ For more info, go to the [inputs](https://inlinemath.com/inputs) section.
 More Features
 -------------
 
-If you already have $display(\LaTeX)$ code or need something that is not supported yet, you can go straight to $display(\KaTeX)$ to use any of its supported commands. Matrices:
-
-$$display(\begin{pmatrix}a & b \\c & d\end{pmatrix})$$
+If you already have $display(\LaTeX)$ code, you can go straight to $display(\KaTeX)$ to use any of its supported commands like matrices: $display(\begin{pmatrix}a & b \\c & d\end{pmatrix})$.
 
 display the latex
 output from latex
