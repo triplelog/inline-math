@@ -613,15 +613,9 @@ std::string outputNumber(Number n){
 
 
 Number reduceFraction(const Number numA){
-	long long la = std::stoll(numA.top);
-	long long lb = std::stoll(numA.bottom);
-	while (la > 1000000000 || lb > 1000000000 || la < -1000000000 || lb < -1000000000){
-		la /= 10;
-		lb /= 10;
-		//TODO: convert to decimal
-	}
-	int a = la;
-	int b = lb;
+	long long a = std::stoll(numA.top);
+	long long b = std::stoll(numA.bottom);
+	
 	
 	std::vector<int> primes = {2,3,5,7,11,13,17,19,23,29};
 	int i;
@@ -643,10 +637,20 @@ Number reduceFraction(const Number numA){
 			return n;
 		}
 	}
+	
+	while (a > 1000000000 || b > 1000000000 || a < -1000000000 || b < -1000000000){
+		a /= 10;
+		b /= 10;
+		//TODO: convert to decimal
+	}
+	int ia = a;
+	int ib = b;
+	
+	
 	Number n;
 	n.type = numA.type;
-	n.top = std::to_string(a);
-	n.bottom = std::to_string(b);
+	n.top = std::to_string(ia);
+	n.bottom = std::to_string(ib);
 	return n;
 	
 }
@@ -1417,22 +1421,22 @@ Number mulTwo(const Number numA, const Number numB){
 	else if (numA.type == 1){
 		if (numB.type == 1){
 			n.type = 1;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
 			return n;
 		}
 		else if (numB.type == -1){
 			n.type = -1;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
 			return n;
 		}
 		else if (numB.type == 2 || numB.type == -2 || numB.type == 3 || numB.type == -3){
 			n.type = numB.type;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
 			n.bottom = numB.bottom;
 			n = reduceFraction(n);
@@ -1450,8 +1454,8 @@ Number mulTwo(const Number numA, const Number numB){
 	else if (numA.type == 2){
 		if (numB.type == 1 || numB.type == -1){
 			n.type = 2 * numB.type;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
 			n.bottom = numA.bottom;
 			n = reduceFraction(n);
@@ -1462,11 +1466,11 @@ Number mulTwo(const Number numA, const Number numB){
 			if (numB.type < 0){
 				n.type = -2;
 			}
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
-			prod = std::stoi(numA.bottom);
-			prod *= std::stoi(numB.bottom);
+			prod = std::stoll(numA.bottom);
+			prod *= std::stoll(numB.bottom);
 			n.bottom = std::to_string(prod);
 			n = reduceFraction(n);
 			return n;
@@ -1475,8 +1479,8 @@ Number mulTwo(const Number numA, const Number numB){
 	else if (numA.type == 3){
 		if (numB.type == 1 || numB.type == -1){
 			n.type = 3 * numB.type;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
 			n.bottom = numA.bottom;
 			n = reduceFraction(n);
@@ -1484,11 +1488,11 @@ Number mulTwo(const Number numA, const Number numB){
 		}
 		else if (numB.type == 2 || numB.type == -2 || numB.type == 3 || numB.type == -3){
 			n.type = numB.type;
-			int prod = std::stoi(numA.top);
-			prod *= std::stoi(numB.top);
+			long long prod = std::stoll(numA.top);
+			prod *= std::stoll(numB.top);
 			n.top = std::to_string(prod);
-			prod = std::stoi(numA.bottom);
-			prod *= std::stoi(numB.bottom);
+			prod = std::stoll(numA.bottom);
+			prod *= std::stoll(numB.bottom);
 			n.bottom = std::to_string(prod);
 			n = reduceFraction(n);
 			return n;
@@ -2186,10 +2190,10 @@ Number hypTrigTwo(char fn, const Number numA){ //numA is base and numB is inside
 
 Number factorialOne(const Number numA){
 	Number n;
-	int nn = 1;
+	long long nn = 1;
 	int i;
 	if (numA.type == 1){
-		int na = std::stoi(numA.top);
+		int na = std::stoll(numA.top);
 		for (i=2;i<na+1;i++){
 			nn *= i;
 		}
