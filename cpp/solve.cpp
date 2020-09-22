@@ -3099,12 +3099,10 @@ std::string solveFunction(std::string input){
 			currentOperand += input.at(i);
 		}
 	}
-	string_log(functionName.c_str());
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
 		
 		std::string finput = inputLeft+"@"+inputRight;
-		string_log(finput.c_str());
 		if (f.recursive){
 			//string_log(finput.c_str());
 			if (inputLeft == "#"){
@@ -3141,7 +3139,7 @@ std::string solveFunction(std::string input){
 					for (ci=maxIter+1;ci<=goalIter;ci++){
 						char fnc{-125};
 						std::string fnstr(1,fnc);
-						std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
+						std::string fpostfix = "##"+fnstr+"@"+functionName+"_"+std::to_string(ci)+"_";
 						finput = "#@"+std::to_string(ci)+"_";
 						std::string solved = solveArithmetic(fpostfix);
 						functionMap[functionName].computed["#@"+std::to_string(ci)+"_"] = solved;
@@ -3193,7 +3191,7 @@ std::string solveFunction(std::string input){
 					for (ci=maxIter+1;ci<=goalIter;ci++){
 						char fnc{-125};
 						std::string fnstr(1,fnc);
-						std::string fpostfix = "##"+fnstr+"@f_"+std::to_string(ci)+"_";
+						std::string fpostfix = "##"+fnstr+"@"+functionName+"_"+std::to_string(ci)+"_";
 						//string_log("function computing");
 						//string_log(fpostfix.c_str());
 						finput = "#@"+std::to_string(ci)+"_";
