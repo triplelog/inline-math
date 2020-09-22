@@ -4,7 +4,34 @@
 Intro
 -----				
 
-Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like 3^12 or sqrt(3)/3 will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$ as $3^12$ and $sqrt(3)/3$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
+Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like 3^12 and sqrt(3)/3 will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$ as $3^12$ and $sqrt(3)/3$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
+
+
+Solve
+-----
+
+Many expressions can be computed before rendering if desired. Easily evaluate user inputs or simply save yourself the trouble of calculating the answer.
+
+$E+F==(E+F)[A]$
+
+Differentiate: $input()$[H]
+
+$ddx(H)==(ddx(H))[A]$
+
+$sin(=(7*pi/6)[A])==(sin(7*pi/6))[A]$
+
+$max(3,4,5,2+7,3)==(max(3,4,5,2+7,3))[A]$
+
+$7 choose 3==(7*2 choose 3)[A]$
+
+$abs(3-7)==(abs(3-7))[A]$
+
+$gcd(36,16)==(gcd(36,16))[A]$
+
+
+
+For more info, go to the [solve](https://inlinemath.com/solve) section.
+
 
 Plots
 -----
@@ -64,30 +91,6 @@ $checkbox(x^2,0)$[C]
 For more info, go to the [inputs](https://inlinemath.com/inputs) section.
 
 
-Solve
------
-
-Many expressions can be computed before rendering if desired. Easily evaluate user inputs or simply save yourself the trouble of calculating the answer.
-
-$E+F==(E+F)[A]$
-
-Differentiate: $input()$[H]
-
-$ddx(H)==(ddx(H))[A]$
-
-$sin(=(7*pi/6)[A])==(sin(7*pi/6))[A]$
-
-$max(3,4,5,2+7,3)==(max(3,4,5,2+7,3))[A]$
-
-$7 choose 3==(7*2 choose 3)[A]$
-
-$abs(3-7)==(abs(3-7))[A]$
-
-$gcd(36,16)==(gcd(36,16))[A]$
-
-
-
-For more info, go to the [solve](https://inlinemath.com/solve) section.
 
 
 More Features
