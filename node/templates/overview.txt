@@ -6,6 +6,7 @@ Intro
 
 Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like 3^12 and sqrt(3)/3 will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$ as $3^12$ and $sqrt(3)/3$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
 
+The textarea on the left is the exact source that generates the output on the right. You can change parts to see how it changes the output. The syntax might be a bit confusing to an outsider, but can easily change as better options become apparent.
 
 Solve
 -----
@@ -126,17 +127,11 @@ More Features
 
 If you already have $display(\LaTeX)$ code, you can go straight to $display(\KaTeX)$ to use any of its supported commands like matrices: $display(\begin{pmatrix}a & b \\c & d\end{pmatrix})$.
 
-display the latex
-output from latex
-copy/paste
+If you simply want to generate $display(\LaTeX)$ code to use elsewhere, you can do that. $$latex(3^12/theta)$$
 
-$display(\LaTeX)$
+If you select a group of text, it should be possible to copy the HTML output, the latex source, or the original input by clicking the appropriate button on the left.
 
-$latex(3^12)$
 
-$display(\frac{3^{12}}{4})$
-
-$latex(3^12/7)$
 
 
 
