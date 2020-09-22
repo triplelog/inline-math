@@ -373,6 +373,7 @@ const renderer = {
   codespan(text) {
   	text = text.replace(/&lt;/g,'<');
   	text = text.replace(/&gt;/g,'>');
+  	text = text.replace(/&amp;/g,'&');
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
   	text = text.replace(/!$/,'!!');
