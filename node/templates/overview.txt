@@ -113,9 +113,9 @@ $input()$[G]
 
 $number(2,6)$[E]
 
-$radio(F+x^G,F-sqrt(x),G+x)$[D] $=(h(x)=D)[D]$!
+$radio(F+x^E,F-sqrt(x),G+x)$[D] $=(h(x)=D)[D]$!
 
-Flip? $checkbox(-1,1)$[C] $C$
+Flip? $checkbox(-1,1)$[C]
 
 $$plot(y=C*h(x))[A]$$
 
