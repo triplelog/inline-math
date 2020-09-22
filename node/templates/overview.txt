@@ -117,7 +117,7 @@ $radio(F+x^E,F-sqrt(x),G+x)$[D] $=(h(x)=D)[D]$!
 
 Flip? $checkbox(-1,1)$[C]
 
-$$plot(y=C*h(x))[A]$$
+$$plot(y=C*h(x))$$
 
 
 
