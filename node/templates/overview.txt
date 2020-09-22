@@ -18,11 +18,11 @@ Differentiate $f(x)=$ $input()$[H]
 
 $ddx(H)==(ddx(H))[A]$
 
-$range(7,20)$[J]
+Move this slider to see how it impacts the following computations: $range(7,20)$[J]
 
 $sin(=(J*pi/6)[A])==(sin(J*pi/6))[A]$
 
-$max(3,4,5,2+J,3)==(max(3,4,5,2+J,3))[A]$
+$max(3,14,5,2+J,8-3)==(max(3,14,5,2+J,8-3))[A]$
 
 $J choose 3==(J choose 3)[A]$
 
