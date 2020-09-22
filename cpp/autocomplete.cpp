@@ -677,6 +677,16 @@ std::string inputLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case -125: {
+			if (ii > 0){
+				s += "(";
+				s += child+")";
+			}
+			else {
+				s += child;
+			}
+			break;
+		}
 		default: {
 			if (prec[c] > prec[lastOp]){
 				if (ii > 0){

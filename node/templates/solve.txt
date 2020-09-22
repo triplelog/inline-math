@@ -60,7 +60,7 @@ $pow(3,11)==(pow(3,11))[A]$
 
 The [A] notation means perform arithmetic. In the future it will be possible to customize what operations are performed by using different flags. Arithmetic can be performed to simplify expressions. Or the symbolic solver can be used to evaluate calculus expressions.
 
-$=(ddx(cos(x)))[I]==(ddx(cos(x)))[S]$
+$=(ddx(cos(x)))[I]==(ddx(cos(x)))[A]$
 
 $3*x^2+4*x^3==(3*x^2+4*x^3)[C]$
 
