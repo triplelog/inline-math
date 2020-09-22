@@ -1491,6 +1491,8 @@ void initialRun(){
 	prec[-97]=7;//gcd
 	prec[-99]=7;//perm/comb
 	prec[-98]=7;//perm/comb
+	prec[-69]=7;//ddx
+	prec[-85]=7;//idx
 	prec['%'] = 6;
     prec['^'] = 5;
 	prec['*'] = 4;

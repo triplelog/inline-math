@@ -185,7 +185,12 @@ ee
 :subtople:prealgebra.functions.functions
 :name:Functions
 
-
+::: rule
+in: A(B)
+out: =(A(B))
+1 = 1
+ee
+:::
 
 ::: rule
 in: sqrt(A)
