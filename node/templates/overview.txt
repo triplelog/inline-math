@@ -4,7 +4,7 @@
 Intro
 -----				
 
-Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like $3^12$ or $sqrt(3)/3$ will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
+Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like 3^12 or sqrt(3)/3 will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$ as $3^12$ and $sqrt(3)/3$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
 
 Plots
 -----
