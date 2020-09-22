@@ -107,18 +107,20 @@ Inputs
 
 Create user inputs that will be rendered automatically.
 
-Range slider: $range(10,70)$[F] $F$
+Range slider: $range(1,7)$[F] $F$
 
 $input()$[G]
 
-$number(10,70)$[E]
+$number(2,6)$[E]
 
-$radio(1+x^2,1-sqrt(x),2+x)$[D] $=(h(x)=D)[D]$!
+$radio(F+x^G,F-sqrt(x),G+x)$[D] $=(h(x)=D)[D]$!
 
-$$plot(y=h(x))[A]$$
+Flip? $checkbox(-1,1)$[C] $C$
+
+$$plot(y=C*h(x))[A]$$
 
 
-$checkbox(1,0)$[C] $C$
+
 
 For more info, go to the [inputs](https://inlinemath.com/inputs) section.
 
