@@ -3099,11 +3099,12 @@ std::string solveFunction(std::string input){
 			currentOperand += input.at(i);
 		}
 	}
-
+	string_log(functionName.c_str());
 	if (functionMap.find(functionName) != functionMap.end()){
 		Function f = functionMap[functionName];
 		
 		std::string finput = inputLeft+"@"+inputRight;
+		string_log(finput.c_str());
 		if (f.recursive){
 			//string_log(finput.c_str());
 			if (inputLeft == "#"){

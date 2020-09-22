@@ -720,8 +720,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 			break;
 		}
 	}
-	string_log(functionName.c_str());
-	string_log(independentVar.c_str());
+
 	if (isInteger){
 		if (functionMap.find(functionName) != functionMap.end()){
 			functionMap[functionName].initial["#@"+intValue+"_"]= postfix;
