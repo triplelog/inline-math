@@ -246,5 +246,16 @@ app.get(['/','/index','/index.html'],
 	}
 );
 
+app.get(['*'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/index.html',{
+
+		}));
+		res.end();
+	}
+);
+
 
 
