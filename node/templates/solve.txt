@@ -70,7 +70,7 @@ $x=alpha+beta+delta+Delta+theta$
 
 $input()$[K]
 
-$=(ddx(K))[I]==(ddx(K))[S]$
+$=(ddx(K))[I]==(ddx(K))[A]$
 
 $3!= 2$ and $2== 2$ and $3<4$ and $5>4$ and $1<=2$ and $3>= 2$
 

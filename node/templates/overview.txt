@@ -1,7 +1,7 @@
 {% extends "templates/testshell.html" %}
 {% block markdown %}	
 
-Use markdown to render the non-math parts of text.
+Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like $3^12$ or $sqrt(3)/3$ will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$.
 
 $display(\LaTeX)$
 
