@@ -6,7 +6,7 @@ Intro
 
 Render math without needing to know any $display(\LaTeX)$. Mathematical expressions like 3^12 and sqrt(3)/3 will be converted to $display(\LaTeX)$ and then displayed using $display(\KaTeX)$ as $3^12$ and $sqrt(3)/3$. The non-math text will be treated as markdown (using markedjs at least for now) so you can use *italics*, **bold**, headers, and more.
 
-The textarea on the left is the exact source that generates the output on the right. You can change parts to see how it changes the output. The syntax might be a bit confusing to an outsider, but can easily change as better options become apparent.
+The textarea on the left is the source that generates the output on the right. You can change parts to see how the output changes. The syntax might be a bit confusing to an outsider, but can easily change as better options become apparent.
 
 Solve
 -----
@@ -107,15 +107,18 @@ Inputs
 
 Create user inputs that will be rendered automatically.
 
-$range(10,70)$[F]
+Range slider: $range(10,70)$[F] $F$
 
 $input()$[G]
 
 $number(10,70)$[E]
 
-$radio(1+3^2,2,3^2)$[D]
+$radio(1+x^2,1-sqrt(x),2+x)$[D] $=(h(x)=D)[D]$!
 
-$checkbox(x^2,0)$[C]
+$$plot(y=h(x))[A]$$
+
+
+$checkbox(1,0)$[C] $C$
 
 For more info, go to the [inputs](https://inlinemath.com/inputs) section.
 
@@ -132,6 +135,16 @@ If you simply want to generate $display(\LaTeX)$ code to use elsewhere, you can 
 If you select a group of text, it should be possible to copy the HTML output, the latex source, or the original input by clicking the appropriate button on the left.
 
 
+About
+-----
+
+Everything is done client-side with a js file that gzips to x kB and a wasm file that gzips to y kB. Katex is required to turn Latex into HTML and that adds z kB of JS and a kB of CSS zipped. MarkedJS renders the markdown with c kB of JS. Prism JS is needed to highlight/parse code and adds another b kB.
+
+Modern browsers should be fully supported. I have not worried about accessibility yet, but that shouldn't be a problem. 
+
+Speed shouldn't be an issue for most uses on decent hardware. At some point I will work on ways to break up large files.
+
+Obviously there are still bugs and incomplete features, but a version that is ready for a public beta is coming by year end.
 
 
 
