@@ -84,8 +84,19 @@ Define custom functions that can used later. There is at least some support for 
 
 $f(x)=$ $input()$[K]
 $=(f(x)=K)[D]$!
+
 $f(3)==(f(3))[A]$
 
+$g(0)=$ $input()$[L]
+$=(g(0)=L)[D]$!
+
+$g(1)=$ $input()$[M]
+$=(g(1)=M)[D]$!
+
+$g(x)=$ $input()$[N]
+$=(g(x)=N)[D]$!
+
+$g(10)==(g(10))[A]$
 
 For more info, go to the [functions](https://inlinemath.com/functions) section.
 
