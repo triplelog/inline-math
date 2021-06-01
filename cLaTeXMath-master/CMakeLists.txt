@@ -209,7 +209,7 @@ elseif (UNIX)
             src/platform/cairo/graphic_cairo.cpp
             )
     target_link_libraries(LaTeX PRIVATE
-    		PkgConfig::GTKMM #include <pangomm/fontdescription.h>
+    		#include <pangomm/fontdescription.h>
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
