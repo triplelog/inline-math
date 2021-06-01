@@ -60,7 +60,6 @@ Create ssh key on server and add to github
 
 
 #
-change references to inlinemath.com in sites-available and on servers with fullchain
 redo certbot
 
 
