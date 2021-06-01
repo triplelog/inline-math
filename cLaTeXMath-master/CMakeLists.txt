@@ -204,7 +204,7 @@ elseif (UNIX)
     message(STATUS "We are working with GTK on a Unix like OS")
     target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
     find_package(Fontconfig REQUIRED)
-    pkg_check_modules(PangoMM REQUIRED IMPORTED_TARGET pango-1.0)
+    pkg_check_modules(PangoMM REQUIRED IMPORTED_TARGET pango)
     pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
     target_sources(LaTeX PRIVATE
             src/platform/cairo/graphic_cairo.cpp
