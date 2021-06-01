@@ -212,13 +212,13 @@ elseif (UNIX)
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
-    add_executable(LaTeXGtkSample
-            src/samples/gtkmm_main.cpp
+    add_executable(LaTeXSample
+            src/samples/headless_main.cpp
             )
-    target_link_libraries(LaTeXGtkSample PRIVATE
+    target_link_libraries(LaTeXSample PRIVATE
             LaTeX
             )
-    set_target_properties(LaTeXGtkSample PROPERTIES OUTPUT_NAME LaTeX)
+    set_target_properties(LaTeXSample PROPERTIES OUTPUT_NAME LaTeX)
 else ()
     message(STATUS "We are working on a unknown platform")
     # other platforms...
