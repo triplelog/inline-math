@@ -202,14 +202,20 @@ elseif (WIN32)
     set_target_properties(LaTeXWin32Sample PROPERTIES OUTPUT_NAME LaTeX)
 elseif (UNIX)
     message(STATUS "We are working with GTK on a Unix like OS")
-    target_compile_definitions(LaTeX PUBLIC)
+    target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
     find_package(Fontconfig REQUIRED)
+    pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
+    target_sources(LaTeX PRIVATE
+            src/platform/cairo/graphic_cairo.cpp
+            )
     target_link_libraries(LaTeX PRIVATE
+            PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
-    target_link_libraries(LaTeX
+    target_link_libraries(LaTeXSample PRIVATE
+            LaTeX
             )
-    set_target_properties(LaTeX PROPERTIES OUTPUT_NAME LaTeX)
+    set_target_properties(LaTeXSample PROPERTIES OUTPUT_NAME LaTeX)
 else ()
     message(STATUS "We are working on a unknown platform")
     # other platforms...
