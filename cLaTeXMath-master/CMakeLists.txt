@@ -209,6 +209,7 @@ elseif (UNIX)
             )
     target_link_libraries(LaTeX
             )
+    set_target_properties(LaTeXGtkSample PROPERTIES OUTPUT_NAME LaTeX)
 else ()
     message(STATUS "We are working on a unknown platform")
     # other platforms...
