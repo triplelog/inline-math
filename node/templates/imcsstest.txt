@@ -4,7 +4,7 @@
 Intro
 -----				
 
-Render $x^3$.
+Render $x^3$. Render $abs(x^2)$. Render $7$.
 
 
 
