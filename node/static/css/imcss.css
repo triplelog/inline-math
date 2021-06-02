@@ -7,7 +7,7 @@
 
 
 
-.imcss .power > .div:nth-child(2){
+.imcss .power > div:nth-child(2){
 	vertical-align: super;
   	font-size: smaller;
 }
