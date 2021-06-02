@@ -55,4 +55,14 @@
 	border-top: 1px solid black;
 }
 
+.imcss .limit > div:nth-child(2){
+	position:absolute;
+    bottom:0%;
+    left:-10px;
+    font-size: smaller;
+}
+.imcss .limit::before{
+	content: "lim";
+}
+
 
