@@ -8,7 +8,7 @@ using namespace tex;
 
 class Headless {
 public:
-  string _outputDir;
+  std::string _outputDir;
   string _samplesFile;
   string _prefix;
 
