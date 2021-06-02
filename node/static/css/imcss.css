@@ -44,13 +44,14 @@
     font-size: smaller;
 }
 
-.imcss .fraction > div:nth-child(1){
+.imcss .fraction > div{
 	display: block;
+}
+.imcss .fraction > div:nth-child(1){
 	border-bottom: 2px solid black;
 }
-.imcss .fraction > hr{
-	margin-top: 2px;
-	margin-bottom: 2px;
-	border-width: 2px;
+.imcss .fraction > div:nth-child(1){
+	border-top: 2px solid black;
 }
+
 
