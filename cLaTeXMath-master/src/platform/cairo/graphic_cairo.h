@@ -8,8 +8,8 @@
 #include "graphic/graphic.h"
 
 #include <cairomm/context.h>
-#include <pangomm/fontdescription.h>
-#include <pangomm/layout.h>
+#include "pangomm/fontdescription.h"
+#include "pangomm/layout.h"
 
 using namespace std;
 
