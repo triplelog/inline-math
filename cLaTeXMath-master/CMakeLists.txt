@@ -205,9 +205,6 @@ elseif (UNIX)
     target_compile_definitions(LaTeX PUBLIC)
     find_package(Fontconfig REQUIRED)
     pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
-    target_sources(LaTeX PRIVATE
-            src/platform/cairo/graphic_cairo.cpp
-            )
     target_link_libraries(LaTeX PRIVATE
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
