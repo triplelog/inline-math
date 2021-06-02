@@ -277,11 +277,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '!': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child+"\\neq ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&ne;\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&ne;\n</div>";
 
 			}
 			break;
@@ -289,55 +289,55 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '[': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child + "\\leq ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&lte;\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lte;\n</div>";
 			}
 			break;
 		}
 		case ']': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child + "\\geq ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&gte;\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gte;\n</div>";
 			}
 			break;
 		}
 		case '<': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child+"< ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&lt;\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lt;\n</div>";
 			}
 			break;
 		}
 		case '>': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child+"> ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&gt;\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gt;\n</div>";
 			}
 			break;
 		}
 		case '=': {
 			if (ii > 0){
 				//s += child;
-				s += child+"\n</div>";
+				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += child+"= ";
-				s += "<div class=\"comparison\">"+child+"<div class=\"number\">=\n</div>";
+				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">=\n</div>";
 			}
 			break;
 		}
@@ -415,7 +415,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				if (ii > 0){
 					if (c == '*'){
 						if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
-							s += "("+child+")";
+							//s += "("+child+")";
+							s += "<div class=\"parentheses\">"+child+"\n</div>";
 						}
 						else {
 							s += "\\cdot ("+child+")";//want to move this into numerator somehow
