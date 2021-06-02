@@ -1,7 +1,6 @@
-#include "~/inline-math/cLaTeXMath-master/src/config.h"
+#include "config.h"
 
 #include "latex.h"
-#include "platform/cairo/graphic_cairo.h"
 #include "samples.h"
 
 
@@ -27,14 +26,7 @@ public:
     auto r = LaTeX::parse(code, _maxWidth, _textSize, _textSize / 3.f, _foreground);
     const float w = r->getWidth() + _padding * 2;
     const float h = r->getHeight() + _padding * 2;
-    auto surface = Cairo::SvgSurface::create(file, w, h);
-    auto context = Cairo::Context::create(surface);
-    Graphics2D_cairo g2(context);
-    if (!isTransparent(_background)) {
-      g2.setColor(_background);
-      g2.fillRect(0, 0, w, h);
-    }
-    r->draw(g2, _padding, _padding);
+    
     delete r;
   }
 

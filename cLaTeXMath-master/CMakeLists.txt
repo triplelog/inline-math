@@ -196,23 +196,12 @@ elseif (WIN32)
 elseif (UNIX)
     message(STATUS "We are working with GTK on a Unix like OS")
     target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
-    find_package(Fontconfig REQUIRED)
-    pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
-    pkg_check_modules(GSVMM REQUIRED IMPORTED_TARGET gtksourceviewmm-3.0)
-    pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
-    target_sources(LaTeX PRIVATE
-            src/platform/cairo/graphic_cairo.cpp
-            )
     target_link_libraries(LaTeX PRIVATE
-            PkgConfig::GTKMM #include <pangomm/fontdescription.h>
-            PkgConfig::CairoMM #include <cairomm/context.h>
-            Fontconfig::Fontconfig
             )
     add_executable(LaTeXGtkSample
             src/samples/headless_main.cpp
             )
     target_link_libraries(LaTeXGtkSample PRIVATE
-            PkgConfig::GSVMM
             LaTeX
             )
     set_target_properties(LaTeXGtkSample PROPERTIES OUTPUT_NAME LaTeX)
