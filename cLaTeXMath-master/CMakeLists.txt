@@ -205,22 +205,24 @@ elseif (UNIX)
     target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
     find_package(Fontconfig REQUIRED)
     pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
+    pkg_check_modules(GSVMM REQUIRED IMPORTED_TARGET gtksourceviewmm-3.0)
     pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
     target_sources(LaTeX PRIVATE
             src/platform/cairo/graphic_cairo.cpp
             )
     target_link_libraries(LaTeX PRIVATE
-    		PkgConfig::GTKMM #include <pangomm/fontdescription.h>
+            PkgConfig::GTKMM #include <pangomm/fontdescription.h>
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
-    add_executable(LaTeXSample
+    add_executable(LaTeXGtkSample
             src/samples/headless_main.cpp
             )
-    target_link_libraries(LaTeXSample PRIVATE
+    target_link_libraries(LaTeXGtkSample PRIVATE
+            PkgConfig::GSVMM
             LaTeX
             )
-    set_target_properties(LaTeXSample PROPERTIES OUTPUT_NAME LaTeX)
+    set_target_properties(LaTeXGtkSample PROPERTIES OUTPUT_NAME LaTeX)
 else ()
     message(STATUS "We are working on a unknown platform")
     # other platforms...
