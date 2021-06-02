@@ -1,3 +1,6 @@
+.imcss {
+	white-space-collapse: discard;
+}
 .imcss div {
 	display: inline-block;
 }
