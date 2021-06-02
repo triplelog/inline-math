@@ -210,7 +210,7 @@ elseif (UNIX)
             src/platform/cairo/graphic_cairo.cpp
             )
     target_link_libraries(LaTeX PRIVATE
-    		PangoMM #include <cairomm/context.h>
+    		PkgConfig::PangoMM #include <cairomm/context.h>
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
