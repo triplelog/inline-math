@@ -29,12 +29,6 @@
     border-top:2px black solid;
 }
 
-.imcss .root::before {
-    content:url();
-    border: 1px solid black;
-    height: 100%;
-    width: auto;
-}
 
 .imcss .root > svg {
     position:absolute;
