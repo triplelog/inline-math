@@ -1,4 +1,4 @@
-#include "config.h"
+#include "~/inline-math/cLaTeXMath-master/src/config.h"
 
 #include "latex.h"
 #include "platform/cairo/graphic_cairo.h"
