@@ -5,7 +5,7 @@
 #include "latex.h"
 #include "platform/cairo/graphic_cairo.h"
 
-#include <pangomm/init.h>
+
 
 using namespace tex;
 
@@ -168,7 +168,7 @@ int main(int argc, char* argv[]) {
 
   if (indexOf(opts, string("-h")) >= 0) return runHelp();
 
-  Pango::init();
+
   LaTeX::init();
 
   int result = 0;
