@@ -203,6 +203,17 @@ app.get(['/overview','/overview.html'],
 	}
 );
 
+app.get(['/imcsstest','/imcsstest.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/imcsstest.txt',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/variables','/variables.html'],
 	function(req, res){
 		

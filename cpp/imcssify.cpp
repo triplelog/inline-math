@@ -5,21 +5,21 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				//s += "^{";
 				//s += child+"}";
 				s += "<div class=\"number\">";
-				s += child+"\\n</div>";
+				s += child+"\n</div>\n</div>";
 			}
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\"><div class=\"parentheses\">"+child+"\\n</div>\\n</div>";
+					s += "<div class=\"power\">\n<div class=\"parentheses\">"+child+"\n</div>";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\"><div class=\"number\">"+child+"\\n</div>\\n</div>";
+					s += "<div class=\"power\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
 		}
-		case -69: {
+		case -69: {//Derivative
 			if (ii > 0){
 				s += child+"]";
 			}
@@ -29,7 +29,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 
 		}
-		case -85: {
+		case -85: {//Integral
 			if (ii > 0){
 				s.replace(5,0,child+" \\text{d");
 			}
@@ -39,7 +39,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 
 		}
-		case -101: {
+		case -101: {//max
 			if (ii > 1){
 				s.replace(s.length()-1,1,"");
 				if (lastOp == -101){
@@ -70,7 +70,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -100: {
+		case -100: {//min
 			if (ii > 1){
 				s.replace(s.length()-1,1,"");
 				if (lastOp == -100){
@@ -101,7 +101,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -97: {
+		case -97: { //combinations
 			if (ii > 0){
 				s += " \\choose ";
 				s += child+"}";
@@ -111,7 +111,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -98: {
+		case -98: { //permutations
 			if (ii > 0){
 				s += "}\\!P_{";
 				s += child+"}";
@@ -121,7 +121,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -99: {
+		case -99: { //gcd
 			if (ii > 0){
 				s += ",";
 				s += child+")";
@@ -131,8 +131,9 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -34:
-			s += "|"+child+"|";
+		case -34: //absolute value
+			//s += "|"+child+"|";
+			s += "<div class=\"abs\">"+child+"\n</div>";
 			break;
 		case -64:
 			s += "\\sin("+child+")";
@@ -189,14 +190,17 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			s += "\\text{coth}("+child+")";
 			break;
 		case -67:
-			s += "\\sqrt{"+child+"}";
+			//s += "\\sqrt{"+child+"}";
+			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>"+child+"<div class=\"number\">2\n</div>\n</div>";
 			break;
 		case -84: {
 			if (ii > 0){
-				s += child+"}";
+				//s += child+"}";
+				s += child+"\n</div>";
 			}
 			else {
-				s += "\\sqrt["+child+"]{";
+				//s += "\\sqrt["+child+"]{";
+				s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>"+child;
 			}
 			break;
 
@@ -510,6 +514,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				}
 				else {
 					s += child;
+					s += "<div class=\"number\">";
+					s += child+"\n</div>";
 				}
 			}
 		}
@@ -634,7 +640,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	std::map<std::string,char> lastOpMap;
 	
 	std::map<int,std::string> operandMap;
-	std::string lastInput = "";
+	std::string lastInput = "<div class=\"imcss\">";
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			break;
@@ -772,7 +778,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		}
 		
 	}
-	
+	lastInput += "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
