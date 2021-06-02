@@ -21,7 +21,7 @@ public:
   float _padding = 10.f;
   float _maxWidth = 720.f;
 
-  void generateSingle(const wstring& code, const std::string& file) const {
+  void generateSingle(const std::wstring& code, const std::string& file) const {
     auto r = LaTeX::parse(code, _maxWidth, _textSize, _textSize / 3.f, _foreground);
     const float w = r->getWidth() + _padding * 2;
     const float h = r->getHeight() + _padding * 2;
@@ -47,7 +47,7 @@ public:
       __print(ANSI_COLOR_RED "Error: the option '-output' must be specified\n" ANSI_RESET);
       return 1;
     }
-    wstring code = utf82wide(_input);
+    std::wstring code = utf82wide(_input);
     generateSingle(code, _outputFile);
     return 0;
   }
