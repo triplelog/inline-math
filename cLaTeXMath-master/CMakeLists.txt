@@ -42,14 +42,7 @@ endif ()
 # copy res dir
 
 file(COPY res DESTINATION .)
-if (MSVC)
-    find_package(tinyxml2 CONFIG REQUIRED)
-    target_link_libraries(LaTeX PRIVATE tinyxml2::tinyxml2)
-else ()
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(tinyxml2 REQUIRED IMPORTED_TARGET tinyxml2)
-    target_link_libraries(LaTeX PRIVATE tinyxml2)
-endif ()
+
 
 # source files
 target_sources(LaTeX PRIVATE
