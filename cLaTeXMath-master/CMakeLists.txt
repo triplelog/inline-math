@@ -202,15 +202,13 @@ elseif (WIN32)
     set_target_properties(LaTeXWin32Sample PROPERTIES OUTPUT_NAME LaTeX)
 elseif (UNIX)
     message(STATUS "We are working with GTK on a Unix like OS")
-    target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
+    target_compile_definitions(LaTeX PUBLIC)
     find_package(Fontconfig REQUIRED)
-    pkg_check_modules(PangoMM REQUIRED IMPORTED_TARGET pango)
     pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
     target_sources(LaTeX PRIVATE
             src/platform/cairo/graphic_cairo.cpp
             )
     target_link_libraries(LaTeX PRIVATE
-    		src/platform/cairo/graphic_cairo.cpp #include <pangomm/fontdescription.h>
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
             )
