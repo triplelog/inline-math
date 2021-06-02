@@ -15,6 +15,9 @@ var tcpp = Module.cwrap("TreeIt","string",["string"]);
 function ljs(input){
 	lcpp(input);
 }
+function ijs(input){
+	icpp(input);
+}
 function pjs(input0,input1,input2,input3,input4){
 	pcpp(input0,input1,input2,input3,input4);
 }
@@ -218,6 +221,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			else {
 				inputted = "";
 				ljs(input);
+				ijs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
