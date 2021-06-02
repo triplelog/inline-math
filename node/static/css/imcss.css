@@ -16,6 +16,18 @@
 	vertical-align: super;
   	font-size: smaller;
 }
+.imcss .root {
+	display: inline-block;
+    margin-left: 29px;
+    margin-right: 0;
+    padding-left: 0px;
+    padding-right: 9px;
+    position: relative;
+    width: auto;
+    margin-top:30px;
+    padding-top: 10px;
+    border-top:2px black solid;
+}
 .imcss .root::before {
 	content: '\221A';
     float: left;
@@ -23,3 +35,9 @@
     margin-top: -10px;
     margin-left:-25px;
 }
+.imcss .root > div:nth-child(2) {
+    position:absolute;
+    top:6px;
+    left:-17px;
+}
+
