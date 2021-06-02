@@ -202,7 +202,7 @@ elseif (WIN32)
     set_target_properties(LaTeXWin32Sample PROPERTIES OUTPUT_NAME LaTeX)
 elseif (UNIX)
     message(STATUS "We are working with GTK on a Unix like OS")
-    target_compile_definitions(LaTeX PUBLIC)
+    target_compile_definitions(LaTeX PUBLIC -DBUILD_GTK)
     find_package(Fontconfig REQUIRED)
     pkg_check_modules(CairoMM REQUIRED IMPORTED_TARGET cairomm-1.0)
     target_link_libraries(LaTeX PRIVATE
@@ -223,15 +223,15 @@ endif ()
 
 # compile options
 
-option(HAVE_LOG "If enable log" OFF)
-if (HAVE_LOG)
-    add_definitions(-DHAVE_LOG)
-endif ()
+option(HAVE_LOG "If enable log" ON)
+#if (HAVE_LOG)
+#    add_definitions(-DHAVE_LOG)
+#endif ()
 
-option(GRAPHICS_DEBUG "If enable graphics debug" OFF)
-if (GRAPHICS_DEBUG)
-    add_definitions(-DGRAPHICS_DEBUG)
-endif ()
+option(GRAPHICS_DEBUG "If enable graphics debug" ON)
+#if (GRAPHICS_DEBUG)
+#    add_definitions(-DGRAPHICS_DEBUG)
+#endif ()
 
 option(MEM_CHECK "If compile for memory check only" OFF)
 if (MEM_CHECK)
