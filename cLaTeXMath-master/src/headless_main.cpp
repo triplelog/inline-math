@@ -1,7 +1,7 @@
 #include "config.h"
 
 #include "latex.h"
-
+#include <string>
 
 using namespace tex;
 
