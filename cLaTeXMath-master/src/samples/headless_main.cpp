@@ -4,7 +4,7 @@
 
 #include "latex.h"
 #include "platform/cairo/graphic_cairo.h"
-
+#include "samples.h"
 
 
 using namespace tex;
@@ -107,6 +107,7 @@ int runHeadless(const vector<string>& opts) {
 
   return h.run();
 }
+
 
 
 int runHelp() {
