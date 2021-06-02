@@ -1,7 +1,6 @@
 #include "config.h"
 
 #include "latex.h"
-#include "samples.h"
 
 
 using namespace tex;
