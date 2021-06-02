@@ -2,6 +2,7 @@
 
 #include "latex.h"
 #include <string>
+#include <vector>
 
 using namespace tex;
 
@@ -30,15 +31,6 @@ public:
   }
 
   int runBatch() const {
-    if (_outputDir.empty()) {
-      __print(ANSI_COLOR_RED "Error: the option '-outputdir' must be specified\n" ANSI_RESET);
-      return 1;
-    }
-    Samples samples(_samplesFile);
-    if (samples.count() == 0) return 1;
-    for (int i = 0; i < samples.count(); i++) {
-      generateSingle(samples.next(), _outputDir + "/" + _prefix + tostring(i) + ".svg");
-    }
     return 0;
   }
 
@@ -63,7 +55,7 @@ public:
 
 #include "atom/atom_basic.h"
 
-int runHeadless(const vector<std::string>& opts) {
+int runHeadless(const std::vector<std::string>& opts) {
   Headless h;
   for (const auto& x : opts) {
     if (startswith(x, "-outputdir")) {
@@ -152,7 +144,7 @@ int runHelp() {
 }
 
 int main(int argc, char* argv[]) {
-  vector<std::string> opts;
+  std::vector<std::string> opts;
   opts.reserve(argc);
   for (int i = 0; i < argc; i++) opts.emplace_back(argv[i]);
 
