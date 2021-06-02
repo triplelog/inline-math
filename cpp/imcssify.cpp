@@ -191,7 +191,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 		case -67:
 			//s += "\\sqrt{"+child+"}";
-			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>"+child+"<div class=\"number\">2\n</div>\n</div>";
+			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>"+child+"\n</div>";
 			break;
 		case -84: {
 			if (ii > 0){
@@ -276,55 +276,68 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '!': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child+"\\neq ";
+				//s += child+"\\neq ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&ne;\n</div>";
+
 			}
 			break;
 		}
 		case '[': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child + "\\leq ";
+				//s += child + "\\leq ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&lte;\n</div>";
 			}
 			break;
 		}
 		case ']': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child + "\\geq ";
+				//s += child + "\\geq ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&gte;\n</div>";
 			}
 			break;
 		}
 		case '<': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child+"< ";
+				//s += child+"< ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&lt;\n</div>";
 			}
 			break;
 		}
 		case '>': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child+"> ";
+				//s += child+"> ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">&gt;\n</div>";
 			}
 			break;
 		}
 		case '=': {
 			if (ii > 0){
-				s += child;
+				//s += child;
+				s += child+"\n</div>";
 			}
 			else {
-				s += child+"= ";
+				//s += child+"= ";
+				s += "<div class=\"comparison\">"+child+"<div class=\"number\">=\n</div>";
 			}
 			break;
 		}
@@ -355,10 +368,12 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '-': {
 			if (prec['-'] >= prec[lastOp]){
-				s += "-("+child+")";
+				//s += "-("+child+")";
+				s += "-<div class=\"parentheses\">"+child+"\n</div>";
 			}
 			else {
-				s += "-"+child;
+				//s += "-"+child;
+				s += "<div class=\"number\">-"+child+"\n</div>";
 			}
 			break;
 		}
@@ -385,10 +400,12 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				if (prec['%'] > prec[lastOp]){
-					s += "("+child+")";
+					//s += "("+child+")";
+					s += "<div class=\"parentheses\">"+child+"\n</div>";
 				}
 				else {
-					s += child;
+					//s += child;
+					s += "<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
@@ -417,10 +434,12 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				}
 				else {
 					if (lastOp == '-'){
-						s += child;
+						//s += child;
+						s += "<div class=\"number\">"+child+"\n</div>";
 					}
 					else {
-						s += "("+child+")";
+						//s += "("+child+")";
+						s += "<div class=\"parentheses\">"+child+"\n</div>";
 					}
 				}
 			}
@@ -457,7 +476,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					
 					}
 					else if (c == '+'){
-						s += child;
+						//s += child;
+						s += "<div class=\"number\">"+child+"\n</div>";
 					}
 					else if (c == '&'){
 						s += "\\text{ AND }("+child+")";
@@ -471,13 +491,16 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				}
 				else {
 					if (c == '*'){
-						s += child;
+						//s += child;
+						s += "<div class=\"number\">"+child+"\n</div>";
 					}
 					else if (c == '+'){
-						s += child;
+						//s += child;
+						s += "<div class=\"number\">"+child+"\n</div>";
 					}
 					else {
-						s += "("+child+")";
+						//s += "("+child+")";
+						s += "<div class=\"parentheses\">"+child+"\n</div>";
 					}
 				}
 			}
@@ -495,7 +518,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							}
 							else{
 								//digit followed by not a digit
-								s += child;
+								//s += child;
+								s += "<div class=\"number\">"+child+"\n</div>";
 							}
 						}
 						else {
@@ -513,9 +537,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 				}
 				else {
-					s += child;
-					s += "<div class=\"number\">";
-					s += child+"\n</div>";
+					//s += child;
+					s += "<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 		}

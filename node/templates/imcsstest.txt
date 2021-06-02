@@ -6,6 +6,8 @@ Intro
 
 Render $x^3$ and $sqrt(x)$ and more. Render $abs(x^2)$. Render $7$.
 
+Render $7+4=11$ and $7-3<11$. And $x^2+5=2-1=abs(7)$.
+
 
 
 
