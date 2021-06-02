@@ -9,11 +9,11 @@ using namespace tex;
 class Headless {
 public:
   std::string _outputDir;
-  string _samplesFile;
-  string _prefix;
+  std::string _samplesFile;
+  std::string _prefix;
 
-  string _input;
-  string _outputFile;
+  std::string _input;
+  std::string _outputFile;
 
   float _textSize = 20.f;
   color _foreground = BLACK;
@@ -21,7 +21,7 @@ public:
   float _padding = 10.f;
   float _maxWidth = 720.f;
 
-  void generateSingle(const wstring& code, const string& file) const {
+  void generateSingle(const wstring& code, const std::string& file) const {
     auto r = LaTeX::parse(code, _maxWidth, _textSize, _textSize / 3.f, _foreground);
     const float w = r->getWidth() + _padding * 2;
     const float h = r->getHeight() + _padding * 2;
@@ -63,7 +63,7 @@ public:
 
 #include "atom/atom_basic.h"
 
-int runHeadless(const vector<string>& opts) {
+int runHeadless(const vector<std::string>& opts) {
   Headless h;
   for (const auto& x : opts) {
     if (startswith(x, "-outputdir")) {
@@ -152,17 +152,17 @@ int runHelp() {
 }
 
 int main(int argc, char* argv[]) {
-  vector<string> opts;
+  vector<std::string> opts;
   opts.reserve(argc);
   for (int i = 0; i < argc; i++) opts.emplace_back(argv[i]);
 
-  if (indexOf(opts, string("-h")) >= 0) return runHelp();
+  if (indexOf(opts, std::string("-h")) >= 0) return runHelp();
 
 
   LaTeX::init();
 
   int result = 0;
-  if (indexOf(opts, string("-headless")) >= 0) {
+  if (indexOf(opts, std::string("-headless")) >= 0) {
     result = runHeadless(opts);
   } else {
     result = runHeadless(opts);
