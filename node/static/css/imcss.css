@@ -45,7 +45,8 @@
 }
 
 .imcss .fraction > div:nth-child(1){
-	
+	display: block;
+	border-bottom: 2px solid black;
 }
 .imcss .fraction > hr{
 	margin-top: 2px;
