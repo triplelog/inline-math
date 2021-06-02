@@ -225,7 +225,50 @@ void OneRule(char* aa) {
 
 
 
+void ImcssIt(char* aa) {
+	auto a1 = std::chrono::high_resolution_clock::now();
+	auto nanos = a1.time_since_epoch();
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
+	std::string a = std::string(aa);
+	char varName = ' ';
+	if (a.length()>4 && a.at(0) == '|' && a.at(2) == ':' && a.at(3) == '='){
+		
+		varName = a.at(1);
+		char* out = new char[1];
+		out[0] = varName;
+		out[1] = '\0';
+		a = a.substr(4,a.length()-4);
+	}
+	
+	std::string postfixed = prepareIt(a);
+	if (postfixed.substr(0,5) == "error"){
+		std::string latexed = latexOne(postfixed.substr(5));
+		latexed += "\0";
+		output_latex(latexed.c_str());
+		output_inputted(codify(postfixed.substr(5)).c_str());
+		postfixed = "\0";
+		latexed = "\0";
+		return;
+	}
+	//string_log(postfixed.c_str());
+	if (varName >= 'A' && varName <= 'Z'){
+		currentV[varName]=removeBORP(postfixed);
+	}
+	
+	
+	std::string imcssed = imcssOne(postfixed);
+	
+	//noIdentities = "\0";
+	imcssed += "\0";
+	output_imcss(imcssed.c_str());
+	output_inputted(codify(postfixed).c_str());
+	postfixed = "\0";
+	imcssed = "\0";
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
+	console_log(duration);
+}
 
 
 
