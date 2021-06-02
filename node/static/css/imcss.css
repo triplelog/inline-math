@@ -101,8 +101,7 @@
 	grid-column-gap: 4px;
     margin-left: 20px;
     margin-right: 0;
-    padding-left: 2px;
-    padding-right: 4px;
+    padding-left: 4px;
     position: relative;
     width: auto;
     margin-top:10px;
@@ -118,11 +117,12 @@
 
 .imcss .integral > div:nth-child(2){
 	grid-row: 2;
+	padding-left: 8px;
 }
 .imcss .integral > div:nth-child(3){
 	grid-row: 3;
 	position: relative;
-	left: -8px;
+	left: -6px;
 	font-size: 70%;
 }
 .imcss .integral > div:nth-child(4){
