@@ -640,7 +640,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	std::map<std::string,char> lastOpMap;
 	
 	std::map<int,std::string> operandMap;
-	std::string lastInput = "<div class=\"imcss\">";
+	std::string lastInput = "";
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			break;
@@ -778,7 +778,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		}
 		
 	}
-	lastInput += "\n</div>";
+	lastInput ="<div class=\"imcss\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 

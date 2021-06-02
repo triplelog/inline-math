@@ -221,11 +221,12 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			else {
 				inputted = "";
 				ljs(input);
-				ijs(input);
+				/*ijs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
-				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');
+				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
+				k = ijs(input);
 			}
 			
 		}
