@@ -76,7 +76,7 @@
 	content: "lim";
 	display: inline-block;
 	text-align: center;
-	top: calc(50% + 5px);
+	bottom: calc(-100% + 1rem);
 	position: relative;
 }
 
