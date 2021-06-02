@@ -59,6 +59,7 @@
 .imcss .limit {
 	display: inline-grid;
 	grid-template-rows: 1fr 1fr;
+	grid-column-gap: 4px;
 }
 .imcss .limit > div:nth-child(1) {
 	min-height: 2.5rem;
@@ -75,6 +76,8 @@
 	content: "lim";
 	display: inline-block;
 	text-align: center;
+	top: calc(50% + 5px);
+	position: relative;
 }
 
 .imcss .parentheses > svg:nth-child(1){
