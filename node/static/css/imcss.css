@@ -156,12 +156,13 @@
 
 .imcss .matrix{
 	display: inline-grid;
+	padding: 0.25rem;
 	border: 0px solid black;
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 	border-image-slice: 1;
 	border-width: 2px;
-	border-image-source: linear-gradient(to right, black 10px, rgba(0,0,0,0) 10px, rgba(0,0,0,0) calc(100% - 10px), black calc(100% - 10px));
+	border-image-source: linear-gradient(to right, black 0.5rem, rgba(0,0,0,0) 0.5rem, rgba(0,0,0,0) calc(100% - 0.5rem), black calc(100% - 0.5rem));
 }
 
 .imcss .matrix.cols3 {
