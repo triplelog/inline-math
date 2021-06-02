@@ -46,12 +46,13 @@
 
 .imcss .fraction > div{
 	display: block;
+	text-align: center;
 }
 .imcss .fraction > div:nth-child(1){
-	border-bottom: 2px solid black;
+	border-bottom: 1px solid black;
 }
-.imcss .fraction > div:nth-child(1){
-	border-top: 2px solid black;
+.imcss .fraction > div:nth-child(2){
+	border-top: 1px solid black;
 }
 
 
