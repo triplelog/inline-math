@@ -226,7 +226,10 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
-				k = ijs(input);
+				
+				ijs(input);
+				k = imcss;
+				imcss = "";
 			}
 			
 		}
