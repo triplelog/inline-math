@@ -30,7 +30,7 @@
 }
 
 .imcss .root::before {
-    content:url('https://fvsch.com/articles/css-content-image/star1.svg');
+    content:url();
     border: 1px solid black;
     height: 100%;
     width: auto;
