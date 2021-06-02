@@ -104,13 +104,13 @@
     position: relative;
     width: auto;
     margin-top:10px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .imcss .integral > svg {
     position:absolute;
-    top:-2px;
+    top:0px;
     right: 100%;
     height: 100%;
     width: auto;
