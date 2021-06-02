@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "utils/enums.h"
-#include "box/box.h"
 #include "graphic/graphic.h"
 
 namespace tex {
