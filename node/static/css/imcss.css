@@ -31,7 +31,7 @@
 .imcss .root::before {
 	content: '\221A';
     float: left;
-    font-size: 2.5em;
+    font-size: 1em;
     margin-top: -4px;
     margin-left:-25px;
 }
