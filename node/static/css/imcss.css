@@ -154,4 +154,10 @@
 	margin: auto;
 }
 
+.imcss .matrix.cols3 {
+	display: inline-grid;
+	grid-template-columns: auto auto auto;
+	grid-gap: 2px;
+}
+
 
