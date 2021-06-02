@@ -212,7 +212,7 @@ elseif (UNIX)
     target_link_libraries(LaTeX PRIVATE
             PkgConfig::CairoMM #include <cairomm/context.h>
             Fontconfig::Fontconfig
-            PangoMM::PangoMM
+            PkgConfig::PangoMM::PangoMM
             )
     add_executable(LaTeXSample
             src/samples/headless_main.cpp
