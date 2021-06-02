@@ -29,12 +29,17 @@
     border-top:2px black solid;
 }
 
-
 .imcss .root > svg {
     position:absolute;
-    top:-10px;
-    left:-17px;
-    height: calc(100% + 10px);
+    top:-2px;
+    right: 100%;
+    height: 100%;
     width: auto;
+}
+
+.imcss .root > div:nth-child(2){
+	position:absolute;
+    bottom:20%;
+    left:-17px;
 }
 
