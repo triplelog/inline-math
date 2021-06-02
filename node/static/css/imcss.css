@@ -1,5 +1,7 @@
 .imcss {
-	
+	position: relative;
+	left: 50px;
+	top: 50px;
 }
 .imcss div {
 	display: inline-block;
