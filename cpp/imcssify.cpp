@@ -2,15 +2,19 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 	switch (c){
 		case '^': {
 			if (ii > 0){
-				s += "^{";
-				s += child+"}";
+				//s += "^{";
+				//s += child+"}";
+				s += "<div class=\"number\">";
+				s += child+"\\n</div>";
 			}
 			else {
 				if (prec[lastOp] < 100){
-					s += "("+child+")";
+					//s += "("+child+")";
+					s += "<div class=\"power\"><div class=\"parentheses\">"+child+"\\n</div>\\n</div>";
 				}
 				else {
-					s += child;
+					//s += child;
+					s += "<div class=\"power\"><div class=\"number\">"+child+"\\n</div>\\n</div>";
 				}
 			}
 			break;
