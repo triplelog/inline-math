@@ -1,7 +1,5 @@
 #include "config.h"
 
-#if defined(BUILD_GTK) && !defined(MEM_CHECK)
-
 #include "latex.h"
 #include "platform/cairo/graphic_cairo.h"
 #include "samples.h"
@@ -183,4 +181,3 @@ int main(int argc, char* argv[]) {
   return result;
 }
 
-#endif
