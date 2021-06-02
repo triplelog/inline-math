@@ -5,6 +5,7 @@
 }
 .imcss div {
 	display: inline-block;
+	position: relative;
 }
 
 
@@ -61,12 +62,14 @@
 .imcss .limit > div:nth-child(2){
 	position:absolute;
     bottom:0%;
-    right: 100%;
-    font-size: smaller;
+    width: fit-content;
+    right: calc(100% - 1.5rem);
+    font-size: 70%;
 }
 .imcss .limit::before{
 	content: "lim";
 	bottom:1rem;
+	width: 1.5rem;
 }
 
 
