@@ -39,8 +39,12 @@
 
 .imcss .root > div:nth-child(3){
 	position:absolute;
-    bottom:40%;
-    left:-12px;
+    bottom:45%;
+    left:-10px;
     font-size: smaller;
+}
+
+.imcss .fraction > div:nth-child(1){
+	
 }
 
