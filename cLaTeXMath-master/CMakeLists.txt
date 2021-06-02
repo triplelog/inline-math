@@ -199,7 +199,7 @@ elseif (UNIX)
     target_link_libraries(LaTeX PRIVATE
             )
     add_executable(LaTeXGtkSample
-            src/samples/headless_main.cpp
+            src/headless_main.cpp
             )
     target_link_libraries(LaTeXGtkSample PRIVATE
             LaTeX
