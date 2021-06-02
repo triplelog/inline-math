@@ -154,8 +154,17 @@
 	margin: auto;
 }
 
-.imcss .matrix.cols3 {
+.imcss .matrix{
 	display: inline-grid;
+	border: 0px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-image-slice: 1;
+	border-width: 2px;
+	border-image-source: linear-gradient(to right, black 10px, rgba(0,0,0,0) 10px, rgba(0,0,0,0) calc(100% - 10px), black calc(100% - 10px));
+}
+
+.imcss .matrix.cols3 {
 	grid-template-columns: auto auto auto;
 	grid-gap: 2px;
 }
