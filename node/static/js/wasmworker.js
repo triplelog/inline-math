@@ -6,6 +6,7 @@ importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
 var lcpp = Module.cwrap("LatexIt","string",["string"]);
+var icpp = Module.cwrap("ImcssIt","string",["string"]);
 var pcpp = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var tcpp = Module.cwrap("TreeIt","string",["string"]);
 
@@ -24,6 +25,12 @@ function tjs(input){
 var latex = "";
 function addLatex(x) {
 	latex += x;
+}
+
+var imcss = "";
+function addImcss(x) {
+	imcss += x;
+	console.log(x);
 }
 
 var inputted = "";

@@ -45,6 +45,10 @@ EM_JS(void, output_latex, (const char* x), {
   addLatex(UTF8ToString(x));
 });
 
+EM_JS(void, output_imcss, (const char* x), {
+  addImcss(UTF8ToString(x));
+});
+
 EM_JS(void, output_inputted, (const char* x), {
   addInputted(UTF8ToString(x));
 });
