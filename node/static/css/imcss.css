@@ -29,6 +29,13 @@
     border-top:2px black solid;
 }
 
+.imcss .root::before {
+    content:url('https://fvsch.com/articles/css-content-image/star1.svg');
+    border: 1px solid black;
+    height: 100%;
+    width: auto;
+}
+
 .imcss .root > div:nth-child(2) {
     position:absolute;
     top:6px;
