@@ -86,30 +86,10 @@ sptr<Box> CumulativeScriptsAtom::createBox(Environment& env) {
 }
 
 sptr<Box> TextRenderingAtom::createBox(Environment& env) {
-  if (_infos == nullptr) {
+
     return sptrOf<TextRenderingBox>(
       _str, _type, DefaultTeXFont::getSizeFactor(env.getStyle()));
-  }
-  auto* tf = (DefaultTeXFont*) (env.getTeXFont().get());
-  int type = tf->_isIt ? ITALIC : PLAIN;
-  type = type | (tf->_isBold ? BOLD : 0);
-  bool kerning = tf->_isRoman;
-  sptr<Font> font;
-  const FontInfos& infos = *_infos;
-  if (tf->_isSs) {
-    if (infos._sansserif.empty()) {
-      font = Font::_create(infos._serif, PLAIN, 10);
-    } else {
-      font = Font::_create(infos._sansserif, PLAIN, 10);
-    }
-  } else {
-    if (infos._serif.empty()) {
-      font = Font::_create(infos._sansserif, PLAIN, 10);
-    } else {
-      font = Font::_create(infos._serif, PLAIN, 10);
-    }
-  }
-  return sptrOf<TextRenderingBox>(_str, type, DefaultTeXFont::getSizeFactor(env.getStyle()), font, kerning);
+
 }
 
 SpaceAtom UnderScoreAtom::_w(UnitType::em, 0.7f, 0.f, 0.f);
