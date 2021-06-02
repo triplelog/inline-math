@@ -234,6 +234,16 @@ app.get(['/solve','/solve.html'],
 	}
 );
 
+app.get(['/mathtest','/mathtest.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/mathtest.html',{
+
+		}));
+		res.end();
+	}
+);
 
 app.get(['/','/index','/index.html'],
 	function(req, res){
