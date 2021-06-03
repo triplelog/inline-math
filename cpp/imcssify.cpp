@@ -489,7 +489,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						//s = numer
 						s = "<div class=\"fraction\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
 						s += denom;
-						s += "\n<\div>\n</div><div class=\"fractionDone\"></div>";
+						s += "\n</div>\n</div><div class=\"fractionDone\"></div>";
 					
 					}
 					else if (c == '+'){
