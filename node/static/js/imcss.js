@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'tline':lineHeight/2,'margin':false,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
+		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'tline':lineHeight/2,'margin':false,'noflow':false,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -15,8 +15,12 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('root')){
 			info.type = 'root';
 		}
-		else if (divs[i].classList.contains('noflow')){
-			info.type = 'noflow';
+		else {
+			info.type = 'center';
+		}
+		
+		if (divs[i].classList.contains('noflow')){
+			info.noflow = true;
 		}
 		if (divs[i].classList.contains('margin')){
 			info.margin = true;
@@ -54,6 +58,14 @@ function fixBaseline(){
 					again = true;
 					noChildren = false;
 					break;
+				}
+				else if (divInfo[divInfo[i].children[ii]].type == "noflow"){
+					
+					
+					var tl = divInfo[divInfo[i].children[ii]].tline + 100;
+					if (tl > tline){
+						tline = tl;
+					}
 				}
 				else {
 					var ml = divInfo[divInfo[i].children[ii]].midline;
