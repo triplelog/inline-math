@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
+		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'tline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -49,6 +49,7 @@ function fixBaseline(){
 			var noChildren = true;
 			var midline = lineHeight/2;
 			var cline = lineHeight/2;
+			var tline = lineHeight/2;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
@@ -64,6 +65,10 @@ function fixBaseline(){
 					if (cl > cline){
 						cline = cl;
 					}
+					var tl = divInfo[divInfo[i].children[ii]].tline;
+					if (tl > tline){
+						tline = tl;
+					}
 				}
 				
 			}
@@ -75,14 +80,7 @@ function fixBaseline(){
 					divInfo[i].type == 'center';
 				}
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
-				/*if (divs[i].classList.contains('root')){
-					var svg = divs[i].querySelector(':scope > svg');
-					//svg.style.height = "calc(100% - "+mpb+"px)";
-					//divs[i].style.marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
-					//console.log(divs[i].getBoundingClientRect().height,mpb);
-					divs[i].style.marginLeft = 10+"px";
-					console.log(divs[i]);
-				}*/
+				
 				if (divInfo[i].type == 'power'){
 				
 					if (divInfo[i].height > midline*2){
@@ -90,18 +88,21 @@ function fixBaseline(){
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
 						divInfo[i].cline = midline;
+						divInfo[i].tline = midline;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
+						divInfo[i].tline = divInfo[i].height - midline;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
+						divInfo[i].tline = midline;
 					}
 				}
 				else if (divInfo[i].type == 'fraction'){
@@ -112,41 +113,50 @@ function fixBaseline(){
 					
 					divs[numerator].style.marginBottom = (divInfo[numerator].cline-divInfo[numerator].midline)+"px";
 					nHeight += divInfo[numerator].cline-divInfo[numerator].midline;
+					divs[denominator].style.marginTop = (divInfo[denominator].tline-(dHeight -divInfo[denominator].midline))+"px";
+					dHeight += divInfo[denominator].tline-(dHeight -divInfo[denominator].midline);
 					if (dHeight < nHeight){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = dHeight;
 						divInfo[i].cline = 2*dHeight - nHeight;
+						divInfo[i].tline = 2*nHeight - dHeight;
 					}
 					else if (dHeight > nHeight){
 						divInfo[i].paddingTop = dHeight - nHeight;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
 						divInfo[i].cline = dHeight;
+						divInfo[i].tline = nHeight;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
 						divInfo[i].cline = dHeight;
+						divInfo[i].tline = dHeight;
 					}
 				}
 				else if (divInfo[i].type == 'root'){
 					var inside = divInfo[i].children[0];
 					var height = divs[inside].getBoundingClientRect().height;
+					divs[i].style.marginLeft = (height*0.5+2)+"px";
 					
 					divs[inside].style.marginBottom = (divInfo[inside].cline-divInfo[inside].midline)+"px";
 					divInfo[i].midline = midline;
 					divInfo[i].cline = cline;
+					divInfo[i].tline = tline;
 				}
 				else if (divInfo[i].type == 'center'){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
 					divInfo[i].midline = divInfo[i].height/2;
 					divInfo[i].cline = cline;
+					divInfo[i].tline = tline;
 				}
 				else {
 					divInfo[i].midline = midline;
 					divInfo[i].cline = cline;
+					divInfo[i].tline = tline;
 				}
 				
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
