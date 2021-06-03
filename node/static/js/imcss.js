@@ -63,10 +63,10 @@ function fixBaseline(){
 				else if (divInfo[divInfo[i].children[ii]].noflow){
 					
 					
-					var tl = divInfo[divInfo[i].children[ii]].height;
+					/*var tl = divInfo[divInfo[i].children[ii]].height;
 					if (tl > divInfo[i].tlineAdj){
 						divInfo[i].tlineAdj = tl;
-					}
+					}*/
 				}
 				else {
 					var ml = divInfo[divInfo[i].children[ii]].midline;
@@ -101,7 +101,7 @@ function fixBaseline(){
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
 						divInfo[i].cline = midline;
-						divInfo[i].tline = midline+divInfo[i].tlineAdj-6;
+						divInfo[i].tline = midline+divInfo[i].tlineAdj;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
@@ -109,8 +109,8 @@ function fixBaseline(){
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
 						divInfo[i].tline = divInfo[i].height - midline;
-						if (divInfo[i].tlineAdj-6 > divInfo[i].paddingTop){
-							divInfo[i].tline += divInfo[i].tlineAdj-6 - divInfo[i].paddingTop;
+						if (divInfo[i].tlineAdj > divInfo[i].paddingTop){
+							divInfo[i].tline += divInfo[i].tlineAdj - divInfo[i].paddingTop;
 						}
 					}
 					else {
@@ -118,7 +118,7 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
-						divInfo[i].tline = midline+divInfo[i].tlineAdj-6;
+						divInfo[i].tline = midline+divInfo[i].tlineAdj;
 					}
 				}
 				else if (divInfo[i].type == 'fraction'){
