@@ -72,6 +72,7 @@ var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}'
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
 	latex = "";
+	imcss = "";
 	dependentfunctions = [];
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
@@ -128,6 +129,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 	if (foundMatch && !forceNew){
 		inputted = latexedInputs[type+input].inputted;
 		latex = latexedInputs[type+input].latex;
+		imcss = latexedInputs[type+input].imcss;
 		k = latexedInputs[type+input].output;
 	}
 	else{
@@ -166,11 +168,12 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			//}
 			else {
 				inputted = "";
-				/*ljs("|"+varName+":="+input);
-				katexOptions.displayMode = isDisplay;
+				ljs("|"+varName+":="+input);
+				/*katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
+				inputted = "";
 				ijs("|"+varName+":="+input);
 				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
@@ -209,9 +212,11 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			else if (isTreePlot == 'plot'){
 				inputted = "";
 				latex = "";
+				imcss = "";
 				pjs(input,inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
 				if (svg == "???"){
 					latex = "";
+					imcss = "";
 					inputted = "";
 					k = "";
 				}
@@ -228,12 +233,13 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				
+				inputted = "";
 				ijs(input);
 				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
-		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,inputted:inputted,display:isDisplay,options:{}};
+		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,imcss:imcss,inputted:inputted,display:isDisplay,options:{}};
 		for (var i=0;i<dependents.length;i++){
 			latexedInputs[type+input].dependents[dependents[i]] = currentV[dependents[i]];
 		}
