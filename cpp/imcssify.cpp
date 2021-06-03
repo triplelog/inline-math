@@ -776,7 +776,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				fullStr = firstStr[0] + fullStr;
 			}
 			
-			std::string s = "";
+			std::string s = "<div data-id=\""+fullStr+"\">";
 			for (ii=0;ii<3;ii++){
 				std::string child = secondChild;
 				if (ii > firstChild.size()){
@@ -793,7 +793,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				}
 				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child]);
 			}
-			
+			s += "\n</div>";
 			if (i == startNode){
 				s = "\\boxed{"+s+"}";
 			}
