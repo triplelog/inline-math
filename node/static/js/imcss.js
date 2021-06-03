@@ -34,7 +34,7 @@ function fixBaseline(){
 				if (divInfo[i].height > lineHeight){
 					divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
 					divInfo[i].paddingTop = 0;
-					divInfo[i].midline = divInfo[i].height/2;
+					divInfo[i].midline = divInfo[i].height - lineHeight/2;
 				}
 				else if (divInfo[i].height < lineHeight){
 					divInfo[i].paddingTop = lineHeight - divInfo[i].height;
@@ -87,7 +87,7 @@ function fixBaseline(){
 					if (divInfo[i].height > midline*2){
 						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
 						divInfo[i].paddingTop = 0;
-						divInfo[i].midline = divInfo[i].height/2;
+						divInfo[i].midline = divInfo[i].height - midline;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
