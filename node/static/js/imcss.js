@@ -29,7 +29,7 @@ function fixBaseline(){
 	for (var i=0;i<divs.length;i++){
 		var children = divs[i].querySelectorAll(":scope > div");
 		if (children.length == 0){
-			if (divInfo[i].type == 'base'){
+			if (divInfo[i].type == 'base' || divInfo[i].type == 'fraction'){
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].height > lineHeight){
 					divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
@@ -106,12 +106,14 @@ function fixBaseline(){
 				}
 				
 				
-				
+				if (divInfo[i].type == 'fraction' && divInfo[i].children.length != 2){
+					divInfo[i].type == 'center';
+				}
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divs[i].classList.contains('root')){
 					var svg = divs[i].querySelector(':scope > svg');
 					svg.style.height = "calc(100% - "+mpb+"px)";
-					divs[i].marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
+					divs[i].style.marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
 				}
 				if (divInfo[i].type == 'base'){
 				
@@ -131,6 +133,29 @@ function fixBaseline(){
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
+					}
+				}
+				else if (divInfo[i].type == 'fraction'){
+					var numerator = divInfo[i].children[ii][0];
+					var denominator = divInfo[i].children[ii][1];
+					var nHeight = divs[numerator].getBoundingClientRect().height;
+					var dHeight = divs[denominator].getBoundingClientRect().height;
+					if (dheight < nHeight){
+						divInfo[i].paddingBottom = nHeight - dheight;
+						divInfo[i].paddingTop = 0;
+						divInfo[i].midline = dheight;
+						mpb += divInfo[i].height - midline*2;
+					}
+					else if (dheight > nHeight){
+						divInfo[i].paddingTop = dHeight - nheight;
+						divInfo[i].paddingBottom = 0;
+						divInfo[i].midline = dHeight;
+						mpt += midline*2 - divInfo[i].height;
+					}
+					else {
+						divInfo[i].paddingTop = 0;
+						divInfo[i].paddingBottom = 0;
+						divInfo[i].midline = dHeight;
 					}
 				}
 				else if (divInfo[i].type == 'center'){

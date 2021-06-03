@@ -478,7 +478,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							
 							if (openBracket == 0){
 								//s = child.replace(6,iii-6,s);
-								std::string denom = child.substr(6,iii-6);
+								denom = child.substr(6,iii-6);
 								break;
 							}
 						}
