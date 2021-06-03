@@ -184,6 +184,7 @@ function fixBaseline(){
 					if (divInfo[i].height -divInfo[i].midline < tlineAdj + divInfo[i].tline){
 						mTop = 0;
 					}
+					console.log(i,mTop,divInfo[i].height,divInfo[i].midline,tlineAdj,divInfo[i].tline)
 					divs[i].style.marginTop = mTop+"px";
 					divs[i].style.marginBottom = (divInfo[i].cline-divInfo[i].midline)+"px";
 					divInfo[i].height += mTop;
