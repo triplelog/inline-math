@@ -191,7 +191,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 		case -67:
 			//s += "\\sqrt{"+child+"}";
-			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>"+child+"\n</div>";
+			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number\">"+child+"\n</div>\n</div>";
 			break;
 		case -84: {
 			if (ii > 0){

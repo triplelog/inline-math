@@ -5,9 +5,12 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':-1,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
+		var info = {'midline':lineHeight/2,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
+		}
+		else if (divs[i].classList.contains('power')){
+			info.type = 'power';
 		}
 		/*else if (divs[i].classList.contains('root')){
 			info.type = 'center';
@@ -15,7 +18,7 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('noflow')){
 			info.type = 'noflow';
 		}
-		if (info.type == 'base'){
+		if (info.type == 'power' || info.type == "fraction"){
 			divs[i].style.paddingTop = "0px";
 			divs[i].style.paddingBottom = "0px";
 		}
@@ -28,42 +31,13 @@ function fixBaseline(){
 
 	for (var i=0;i<divs.length;i++){
 		var children = divs[i].querySelectorAll(":scope > div");
-		if (children.length == 0){
-			if (divInfo[i].type == 'base' || divInfo[i].type == 'fraction'){
-				divInfo[i].height = divs[i].getBoundingClientRect().height;
-				if (divInfo[i].height > lineHeight){
-					divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
-					divInfo[i].paddingTop = 0;
-					divInfo[i].midline = divInfo[i].height - lineHeight/2;
-					divInfo[i].mpb = divInfo[i].height - lineHeight;
-				}
-				else if (divInfo[i].height < lineHeight){
-					divInfo[i].paddingTop = lineHeight - divInfo[i].height;
-					divInfo[i].paddingBottom = 0;
-					divInfo[i].midline = lineHeight/2;
-					divInfo[i].mpt = lineHeight - divInfo[i].height;
-				}
-				else {
-					divInfo[i].paddingTop = 0;
-					divInfo[i].paddingBottom = 0;
-					divInfo[i].midline = lineHeight/2;
-				}
-			}
-			else if (divInfo[i].type == 'center'){
-				divInfo[i].height = divs[i].getBoundingClientRect().height;
-				divInfo[i].midline = divInfo[i].height/2;
-			}
-			divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
-			divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
-			delete divRun[i];
-		}
-		else {
-			for (var ii=0;ii<children.length;ii++){
-				if (divInfo[i].type != "noflow"){
-					divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
-				}
+		
+		for (var ii=0;ii<children.length;ii++){
+			if (divInfo[i].type != "noflow"){
+				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
 			}
 		}
+		
 	}
 	
 	for (var idx=0;idx<divs.length;idx++){
@@ -88,7 +62,6 @@ function fixBaseline(){
 				
 			}
 			if (noChildren){
-				console.log(i,midline);
 				for (var ii=0;ii<divInfo[i].children.length;ii++){
 					
 					var bl = midline - divs[divInfo[i].children[ii]].getBoundingClientRect().height/2;
@@ -117,7 +90,7 @@ function fixBaseline(){
 					divs[i].style.marginLeft = 10+"px";
 					console.log(divs[i]);
 				}
-				if (divInfo[i].type == 'base'){
+				if (divInfo[i].type == 'power'){
 				
 					if (divInfo[i].height > midline*2){
 						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
