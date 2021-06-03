@@ -146,7 +146,7 @@ function fixBaseline(){
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
-				if (!divInfo[i].siblings){
+				if (!divInfo[i].siblings && mpb > 0){
 					divs[i].style.marginBottom = (-1*mpb)+"px";
 					divInfo[i].mpb = 0;
 				}
