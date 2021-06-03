@@ -140,14 +140,14 @@ function fixBaseline(){
 					var denominator = divInfo[i].children[1];
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
-					if (dheight < nHeight){
-						divInfo[i].paddingBottom = nHeight - dheight;
+					if (dHeight < nHeight){
+						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
-						divInfo[i].midline = dheight;
+						divInfo[i].midline = dHeight;
 						mpb += divInfo[i].height - midline*2;
 					}
-					else if (dheight > nHeight){
-						divInfo[i].paddingTop = dHeight - nheight;
+					else if (dHeight > nHeight){
+						divInfo[i].paddingTop = dHeight - nHeight;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
 						mpt += midline*2 - divInfo[i].height;
