@@ -12,6 +12,9 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('root')){
 			info.type = 'center';
 		}
+		else if (divs[i].classList.contains('noflow')){
+			info.type = 'noflow';
+		}
 		if (info.type == 'base'){
 			divs[i].style.paddingTop = "0px";
 			divs[i].style.paddingBottom = "0px";

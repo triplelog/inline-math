@@ -4,7 +4,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			if (ii > 0){
 				//s += "^{";
 				//s += child+"}";
-				s += "<div class=\"number\">";
+				s += "<div class=\"number noflow\">";
 				s += child+"\n</div>\n</div>";
 			}
 			else {
@@ -534,7 +534,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += "\\text{ OR }"+child;
 					}
 					else {
-						s += c+child;
+						//s += c+child;
+						s += "<div class=\"number\">"+c+"</div>"+ "<div class=\"number\">"+child+"\n</div>";
 					}
 				}
 				else {
