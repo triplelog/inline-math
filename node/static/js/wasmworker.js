@@ -33,7 +33,6 @@ function addLatex(x) {
 var imcss = "";
 function addImcss(x) {
 	imcss += x;
-	console.log(x);
 }
 
 var inputted = "";
@@ -167,11 +166,13 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			//}
 			else {
 				inputted = "";
-				ljs("|"+varName+":="+input);
+				/*ljs("|"+varName+":="+input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
-				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');
+				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
+				ijs("|"+varName+":="+input);
+				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
@@ -228,8 +229,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				
 				ijs(input);
-				k ="<div class=\"imcss\">" +imcss+ "\n</div>";
-				imcss = "";
+				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
