@@ -53,6 +53,7 @@ function fixBaseline(){
 			var midline = lineHeight/2;
 			var cline = lineHeight/2;
 			var tline = lineHeight/2;
+			var tlineAdj = 0;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
@@ -63,8 +64,8 @@ function fixBaseline(){
 					
 					
 					var tl = divInfo[divInfo[i].children[ii]].tline + 100;
-					if (tl > tline){
-						tline = tl;
+					if (tl > tlineAdj){
+						tlineAdj = tl;
 					}
 				}
 				else {
@@ -175,6 +176,7 @@ function fixBaseline(){
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
+				divInfo[i].tline += tlineAdj;
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].margin){
 					divs[i].style.marginTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline))+"px";
