@@ -4,7 +4,7 @@
 Intro
 -----				
 
-Render $sqrt(x^3+1)=x^3=(x^2+1)/5=sqrt(x)=2-1$ and $sqrt(x)$ and more. Render $abs(x^2)$. Render $7$. Render $7+4=11$ and $7-3<11$. And $x^2+5=2-1=abs(7)$.
+Render $sqrt(x^3+1)=x^3=(x^2+1)/5=sqrt(x)=2-1=sqrt((x^2+1)/5)$ and $sqrt(x)$ and more. Render $abs(x^2)$. Render $7$. Render $7+4=11$ and $7-3<11$. And $x^2+5=2-1=abs(7)$.
 
 
 
