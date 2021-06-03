@@ -46,7 +46,10 @@ function fixBaseline(){
 					divInfo[i].paddingBottom = 0;
 					divInfo[i].midline = lineHeight/2;
 				}
-				divInfo[i].type = "center";
+			}
+			else if (divInfo[i].type == 'center'){
+				divInfo[i].height = divs[i].getBoundingClientRect().height;
+				divInfo[i].midline = divInfo[i].height/2;
 			}
 			divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 			divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
@@ -99,6 +102,10 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
 					}
+				}
+				else if (divInfo[i].type == 'center'){
+					divInfo[i].height = divs[i].getBoundingClientRect().height;
+					divInfo[i].midline = divInfo[i].height/2;
 				}
 				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
