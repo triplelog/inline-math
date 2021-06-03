@@ -12,14 +12,12 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('root')){
 			info.type = 'center';
 		}
+		if (divInfo[i].type == 'base'){
+			divs[i].style.paddingTop = "0px";
+			divs[i].style.paddingBottom = "0px";
+		}
 		
-		if (divs[i].style.paddingTop){
-			info.paddingTop = divs[i].style.paddingTop;
-		}
-		if (divs[i].style.paddingBottom){
-			info.paddingBottom = divs[i].style.paddingBottom;
-		}
-		info.height = divs[i].getBoundingClientRect().height - info.paddingTop - info.paddingBottom;
+		
 		divs[i].setAttribute('data-id',i);
 		divInfo.push(info);
 		divRun[i]=true;
@@ -29,7 +27,7 @@ function fixBaseline(){
 		var children = divs[i].querySelectorAll("div");
 		if (children.length == 0){
 			if (divInfo[i].type == 'base'){
-				
+				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].height > lineHeight){
 					divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
 					divInfo[i].paddingTop = 0;
@@ -71,7 +69,7 @@ function fixBaseline(){
 			}
 			if (noChildren){
 				console.log(i);
-				divInfo[i].height = divs[i].getBoundingClientRect().height - divInfo[i].paddingTop - divInfo[i].paddingBottom;
+				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].type == 'base'){
 				
 					if (divInfo[i].height > lineHeight){
