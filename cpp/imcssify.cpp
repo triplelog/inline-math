@@ -504,8 +504,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else {
 						s += "<div class=\"operation\">";
-						s += c;
-						s += "\n</div>"+"<div class=\"parentheses\">"+child+"\n</div>";
+						s += c+"\n</div>";
+						s += "<div class=\"parentheses\">"+child+"\n</div>";
 					}
 				}
 				else {
@@ -612,6 +612,7 @@ std::map<std::string,std::string> toImcss(std::vector<std::string> input){
 		for (i=0;i<input.size()/3;i++){
 			bool allChildren = true;
 			std::string s = "";
+			std::string outputStr = "";
 			for (ii=0;ii<childMap[input[i*3]].size();ii++){
 				std::string child = childMap[input[i*3]][ii]; //is name of child
 				//std::cout << "child: " << child << " imcss of child: " << imcssMap[child] << " and s: " << s << "\n";
@@ -620,7 +621,7 @@ std::map<std::string,std::string> toImcss(std::vector<std::string> input){
 					break;
 				}
 				else {
-					s = imcssLogic(lastOpMap[input[i*3]], s, ii, imcssMap[child],lastOpMap[child]);
+					s = imcssLogic(lastOpMap[input[i*3]], s, ii, imcssMap[child],lastOpMap[child], outputStr);
 					
 					
 				}
