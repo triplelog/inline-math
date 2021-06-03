@@ -118,6 +118,9 @@ function fixBaseline(){
 					var denominator = divInfo[i].children[1];
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
+					
+					divs[numerator].style.marginBottom = (divInfo[numerator].mpb*-1)+"px";
+					nHeight -= divInfo[numerator].mpb;
 					if (dHeight < nHeight){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
@@ -146,10 +149,7 @@ function fixBaseline(){
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
-				if (!divInfo[i].siblings && mpb > 0){
-					divs[i].style.marginBottom = (-1*mpb)+"px";
-					divInfo[i].mpb = 0;
-				}
+				
 				delete divRun[i];
 			}
 		}
