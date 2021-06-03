@@ -469,9 +469,9 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								break;
 							}
 						}
-						std::string numer = "1";
+						std::string numer = s;
 						std::string denom = "1";
-						/*openBracket = 1;
+						openBracket = 1;
 						int startDenom = 0;
 						for (iii=6;iii<child.length();iii++){
 							if (child.at(iii) == '}'){openBracket--;}
@@ -484,12 +484,12 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								denom = child.substr(startDenom,iii-startDenom);
 								break;
 							}
-						}*/
+						}
 						//child = \\frac{1}{denom}
 						//s = numer
 						s = "<div class=\"fraction\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
 						s += denom;
-						s += "\n</div>\n</div><div class=\"fractionDone\"></div>";
+						s += "\n</div>\n</div>";
 					
 					}
 					else if (c == '+'){
