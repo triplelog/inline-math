@@ -12,7 +12,7 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('root')){
 			info.type = 'center';
 		}
-		if (divInfo[i].type == 'base'){
+		if (info.type == 'base'){
 			divs[i].style.paddingTop = "0px";
 			divs[i].style.paddingBottom = "0px";
 		}
