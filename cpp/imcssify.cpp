@@ -535,7 +535,9 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else {
 						//s += c+child;
-						s += "<div class=\"number\">"+c+"</div>"+ "<div class=\"number\">"+child+"\n</div>";
+						s += "<div class=\"number\">";
+						s += c;
+						s += "</div><div class=\"number\">"+child+"\n</div>";
 					}
 				}
 				else {
