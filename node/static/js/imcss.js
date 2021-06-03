@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
+		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -48,6 +48,7 @@ function fixBaseline(){
 		for (var i in divRun){
 			var noChildren = true;
 			var midline = lineHeight/2;
+			var cline = lineHeight/2;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
@@ -58,6 +59,10 @@ function fixBaseline(){
 					var ml = divInfo[divInfo[i].children[ii]].midline;
 					if (ml > midline){
 						midline = ml;
+					}
+					var cl = divInfo[divInfo[i].children[ii]].cline;
+					if (cl > cline){
+						cline = cl;
 					}
 				}
 				
@@ -84,16 +89,19 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
+						divInfo[i].cline = midline;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
+						divInfo[i].cline = midline;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
+						divInfo[i].cline = midline;
 					}
 				}
 				else if (divInfo[i].type == 'fraction'){
@@ -108,24 +116,29 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = dHeight;
+						divInfo[i].cline = 2*dHeight - nHeight;
 					}
 					else if (dHeight > nHeight){
 						divInfo[i].paddingTop = dHeight - nHeight;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
+						divInfo[i].cline = dHeight;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
+						divInfo[i].cline = dHeight;
 					}
 				}
 				else if (divInfo[i].type == 'center'){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
 					divInfo[i].midline = divInfo[i].height/2;
+					divInfo[i].cline = cline;
 				}
 				else {
 					divInfo[i].midline = midline;
+					divInfo[i].cline = cline;
 				}
 				
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
