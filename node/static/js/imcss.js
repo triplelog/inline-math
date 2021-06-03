@@ -138,8 +138,8 @@ function fixBaseline(){
 					}
 				}
 				else if (divInfo[i].type == 'root'){
-					//var inside = divInfo[i].children[0];
-					//var height = divs[inside].getBoundingClientRect().height;
+					var inside = divInfo[i].children[0];
+					var height = divs[inside].getBoundingClientRect().height;
 					divs[i].style.marginLeft = (height*0.5+2)+"px";
 					
 					//divs[inside].style.marginBottom = (divInfo[inside].cline-divInfo[inside].midline)+"px";
