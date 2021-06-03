@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
+		var info = {'midline':lineHeight/2,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -35,6 +35,9 @@ function fixBaseline(){
 		for (var ii=0;ii<children.length;ii++){
 			if (divInfo[i].type != "noflow"){
 				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
+				if (children.length > 1){
+					divInfo[i].siblings = true;
+				}
 			}
 		}
 		
@@ -143,6 +146,10 @@ function fixBaseline(){
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
+				if (!divInfo[i].siblings){
+					divs[i].style.marginBottom = (-1*mpb)+"px";
+					divInfo[i].mpb = 0;
+				}
 				delete divRun[i];
 			}
 		}
