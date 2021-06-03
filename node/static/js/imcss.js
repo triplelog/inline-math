@@ -12,9 +12,9 @@ function fixBaseline(){
 		else if (divs[i].classList.contains('power')){
 			info.type = 'power';
 		}
-		/*else if (divs[i].classList.contains('root')){
-			info.type = 'center';
-		}*/
+		else if (divs[i].classList.contains('root')){
+			info.type = 'root';
+		}
 		else if (divs[i].classList.contains('noflow')){
 			info.type = 'noflow';
 		}
@@ -71,18 +71,18 @@ function fixBaseline(){
 				
 				
 				
-				if (divInfo[i].type == 'fraction' && divInfo[i].children.length != 2){
+				if (divInfo[i].type == 'fraction' && divInfo[i].children.length != 3){
 					divInfo[i].type == 'center';
 				}
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
-				if (divs[i].classList.contains('root')){
+				/*if (divs[i].classList.contains('root')){
 					var svg = divs[i].querySelector(':scope > svg');
 					//svg.style.height = "calc(100% - "+mpb+"px)";
 					//divs[i].style.marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
 					//console.log(divs[i].getBoundingClientRect().height,mpb);
 					divs[i].style.marginLeft = 10+"px";
 					console.log(divs[i]);
-				}
+				}*/
 				if (divInfo[i].type == 'power'){
 				
 					if (divInfo[i].height > midline*2){
@@ -106,7 +106,7 @@ function fixBaseline(){
 				}
 				else if (divInfo[i].type == 'fraction'){
 					var numerator = divInfo[i].children[0];
-					var denominator = divInfo[i].children[1];
+					var denominator = divInfo[i].children[2];
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
 					
@@ -130,6 +130,14 @@ function fixBaseline(){
 						divInfo[i].midline = dHeight;
 						divInfo[i].cline = dHeight;
 					}
+				}
+				else if (divInfo[i].type == 'root'){
+					var inside = divInfo[i].children[0];
+					var height = divs[inside].getBoundingClientRect().height;
+					
+					divs[inside].style.marginBottom = (divInfo[inside].cline-divInfo[inside].midline)+"px";
+					divInfo[i].midline = midline;
+					divInfo[i].cline = cline;
 				}
 				else if (divInfo[i].type == 'center'){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
