@@ -59,7 +59,7 @@ function fixBaseline(){
 					noChildren = false;
 					break;
 				}
-				else if (divInfo[divInfo[i].children[ii]].type == "noflow"){
+				else if (divInfo[divInfo[i].children[ii]].noflow{
 					
 					
 					var tl = divInfo[divInfo[i].children[ii]].tline + 100;
