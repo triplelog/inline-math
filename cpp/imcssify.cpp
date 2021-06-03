@@ -469,19 +469,22 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								break;
 							}
 						}
-						std::string numer = s;
+						std::string numer = "1";
 						std::string denom = "1";
-						openBracket = 1;
+						/*openBracket = 1;
+						int startDenom = 0;
 						for (iii=6;iii<child.length();iii++){
 							if (child.at(iii) == '}'){openBracket--;}
 							else if (child.at(iii) == '{'){openBracket++;}
 							
-							if (openBracket == 0){
-								//s = child.replace(6,iii-6,s);
-								denom = child.substr(6,iii-6);
+							if (openBracket == 0 && startDenom == 0){
+								startDenom = iii+2;
+							}
+							else if (openBracket == 0){
+								denom = child.substr(startDenom,iii-startDenom);
 								break;
 							}
-						}
+						}*/
 						//child = \\frac{1}{denom}
 						//s = numer
 						s = "<div class=\"fraction\"><div class=\"number margin\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin\">";
