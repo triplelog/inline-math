@@ -36,9 +36,8 @@ function fixBaseline(){
 		var children = divs[i].querySelectorAll(":scope > div");
 		
 		for (var ii=0;ii<children.length;ii++){
-			if (divInfo[i].type != "noflow"){
-				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
-			}
+			
+			divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
 		}
 		
 	}
@@ -148,6 +147,12 @@ function fixBaseline(){
 					divInfo[i].tline = tline;
 				}
 				else if (divInfo[i].type == 'center'){
+					divInfo[i].height = divs[i].getBoundingClientRect().height;
+					divInfo[i].midline = divInfo[i].height/2;
+					divInfo[i].cline = cline;
+					divInfo[i].tline = tline;
+				}
+				else if (divInfo[i].type == 'noflow'){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
 					divInfo[i].midline = divInfo[i].height/2;
 					divInfo[i].cline = cline;
