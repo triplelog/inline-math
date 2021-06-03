@@ -9,9 +9,9 @@ function fixBaseline(){
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
-		else if (divs[i].classList.contains('root')){
+		/*else if (divs[i].classList.contains('root')){
 			info.type = 'center';
-		}
+		}*/
 		else if (divs[i].classList.contains('noflow')){
 			info.type = 'noflow';
 		}
