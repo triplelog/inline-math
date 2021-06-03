@@ -110,8 +110,8 @@ function fixBaseline(){
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
 					
-					//divs[numerator].style.marginBottom = (divInfo[numerator].mpb*-1)+"px";
-					//nHeight -= divInfo[numerator].mpb;
+					divs[numerator].style.marginBottom = (divInfo[numerator].cline-divInfo[numerator].midline)+"px";
+					nHeight += divInfo[numerator].cline-divInfo[numerator].midline;
 					if (dHeight < nHeight){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
