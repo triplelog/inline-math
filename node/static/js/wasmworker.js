@@ -228,7 +228,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				
 				ijs(input);
-				k = imcss;
+				k ="<div class=\"imcss\">" +imcss+ "\n</div>";
 				imcss = "";
 			}
 			

@@ -818,7 +818,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		}
 		
 	}
-	lastInput ="<div class=\"imcss\">" +lastInput+ "\n</div>";
+	
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
