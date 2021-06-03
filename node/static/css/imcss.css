@@ -6,6 +6,7 @@
 .imcss div {
 	display: inline-block;
 	position: relative;
+	vertical-align: middle;
 }
 
 .imcss .boxed {
