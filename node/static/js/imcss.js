@@ -4,6 +4,7 @@ function fixBaseline(){
 	var divs = root.querySelectorAll("div");
 	var divInfo = [];
 	var divRun = {};
+	divs.splice(0,0,root);
 	for (var i=0;i<divs.length;i++){
 		var info = {'midline':-1,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
@@ -104,6 +105,9 @@ function fixBaseline(){
 					}
 			
 				}
+				
+				
+				
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divs[i].classList.contains('root')){
 					var svg = divs[i].querySelector(':scope > svg');
@@ -134,18 +138,19 @@ function fixBaseline(){
 					divInfo[i].midline = divInfo[i].height/2;
 				}
 				divInfo[i].mpt = mpt;
+				divInfo[i].mpb = mpb;
 				
 				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
-				divs[i].style.marginBottom = (-1*mpb/2)+"px";
-				divInfo[i].mpb = 0;
+				
 				delete divRun[i];
 			}
 		}
 		
 		if (!again){break}
 	}
+	root.style.marginBottom = (divInfo[0].mpb/2)+"px";
 	console.log(divInfo);
 }
 
