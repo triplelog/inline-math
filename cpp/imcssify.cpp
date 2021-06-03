@@ -1,4 +1,4 @@
-std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp){
+std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
 	switch (c){
 		case '^': {
 			if (ii > 0){
@@ -10,11 +10,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\">\n<div class=\"parentheses\">"+child+"\n</div>";
+					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n<div class=\"parentheses\">"+child+"\n</div>";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\">\n<div class=\"number\">"+child+"\n</div>";
+					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
@@ -494,7 +494,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else if (c == '+'){
 						//s += child;
-						s += "<div class=\"number\">"+child+"\n</div>";
+						s += child;
 					}
 					else if (c == '&'){
 						s += "\\text{ AND }("+child+")";
@@ -503,17 +503,17 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += "\\text{ OR }("+child+")";
 					}
 					else {
-						s += c+"("+child+")";
+						s += "<div class=\"operation\">";
+						s += c;
+						s += "\n</div>"+"<div class=\"parentheses\">"+child+"\n</div>";
 					}
 				}
 				else {
 					if (c == '*'){
-						//s += child;
-						s += "<div class=\"number\">"+child+"\n</div>";
+						s += child;
 					}
 					else if (c == '+'){
-						//s += child;
-						s += "<div class=\"number\">"+child+"\n</div>";
+						s += child;
 					}
 					else {
 						//s += "("+child+")";
@@ -758,22 +758,30 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			}
 			
 			std::string fullStr =  "";
+			std::string outputStr =  "";
 			
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
+				outputStr += firstTtr[1];
+				outputStr += firstTtr[0];
 			}
 			if (firstTtr.size() == 1){
 				fullStr += firstTtr[0];
+				outputStr += firstTtr[0];
 			}
 			fullStr += secondTtr;
+			outputStr += secondTtr;
 			
 			fullStr = secondStr + pfstr.at(i) + '@' + fullStr;
+			outputStr = secondStr + pfstr.at(i) + '@' + outputStr;
 			if (firstStr.size() == 2){
 				fullStr = firstStr[1]+firstStr[0] + fullStr;
+				outputStr = firstStr[1]+firstStr[0] + outputStr;
 			}
 			if (firstStr.size() == 1){
 				fullStr = firstStr[0] + fullStr;
+				outputStr = firstStr[0] + outputStr;
 			}
 			
 			//std::string s = "<div data-id=\""+fullStr+"\">";
@@ -792,7 +800,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child]);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr);
 			}
 			//s += "\n</div>";
 			if (i == startNode){
