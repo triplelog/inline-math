@@ -10,11 +10,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\">\n<div class=\"parentheses\">"+child+"\n</div>";
+					s += "<div class=\"power margin\">\n<div class=\"parentheses\">"+child+"\n</div>";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\">\n<div class=\"number\">"+child+"\n</div>";
+					s += "<div class=\"power margin\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
