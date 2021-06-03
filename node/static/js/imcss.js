@@ -24,7 +24,7 @@ function fixBaseline(){
 	}
 
 	for (var i=0;i<divs.length;i++){
-		var children = divs[i].querySelectorAll("div");
+		var children = divs[i].querySelectorAll(":scope > div");
 		if (children.length == 0){
 			if (divInfo[i].type == 'base'){
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
@@ -43,6 +43,7 @@ function fixBaseline(){
 					divInfo[i].paddingBottom = 0;
 					divInfo[i].midline = lineHeight/2;
 				}
+				divInfo[i].type = "center";
 			}
 			divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 			divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
@@ -60,32 +61,40 @@ function fixBaseline(){
 		for (var i in divRun){
 			console.log(i);
 			var noChildren = true;
+			var midline = lineHeight/2;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
 					noChildren = false;
 					break;
 				}
+				else {
+					var ml = divInfo[divInfo[i].children[ii]].midline;
+					if (ml > midline){
+						midline = ml;
+					}
+				}
+				
 			}
 			if (noChildren){
-				console.log(i);
+				console.log(i,midline);
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].type == 'base'){
 				
-					if (divInfo[i].height > lineHeight){
-						divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
+					if (divInfo[i].height > midline*2){
+						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height/2;
 					}
-					else if (divInfo[i].height < lineHeight){
-						divInfo[i].paddingTop = lineHeight - divInfo[i].height;
+					else if (divInfo[i].height < midline*2){
+						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
 						divInfo[i].paddingBottom = 0;
-						divInfo[i].midline = lineHeight/2;
+						divInfo[i].midline = midline;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
-						divInfo[i].midline = lineHeight/2;
+						divInfo[i].midline = midline;
 					}
 				}
 				console.log(divs[i]);
