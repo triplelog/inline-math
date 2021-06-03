@@ -59,7 +59,9 @@ function fixBaseline(){
 		}
 		else {
 			for (var ii=0;ii<children.length;ii++){
-				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
+				if (divInfo[i].type != "noflow"){
+					divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
+				}
 			}
 		}
 	}
