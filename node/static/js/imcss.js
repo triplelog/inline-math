@@ -1,7 +1,7 @@
 function fixBaseline(){
 	var lineHeight = 18;
 	var root = document.querySelector(".imcss");
-	var divs = root.querySelectorAll(":scope, div");
+	var divs = [root, ...root.querySelectorAll("div")];
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
