@@ -164,12 +164,6 @@ function fixBaseline(){
 					divInfo[i].cline = cline;
 					divInfo[i].tline = tline;
 				}
-				else if (divInfo[i].type == 'noflow'){
-					divInfo[i].height = divs[i].getBoundingClientRect().height;
-					divInfo[i].midline = divInfo[i].height/2;
-					divInfo[i].cline = cline;
-					divInfo[i].tline = tline;
-				}
 				else {
 					divInfo[i].midline = midline;
 					divInfo[i].cline = cline;
