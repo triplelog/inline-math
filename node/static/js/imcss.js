@@ -4,7 +4,7 @@ function fixBaseline(){
 	var divs = root.querySelectorAll("div");
 	var divInfo = [];
 	var divRun = {};
-	divs.splice(0,0,root);
+	divs.unshift(root);
 	for (var i=0;i<divs.length;i++){
 		var info = {'midline':-1,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
