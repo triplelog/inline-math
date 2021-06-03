@@ -46,8 +46,8 @@ function fixBaseline(){
 					divInfo[i].midline = lineHeight/2;
 				}
 			}
-			divs[i].style.paddingTop = divInfo[i].paddingTop;
-			divs[i].style.paddingBottom = divInfo[i].paddingBottom;
+			divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
+			divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 			delete divRun[i];
 		}
 		else {
@@ -90,8 +90,9 @@ function fixBaseline(){
 						divInfo[i].midline = lineHeight/2;
 					}
 				}
-				divs[i].style.paddingTop = divInfo[i].paddingTop;
-				divs[i].style.paddingBottom = divInfo[i].paddingBottom;
+				console.log(divs[i]);
+				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
+				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				delete divRun[i];
 			}
 		}
