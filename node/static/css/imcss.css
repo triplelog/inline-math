@@ -22,8 +22,6 @@
 }
 .imcss .root {
 	display: inline-block;
-    margin-left: 20px;
-    margin-right: 0;
     padding-left: 2px;
     padding-right: 2px;
     position: relative;

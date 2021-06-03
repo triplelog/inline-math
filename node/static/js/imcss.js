@@ -111,6 +111,7 @@ function fixBaseline(){
 				if (divs[i].classList.contains('root')){
 					var svg = divs[i].querySelector(':scope > svg');
 					svg.style.height = "calc(100% - "+mpb+"px)";
+					divs[i].marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
 				}
 				if (divInfo[i].type == 'base'){
 				

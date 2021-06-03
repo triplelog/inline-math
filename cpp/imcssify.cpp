@@ -379,7 +379,13 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '/': {
 			//TODO: check if child is \\frac{}{}
-			s += "\\frac{1}{"+child+"}";
+			//s += "\\frac{1}{"+child+"}";
+			
+			s += "<div class=\"fraction\"><div class=\"number\">1</div><div class=\"number\">";
+			s += child;
+			s += "\n<\div>\n</div>";
+		
+		
 			/*
 			if (prec['/'] >= prec[lastOp]){
 				s += "/("+child+")";
