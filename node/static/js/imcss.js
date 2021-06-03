@@ -69,7 +69,6 @@ function fixBaseline(){
 	for (var idx=0;idx<divs.length;idx++){
 		var again = false;
 		for (var i in divRun){
-			console.log(i);
 			var noChildren = true;
 			var midline = lineHeight/2;
 			var mpt = -1;
@@ -167,7 +166,6 @@ function fixBaseline(){
 				divInfo[i].mpt = mpt;
 				divInfo[i].mpb = mpb;
 				
-				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
