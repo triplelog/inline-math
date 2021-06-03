@@ -60,15 +60,17 @@ function fixBaseline(){
 	for (var idx=0;idx<divs.length;idx++){
 		var again = false;
 		for (var i in divRun){
-			var noChildren = false;
+			console.log(i);
+			var noChildren = true;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[ii]){
 					again = true;
-					noChildren = true;
+					noChildren = false;
 					break;
 				}
 			}
 			if (noChildren){
+				console.log(i);
 				divInfo[i].height = divs[i].getBoundingClientRect().height - divInfo[i].paddingTop - divInfo[i].paddingBottom;
 				if (divInfo[i].type == 'base'){
 				

@@ -1,6 +1,7 @@
 .imcss {
 	position: relative;
 	display: inline-block;
+	vertical-align: middle;
 }
 .imcss div {
 	display: inline-block;
@@ -151,13 +152,13 @@
 }
 
 .imcss .comparison {
-	display: inline-grid;
-	grid-template-rows: auto;
+	display: inline-block;
+	/*grid-template-rows: auto;
 	grid-template-columns: auto auto auto;
-	grid-column-gap: 4px;
+	grid-column-gap: 4px;*/
 }
 .imcss .comparison > div{
-	margin: auto;
+	/*margin: auto;*/
 }
 
 .imcss .matrix{
