@@ -108,8 +108,8 @@ function fixBaseline(){
 				else if (divInfo[i].type == 'fraction'){
 					var numerator = divInfo[i].children[0];
 					var denominator = divInfo[i].children[2];
-					var nHeight = divs[numerator].getBoundingClientRect().height;
-					var dHeight = divs[denominator].getBoundingClientRect().height;
+					var nHeight = divInfo[numerator].height;
+					var dHeight = divInfo[denominator].height;
 					
 					//divs[numerator].style.marginBottom = (divInfo[numerator].cline-divInfo[numerator].midline)+"px";
 					//nHeight += divInfo[numerator].cline-divInfo[numerator].midline;
@@ -168,7 +168,8 @@ function fixBaseline(){
 				if (divInfo[i].margin){
 					divs[i].style.marginTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline))+"px";
 					divs[i].style.marginBottom = (divInfo[i].cline-divInfo[i].midline)+"px";
-					
+					divInfo[i].height += (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline));
+					divInfo[i].height += (divInfo[i].cline-divInfo[i].midline);
 					//height += divInfo[i].tline-(divInfo[i].height -divInfo[i].midline);
 				}
 				
