@@ -136,8 +136,8 @@ function fixBaseline(){
 				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
-				divs[i].style.marginBottom = (mpb/2)+"px";
-				divInfo[i].mpb = -1*mpb;
+				divs[i].style.marginBottom = (-1*mpb/2)+"px";
+				divInfo[i].mpb = mpb/2;
 				delete divRun[i];
 			}
 		}
