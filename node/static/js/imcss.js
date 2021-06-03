@@ -36,7 +36,7 @@ function fixBaseline(){
 			if (divInfo[i].type != "noflow"){
 				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
 				if (children.length > 1){
-					divInfo[i].siblings = true;
+					divInfo[parseInt(children[ii].getAttribute('data-id'))].siblings = true;
 				}
 			}
 		}
