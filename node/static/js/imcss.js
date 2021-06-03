@@ -63,7 +63,7 @@ function fixBaseline(){
 			console.log(i);
 			var noChildren = true;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
-				if (divRun[ii]){
+				if (divRun[divInfo[i].children[ii]]){
 					again = true;
 					noChildren = false;
 					break;
@@ -81,6 +81,11 @@ function fixBaseline(){
 					}
 					else if (divInfo[i].height < lineHeight){
 						divInfo[i].paddingTop = lineHeight - divInfo[i].height;
+						divInfo[i].paddingBottom = 0;
+						divInfo[i].midline = lineHeight/2;
+					}
+					else {
+						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = lineHeight/2;
 					}
