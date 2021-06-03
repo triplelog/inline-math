@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
+		var info = {'midline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -48,8 +48,6 @@ function fixBaseline(){
 		for (var i in divRun){
 			var noChildren = true;
 			var midline = lineHeight/2;
-			var mpt = -1;
-			var mpb = -1;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
@@ -65,20 +63,7 @@ function fixBaseline(){
 				
 			}
 			if (noChildren){
-				for (var ii=0;ii<divInfo[i].children.length;ii++){
-					
-					var bl = midline - divs[divInfo[i].children[ii]].getBoundingClientRect().height/2;
-					
-					var mpt1 = divInfo[divInfo[i].children[ii]].mpt;
-					if (mpt1 < mpt || mpt == -1){
-						mpt = mpt1;
-					}
-					var mpb1 = divInfo[divInfo[i].children[ii]].mpb + bl;
-					if (mpb1 < mpb || mpb == -1){
-						mpb = mpb1;
-					}
-			
-				}
+				
 				
 				
 				if (divInfo[i].type == 'fraction' && divInfo[i].children.length != 2){
@@ -87,9 +72,9 @@ function fixBaseline(){
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divs[i].classList.contains('root')){
 					var svg = divs[i].querySelector(':scope > svg');
-					svg.style.height = "calc(100% - "+mpb+"px)";
+					//svg.style.height = "calc(100% - "+mpb+"px)";
 					//divs[i].style.marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
-					console.log(divs[i].getBoundingClientRect().height,mpb);
+					//console.log(divs[i].getBoundingClientRect().height,mpb);
 					divs[i].style.marginLeft = 10+"px";
 					console.log(divs[i]);
 				}
@@ -99,13 +84,11 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
-						mpb += divInfo[i].height - midline*2;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
-						mpt += midline*2 - divInfo[i].height;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
@@ -119,19 +102,17 @@ function fixBaseline(){
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
 					
-					divs[numerator].style.marginBottom = (divInfo[numerator].mpb*-1)+"px";
-					nHeight -= divInfo[numerator].mpb;
+					//divs[numerator].style.marginBottom = (divInfo[numerator].mpb*-1)+"px";
+					//nHeight -= divInfo[numerator].mpb;
 					if (dHeight < nHeight){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = dHeight;
-						mpb += divInfo[i].height - midline*2;
 					}
 					else if (dHeight > nHeight){
 						divInfo[i].paddingTop = dHeight - nHeight;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = dHeight;
-						mpt += midline*2 - divInfo[i].height;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
@@ -143,8 +124,9 @@ function fixBaseline(){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
 					divInfo[i].midline = divInfo[i].height/2;
 				}
-				divInfo[i].mpt = mpt;
-				divInfo[i].mpb = mpb;
+				else {
+					divInfo[i].midline = midline;
+				}
 				
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
@@ -156,7 +138,7 @@ function fixBaseline(){
 		
 		if (!again){break}
 	}
-	root.style.marginBottom = (divInfo[0].mpb/2)+"px";
+	//root.style.marginBottom = (divInfo[0].mpb/2)+"px";
 	console.log(divInfo);
 }
 
