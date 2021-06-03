@@ -1,4 +1,5 @@
 function fixBaseline(){
+	const start = Date.now();
 	var lineHeight = 18;
 	var superScriptBase = 12;
 	var root = document.querySelector(".imcss");
@@ -196,7 +197,9 @@ function fixBaseline(){
 		if (!again){break}
 	}
 	//root.style.marginBottom = (divInfo[0].mpb/2)+"px";
-	console.log(divInfo);
+	//console.log(divInfo);
+	const millis = Date.now() - start;
+	console.log(`seconds elapsed = ${Math.floor(millis / 1000)}`);
 }
 
 fixBaseline();
