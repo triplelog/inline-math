@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'tline':lineHeight/2,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[],'siblings':false};
+		var info = {'midline':lineHeight/2,'cline':lineHeight/2,'tline':lineHeight/2,'margin':false,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -17,6 +17,9 @@ function fixBaseline(){
 		}
 		else if (divs[i].classList.contains('noflow')){
 			info.type = 'noflow';
+		}
+		if (divs[i].classList.contains('margin')){
+			info.margin = true;
 		}
 		if (info.type == 'power' || info.type == "fraction"){
 			divs[i].style.paddingTop = "0px";
@@ -35,9 +38,6 @@ function fixBaseline(){
 		for (var ii=0;ii<children.length;ii++){
 			if (divInfo[i].type != "noflow"){
 				divInfo[i].children.push(parseInt(children[ii].getAttribute('data-id')));
-				if (children.length > 1){
-					divInfo[parseInt(children[ii].getAttribute('data-id'))].siblings = true;
-				}
 			}
 		}
 		
@@ -111,10 +111,10 @@ function fixBaseline(){
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
 					
-					divs[numerator].style.marginBottom = (divInfo[numerator].cline-divInfo[numerator].midline)+"px";
-					nHeight += divInfo[numerator].cline-divInfo[numerator].midline;
-					divs[denominator].style.marginTop = (divInfo[denominator].tline-(dHeight -divInfo[denominator].midline))+"px";
-					dHeight += divInfo[denominator].tline-(dHeight -divInfo[denominator].midline);
+					//divs[numerator].style.marginBottom = (divInfo[numerator].cline-divInfo[numerator].midline)+"px";
+					//nHeight += divInfo[numerator].cline-divInfo[numerator].midline;
+					//divs[denominator].style.marginTop = (divInfo[denominator].tline-(dHeight -divInfo[denominator].midline))+"px";
+					//dHeight += divInfo[denominator].tline-(dHeight -divInfo[denominator].midline);
 					if (dHeight < nHeight){
 						divInfo[i].paddingBottom = nHeight - dHeight;
 						divInfo[i].paddingTop = 0;
@@ -138,11 +138,11 @@ function fixBaseline(){
 					}
 				}
 				else if (divInfo[i].type == 'root'){
-					var inside = divInfo[i].children[0];
-					var height = divs[inside].getBoundingClientRect().height;
+					//var inside = divInfo[i].children[0];
+					//var height = divs[inside].getBoundingClientRect().height;
 					divs[i].style.marginLeft = (height*0.5+2)+"px";
 					
-					divs[inside].style.marginBottom = (divInfo[inside].cline-divInfo[inside].midline)+"px";
+					//divs[inside].style.marginBottom = (divInfo[inside].cline-divInfo[inside].midline)+"px";
 					divInfo[i].midline = midline;
 					divInfo[i].cline = cline;
 					divInfo[i].tline = tline;
@@ -159,9 +159,18 @@ function fixBaseline(){
 					divInfo[i].tline = tline;
 				}
 				
+				
+				
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
+				divInfo[i].height = divs[i].getBoundingClientRect().height;
+				if (divInfo[i].margin){
+					divs[i].style.marginTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline))+"px";
+					divs[i].style.marginBottom = (divInfo[i].cline-divInfo[i].midline)+"px";
+					
+					//height += divInfo[i].tline-(divInfo[i].height -divInfo[i].midline);
+				}
 				
 				delete divRun[i];
 			}
