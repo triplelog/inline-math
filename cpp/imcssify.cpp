@@ -484,7 +484,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						}
 						//child = \\frac{1}{denom}
 						//s = numer
-						s = "<div class=\"fraction\"><div class=\"number\">"+numer+"</div><div class=\"number\">";
+						s = "<div class=\"fraction\"><div class=\"number\">"+numer+"</div><div class=\"bar\"></div><div class=\"number\">";
 						s += denom;
 						s += "\n<\div>\n</div>";
 					
