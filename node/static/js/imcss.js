@@ -1,5 +1,6 @@
 function fixBaseline(){
 	var lineHeight = 18;
+	var superScriptBase = 12;
 	var root = document.querySelector(".imcss");
 	var divs = [root, ...root.querySelectorAll("div")];
 	var divInfo = [];
@@ -63,7 +64,7 @@ function fixBaseline(){
 				else if (divInfo[divInfo[i].children[ii]].noflow){
 					
 					
-					var tl = divInfo[divInfo[i].children[ii]].tline + 100;
+					var tl = divInfo[divInfo[i].children[ii]].height;
 					if (tl > tlineAdj){
 						tlineAdj = tl;
 					}
@@ -178,7 +179,7 @@ function fixBaseline(){
 				
 				divInfo[i].tline += tlineAdj;
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
-				if (divInfo[i].margin){
+				if (divInfo[i].margin || divInfo[i].noflow){
 					divs[i].style.marginTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline))+"px";
 					divs[i].style.marginBottom = (divInfo[i].cline-divInfo[i].midline)+"px";
 					divInfo[i].height += (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline));
