@@ -114,7 +114,8 @@ function fixBaseline(){
 					svg.style.height = "calc(100% - "+mpb+"px)";
 					//divs[i].style.marginLeft = (divs[i].getBoundingClientRect().height - mpb)*.5+"px";
 					console.log(divs[i].getBoundingClientRect().height,mpb);
-					divs[i].style.marginLeft = (20)*.5+"px";
+					divs[i].style.marginLeft = 10+"px";
+					console.log(divs[i]);
 				}
 				if (divInfo[i].type == 'base'){
 				
