@@ -40,6 +40,11 @@ function fixBaseline(){
 					divInfo[i].paddingBottom = 0;
 					divInfo[i].midline = lineHeight/2;
 				}
+				else {
+					divInfo[i].paddingTop = 0;
+					divInfo[i].paddingBottom = 0;
+					divInfo[i].midline = lineHeight/2;
+				}
 			}
 			divs[i].style.paddingTop = divInfo[i].paddingTop;
 			divs[i].style.paddingBottom = divInfo[i].paddingBottom;
