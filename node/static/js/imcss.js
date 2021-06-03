@@ -77,7 +77,7 @@ function fixBaseline(){
 					if (cl > cline){
 						cline = cl;
 					}
-					var tl = divInfo[divInfo[i].children[ii]].tline+divInfo[divInfo[i].children[ii]].tlineAdj;
+					var tl = divInfo[divInfo[i].children[ii]].tline;
 					if (tl > tline){
 						tline = tl;
 					}
@@ -101,7 +101,7 @@ function fixBaseline(){
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
 						divInfo[i].cline = midline;
-						divInfo[i].tline = midline;
+						divInfo[i].tline = midline+divInfo[i].tlineAdj-4;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
@@ -109,13 +109,16 @@ function fixBaseline(){
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
 						divInfo[i].tline = divInfo[i].height - midline;
+						if (divInfo[i].tlineAdj > divInfo[i].paddingTop){
+							divInfo[i].tline += divInfo[i].tlineAdj - divInfo[i].paddingTop;
+						}
 					}
 					else {
 						divInfo[i].paddingTop = 0;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
 						divInfo[i].cline = midline;
-						divInfo[i].tline = midline;
+						divInfo[i].tline = midline+divInfo[i].tlineAdj-4;
 					}
 				}
 				else if (divInfo[i].type == 'fraction'){
