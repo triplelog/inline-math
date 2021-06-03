@@ -134,7 +134,7 @@ function fixBaseline(){
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = nHeight;
 						divInfo[i].cline = dHeight;
-						divInfo[i].tline = 2*nHeight - dHeight;
+						divInfo[i].tline = nHeight;
 					}
 					else if (dHeight > nHeight){
 						divInfo[i].paddingTop = dHeight - nHeight;
