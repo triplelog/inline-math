@@ -177,12 +177,16 @@ function fixBaseline(){
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
 				
-				divInfo[i].tline += tlineAdj;
+				
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
 				if (divInfo[i].margin || divInfo[i].noflow){
-					divs[i].style.marginTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline))+"px";
+					var mTop = (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline));
+					if (divInfo[i].height -divInfo[i].midline < tlineAdj + divInfo[i].tline){
+						mTop = 0;
+					}
+					divs[i].style.marginTop = mTop+"px";
 					divs[i].style.marginBottom = (divInfo[i].cline-divInfo[i].midline)+"px";
-					divInfo[i].height += (divInfo[i].tline-(divInfo[i].height -divInfo[i].midline));
+					divInfo[i].height += mTop;
 					divInfo[i].height += (divInfo[i].cline-divInfo[i].midline);
 					//height += divInfo[i].tline-(divInfo[i].height -divInfo[i].midline);
 				}
