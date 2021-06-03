@@ -1,12 +1,12 @@
 .imcss {
 	position: relative;
 	display: inline-block;
-	vertical-align: middle;
+	
 }
 .imcss div {
 	display: inline-block;
 	position: relative;
-	vertical-align: middle;
+	vertical-align: baseline;
 }
 
 .imcss .boxed {
@@ -20,7 +20,7 @@
 	vertical-align: super;
   	font-size: smaller;
 }
-.imcss .root {
+.imcss div.root {
 	display: inline-block;
 	margin-left: 0.5rem;
     padding-left: 2px;
@@ -28,6 +28,7 @@
     position: relative;
     width: auto;
     border-top:2px black solid;
+    vertical-align: middle;
 }
 
 .imcss .root > svg {
@@ -45,6 +46,9 @@
     font-size: smaller;
 }
 
+.imcss div.fraction {
+	vertical-align: middle;
+}
 .imcss .fraction > div{
 	display: block;
 	text-align: center;
