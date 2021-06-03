@@ -136,8 +136,8 @@ function fixBaseline(){
 					}
 				}
 				else if (divInfo[i].type == 'fraction'){
-					var numerator = divInfo[i].children[ii][0];
-					var denominator = divInfo[i].children[ii][1];
+					var numerator = divInfo[i].children[0];
+					var denominator = divInfo[i].children[1];
 					var nHeight = divs[numerator].getBoundingClientRect().height;
 					var dHeight = divs[denominator].getBoundingClientRect().height;
 					if (dheight < nHeight){
