@@ -5,7 +5,7 @@ function fixBaseline(){
 	var divInfo = [];
 	var divRun = {};
 	for (var i=0;i<divs.length;i++){
-		var info = {'midline':-1,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
+		var info = {'midline':-1,'mpt':0,'mpb':0,'paddingTop':0,'paddingBottom':0,'height':0,'type':'base','children':[]};
 		if (divs[i].classList.contains('fraction')){
 			info.type = 'fraction';
 		}
@@ -35,11 +35,13 @@ function fixBaseline(){
 					divInfo[i].paddingBottom = divInfo[i].height - lineHeight;
 					divInfo[i].paddingTop = 0;
 					divInfo[i].midline = divInfo[i].height - lineHeight/2;
+					divInfo[i].mpb = divInfo[i].height - lineHeight;
 				}
 				else if (divInfo[i].height < lineHeight){
 					divInfo[i].paddingTop = lineHeight - divInfo[i].height;
 					divInfo[i].paddingBottom = 0;
 					divInfo[i].midline = lineHeight/2;
+					divInfo[i].mpt = lineHeight - divInfo[i].height;
 				}
 				else {
 					divInfo[i].paddingTop = 0;
@@ -68,6 +70,8 @@ function fixBaseline(){
 			console.log(i);
 			var noChildren = true;
 			var midline = lineHeight/2;
+			var mpt = -1;
+			var mpb = -1;
 			for (var ii=0;ii<divInfo[i].children.length;ii++){
 				if (divRun[divInfo[i].children[ii]]){
 					again = true;
@@ -78,6 +82,14 @@ function fixBaseline(){
 					var ml = divInfo[divInfo[i].children[ii]].midline;
 					if (ml > midline){
 						midline = ml;
+					}
+					var mpt1 = divInfo[divInfo[i].children[ii]].mpt;
+					if (mpt1 < mpt || mpt == -1){
+						mpt = mpt1;
+					}
+					var mpb1 = divInfo[divInfo[i].children[ii]].mpb;
+					if (mpb1 < mpb || mpb == -1){
+						mpb = mpb1;
 					}
 				}
 				
@@ -91,11 +103,13 @@ function fixBaseline(){
 						divInfo[i].paddingBottom = divInfo[i].height - midline*2;
 						divInfo[i].paddingTop = 0;
 						divInfo[i].midline = divInfo[i].height - midline;
+						mpb += divInfo[i].height - midline*2;
 					}
 					else if (divInfo[i].height < midline*2){
 						divInfo[i].paddingTop = midline*2 - divInfo[i].height;
 						divInfo[i].paddingBottom = 0;
 						divInfo[i].midline = midline;
+						mpt += midline*2 - divInfo[i].height;
 					}
 					else {
 						divInfo[i].paddingTop = 0;
@@ -107,6 +121,8 @@ function fixBaseline(){
 					divInfo[i].height = divs[i].getBoundingClientRect().height;
 					divInfo[i].midline = divInfo[i].height/2;
 				}
+				divInfo[i].mpt = mpt;
+				divInfo[i].mpb = mpb;
 				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
