@@ -379,11 +379,9 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case '/': {
 			//TODO: check if child is \\frac{}{}
-			//s += "\\frac{1}{"+child+"}";
+			s += "\\frac{1}{"+child+"}";
 			
-			s += "<div class=\"fraction\"><div class=\"number\">1</div><div class=\"number\">";
-			s += child;
-			s += "\n<\div>\n</div>";
+			
 		
 		
 			/*
@@ -457,6 +455,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						//TODO: deal with fraction in s
 						//TODO: deal with non-1 in numerator of child
 						int iii; int openBracket = 0;
+						
 						for (iii=0;iii<s.length();iii++){
 							if (s.at(iii) == ')' && iii != 0){openBracket--;}
 							else if (s.at(iii) == '(' && iii < s.length()-1){openBracket++;}
@@ -470,16 +469,24 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								break;
 							}
 						}
+						std::string numer = s;
+						std::string denom = "1";
 						openBracket = 1;
 						for (iii=6;iii<child.length();iii++){
 							if (child.at(iii) == '}'){openBracket--;}
 							else if (child.at(iii) == '{'){openBracket++;}
 							
 							if (openBracket == 0){
-								s = child.replace(6,iii-6,s);
+								//s = child.replace(6,iii-6,s);
+								std::string denom = child.substr(6,iii-6);
 								break;
 							}
 						}
+						//child = \\frac{1}{denom}
+						//s = numer
+						s = "<div class=\"fraction\"><div class=\"number\">"+numer+"</div><div class=\"number\">";
+						s += denom;
+						s += "\n<\div>\n</div>";
 					
 					}
 					else if (c == '+'){
