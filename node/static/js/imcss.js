@@ -199,7 +199,7 @@ function fixBaseline(){
 	//root.style.marginBottom = (divInfo[0].mpb/2)+"px";
 	//console.log(divInfo);
 	const millis = Date.now() - start;
-	console.log(`seconds elapsed = ${Math.floor(millis / 1000)}`);
+	console.log(`milliseconds elapsed = ${millis}`);
 }
 
 fixBaseline();

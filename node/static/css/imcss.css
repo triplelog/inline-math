@@ -32,7 +32,7 @@
     position: relative;
     width: auto;
     border-top:2px black solid;
-    vertical-align: middle;
+    vertical-align: baseline;
 }
 
 .imcss .root > svg {
