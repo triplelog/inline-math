@@ -83,20 +83,30 @@ function fixBaseline(){
 					if (ml > midline){
 						midline = ml;
 					}
-					var mpt1 = divInfo[divInfo[i].children[ii]].mpt;
-					if (mpt1 < mpt || mpt == -1){
-						mpt = mpt1;
-					}
-					var mpb1 = divInfo[divInfo[i].children[ii]].mpb;
-					if (mpb1 < mpb || mpb == -1){
-						mpb = mpb1;
-					}
 				}
 				
 			}
 			if (noChildren){
 				console.log(i,midline);
+				for (var ii=0;ii<divInfo[i].children.length;ii++){
+					
+					var bl = midline - divs[divInfo[i].children[ii]].getBoundingClientRect().height/2;
+					
+					var mpt1 = divInfo[divInfo[i].children[ii]].mpt;
+					if (mpt1 < mpt || mpt == -1){
+						mpt = mpt1;
+					}
+					var mpb1 = divInfo[divInfo[i].children[ii]].mpb + bl;
+					if (mpb1 < mpb || mpb == -1){
+						mpb = mpb1;
+					}
+			
+				}
 				divInfo[i].height = divs[i].getBoundingClientRect().height;
+				if (divs[i].classList.contains('root')){
+					var svg = divs[i].querySelector(':scope > svg');
+					svg.style.height = "calc(100% - "+mpb+"px)";
+				}
 				if (divInfo[i].type == 'base'){
 				
 					if (divInfo[i].height > midline*2){
@@ -126,6 +136,7 @@ function fixBaseline(){
 				console.log(divs[i]);
 				divs[i].style.paddingTop = divInfo[i].paddingTop+"px";
 				divs[i].style.paddingBottom = divInfo[i].paddingBottom+"px";
+				
 				delete divRun[i];
 			}
 		}
