@@ -78,7 +78,11 @@ EM_JS(void, send_ready, (), {
 
 #include "removeIdentities.cpp"
 
-std::map<int,int[2]> inputToPostfix;
+struct DoubleInt
+{
+    int color[2];
+};
+std::map<int,DoubleInt> inputToPostfix;
 std::string prepareIt(std::string a){
 	dependentChars.clear();
 	int i;
@@ -142,7 +146,8 @@ std::string prepareIt(std::string a){
 	
 	inputToPostfix.clear();
 	for (i=0;i<a.length();i++){
-		inputToPostfix[i]={i,1};
+		DoubleInt temp = {i,1};
+		inputToPostfix[i]=temp;
 	}
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
