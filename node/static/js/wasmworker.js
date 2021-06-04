@@ -594,7 +594,7 @@ const renderer = {
 			k = mapOrNew(input,varName,false,false,isDisplay);
 			//var uniqueId = 'imcss-'+(10000+Math.floor(Math.random() * 90000));
 			var uniqueId = 'imcss-'+renderIdx;
-			renderIdx++;
+			console.log(originalMarkdown.substr(originalMarkdownMap[renderIdx],originalMarkdownMap[renderIdx]+10));
 			k = k.replace('class="imcss"','class="imcss" id="'+uniqueId+'"');
 			if (varName != ""){
 				currentV[varName]=k;
@@ -608,7 +608,7 @@ const renderer = {
 	catch(err){
 		return text;
 	}
-	
+	renderIdx++;
   }
 };
 
@@ -620,12 +620,10 @@ function replacer(match){
 	match = match.replace('$`','$');
 	return match;
 }
-var originalMarkdownMap = {};
-function replaceAndTrack(match,p1,offset,string){
-	return '`'+match+'`';
-}
+var originalMarkdownMap = [];
+var originalMarkdown;
 function justTrack(match,p1,offset,string){
-	originalMarkdownMap[offset]=true;
+	originalMarkdownMap.push(offset);
 	return match;
 }
 onmessage = function(e) {
@@ -633,13 +631,10 @@ onmessage = function(e) {
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
-		var originalMarkdown = message[1];
-		originalMarkdownMap = {};
+		originalMarkdown = message[1];
+		originalMarkdownMap = [];
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,justTrack);
-		console.log(originalMarkdownMap);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
-		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,replaceAndTrack);// add ` to front and back
-		//console.log(markdown);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
