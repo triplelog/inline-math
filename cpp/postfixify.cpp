@@ -381,6 +381,17 @@ std::string makePost(char infixexpr[]) {
 }
 
 std::string replaceFunctions(std::string input_str){
+
+	if (followAMap.find("original") == followAMap.end()){
+		followAMap["original"]="";
+	}
+	int sz = followAMap["original"].length();
+	for (i = 0; i<input_str.length(); i++) {
+		if (i >= sz){
+			followAMap["original"]+='0';
+		}
+	}
+	
 	std::map<std::string,std::string> replacements2;
 	std::map<std::string,std::string> replacements3;
 	std::map<std::string,std::string> replacements4;
@@ -542,6 +553,7 @@ std::string replaceFunctions(std::string input_str){
 	std::string sevenChars = ".......";
 	std::string eightChars = "........";
 	
+	
 	for (i=0;i<input_str.length()-1;i++){
 		twoChars.replace(0,1,"");
 		twoChars += input_str.at(i);
@@ -558,9 +570,12 @@ std::string replaceFunctions(std::string input_str){
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
 		
+		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
 
 			input_str.replace(i-3,4,query4[fourChars]);
+			std::string sNew = std::string(query4[fourChars].length(),followAMap["original"].at(i-3));
+			followAMap["original"].replace(i-3,4,sNew);
 			fourChars = "....";
 			i += -3;
 			//std::cout << i << " : " << input_str << " char: " << element << '\n';
@@ -568,26 +583,31 @@ std::string replaceFunctions(std::string input_str){
 		}
 		else if (rawrep6.find(sixChars) != rawrep6.end()){
 			input_str.replace(i-5,6,rawrep6[sixChars]);
+			followAMap["original"].replace(i-4,5,"");
 			sixChars = "......";
 			i+= rawrep6[sixChars].length() - 6;
 		}
 		else if (rawrep5.find(fiveChars) != rawrep5.end()){
 			input_str.replace(i-4,5,rawrep5[fiveChars]);
+			followAMap["original"].replace(i-3,4,"");
 			fiveChars = ".....";
 			i+= rawrep5[fiveChars].length() - 5;
 		}
 		else if (rawrep4.find(fourChars) != rawrep4.end()){
 			input_str.replace(i-3,4,rawrep4[fourChars]);
+			followAMap["original"].replace(i-2,3,"");
 			fourChars = "....";
 			i+= rawrep4[fourChars].length() - 4;
 		}
 		else if (rawrep3.find(threeChars) != rawrep3.end()){
 			input_str.replace(i-2,3,rawrep3[threeChars]);
+			followAMap["original"].replace(i-1,2,"");
 			threeChars = "...";
 			i+= rawrep3[threeChars].length() - 3;
 		}
 		else if (rawrep2.find(twoChars) != rawrep2.end()){
 			input_str.replace(i-1,2,rawrep2[twoChars]);
+			followAMap["original"].replace(i-0,1,"");
 			twoChars = "..";
 			i+= rawrep2[twoChars].length() - 2;
 		}
@@ -1083,6 +1103,7 @@ std::string replaceFunctions(std::string input_str){
 		}
 	}
 	std::string output_str = "";
+	followAMap["original2"] = "";
 	for (i=0;i<input_str.length();i++){
 		switch (input_str.at(i)) 
 		{ 
@@ -1133,9 +1154,7 @@ std::string postfixify(std::string input_str) {
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
 
-	input_str = replaceFunctions(input_str);
-	std::map<std::string,std::string> repMap;
-	//std::cout <<"pv: "<< input_str << "\n";
+	
 	int iii;
 	if (followAMap.find("original") == followAMap.end()){
 		followAMap["original"]="";
@@ -1147,6 +1166,12 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			
 		}
 	}
+	
+	input_str = replaceFunctions(input_str);
+	
+	std::map<std::string,std::string> repMap;
+	//std::cout <<"pv: "<< input_str << "\n";
+	
 	
 	if (checkComputations){
 		char repl = 'A';
