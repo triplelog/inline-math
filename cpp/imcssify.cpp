@@ -148,25 +148,29 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 		case -64:
 			//s += "\\sin("+child+")";
-			s += "<div class=\"sin\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -63:
-			s += "\\cos("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cos"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -62:
-			s += "\\tan("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"tan"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -61:
-			s += "\\csc("+child+")";
+			//s += "\\csc("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"csc"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -60:
-			s += "\\sec("+child+")";
+			//s += "\\sec("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sec"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -59:
-			s += "\\cot("+child+")";
+			//s += "\\cot("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cot"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -32:
-			s += "\\sin^{-1}("+child+")";
+			//s += "\\sin^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -31:
 			s += "\\cos^{-1}("+child+")";
