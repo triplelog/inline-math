@@ -7,6 +7,15 @@ std::string bracketend = "<svg viewBox=\"0 0 20 100\" width=\"20\" height=\"100\
 std::string divend = "\n</div>";
 std::string integralsvg = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"m 29 20 Q 25 0 17 20 Q 15 50 13 80 Q 5 95 1 80\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>";
 
+std::string charCodeToString(int x){
+	std::string s = "-";
+	if (x >= 0){s = "+";}
+	else {x *= -1;}
+	if (x < 10){s+= "0";}
+	if (x < 100){s+= "00";}
+	s += std::stoi(x);
+	return s;
+}
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
 	switch (c){
 		case '^': {
@@ -721,7 +730,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	int endLeft = 0;
 	std::map<int,std::string> operandMap;
 	std::string lastInput = "";
-	int oidx;
+	int oidx; int s00;
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			break;
@@ -755,7 +764,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 						t0 += originalMap[oidx] + '_';
 					}
 					else {
-						s0 += std::to_string(pfstr.at(iii) - '0');
+						s00 = pfstr.at(iii);
+						s0 += charCodeToString(s00);
 					}
 				}
 				if (listMap.find(s + '@' + t) != listMap.end()){
@@ -797,7 +807,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 							t0 += originalMap[oidx] + '_';
 						}
 						else {
-							s0 += std::to_string(pfstr.at(iii) - '0');
+							s00 = pfstr.at(iii);
+							s0 += charCodeToString(s00);
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
@@ -832,7 +843,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 								t0 += originalMap[oidx] + '_';
 							}
 							else {
-								s0 += std::to_string(pfstr.at(iii) - '0');
+								s00 = pfstr.at(iii);
+								s0 += charCodeToString(s00);
 							}
 						}
 						if (listMap.find(s + '@' + t) != listMap.end()){

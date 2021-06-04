@@ -27,7 +27,7 @@ function getImcss(parent,parents) {
 	
 	var location = idParent.id;
 	console.log(formula,location);
-	idParent.innerHTML = formula;
+	idParent.outerHTML = "<div class='text'>"+formula+"</div>";
 	
 	return "done";
 }
