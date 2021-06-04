@@ -825,8 +825,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			
 			std::string fullStr =  "";
 			std::string outputStr =  "";
-			std::string outputLeft = "";
-			outputID += std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
+			std::string outputLeft = std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
