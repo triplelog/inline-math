@@ -4,23 +4,23 @@ std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" w
 std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
 std::string divend = "\n</div>";
 
-std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
+std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputLeft){
 	switch (c){
 		case '^': {
 			if (ii > 0){
 				//s += "^{";
 				//s += child+"}";
-				s += "<div class=\"number noflow\">";
+				s += "<div class=\"noflow\">";
 				s += child+"\n</div>\n</div>";
 			}
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n("+child+")";
+					s += "<div class=\"power\" id=\""+outputLeft+"\" data-original=\""+outputStr+"\">\n("+child+")";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
+					s += "<div class=\"power\" id=\""+outputLeft+"\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
@@ -626,7 +626,7 @@ std::map<std::string,std::string> toImcss(std::vector<std::string> input){
 					break;
 				}
 				else {
-					s = imcssLogic(lastOpMap[input[i*3]], s, ii, imcssMap[child],lastOpMap[child], outputStr);
+					s = imcssLogic(lastOpMap[input[i*3]], s, ii, imcssMap[child],lastOpMap[child], outputStr, "");
 					
 					
 				}
@@ -688,6 +688,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	std::map<std::string,std::string> listMap;
 	std::map<std::string,char> lastOpMap;
 	
+	int startLeft = 0;
+	int endLeft = 0;
 	std::map<int,std::string> operandMap;
 	std::string lastInput = "";
 	for (i=0;i<pfstr.length();i++){
@@ -701,6 +703,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			std::string secondTtr0 = "";
 			std::string secondChild = "";
 			int maxi = i-1;
+			
 			
 			for (ii=0;ii<i;ii++){
 				std::string s = "";
@@ -720,6 +723,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 					}
 				}
 				if (listMap.find(s + '@' + t) != listMap.end()){
+					
 					secondStr = s;
 					secondTtr = t;
 					secondStr0 = s0;
@@ -799,7 +803,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			
 			std::string fullStr =  "";
 			std::string outputStr =  "";
-			
+			std::string outputLeft = "";
+			outputLeft += std::to_string(i)+"-"+std::to_string(maxi);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
@@ -840,7 +845,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputLeft);
 			}
 			//s += "\n</div>";
 			if (i == startNode){
