@@ -1149,20 +1149,20 @@ std::string replaceFunctions(std::string input_str){
 		{ 
 			case '+': {
 				if (i+1<input_str.length() && input_str.at(i+1) == '+'){output_str += pestr + "1"; i++; break;}
-				else {output_str += input_str.at(i);followAMap["original2"] = followAMap["original"].at(i); break;}
+				else {output_str += input_str.at(i);followAMap["original2"] += followAMap["original"].at(i); break;}
 				}
 			case '-': {
 				if (i+1<input_str.length() && input_str.at(i+1) == '-'){output_str += mestr + "1"; i++; break;}
-				else {output_str += input_str.at(i);followAMap["original2"] = followAMap["original"].at(i); break;}
+				else {output_str += input_str.at(i);followAMap["original2"] += followAMap["original"].at(i); break;}
 				}
 			case '!': {
 				if (i+1<input_str.length() && input_str.at(i+1) == '!'){output_str += factorialstr; i++; break;}
-				else {output_str += input_str.at(i);followAMap["original2"] = followAMap["original"].at(i); break;}
+				else {output_str += input_str.at(i);followAMap["original2"] += followAMap["original"].at(i); break;}
 				}
 			case ' ': break;
 			case '\t': break;
 			case '\n': break;
-			default: output_str += input_str.at(i); followAMap["original2"] = followAMap["original"].at(i);
+			default: output_str += input_str.at(i); followAMap["original2"] += followAMap["original"].at(i);
 		}
 	}
 	followAMap["original"] = followAMap["original2"];
