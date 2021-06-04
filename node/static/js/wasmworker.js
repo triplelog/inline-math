@@ -620,12 +620,13 @@ function replacer(match){
 	match = match.replace('$`','$');
 	return match;
 }
-function replaceAndTrack(match,p1,offset,string){
-	console.log(match);
-	console.log(p1);
-	console.log(offset);
-	console.log(string);
-	return '`$&`';
+var originalMarkdownMap = {};
+function replaceAndTrack(match,p1,offset,string){\
+	return '`'+match+'`';
+}
+function justTrack(match,p1,offset,string){
+	originalMarkdownMap[offset]=true;
+	return match;
 }
 onmessage = function(e) {
 	var message = e.data;
@@ -633,9 +634,13 @@ onmessage = function(e) {
 	if (message[0] == "markdown"){
 		var markdown = message[1];
 		var originalMarkdown = message[1];
-		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,replaceAndTrack);
-		console.log(markdown);
+		originalMarkdownMap = {};
+		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,justTrack);
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,justTrack);
+		console.log(originalMarkdownMap);
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
+		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,replaceAndTrack);// add ` to front and back
+		//console.log(markdown);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
