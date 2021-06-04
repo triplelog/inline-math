@@ -26,12 +26,9 @@ function getImcss(parent,parents) {
 	}
 	
 
-	myWorker.postMessage(["toInput",formula]);
-	var location = idParent.id;
-	console.log(formula,location);
-	idParent.outerHTML = "<div class='text'>"+formula+"</div>";
-	
-	return "done";
+	myWorker.postMessage(["toInput",formula,idParent.id]);
+
+	return "";
 }
 
 function getLatex(parent,parents) {

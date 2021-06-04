@@ -679,7 +679,7 @@ onmessage = function(e) {
 	else if (message[0] == "toInput"){
 		newInput = "";
 		ijs(message[1]);
-		result = ["input",message[1],newInput];
+		result = ["input",message[1],message[2],newInput];
 	}
 	postMessage(result);
 }

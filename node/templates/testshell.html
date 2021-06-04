@@ -171,7 +171,8 @@
 			//}
 		}
 		else if (e.data[0] == "input"){
-			console.log(e.data[2]);
+			var el = document.getElementById(e.data[2]);
+			el.outerHTML = "<div class='text'>"+e.data[3]+"</div>";
 		}
 	}
 	function updateInputValue(evt){
