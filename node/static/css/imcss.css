@@ -94,6 +94,10 @@
 	position: relative;
 }
 
+.imcss .parentheses{
+	margin-left: calc(18px * 0.3);
+	margin-right: calc(18px * 0.3);
+}
 .imcss .parentheses > svg:nth-child(1), .imcss .brackets > svg:nth-child(1){
 	position:absolute;
     top:0px;

@@ -1,8 +1,9 @@
 
 std::string opstart = "<div class=\"operator\">";
 std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M30 0 Q 0 50 30 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
-std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
+std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
 std::string divend = "\n</div>";
+
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
 	switch (c){
 		case '^': {
@@ -282,7 +283,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '!': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child+"\\neq ";
@@ -294,7 +295,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '[': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child + "\\leq ";
@@ -305,7 +306,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case ']': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child + "\\geq ";
@@ -316,7 +317,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '<': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child+"< ";
@@ -327,7 +328,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '>': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child+"> ";
@@ -338,7 +339,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '=': {
 			if (ii > 0){
 				//s += child;
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += child+divend;
 			}
 			else {
 				//s += child+"= ";
@@ -374,7 +375,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '-': {
 			if (prec['-'] >= prec[lastOp]){
 				//s += "-("+child+")";
-				s += opstart+"-"+divend+parstart+child+parend+divend;
+				s += opstart+"-"+divend+"("+child+")";
 			}
 			else {
 				s += opstart+"-"+divend+child;
@@ -409,7 +410,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec['%'] > prec[lastOp]){
 					//s += "("+child+")";
-					s += "<div class=\"parentheses\">"+child+"\n</div>";
+					s += "("+child+")";
 				}
 				else {
 					s += child;
@@ -423,7 +424,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					if (c == '*'){
 						if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
 							//s += "("+child+")";
-							s += "<div class=\"parentheses\">"+child+"\n</div>";
+							s += "("+child+")";
 						}
 						else {
 							s += "\\cdot ("+child+")";//want to move this into numerator somehow
@@ -437,17 +438,19 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += " OR ("+child+")";
 					}
 					else {
-						s += c+"("+child+")";
+						//s += c+"("+child+")";
+						s += opstart;
+						s += c + divend + "("+child+")";
 					}
 				}
 				else {
 					if (lastOp == '-'){
 						//s += child;
-						s += "<div class=\"number\">"+child+"\n</div>";
+						s += child;
 					}
 					else {
 						//s += "("+child+")";
-						s += "<div class=\"parentheses\">"+child+"\n</div>";
+						s += "("+child+")";
 					}
 				}
 			}
@@ -868,6 +871,15 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		
 	}
 	
+
+	for (i=lastInput.length()-1;i>=0;i--){
+		if (lastInput.at(i) == ')'){
+			lastInput.replace(i,1,parend);
+		}
+		else if (lastInput.at(i) == '('){
+			lastInput.replace(i,1,parstart);
+		}
+	}
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
