@@ -1144,6 +1144,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	if (sz < input_str.length()){
 		for (iii=sz;iii<input_str.length();iii++){
 			followAMap["original"]+='0';
+			
 		}
 	}
 	
@@ -1224,10 +1225,12 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 
 	bool showFAM = false;
-	for (iii=0;iii<sz;iii++){
-		if (followAMap["original"].at(iii) != '0'){
-			showFAM = true;
-			break;
+	if (followAMap["original"].length() > 2){
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			if (followAMap["original"].at(iii) != '0'){
+				showFAM = true;
+				break;
+			}
 		}
 	}
 	if (showFAM){
