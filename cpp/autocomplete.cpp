@@ -235,11 +235,12 @@ char charFromIntString(bool neg, std::string x) {
 	if (neg){
 		i *= -1;
 	}
-	char c{i};
+	char c = i;
 	return c;
 }
 std::string charredPost(std::string pfstr) {
 	std::string outString = "";
+	int i;
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			outString += pfstr.substr(i,pfstr.length()-i);
