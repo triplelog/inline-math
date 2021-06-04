@@ -8,13 +8,14 @@ std::string divend = "\n</div>";
 std::string integralsvg = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"m 29 20 Q 25 0 17 20 Q 15 50 13 80 Q 5 95 1 80\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>";
 
 std::string charCodeToString(int x){
-	std::string s = "-";
+	/*std::string s = "-";
 	if (x >= 0){s = "+";}
 	else {x *= -1;}
 	if (x < 10){s+= "0";}
 	if (x < 100){s+= "00";}
 	s += std::to_string(x);
-	return s;
+	return s;*/
+	return "0000";
 }
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
 	switch (c){
