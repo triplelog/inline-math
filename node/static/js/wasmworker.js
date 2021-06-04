@@ -621,7 +621,7 @@ function replacer(match){
 	return match;
 }
 var originalMarkdownMap = {};
-function replaceAndTrack(match,p1,offset,string){\
+function replaceAndTrack(match,p1,offset,string){
 	return '`'+match+'`';
 }
 function justTrack(match,p1,offset,string){
