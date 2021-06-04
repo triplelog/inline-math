@@ -2,6 +2,8 @@
 std::string opstart = "<div class=\"operator\">";
 std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M30 0 Q 0 50 30 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
 std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
+std::string bracketstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 20 100\" width=\"20\" height=\"100\"><path d=\"M20,0 0,0 0,100 20,100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
+std::string bracketend = "<svg viewBox=\"0 0 20 100\" width=\"20\" height=\"100\"><path d=\"M0,0 20,0 20,100 0,100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
 std::string divend = "\n</div>";
 std::string integralsvg = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"m 29 20 Q 25 0 17 20 Q 15 50 13 80 Q 5 95 1 80\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>";
 
@@ -28,11 +30,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -69: {//Derivative
 			if (ii > 0){
-				s += "<div class=\"margin\">"+child+divend+")"+divend;
+				s += "<div class=\"margin\">"+child+divend+"]"+divend;
 			}
 			else {
 				//s += "\\frac{d}{d"+child+"}[";
-				s += "<div class=\"derivative\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"fraction\"><div class=\"operator\">d</div><div class=\"operator\"><div class=\"margin\">d"+child+divend+"</div>"+divend+"(";
+				s += "<div class=\"derivative\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"fraction\"><div class=\"operator\">d</div><div class=\"bar\"></div><div class=\"operator\"><div class=\"margin\">d"+child+divend+"</div>"+divend+"[";
 			}
 			break;
 
@@ -932,7 +934,17 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		else if (lastInput.at(i) == '('){
 			lastInput.replace(i,1,parstart);
 		}
+		else if (lastInput.at(i) == ']'){
+			lastInput.replace(i,1,bracketend);
+		}
+		else if (lastInput.at(i) == '['){
+			lastInput.replace(i,1,bracketstart);
+		}
+		else if (lastInput.at(i) == '\\'){
+			lastInput.replace(i,1,"greek");
+		}
 	}
+	
 	lastInput = "<div class=\"imcss\" data-original=\""+pfstr+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
