@@ -28,10 +28,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -69: {//Derivative
 			if (ii > 0){
-				s += child+"]";
+				s += "<div class=\"margin\">"+child+divend+")"+divend;
 			}
 			else {
-				s += "\\frac{d}{d"+child+"}[";
+				//s += "\\frac{d}{d"+child+"}[";
+				s += "<div class=\"derivative\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"fraction\"><div class=\"operator\">d</div><div class=\"operator\"><div class=\"margin\">"+d+child+divend+"</div>"+divend+"(";
 			}
 			break;
 
@@ -286,7 +287,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 	
 			}
 			else {
-				if (child == "e"){
+				if (child == "<div class=\"number\">e</div>"){
 					//s += "\\ln ";
 					s += "<div class=\"log\" id=\""+outputID+"\" data-original=\""+outputStr+"\">ln";
 				}
