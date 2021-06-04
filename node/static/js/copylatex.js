@@ -5,6 +5,7 @@ function getImcss(parent,parents) {
 		nParent = nParent.parentElement;
 	}
 	if (!nParent.classList.contains('imcss') ){
+		console.log(parents);
 		return;//Not within one formula
 	}
 	while(!idParent.classList.contains('imcss') && !idParent.id && idParent.parentElement){
