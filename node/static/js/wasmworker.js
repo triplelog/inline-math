@@ -635,7 +635,6 @@ onmessage = function(e) {
 		var markdown = message[1];
 		var originalMarkdown = message[1];
 		originalMarkdownMap = {};
-		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,justTrack);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$+/g,justTrack);
 		console.log(originalMarkdownMap);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
