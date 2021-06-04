@@ -1219,9 +1219,10 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 
 	infixexpr[input_str.length()] = '\0';
 	
+	string_log("hi2");
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
-	
+	string_log("hi3");
 	//string_log(followAMap["original"].c_str());
 	//string_log(followAMap["expstr"].c_str());
 	if (checkComputations){
