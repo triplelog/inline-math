@@ -129,7 +129,7 @@
     padding-left: 2px;
     position: relative;
     width: auto;
-    margin-top:10px;
+    vertical-align: middle;
 }
 
 .imcss .integral > svg {

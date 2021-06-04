@@ -41,8 +41,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				//s.replace(5,0,child+" \\text{d");
 				std::string dx = s;
 				s = "<div class=\"integral\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+integralsvg;
-				s += child;
-				s += "<div class=\"number\">0</div><div class=\"number\">10</div><div class=\"number\">"+dx+"</div>"+divend;
+				s += "<div class=\"margin\">"+child+divend;
+				s += "<div class=\"number margin\">0</div><div class=\"number margin\">10</div><div class=\"number margin\">"+dx+"</div>"+divend;
 			}
 			else {
 				s += child;
@@ -144,10 +144,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -34: //absolute value
 			//s += "|"+child+"|";
-			s += "<div class=\"abs\" data-original=\""+outputStr+"\">"+child+"\n</div>";
+			s += "<div class=\"abs margin\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child+"\n</div>";
 			break;
 		case -64:
-			s += "\\sin("+child+")";
+			//s += "\\sin("+child+")";
+			s += "<div class=\"sin\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
 			break;
 		case -63:
 			s += "\\cos("+child+")";
