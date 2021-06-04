@@ -31,7 +31,19 @@ function getImcss(parent,parents) {
 	return "";
 }
 function updateTEI(evt) {
-	console.log(evt.target);
+	var imcssParent = evt.target;
+	while(!imcssParent.classList.contains('imcss') && imcssParent.parentElement){
+		imcssParent = imcssParent.parentElement;
+	}
+	if (!imcssParent.classList.contains('imcss') ){
+		console.log("no acceptable parent");
+		return;
+	}
+	var fullFormula = imcssParent.getAttribute('data-original');
+	var originalLocation = evt.target.parentElement.id;
+	var newInput = evt.target.value;
+	//Get the location within the markdown?
+	console.log(fullFormula,originalLocation,newInput);
 }
 
 function getLatex(parent,parents) {
