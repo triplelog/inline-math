@@ -1,3 +1,5 @@
+
+std::string opstart = "<div class=\"operator\">";
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
 	switch (c){
 		case '^': {
