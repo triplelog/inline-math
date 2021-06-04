@@ -56,7 +56,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
 					if (ie >= 'a' && ie <= 'z'){//Number followed by ( is multiplication
 						tokenList[idx] = arrayToString(iidx,temptoken);
-						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow)
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 						idx++;
 						std::string s(1,'*');
 						tokenList[idx] = s;
