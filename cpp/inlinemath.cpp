@@ -78,11 +78,8 @@ EM_JS(void, send_ready, (), {
 
 #include "removeIdentities.cpp"
 
-struct DoubleInt
-{
-    int color[2];
-};
-std::map<int,DoubleInt> inputToPostfix;
+
+std::map<std::string,std::string> followAMap;
 std::string prepareIt(std::string a){
 	dependentChars.clear();
 	int i;
@@ -91,6 +88,12 @@ std::string prepareIt(std::string a){
 	}
 	
 	int openPar = 0;
+	followAMap.clear();
+	followAMap["original"]="";
+	for (i=0;i<a.length();i++){
+		char c = i+1;
+		followAMap["original"]+=c;
+	}
 	for (i=0;i<a.length();i++){
 		if (a.at(i) == '{'){
 			a[i] = '(';
@@ -113,19 +116,24 @@ std::string prepareIt(std::string a){
 			if (i+2 < a.length() && a.at(i+1) == 'p' && a.at(i+2) == 'm'){
 				if (i==0){
 					a = "0"+a;
+					followAMap["original"] = "0"+followAMap["original"];
 				}
 				else if (a.at(i-1)=='='){
 					a.replace(i,0,"0");
+					followAMap["original"].replace(i,0,"0");
 				}
 				else if (a.at(i-1)=='('){
 					a.replace(i,0,"0");
+					followAMap["original"].replace(i,0,"0");
 				}
 				else if (i>1 && a.at(i-1)== ' '){
 					if (a.at(i-2)=='='){
 						a.replace(i,0,"0");
+						followAMap["original"].replace(i,0,"0");
 					}
 					else if (a.at(i-2)=='('){
 						a.replace(i,0,"0");
+						followAMap["original"].replace(i,0,"0");
 					}
 				}
 			}
@@ -137,18 +145,16 @@ std::string prepareIt(std::string a){
 	dependentFunctions.resize(0);
 	while (openPar < 0){
 		a.replace(0,0,"(");
+		followAMap["original"].replace(0,0,"0");
 		openPar++;
 	}
 	while (openPar > 0){
 		a.replace(a.length()-1,0,")");
+		followAMap["original"].replace(a.length()-1,0,"0");
 		openPar--;
 	}
 	
-	inputToPostfix.clear();
-	for (i=0;i<a.length();i++){
-		DoubleInt temp = {i,1};
-		inputToPostfix[i]=temp;
-	}
+	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];

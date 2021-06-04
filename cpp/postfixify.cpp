@@ -16,7 +16,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	//	else {displayinp += infixexpr[i];}
 	//}
 	//string_log(displayinp.c_str());
-	
+	followAMap["intstr"] = "";
 	std::string intstr = "";
 	std::string expstr = "";
 	char topToken;
@@ -36,21 +36,31 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	tokenList.resize(len);
 	postfixList.resize(len);
 	opStack.resize(len);
+	
+	
+
+	char temptokenFollow[len];
+	std::vector<std::string> tokenListFollow;
+	std::vector<std::string> postfixListFollow;
+	tokenListFollow.resize(len);
+	postfixListFollow.resize(len);
+	
+	
 	int iidx = 0;
 	
-	
-	
-	for (i = 0; infixexpr[i]; i++) 
-    {
+	for (i = 0; infixexpr[i]; i++) {
 		char ie = infixexpr[i];
+		char aie = followAMap["original"].at(i);
 		if (prec.find(ie) == prec.end()){
 			if (iidx > 0){
 				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
 					if (ie >= 'a' && ie <= 'z'){//Number followed by ( is multiplication
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow)
 						idx++;
 						std::string s(1,'*');
 						tokenList[idx] = s;
+						tokenListFollow[idx] = "0";
 						idx++;
 						
 						temptoken[0] = '\0';
@@ -1079,11 +1089,13 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				int i = iii;
 				int ii; int openPar = 0;
 				std::string inside = "";
+				std::string insideFollow = "";
 				std::string type = "Q";
 				for (ii=i+1;ii<input_str.length();ii++){
 					if (input_str.at(ii) == '('){
 						if (openPar > 0){
 							inside += input_str.at(ii);
+							insideFollow += followA[0].at(ii);
 						}
 						openPar++;
 					}
@@ -1091,10 +1103,12 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 						openPar--;
 						if (openPar > 0){
 							inside += input_str.at(ii);
+							insideFollow += followA[0].at(ii);
 						}
 					}
 					else {
 						inside += input_str.at(ii);
+						insideFollow += followA[0].at(ii);
 					}
 					if (openPar == 0){
 						if (ii+3<input_str.length()){
@@ -1124,7 +1138,9 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				key += repl;
 				repl++;
 				input_str.replace(i,ii+1-i,key);
+				followAMap["original"].replace(i,ii+1-i,"0");
 				repMap[key]=inside;
+				followAMap[key]=insideFollow;
 				//std::cout << "found: " << input_str << "\n";
 			}
 		
