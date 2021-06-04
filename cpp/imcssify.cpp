@@ -13,7 +13,7 @@ std::string charCodeToString(int x){
 	else {x *= -1;}
 	if (x < 10){s+= "0";}
 	if (x < 100){s+= "00";}
-	s += std::stoi(x);
+	s += std::to_string(x);
 	return s;
 }
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
