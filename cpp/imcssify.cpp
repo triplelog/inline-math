@@ -692,21 +692,33 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		else if (pfstr.at(i) != '#'){
 			std::string secondStr = "";
 			std::string secondTtr = "";
+			std::string secondStr0 = "";
+			std::string secondTtr0 = "";
 			std::string secondChild = "";
 			int maxi = i-1;
 			
 			for (ii=0;ii<i;ii++){
 				std::string s = "";
 				std::string t = "";
+				std::string s0 = "";
+				std::string t0 = "";
 				for (iii=ii;iii<i;iii++){
 					s += pfstr.at(iii);
+					
 					if (pfstr.at(iii) == '#'){
+						s0 += pfstr.at(iii);
 						t += operandMap[iii] + '_';
+						t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+					}
+					else {
+						s0 += std::to_string(pfstr.at(iii) - '0');
 					}
 				}
 				if (listMap.find(s + '@' + t) != listMap.end()){
 					secondStr = s;
 					secondTtr = t;
+					secondStr0 = s0;
+					secondTtr0 = t0;
 					secondChild = s + '@' + t;
 					maxi = ii;
 					break;
@@ -727,10 +739,14 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 					std::string t0 = "";
 					for (iii=ii;iii<maxi;iii++){
 						s += pfstr.at(iii);
-						s0 += std::to_string(pfstr.at(iii) - '0');
+						
 						if (pfstr.at(iii) == '#'){
+							s0 += pfstr.at(iii);
 							t += operandMap[iii] + '_';
 							t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+						}
+						else {
+							s0 += std::to_string(pfstr.at(iii) - '0');
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
@@ -751,10 +767,14 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 						std::string t0 = "";
 						for (iii=ii;iii<maxi;iii++){
 							s += pfstr.at(iii);
-							s0 += std::to_string(pfstr.at(iii) - '0');
+							
 							if (pfstr.at(iii) == '#'){
+								s0 += pfstr.at(iii);
 								t += operandMap[iii] + '_';
 								t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+							}
+							else {
+								s0 += std::to_string(pfstr.at(iii) - '0');
 							}
 						}
 						if (listMap.find(s + '@' + t) != listMap.end()){
@@ -786,10 +806,10 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				outputStr += firstTtr0[0];
 			}
 			fullStr += secondTtr;
-			outputStr += secondTtr;
+			outputStr += secondTtr0;
 			
 			fullStr = secondStr + pfstr.at(i) + '@' + fullStr;
-			outputStr = secondStr + pfstr.at(i) + '@' + outputStr;
+			outputStr = secondStr0 + pfstr.at(i) + '@' + outputStr;
 			if (firstStr.size() == 2){
 				fullStr = firstStr[1]+firstStr[0] + fullStr;
 				outputStr = firstStr0[1]+firstStr0[0] + outputStr;
