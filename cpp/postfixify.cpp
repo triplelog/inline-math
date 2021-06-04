@@ -49,6 +49,16 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	
 	int iidx = 0;
 	
+	if (followAMap.find("original") == followAMap.end()){
+		followAMap["original"]="";
+	}
+	int sz = followAMap["original"].length();
+	for (i = 0; infixexpr[i]; i++) {
+		if (i >= sz){
+			followAMap["original"][i]='0';
+		}
+	}
+	
 	for (i = 0; infixexpr[i]; i++) {
 		char ie = infixexpr[i];
 		char aie = followAMap["original"].at(i);
