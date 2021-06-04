@@ -58,10 +58,12 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			followAMap["original"][i]='0';
 		}
 	}
-	
+	string_log("hi4");
 	for (i = 0; infixexpr[i]; i++) {
 		char ie = infixexpr[i];
+		console_log(i);
 		char aie = followAMap["original"].at(i);
+		console_log(i);
 		if (prec.find(ie) == prec.end()){
 			if (iidx > 0){
 				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
@@ -1132,7 +1134,7 @@ std::string postfixify(std::string input_str) {
 }
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
-	string_log("hi");
+
 	input_str = replaceFunctions(input_str);
 	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
