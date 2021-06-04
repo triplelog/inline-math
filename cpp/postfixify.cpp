@@ -1126,6 +1126,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	input_str = replaceFunctions(input_str);
 	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
+	int iii;
 	if (followAMap.find("original") == followAMap.end()){
 		followAMap["original"]="";
 	}
@@ -1135,7 +1136,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			followAMap["original"][iii]="0";
 		}
 	}
-	int iii;
+	
 	if (checkComputations){
 		char repl = 'A';
 		
