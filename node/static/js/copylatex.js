@@ -1,3 +1,81 @@
+function getImcss(parent,parents) {
+	var nParent = parent;
+	var idParent = parent;
+	while(!nParent.classList.contains('imcss') && nParent.parentElement){
+		nParent = nParent.parentElement;
+	}
+	if (!nParent.classList.contains('imcss') ){
+		return;//Not within one formula
+	}
+	while(!idParent.classList.contains('imcss') && !idParent.id && idParent.parentElement){
+		idParent = idParent.parentElement;
+	}
+	var formula = idParent.getAttribute('data-original');
+	if (idParent.classList.contains('imcss') ){
+		idParent.innerHTML = formula;
+		return;
+	}
+	
+	var location = idParent.id;
+	console.log(formula,location);
+	
+	return "done";
+	var children = parent.childNodes;
+	var startCopy = false;
+	if (parents == "all"){
+		startCopy = true;
+	}
+	var fullLatex = "";
+	if (!children || children.length == 0){
+		fullLatex += parent.textContent;
+		return fullLatex;
+	}
+	for (var i=0;i<children.length;i++){
+		var isParent = false;
+		for (var ii in parents){
+			var p = parents[ii];
+			if (p == children[i]){
+				isParent = true;
+				break;
+			}
+		}
+		if (!startCopy){
+			
+			if (isParent){
+				startCopy = true;
+				
+				var child = children[i];
+				if (!child.hasAttribute || !child.hasAttribute('data-latex')){
+					fullLatex += getLatex(child,parents);
+				}
+				else{
+					fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
+				}
+			}
+		}
+		else {
+			var child = children[i];
+			if (!child.hasAttribute || !child.hasAttribute('data-latex')){
+				if (isParent){
+					fullLatex += getLatex(child,parents);
+				}
+				else {
+					fullLatex += getLatex(child,"all");
+				}
+				
+			}
+			else{
+				fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
+			}
+			if (isParent){
+				startCopy = false;
+			}
+		}
+		
+	}
+	return fullLatex;
+}
+
 function getLatex(parent,parents) {
 	var children = parent.childNodes;
 	var startCopy = false;
@@ -243,6 +321,9 @@ function getCopied(evt) {
 	if (el.classList && el.classList.contains('copy-html')){
 		output = 'html';
 	}
+	if (el.classList && el.classList.contains('copy-imcss')){
+		output = 'imcss';
+	}
 	var el = el.parentElement.querySelector('textarea');
 
 	var p = getParents();
@@ -286,6 +367,10 @@ function getCopied(evt) {
 			console.log(fL);
 			el.value = fL;
 		}
+		else if (output == 'imcss'){
+			var fI = getImcss(commonParent,parents);
+			el.value = fI;
+		}
 		else if (output == 'code'){
 			var fI = getInput(commonParent,parents);
 			el.value = fI;
@@ -314,4 +399,5 @@ function getCopied(evt) {
 document.querySelector('button.copy-latex').addEventListener('click',getCopied);
 document.querySelector('button.copy-text').addEventListener('click',getCopied);
 document.querySelector('button.copy-html').addEventListener('click',getCopied);
+document.querySelector('button.copy-imcss').addEventListener('click',getCopied);
 
