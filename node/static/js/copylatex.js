@@ -347,6 +347,10 @@ function getCopied(evt) {
 			var fL = katexParent.getAttribute('data-latex');
 			el.value = fL;
 		}
+		else if (output == 'imcss'){
+			var fI = getImcss(commonParent,parents);
+			el.value = fI;
+		}
 		else if (output == 'code'){
 			var fI = katexParent.getAttribute('data-input');
 			el.value = fI;
