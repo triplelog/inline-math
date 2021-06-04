@@ -49,6 +49,10 @@ EM_JS(void, output_imcss, (const char* x), {
   addImcss(UTF8ToString(x));
 });
 
+EM_JS(void, output_input, (const char* x), {
+  addInput(UTF8ToString(x));
+});
+
 EM_JS(void, output_inputted, (const char* x), {
   addInputted(UTF8ToString(x));
 });
@@ -274,7 +278,17 @@ void ImcssIt(char* aa) {
 	console_log(duration);
 }
 
+void InputIt(char* aa) {
+	auto a1 = std::chrono::high_resolution_clock::now();
+	auto nanos = a1.time_since_epoch();
+	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
+	std::string a = std::string(aa);
+	output_input(a.c_str());
+	auto a2 = std::chrono::high_resolution_clock::now();
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 
+	console_log(duration);
+}
 
 void LatexIt(char* aa) {
 	auto a1 = std::chrono::high_resolution_clock::now();

@@ -48,7 +48,7 @@ mkdir js
 from ~/inline-math/python:
 python3 createRules.py
 from ~/inline-math/cpp:
-~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o js/wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_PlotIt","_TreeIt","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s INITIAL_MEMORY=512MB -s TOTAL_STACK=256MB
+~/emsdk/upstream/emscripten/em++ inlinemath.cpp -o js/wasmhello.js -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS='["_LatexIt","_ImcssIt","_InputIt","_PlotIt","_TreeIt","_main"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s INITIAL_MEMORY=512MB -s TOTAL_STACK=256MB
 cp js/wasmhello.js ../node/static/js/wasmhello.js; cp js/wasmhello.wasm ../node/static/js/wasmhello.wasm
 
 mkdir robots (from triplelogch/static directory)
@@ -57,6 +57,11 @@ pip3 install robohash (only need natsort and pillow -- I think im using custom r
 sudo systemctl restart mongod (every time reboot?)
 
 Create ssh key on server and add to github
+
+
+
+
+
 
 
 #
