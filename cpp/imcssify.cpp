@@ -16,7 +16,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n<div class=\"parentheses\">"+child+"\n</div>";
+					s += "<div class=\"power\" data-original=\""+outputStr+"\">\n("+child+")";
 				}
 				else {
 					//s += child;
@@ -511,7 +511,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					else {
 						s += "<div class=\"operation\">";
 						s += c+"\n</div>";
-						s += "<div class=\"parentheses\">"+child+"\n</div>";
+						s += "("+child+")";
 					}
 				}
 				else {
@@ -523,7 +523,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else {
 						//s += "("+child+")";
-						s += "<div class=\"parentheses\">"+child+"\n</div>";
+						s += "("+child+")";
 					}
 				}
 			}
