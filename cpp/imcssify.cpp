@@ -3,6 +3,7 @@ std::string opstart = "<div class=\"operator\">";
 std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M30 0 Q 0 50 30 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
 std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
 std::string divend = "\n</div>";
+std::string integralsvg = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"m 29 20 Q 25 0 17 20 Q 15 50 13 80 Q 5 95 1 80\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg>";
 
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
 	switch (c){
@@ -37,10 +38,14 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -85: {//Integral
 			if (ii > 0){
-				s.replace(5,0,child+" \\text{d");
+				//s.replace(5,0,child+" \\text{d");
+				std::string dx = s;
+				s = "<div class=\"integral\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+integralsvg;
+				s += child;
+				s += "<div class=\"number\">0</div><div class=\"number\">10</div><div class=\"number\">"+dx+"</div>"+divend;
 			}
 			else {
-				s += "\\int "+child+"}";
+				s += child;
 			}
 			break;
 
