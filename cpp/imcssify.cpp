@@ -926,7 +926,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		
 	}
 	
-	
+	std::map<std::string, std::string> greekHTML;
+	greekHTML["\\pi"]="&pi;";
 	for (i=lastInput.length()-1;i>=0;i--){
 		if (lastInput.at(i) == ')'){
 			lastInput.replace(i,1,parend);
@@ -941,7 +942,15 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			lastInput.replace(i,1,bracketstart);
 		}
 		else if (lastInput.at(i) == '\\'){
-			lastInput.replace(i,1,"greek");
+			std::string greek = "";
+			for (ii=i;ii<i+7 && ii < lastInput.length();ii++){
+				greek += lastInput.at(ii);
+				if (greekHTML.find(greek) != greekHTML.end()){
+					lastInput.replace(i,ii-i+1,greekHTML[greek]);
+					break;
+				}
+			}
+			
 		}
 	}
 	
