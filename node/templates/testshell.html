@@ -172,7 +172,7 @@
 		}
 		else if (e.data[0] == "input"){
 			var el = document.getElementById(e.data[2]);
-			el.outerHTML = "<div class='text'>"+e.data[3]+"</div>";
+			el.outerHTML = "<div class='text'><input type='text' value='"+e.data[3]+"'></input></div>";
 		}
 	}
 	function updateInputValue(evt){
