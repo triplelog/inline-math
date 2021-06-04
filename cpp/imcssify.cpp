@@ -730,7 +730,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 						s0 += std::to_string(pfstr.at(iii) - '0');
 						if (pfstr.at(iii) == '#'){
 							t += operandMap[iii] + '_';
-							t0 += originalMap[operandMap[iii]] + '_';
+							t0 += originalMap[std::stoi(operandMap[iii])] + '_';
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
@@ -754,7 +754,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 							s0 += std::to_string(pfstr.at(iii) - '0');
 							if (pfstr.at(iii) == '#'){
 								t += operandMap[iii] + '_';
-								t0 += originalMap[operandMap[iii]] + '_';
+								t0 += originalMap[std::stoi(operandMap[iii])] + '_';
 							}
 						}
 						if (listMap.find(s + '@' + t) != listMap.end()){
