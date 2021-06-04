@@ -6,7 +6,15 @@ function getImcss(parent,parents) {
 	}
 	if (!nParent.classList.contains('imcss') ){
 		console.log(parents);
-		return;//Not within one formula
+		for (var i=0;i<parents.length;i++){
+			if (parents[i].classList.contains('imcss')){
+				idParent = parents[i];
+				break;
+			}
+			if (i==parents.length-1){
+				return;//No formula to edit
+			}
+		}
 	}
 	while(!idParent.classList.contains('imcss') && !idParent.id && idParent.parentElement){
 		idParent = idParent.parentElement;
@@ -19,62 +27,9 @@ function getImcss(parent,parents) {
 	
 	var location = idParent.id;
 	console.log(formula,location);
+	idParent.innerHTML = formula;
 	
 	return "done";
-	var children = parent.childNodes;
-	var startCopy = false;
-	if (parents == "all"){
-		startCopy = true;
-	}
-	var fullLatex = "";
-	if (!children || children.length == 0){
-		fullLatex += parent.textContent;
-		return fullLatex;
-	}
-	for (var i=0;i<children.length;i++){
-		var isParent = false;
-		for (var ii in parents){
-			var p = parents[ii];
-			if (p == children[i]){
-				isParent = true;
-				break;
-			}
-		}
-		if (!startCopy){
-			
-			if (isParent){
-				startCopy = true;
-				
-				var child = children[i];
-				if (!child.hasAttribute || !child.hasAttribute('data-latex')){
-					fullLatex += getLatex(child,parents);
-				}
-				else{
-					fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
-				}
-			}
-		}
-		else {
-			var child = children[i];
-			if (!child.hasAttribute || !child.hasAttribute('data-latex')){
-				if (isParent){
-					fullLatex += getLatex(child,parents);
-				}
-				else {
-					fullLatex += getLatex(child,"all");
-				}
-				
-			}
-			else{
-				fullLatex += "$"+child.getAttribute('data-latex').trim()+"$";
-			}
-			if (isParent){
-				startCopy = false;
-			}
-		}
-		
-	}
-	return fullLatex;
 }
 
 function getLatex(parent,parents) {
