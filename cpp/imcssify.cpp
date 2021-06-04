@@ -32,7 +32,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += "\\frac{d}{d"+child+"}[";
-				s += "<div class=\"derivative\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"fraction\"><div class=\"operator\">d</div><div class=\"operator\"><div class=\"margin\">"+d+child+divend+"</div>"+divend+"(";
+				s += "<div class=\"derivative\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"fraction\"><div class=\"operator\">d</div><div class=\"operator\"><div class=\"margin\">d"+child+divend+"</div>"+divend+"(";
 			}
 			break;
 
