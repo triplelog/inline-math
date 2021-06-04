@@ -386,8 +386,9 @@ std::string replaceFunctions(std::string input_str){
 		followAMap["original"]="";
 	}
 	int sz = followAMap["original"].length();
-	for (i = 0; i<input_str.length(); i++) {
-		if (i >= sz){
+	int szi;
+	for (szi = 0; szi<input_str.length(); szi++) {
+		if (szi >= sz){
 			followAMap["original"]+='0';
 		}
 	}
