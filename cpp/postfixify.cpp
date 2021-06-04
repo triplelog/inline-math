@@ -1225,6 +1225,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 
 	bool showFAM = false;
+	
 	if (followAMap["original"].length() > 2){
 		for (iii=0;iii<followAMap["original"].length();iii++){
 			if (followAMap["original"].at(iii) != '0'){
@@ -1234,9 +1235,19 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		}
 	}
 	if (showFAM){
+		std::string visOriginal = "";
+		std::string visNew = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;iii<followAMap["expstr"].length();iii++){
+			int s000 = followAMap["expstr"].at(iii);
+			visNew += std::to_string(s000)+",";
+		}
 		string_log("NonZero");
-		string_log(followAMap["original"].c_str());
-		string_log(followAMap["expstr"].c_str());
+		string_log(visOriginal.c_str());
+		string_log(visNew.c_str());
 	}
 	
 	if (checkComputations){
