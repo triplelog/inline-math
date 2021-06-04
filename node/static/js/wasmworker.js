@@ -620,7 +620,11 @@ function replacer(match){
 	match = match.replace('$`','$');
 	return match;
 }
-function replaceAndTrack(match){
+function replaceAndTrack(match,p1,offset,string){
+	console.log(match);
+	console.log(p1);
+	console.log(offset);
+	console.log(string);
 	return '`$&`';
 }
 onmessage = function(e) {
