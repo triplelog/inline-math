@@ -4,7 +4,7 @@ std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" w
 std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>\n</div>";
 std::string divend = "\n</div>";
 
-std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputLeft){
+std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
 	switch (c){
 		case '^': {
 			if (ii > 0){
@@ -16,11 +16,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\" id=\""+outputLeft+"\" data-original=\""+outputStr+"\">\n("+child+")";
+					s += "<div class=\"power\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n("+child+")";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\" id=\""+outputLeft+"\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
+					s += "<div class=\"power\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
@@ -692,6 +692,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	int endLeft = 0;
 	std::map<int,std::string> operandMap;
 	std::string lastInput = "";
+	int oidx;
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			break;
@@ -703,27 +704,34 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			std::string secondTtr0 = "";
 			std::string secondChild = "";
 			int maxi = i-1;
-			
+			int rightStart = i;
+			int rightEnd = -1;
 			
 			for (ii=0;ii<i;ii++){
 				std::string s = "";
 				std::string t = "";
 				std::string s0 = "";
 				std::string t0 = "";
+				int rightStartT = i;
+				int rightEndT = -1;
 				for (iii=ii;iii<i;iii++){
 					s += pfstr.at(iii);
 					
 					if (pfstr.at(iii) == '#'){
 						s0 += pfstr.at(iii);
 						t += operandMap[iii] + '_';
-						t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+						oidx = std::stoi(operandMap[iii]);
+						if (oidx < rightStartT){rightStartT = oidx;}
+						if (oidx > rightEndT){rightEndT = oidx;}
+						t0 += originalMap[oidx] + '_';
 					}
 					else {
 						s0 += std::to_string(pfstr.at(iii) - '0');
 					}
 				}
 				if (listMap.find(s + '@' + t) != listMap.end()){
-					
+					if (rightStartT < rightStart){rightStart = rightStartT;}
+					if (rightEndT > rightEnd){rightEnd = rightEndT;}
 					secondStr = s;
 					secondTtr = t;
 					secondStr0 = s0;
@@ -746,19 +754,26 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 					std::string t = "";
 					std::string s0 = "";
 					std::string t0 = "";
+					int rightStartT = i;
+					int rightEndT = -1;
 					for (iii=ii;iii<maxi;iii++){
 						s += pfstr.at(iii);
 						
 						if (pfstr.at(iii) == '#'){
 							s0 += pfstr.at(iii);
 							t += operandMap[iii] + '_';
-							t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+							oidx = std::stoi(operandMap[iii]);
+							if (oidx < rightStartT){rightStartT = oidx;}
+							if (oidx > rightEndT){rightEndT = oidx;}
+							t0 += originalMap[oidx] + '_';
 						}
 						else {
 							s0 += std::to_string(pfstr.at(iii) - '0');
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
+						if (rightStartT < rightStart){rightStart = rightStartT;}
+						if (rightEndT > rightEnd){rightEnd = rightEndT;}
 						firstStr.push_back(s);
 						firstTtr.push_back(t);
 						firstStr0.push_back(s0);
@@ -774,19 +789,26 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 						std::string t = "";
 						std::string s0 = "";
 						std::string t0 = "";
+						int rightStartT = i;
+						int rightEndT = -1;
 						for (iii=ii;iii<maxi;iii++){
 							s += pfstr.at(iii);
 							
 							if (pfstr.at(iii) == '#'){
 								s0 += pfstr.at(iii);
 								t += operandMap[iii] + '_';
-								t0 += originalMap[std::stoi(operandMap[iii])] + '_';
+								oidx = std::stoi(operandMap[iii]);
+								if (oidx < rightStartT){rightStartT = oidx;}
+								if (oidx > rightEndT){rightEndT = oidx;}
+								t0 += originalMap[oidx] + '_';
 							}
 							else {
 								s0 += std::to_string(pfstr.at(iii) - '0');
 							}
 						}
 						if (listMap.find(s + '@' + t) != listMap.end()){
+							if (rightStartT < rightStart){rightStart = rightStartT;}
+							if (rightEndT > rightEnd){rightEnd = rightEndT;}
 							firstStr.push_back(s);
 							firstTtr.push_back(t);
 							firstStr0.push_back(s0);
@@ -804,7 +826,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			std::string fullStr =  "";
 			std::string outputStr =  "";
 			std::string outputLeft = "";
-			outputLeft += std::to_string(i)+"-"+std::to_string(maxi);
+			outputID += std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
@@ -845,7 +867,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputLeft);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputID);
 			}
 			//s += "\n</div>";
 			if (i == startNode){
