@@ -524,6 +524,32 @@ void AddRules(char* aa,char* bb) {
 }//end extern C
 
 
+void setHTMLcodes() {
+	greekHTML["\\pi"]="&pi;";
+	greekHTML["\\alpha"]="&alpha;";
+	greekHTML["\\beta"]="&beta;";
+	greekHTML["\\gamma"]="&gamma;";
+	greekHTML["\\delta"]="&delta;";
+	greekHTML["\\epsilon"]="&epsilon;";
+	greekHTML["\\zeta"]="&zeta;";
+	greekHTML["\\eta"]="&eta;";
+	greekHTML["\\theta"]="&theta;";
+	greekHTML["\\iota"]="&iota;";
+	greekHTML["\\kappa"]="&kappa;";
+	greekHTML["\\lambda"]="&lambda;";
+	greekHTML["\\mu"]="&mu;";
+	greekHTML["\\nu"]="&nu;";
+	greekHTML["\\xi"]="&xi;";
+	greekHTML["\\omicron"]="&omicron;";
+	greekHTML["\\rho"]="&rho;";
+	greekHTML["\\sigma"]="&sigma;";
+	greekHTML["\\tau"]="&tau;";
+	greekHTML["\\upsilon"]="&upsilon;";
+	greekHTML["\\phi"]="&phi;";
+	greekHTML["\\chi"]="&chi;";
+	greekHTML["\\psi"]="&psi;";
+	greekHTML["\\omega"]="&omega;";
+}
 
 
 int main() {
@@ -540,12 +566,7 @@ int main() {
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 	console_log(duration);
 	send_ready();
-	greekHTML["\\pi"]="&pi;";
-	greekHTML["\\alpha"]="&alpha;";
-	greekHTML["\\beta"]="&beta;";
-	greekHTML["\\gamma"]="&gamma;";
-	greekHTML["\\theta"]="&theta;";
-	greekHTML["\\rho"]="&rho;";
+	setHTMLcodes();
 	return 1;
 }
 
