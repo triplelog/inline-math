@@ -540,6 +540,12 @@ int main() {
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 	console_log(duration);
 	send_ready();
+	greekHTML["\\pi"]="&pi;";
+	greekHTML["\\alpha"]="&alpha;";
+	greekHTML["\\beta"]="&beta;";
+	greekHTML["\\gamma"]="&gamma;";
+	greekHTML["\\theta"]="&theta;";
+	greekHTML["\\rho"]="&rho;";
 	return 1;
 }
 

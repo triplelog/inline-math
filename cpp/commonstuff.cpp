@@ -18,7 +18,7 @@ int mapMake;
 int overallScore;
 bool answerIsFinished;
 std::map<int,int> eloMap;
-
+std::map<std::string, std::string> greekHTML;
 
 
 struct Dewey {
