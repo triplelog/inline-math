@@ -142,88 +142,100 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
-		case -34: //absolute value
+		case -34: {//absolute value
 			//s += "|"+child+"|";
 			s += "<div class=\"abs margin\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child+"\n</div>";
-			break;
-		case -64:
+			break;}
+		case -64:{
 			//s += "\\sin("+child+")";
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -63:
+			break;}
+		case -63:{
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cos"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -62:
+			break;}
+		case -62:{
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"tan"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -61:
+			break;}
+		case -61:{
 			//s += "\\csc("+child+")";
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"csc"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -60:
+			break;}
+		case -60:{
 			//s += "\\sec("+child+")";
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sec"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -59:
+			break;}
+		case -59:{
 			//s += "\\cot("+child+")";
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cot"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -32:
+			break;}
+		case -32:{
 			//s += "\\sin^{-1}("+child+")";
 			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sin<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
-			break;
-		case -31:
-			s += "\\cos^{-1}("+child+")";
-			break;
-		case -30:
-			s += "\\tan^{-1}("+child+")";
-			break;
-		case -29:
-			s += "\\csc^{-1}("+child+")";
-			break;
-		case -28:
-			s += "\\sec^{-1}("+child+")";
-			break;
-		case -27:
-			s += "\\cot^{-1}("+child+")";
-			break;
-		case -16:
-			s += "\\text{sinh}("+child+")";
-			break;
-		case -15:
-			s += "\\text{cosh}("+child+")";
-			break;
-		case -14:
-			s += "\\text{tanh}("+child+")";
-			break;
-		case -13:
-			s += "\\text{csch}("+child+")";
-			break;
-		case -12:
-			s += "\\text{sech}("+child+")";
-			break;
-		case -11:
-			s += "\\text{coth}("+child+")";
-			break;
-		case -67:
+			break;}
+		case -31:{
+			//s += "\\cos^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cos<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -30:{
+			//s += "\\tan^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"tan<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -29:{
+			//s += "\\csc^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"csc<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -28:{
+			//s += "\\sec^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sec<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -27:{
+			//s += "\\cot^{-1}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cot<sup>-1</sup>"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -16:{
+			//s += "\\text{sinh}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sinh"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -15:{
+			//s += "\\text{cosh}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"cosh"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -14:{
+			//s += "\\text{tanh}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"tanh"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -13:{
+			//s += "\\text{csch}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"csch"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -12:{
+			//s += "\\text{sech}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"sech"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -11:{
+			//s += "\\text{coth}("+child+")";
+			s += "<div class=\"trig\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+opstart+"coth"+divend+"("+"<div class=\"margin\">"+child+divend+")"+divend;
+			break;}
+		case -67:{
 			//s += "\\sqrt{"+child+"}";
-			s += "<div class=\"root\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>\n</div>";
-			break;
+			s += "<div class=\"root\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"margin\">"+child+"\n</div>\n</div>";
+			break;}
 		case -84: {
 			if (ii > 0){
 				//s += child+"}";
-				s += "<div class=\"number\">"+child+"\n</div>\n</div>";
+				s += "<div class=\"margin\">"+child+"\n</div>\n</div>";
 			}
 			else {
 				//s += "\\sqrt["+child+"]{";
-				s += "<div class=\"root\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>";
+				s += "<div class=\"root\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"margin\">"+child+"\n</div>";
 			}
 			break;
 
 		}
 		case -105: {
 			if (ii > 0){
-				s += "\\pluseq "+child;
+				//s += "\\pluseq "+child;
+				s += opstart+"+="+divend+child;
 			}
 			else {
 				s += child;
@@ -232,7 +244,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -106: {
 			if (ii > 0){
-				s += "\\minuseq"+child;
+				//s += "\\minuseq"+child;
+				s += opstart+"-="+divend+child;
 			}
 			else {
 				s += child;
@@ -241,41 +254,45 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -125: {
 			if (ii > 0){
-				s += child+")";
+				s += child+")"+divend;
 			}
 			else {
-				s += "\\text{"+child+"}(";
+				//s += "\\text{"+child+"}(";
+				s += "<div class=\"function\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child+"(";
 			}
 			break;
 		}
 		case -126: {
 			if (ii > 1){
-				s += child+")";
+				s += child+")"+divend;
 			}
 			else if (ii == 1){
 				s += child+",";
 			}
 			else {
-				s += "\\text{"+child+"}(";
+				//s += "\\text{"+child+"}(";
+				s += "<div class=\"function\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child+"(";
 			}
 			break;
 		}
 		case -93: {
 			if (ii > 0){
 				if (prec[lastOp] < 100){
-					s += "("+child+")";
+					s += "("+child+")"+divend;
 				}
 				else {
-					s += child;
+					s += child+divend;
 				}
 	
 			}
 			else {
 				if (child == "e"){
-					s += "\\ln ";
+					//s += "\\ln ";
+					s += "<div class=\"log\" id=\""+outputID+"\" data-original=\""+outputStr+"\">ln";
 				}
 				else {
-					s += "\\log_{"+child+"} ";
+					//s += "\\log_{"+child+"} ";
+					s += "<div class=\"log\" id=\""+outputID+"\" data-original=\""+outputStr+"\">log<sub>"+child+"</sub>";
 				}
 			}
 			break;
@@ -297,7 +314,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child+"\\neq ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&ne;\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&ne;\n</div>";
 
 			}
 			break;
@@ -309,7 +326,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child + "\\leq ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lte;\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lte;\n</div>";
 			}
 			break;
 		}
@@ -320,7 +337,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child + "\\geq ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gte;\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gte;\n</div>";
 			}
 			break;
 		}
@@ -331,7 +348,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child+"< ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lt;\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&lt;\n</div>";
 			}
 			break;
 		}
@@ -342,7 +359,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child+"> ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gt;\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">&gt;\n</div>";
 			}
 			break;
 		}
@@ -353,17 +370,17 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += child+"= ";
-				s += "<div class=\"comparison\"><div class=\"number\">"+child+"\n</div><div class=\"number\">=\n</div>";
+				s += "<div class=\"comparison\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number\">"+child+"\n</div><div class=\"number\">=\n</div>";
 			}
 			break;
 		}
 		case -79: {
 			if (ii>0){
 				if (prec[-79] > prec[lastOp]){
-					s += "\\pm ("+child+")";
+					s += "&plusmn;("+child+")";
 				}
 				else {
-					s += "\\pm"+child;
+					s += "&plusmn;"+child;
 				}
 			}
 			else {
@@ -437,15 +454,15 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							s += "("+child+")";
 						}
 						else {
-							s += "\\cdot ("+child+")";//want to move this into numerator somehow
+							s += "&middot;("+child+")";//want to move this into numerator somehow
 						}
 					
 					}
 					else if (c == '&'){
-						s += " AND ("+child+")";
+						s += "<div class=\"text\"> AND </div>("+child+")";
 					}
 					else if (c == '|'){
-						s += " OR ("+child+")";
+						s += "<div class=\"text\"> OR </div>("+child+")";
 					}
 					else {
 						//s += c+"("+child+")";
@@ -513,10 +530,10 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += child;
 					}
 					else if (c == '&'){
-						s += "\\text{ AND }("+child+")";
+						s += "<div class=\"text\"> AND </div>("+child+")";
 					}
 					else if (c == '|'){
-						s += "\\text{ OR }("+child+")";
+						s += "<div class=\"text\"> OR </div>("+child+")";
 					}
 					else {
 						s += "<div class=\"operation\">";
@@ -547,29 +564,28 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						else if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
 							if (child.length()>0 && (child.at(0) >= '0' && child.at(0) <= '9')){
 								//digit followed by digit
-								s += "\\cdot "+child;
+								s += "&middot;"+child;
 							}
 							else{
 								//digit followed by not a digit
 								//s += child;
-								s += "<div class=\"number\">"+child+"\n</div>";
+								s += child;
 							}
 						}
 						else {
-							s += "\\cdot "+child;
+							s += "&middot;"+child;
 						}
 					}
 					else if (c == '&'){
-						s += "\\text{ AND }"+child;
+						s += "<div class=\"text\"> AND </div>"+child;
 					}
 					else if (c == '|'){
-						s += "\\text{ OR }"+child;
+						s += "<div class=\"text\"> OR </div>"+child;
 					}
 					else {
 						//s += c+child;
-						s += "<div class=\"number\">";
-						s += c;
-						s += "</div><div class=\"number\">"+child+"\n</div>";
+						s += opstart + c + divend;
+						s += child;
 					}
 				}
 				else {
