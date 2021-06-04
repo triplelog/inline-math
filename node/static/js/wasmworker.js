@@ -620,12 +620,18 @@ function replacer(match){
 	match = match.replace('$`','$');
 	return match;
 }
+function replaceAndTrack(match){
+	return '`$&`';
+}
 onmessage = function(e) {
 	var message = e.data;
 	var result = [];
 	if (message[0] == "markdown"){
 		var markdown = message[1];
-		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
+		var originalMarkdown = message[1];
+		//markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,'`$&`');
+		markdown = markdown.replace(/\$+([^\$\n]+?)\$\[[A-Z]\]+/g,replaceAndTrack);
+		console.log(markdown);
 		markdown = markdown.replace(/\$+([^\$\n]+?)\$!\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$\[[A-Z]\]+/g,'`$&`');
 		markdown = markdown.replace(/\$\$+([^\$\n]+?)\$\$!\[[A-Z]\]+/g,'`$&`');
