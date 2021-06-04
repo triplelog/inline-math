@@ -777,7 +777,7 @@ std::string replaceFunctions(std::string input_str){
 						}
 					}
 					input_str.replace(i-2,repLen,"("+var+")"+ddx+"("+inside+")");
-					std::string sNew = std::string(4+var.length()+ddx.length()+inside.length(),followAMap["original"].at(i-2));
+					std::string sNew = std::string(4+var.length()+1+inside.length(),followAMap["original"].at(i-2));
 					followAMap["original"].replace(i-2,repLen,sNew);
 					threeChars = "...";
 					i += -3;
