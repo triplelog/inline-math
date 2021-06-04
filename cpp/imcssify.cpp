@@ -1,5 +1,8 @@
 
 std::string opstart = "<div class=\"operator\">";
+std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M30 0 Q 0 50 30 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
+std::string parend = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
+std::string divend = "\n</div>";
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
 	switch (c){
 		case '^': {
@@ -371,10 +374,10 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		case '-': {
 			if (prec['-'] >= prec[lastOp]){
 				//s += "-("+child+")";
-				s += "-<div class=\"parentheses\">"+child+"\n</div>";
+				s += opstart+"-"+divend+parstart+child+parend+divend;
 			}
 			else {
-				s += "-"+child;
+				s += opstart+"-"+divend+child;
 			}
 			break;
 		}
@@ -526,7 +529,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					if (c == '*'){
 						//TODO: deal with fraction in s or child
 						if (s == "-1"){
-							s = "-"+child;
+							s = opstart+"-"+divend+child;
 						}
 						else if (s.length()>0 && (s.at(s.length()-1) >= '0' && s.at(s.length()-1) <= '9')){
 							if (child.length()>0 && (child.at(0) >= '0' && child.at(0) <= '9')){
