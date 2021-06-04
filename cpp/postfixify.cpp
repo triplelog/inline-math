@@ -38,13 +38,14 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	opStack.resize(len);
 	
 	
-
+	std::vector<char> opStackFollow;
+	opStackFollow.resize(len);
 	char temptokenFollow[len];
 	std::vector<std::string> tokenListFollow;
 	std::vector<std::string> postfixListFollow;
 	tokenListFollow.resize(len);
 	postfixListFollow.resize(len);
-	
+	char topTokenFollow;
 	
 	int iidx = 0;
 	
@@ -64,12 +65,15 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 						idx++;
 						
 						temptoken[0] = '\0';
+						temptokenFollow[0] = '\0';
 						iidx=0;
 					}
 				}
 			}
 			temptoken[iidx] = ie;
 			temptoken[iidx+1] = '\0';
+			temptokenFollow[iidx] = aie;
+			temptokenFollow[iidx+1] = '\0';
 			iidx++;
 		}
 		else{
@@ -77,19 +81,23 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
 					if (ie == '('){//Number followed by ( is multiplication
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 						idx++;
 						std::string s(1,'*');
 						tokenList[idx] = s;
+						tokenListFollow[idx] = "0";
 						idx++;
 					}
 					else {
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 						idx++;
 					}
 				}
 				else if ((temptoken[iidx-1] >= 'a' && temptoken[iidx-1] <= 'z') || (temptoken[iidx-1] >= 'A' && temptoken[iidx-1] <= 'Z')){
 					if (ie == '('){//Letter followed by ( is function
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 						//string_log(tokenList[idx].c_str());
 						dependentFunctions.push_back(tokenList[idx]);
 						idx++;
@@ -106,6 +114,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 							else if (openPar == 1 && infixexpr[iie] == ',' && infixexpr[iie-1] == ','){
 								infixexpr[iie-1] = ')';
 								infixexpr[iie] = '(';
+								followAMap["original"][iie-1] = '0';
+								followAMap["original"][iie] = '0';
 								commas++;
 							}
 							if (openPar == 0){
@@ -116,15 +126,18 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 						if (commas>0){
 							std::string s(1,-126);
 							tokenList[idx] = s;
+							tokenListFollow[idx] = "0";
 						}
 						else {
 							std::string s(1,-125);
 							tokenList[idx] = s;
+							tokenListFollow[idx] = "0";
 						}
 						idx++;
 					}
 					else {
 						tokenList[idx] = arrayToString(iidx,temptoken);
+						tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 						idx++;
 					}
 				}
@@ -132,17 +145,21 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			}
 			std::string s(1,ie);
 			tokenList[idx] = s;
+			tokenListFollow[idx] = aie;
 			idx++;
 			temptoken[0] = '\0';
+			temptokenFollow[0] = '\0';
 			iidx=0;
 		}
 	}
 	if (iidx != 0){
 		tokenList[idx] = arrayToString(iidx,temptoken);
+		tokenListFollow[idx] = arrayToString(iidx,temptokenFollow);
 		idx++;
 	}
 	
 	tokenList.resize(idx);
+	tokenListFollow.resize(idx);
 	
 
 	
@@ -150,15 +167,19 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	int p;
 	for (i=0;i<idx;i++){
 		std::string token = tokenList[i];
+		std::string tokenFollow = tokenListFollow[i];
 		char firstChar = token.at(0);
+		char firstCharFollow = tokenFollow.at(0);
 		
 		if (firstChar == '('){
 			opStack[osidx] = firstChar;
+			opStackFollow[osidx] = firstCharFollow;
 			osidx++;
 			previousOperand = false;
 		}
 		else if (firstChar == ')'){
 			topToken = opStack[osidx-1];
+			topTokenFollow = opStackFollow[osidx-1];
 			osidx--;
 			
 			while (topToken != '('){
@@ -166,8 +187,10 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				osidx--;
 				std::string s(1,topToken);
 				postfixList[pfidx] = s;
+				postfixListFollow[pfidx] = topTokenFollow;
 				pfidx++;
 				topToken = opStack[osidx];
+				topTokenFollow = opStackFollow[osidx];
 				
 			}
 			previousOperand = true;
@@ -183,9 +206,11 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			}
 			while ((osidx > 0) && (prec[opStack[osidx-1]] >= p)){
 				topToken = opStack[osidx-1];
+				topTokenFollow = opStackFollow[osidx-1];
 				osidx--;
 				std::string s(1,topToken);
 				postfixList[pfidx] = s;
+				postfixListFollow[pfidx] = topTokenFollow;
 				pfidx++;
 			}
 			
