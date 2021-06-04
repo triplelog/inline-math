@@ -283,7 +283,7 @@ void InputIt(char* aa) {
 	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
-	std::string charred = charredPost(a)
+	std::string charred = charredPost(a);
 	std::string newInput = inputifyOne(charred);
 	output_input(newInput.c_str());
 	auto a2 = std::chrono::high_resolution_clock::now();
