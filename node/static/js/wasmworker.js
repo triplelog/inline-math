@@ -408,6 +408,7 @@ const renderer = {
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
   	text = text.replace(/!$/,'!!');
+  	renderIdx++;
   	try{
 		var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
@@ -608,7 +609,7 @@ const renderer = {
 	catch(err){
 		return text;
 	}
-	renderIdx++;
+	
   }
 };
 
@@ -649,7 +650,7 @@ onmessage = function(e) {
 		plotid = 0;
 		var html;
 		try {
-			renderIdx = 0;
+			renderIdx = -1;
 			html = marked(markdown);
 		}
 		catch(err){
