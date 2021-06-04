@@ -677,7 +677,7 @@ onmessage = function(e) {
 		inputV[message[1]]=message[2];
 	}
 	else if (message[0] == "toInput"){
-		newInput = "":
+		newInput = "";
 		ijs(message[1]);
 		result = ["input",message[1],newInput];
 	}
