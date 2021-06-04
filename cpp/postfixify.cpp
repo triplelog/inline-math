@@ -1133,7 +1133,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	int sz = followAMap["original"].length();
 	if (sz < input_str.length()){
 		for (iii=sz;iii<input_str.length();iii++){
-			followAMap["original"][iii]='0'';
+			followAMap["original"][iii]='0';
 		}
 	}
 	
