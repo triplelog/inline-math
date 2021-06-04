@@ -26,7 +26,7 @@ function getImcss(parent,parents) {
 	}
 	
 	var jsonmessage = ["toInput",formula];
-	ws.send(JSON.stringify(jsonmessage));
+	myWorker.send(JSON.stringify(jsonmessage));
 	var location = idParent.id;
 	console.log(formula,location);
 	idParent.outerHTML = "<div class='text'>"+formula+"</div>";
