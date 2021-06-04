@@ -1222,9 +1222,20 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
-	string_log("hi3");
-	string_log(followAMap["original"].c_str());
-	string_log(followAMap["expstr"].c_str());
+	if (sz > 0 && followAMap["original"].at(0) != '0')
+	bool showFAM = false;
+	for (iii=0;iii<sz;iii++){
+		if (followAMap["original"].at(iii) != '0'){
+			showFAM = true;
+			break;
+		}
+	}
+	if (showFAM){
+		string_log("NonZero");
+		string_log(followAMap["original"].c_str());
+		string_log(followAMap["expstr"].c_str());
+	}
+	
 	if (checkComputations){
 		std::string checkChars = "";
 		for (iii=0;iii<postVector[1].length();iii++){
