@@ -596,8 +596,6 @@ int main() {
 	killNow.maxTime = 3142; //milliseconds: 1 thousandth of second
 	maxDigits = -1;
 	exactDigits = -1;
-	followAMap.clear();
-	followAMap["original"]="";
 	initialRun();
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
