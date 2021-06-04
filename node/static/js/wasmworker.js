@@ -595,7 +595,7 @@ const renderer = {
 			k = mapOrNew(input,varName,false,false,isDisplay);
 			//var uniqueId = 'imcss-'+(10000+Math.floor(Math.random() * 90000));
 			var uniqueId = 'imcss-'+renderIdx;
-			console.log(originalMarkdown.substr(originalMarkdownMap[renderIdx],originalMarkdownMap[renderIdx]+10));
+			console.log(originalMarkdown.substr(originalMarkdownMap[2*renderIdx],originalMarkdownMap[2*renderIdx+1]));
 			k = k.replace('class="imcss"','class="imcss" id="'+uniqueId+'"');
 			if (varName != ""){
 				currentV[varName]=k;
@@ -625,6 +625,7 @@ var originalMarkdownMap = [];
 var originalMarkdown;
 function justTrack(match,p1,offset,string){
 	originalMarkdownMap.push(offset);
+	originalMarkdownMap.push(match.length);
 	return match;
 }
 onmessage = function(e) {
