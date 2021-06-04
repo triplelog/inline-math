@@ -714,6 +714,8 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			}
 			std::vector<std::string> firstStr;
 			std::vector<std::string> firstTtr;
+			std::vector<std::string> firstStr0;
+			std::vector<std::string> firstTtr0;
 			std::vector<std::string> firstChild;
 			
 			if (pfstr.at(i) != '-' && pfstr.at(i) != '/' && (pfstr.at(i) >= 0 || pfstr.at(i) <= -69 )){ // Is at least binary function
@@ -721,15 +723,21 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 				for (ii=0;ii<maxi;ii++){
 					std::string s = "";
 					std::string t = "";
+					std::string s0 = "";
+					std::string t0 = "";
 					for (iii=ii;iii<maxi;iii++){
 						s += pfstr.at(iii);
+						s0 += std::to_string(pfstr.at(iii) - '0');
 						if (pfstr.at(iii) == '#'){
 							t += operandMap[iii] + '_';
+							t0 += originalMap[operandMap[iii]] + '_';
 						}
 					}
 					if (listMap.find(s + '@' + t) != listMap.end()){
 						firstStr.push_back(s);
 						firstTtr.push_back(t);
+						firstStr0.push_back(s0);
+						firstTtr0.push_back(t0);
 						firstChild.push_back(s + '@' + t);
 						maxi = ii;
 						break;
@@ -739,15 +747,21 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 					for (ii=0;ii<maxi;ii++){
 						std::string s = "";
 						std::string t = "";
+						std::string s0 = "";
+						std::string t0 = "";
 						for (iii=ii;iii<maxi;iii++){
 							s += pfstr.at(iii);
+							s0 += std::to_string(pfstr.at(iii) - '0');
 							if (pfstr.at(iii) == '#'){
 								t += operandMap[iii] + '_';
+								t0 += originalMap[operandMap[iii]] + '_';
 							}
 						}
 						if (listMap.find(s + '@' + t) != listMap.end()){
 							firstStr.push_back(s);
 							firstTtr.push_back(t);
+							firstStr0.push_back(s0);
+							firstTtr0.push_back(t0);
 							firstChild.push_back(s + '@' + t);
 							maxi = ii;
 							break;
@@ -764,12 +778,12 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
-				outputStr += firstTtr[1];
-				outputStr += firstTtr[0];
+				outputStr += firstTtr0[1];
+				outputStr += firstTtr0[0];
 			}
 			if (firstTtr.size() == 1){
 				fullStr += firstTtr[0];
-				outputStr += firstTtr[0];
+				outputStr += firstTtr0[0];
 			}
 			fullStr += secondTtr;
 			outputStr += secondTtr;
@@ -778,11 +792,11 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			outputStr = secondStr + pfstr.at(i) + '@' + outputStr;
 			if (firstStr.size() == 2){
 				fullStr = firstStr[1]+firstStr[0] + fullStr;
-				outputStr = firstStr[1]+firstStr[0] + outputStr;
+				outputStr = firstStr0[1]+firstStr0[0] + outputStr;
 			}
 			if (firstStr.size() == 1){
 				fullStr = firstStr[0] + fullStr;
-				outputStr = firstStr[0] + outputStr;
+				outputStr = firstStr0[0] + outputStr;
 			}
 			
 			//std::string s = "<div data-id=\""+fullStr+"\">";
