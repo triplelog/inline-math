@@ -1095,7 +1095,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 					if (input_str.at(ii) == '('){
 						if (openPar > 0){
 							inside += input_str.at(ii);
-							insideFollow += followA[0].at(ii);
+							insideFollow += followAMap["original"].at(ii);
 						}
 						openPar++;
 					}
@@ -1103,12 +1103,12 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 						openPar--;
 						if (openPar > 0){
 							inside += input_str.at(ii);
-							insideFollow += followA[0].at(ii);
+							insideFollow += followAMap["original"].at(ii);
 						}
 					}
 					else {
 						inside += input_str.at(ii);
-						insideFollow += followA[0].at(ii);
+						insideFollow += followAMap["original"].at(ii);
 					}
 					if (openPar == 0){
 						if (ii+3<input_str.length()){
