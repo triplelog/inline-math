@@ -1135,10 +1135,11 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			followAMap["original"][iii]="0";
 		}
 	}
+	int iii;
 	if (checkComputations){
 		char repl = 'A';
 		
-		int iii;
+		
 		for (iii=0;iii+2<input_str.length();iii++){
 			if (input_str.at(iii) == '=' && input_str.at(iii+1) == '(' && (iii==0 || input_str.at(iii-1) == '(' || input_str.at(iii-1) == '=' || prec.find(input_str.at(iii-1)) != prec.end())){
 				int i = iii;
@@ -1213,7 +1214,6 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	//string_log(followAMap["original"].c_str());
 	//string_log(followAMap["expstr"].c_str());
 	if (checkComputations){
-		int iii;
 		std::string checkChars = "";
 		for (iii=0;iii<postVector[1].length();iii++){
 			if (postVector[1].at(iii) < 'A' || postVector[1].at(iii) > 'Z' ){
