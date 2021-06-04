@@ -43,6 +43,7 @@ function updateTEI(evt) {
 	var originalLocation = evt.target.parentElement.id;
 	var newInput = evt.target.value;
 	//Get the location within the markdown?
+	myWorker.postMessage(["fixInput",fullFormula,originalLocation,newInput]);
 	console.log(fullFormula,originalLocation,newInput);
 }
 

@@ -74,7 +74,7 @@ var currentV = {};
 var inputV = {};
 var plotid = 0;
 importScripts('marked.js');
-
+var renderIdx = 0;
 
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
@@ -592,6 +592,10 @@ const renderer = {
 		}
 		else {
 			k = mapOrNew(input,varName,false,false,isDisplay);
+			//var uniqueId = 'imcss-'+(10000+Math.floor(Math.random() * 90000));
+			var uniqueId = 'imcss-'+renderIdx;
+			renderIdx++;
+			k = k.replace('class="imcss"','class="imcss" id="'+uniqueId+'"');
 			if (varName != ""){
 				currentV[varName]=k;
 			}
@@ -636,6 +640,7 @@ onmessage = function(e) {
 		plotid = 0;
 		var html;
 		try {
+			renderIdx = 0;
 			html = marked(markdown);
 		}
 		catch(err){
