@@ -133,7 +133,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -34: //absolute value
 			//s += "|"+child+"|";
-			s += "<div class=\"abs\">"+child+"\n</div>";
+			s += "<div class=\"abs\" data-original=\""+outputStr+"\">"+child+"\n</div>";
 			break;
 		case -64:
 			s += "\\sin("+child+")";
@@ -191,7 +191,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			break;
 		case -67:
 			//s += "\\sqrt{"+child+"}";
-			s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>\n</div>";
+			s += "<div class=\"root\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>\n</div>";
 			break;
 		case -84: {
 			if (ii > 0){
@@ -200,7 +200,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				//s += "\\sqrt["+child+"]{";
-				s += "<div class=\"root\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>";
+				s += "<div class=\"root\" data-original=\""+outputStr+"\"><svg viewBox=\"0 0 50 100\" width=\"50\" height=\"100\"><path d=\"M0 60 15 60 25 100 50 0\" fill=\"none\" stroke=\"black\" stroke-width=\"5\"/></svg><div class=\"number margin\">"+child+"\n</div>";
 			}
 			break;
 
@@ -372,8 +372,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				s += "-<div class=\"parentheses\">"+child+"\n</div>";
 			}
 			else {
-				//s += "-"+child;
-				s += "<div class=\"number\">-"+child+"\n</div>";
+				s += "-"+child;
 			}
 			break;
 		}
@@ -408,8 +407,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					s += "<div class=\"parentheses\">"+child+"\n</div>";
 				}
 				else {
-					//s += child;
-					s += "<div class=\"number\">"+child+"\n</div>";
+					s += child;
 				}
 			}
 			break;
@@ -487,7 +485,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						}
 						//child = \\frac{1}{denom}
 						//s = numer
-						s = "<div class=\"fraction\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
+						s = "<div class=\"fraction\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
 						s += denom;
 						s += "\n</div>\n</div>";
 					
@@ -557,8 +555,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 				}
 				else {
-					//s += child;
-					s += "<div class=\"number\">"+child+"\n</div>";
+					s += child;
 				}
 			}
 		}
