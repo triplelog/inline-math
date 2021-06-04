@@ -12,7 +12,7 @@ std::string charCodeToString(int x){
 	if (x >= 0){s = "+";}
 	else {x *= -1;}
 	if (x < 10){s+= "0";}
-	if (x < 100){s+= "00";}
+	if (x < 100){s+= "0";}
 	s += std::to_string(x);
 	return s;
 }
@@ -967,7 +967,21 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		}
 	}
 	
-	lastInput = "<div class=\"imcss\" data-original=\""+pfstr+"\">" +lastInput+ "\n</div>";
+	std::string outFull = "";
+	for (i=0;i<pfstr.length();i++){
+		if (pfstr.at(i) == '@'){
+			outFull += pfstr.substr(i,pfstr.length()-i);
+			break;
+		}
+		else if (pfstr.at(i) != '#'){
+			s00 = pfstr.at(i);
+			outFull += charCodeToString(s00);
+		}
+		else {
+			outFull += '#';
+		}
+	}
+	lastInput = "<div class=\"imcss\" data-original=\""+outFull+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
