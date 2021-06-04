@@ -876,7 +876,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		
 	}
 	
-
+	
 	for (i=lastInput.length()-1;i>=0;i--){
 		if (lastInput.at(i) == ')'){
 			lastInput.replace(i,1,parend);
@@ -885,6 +885,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			lastInput.replace(i,1,parstart);
 		}
 	}
+	lastInput = "<div class=\"imcss\" data-original=\""+pfstr+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 

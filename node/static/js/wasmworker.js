@@ -175,7 +175,8 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				inputted = "";
 				ijs("|"+varName+":="+input);
-				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
+				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
+				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
 			}
 			
 		}
@@ -235,7 +236,8 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				
 				inputted = "";
 				ijs(input);
-				k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
+				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
+				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
