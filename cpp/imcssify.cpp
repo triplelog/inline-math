@@ -1,7 +1,7 @@
 
 std::string opstart = "<div class=\"operator\">";
 std::string parstart = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M30 0 Q 0 50 30 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
-std::string parend = "<div class=\"parentheses\"><svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
+std::string parend = "<svg viewBox=\"0 0 30 100\" width=\"30\" height=\"100\"><path d=\"M0 0 Q 30 50 0 100\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"/></svg>";
 std::string divend = "\n</div>";
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr){
 	switch (c){
