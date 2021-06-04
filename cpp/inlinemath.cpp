@@ -283,7 +283,8 @@ void InputIt(char* aa) {
 	auto nanos = a1.time_since_epoch();
 	killNow.startTime = duration_cast<std::chrono::milliseconds>(nanos).count();
 	std::string a = std::string(aa);
-	output_input(a.c_str());
+	std::string newInput = inputifyOne(a);
+	output_input(newInput.c_str());
 	auto a2 = std::chrono::high_resolution_clock::now();
 	int duration = std::chrono::duration_cast<std::chrono::milliseconds>( a2 - a1 ).count();
 

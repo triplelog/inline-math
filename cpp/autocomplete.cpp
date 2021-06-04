@@ -227,6 +227,154 @@ std::string codify(std::string pfstr) {
 
 }
 
+std::string inputifyOne(std::string pfstr) {
+	int i; int ii; int iii;
+	std::map<std::string,std::string> listMap;
+	std::map<std::string,char> lastOpMap;
+	int idx = 0;
+	bool startOperands = false;
+	std::string currentOperator = "";
+	std::map<int,std::string> originalMap;
+	int iidx = 0;
+
+
+	for (i=0;i<pfstr.length();i++){
+		if (pfstr.at(i) == '@'){
+			startOperands = true;
+		}
+		else if (startOperands){
+			if (pfstr.at(i) == '_'){
+				originalMap[iidx] = currentOperator;
+				iidx++; 
+				currentOperator = "";
+			}
+			else {
+				currentOperator += pfstr.at(i);
+			}
+		}
+	}
+
+
+
+	std::map<int,std::string> operandMap;
+	std::string lastInput = "";
+	std::string soFarLeft = "";
+	std::string soFarRight = "";
+	for (i=0;i<pfstr.length();i++){
+		soFarLeft += pfstr.at(i);
+		
+		if (pfstr.at(i) == '@'){
+			break;
+		}
+		else if (pfstr.at(i) != '#'){
+			
+			bool foundFull = false;
+			std::string fullStr = "";
+			for (ii=0;ii<i+1;ii++){
+				std::string s = "";
+				std::string t = "";
+				for (iii=ii;iii<i+1;iii++){
+					s += pfstr.at(iii);
+					if (pfstr.at(iii) == '#'){
+						t += operandMap[iii] + '_';
+					}
+				}
+				if (listMap.find(s + '@' + t) != listMap.end()){
+					foundFull = true;
+					fullStr = s + '@' + t;
+					break;
+				}
+			}
+			if (foundFull){
+				lastInput = listMap[fullStr];
+				continue;
+			}
+			
+			
+			std::string secondStr = "";
+			std::string secondTtr = "";
+			std::string secondChild = "";
+			int maxi = i-1;
+		
+			for (ii=0;ii<i;ii++){
+				std::string s = "";
+				std::string t = "";
+				for (iii=ii;iii<i;iii++){
+					s += pfstr.at(iii);
+					if (pfstr.at(iii) == '#'){
+						t += operandMap[iii] + '_';
+					}
+				}
+				if (listMap.find(s + '@' + t) != listMap.end()){
+					secondStr = s;
+					secondTtr = t;
+					secondChild = s + '@' + t;
+					maxi = ii;
+					break;
+				}
+			}
+			std::string firstStr = "";
+			std::string firstTtr = "";
+			std::string firstChild = "";
+		
+			if (pfstr.at(i) != '-' && pfstr.at(i) != '/' && (pfstr.at(i) >= 0 || pfstr.at(i) <= -69 )){ // Is at least binary function
+			
+				for (ii=0;ii<maxi;ii++){
+					std::string s = "";
+					std::string t = "";
+					for (iii=ii;iii<maxi;iii++){
+						s += pfstr.at(iii);
+						if (pfstr.at(iii) == '#'){
+							t += operandMap[iii] + '_';
+						}
+					}
+					if (listMap.find(s + '@' + t) != listMap.end()){
+						firstStr = s;
+						firstTtr = t;
+						firstChild = s + '@' + t;
+						break;
+					}
+				}
+			
+			
+			}
+			fullStr = firstStr + secondStr + pfstr.at(i) + '@' + firstTtr + secondTtr;
+			
+			std::string s = "";
+			if (listMap.find(fullStr) != listMap.end()){
+				lastInput = listMap[fullStr];
+				continue;
+			}
+			for (ii=0;ii<2;ii++){
+				std::string child = secondChild;
+				if (ii==0 && firstChild != ""){
+					child = firstChild;
+				}
+				else if (ii==1 && firstChild == ""){
+					break;
+				}
+				s = inputLogic(pfstr.at(i),s,ii,listMap[child],lastOpMap[child]);
+			}
+		
+			listMap[fullStr]=s;
+			lastOpMap[fullStr]=pfstr.at(i);
+			lastInput = s;
+		
+		
+		}
+		else {
+			soFarRight += originalMap[idx] + '_';
+			listMap["#@" + originalMap[idx] + "_"]=originalMap[idx];
+			lastOpMap["#@" + originalMap[idx] + "_"]='#';
+			operandMap[i]=originalMap[idx];
+			lastInput = originalMap[idx];
+			idx++;
+		}
+	
+	}
+	return lastInput;
+}
+
 void inputify() {
 	int i; int ii; int iii;
 	std::map<std::string,std::string> listMap;
