@@ -16,7 +16,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	//	else {displayinp += infixexpr[i];}
 	//}
 	//string_log(displayinp.c_str());
-	followAMap["intstr"] = "";
+	followAMap["expstr"] = "";
 	std::string intstr = "";
 	std::string expstr = "";
 	char topToken;
@@ -215,26 +215,32 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 			}
 			
 			opStack[osidx] = firstChar;
+			opStackFollow[osidx] = firstCharFollow;
 			if (firstChar == '-' && !previousOperand){
 				opStack[osidx] = '~';
+				opStackFollow[osidx] = '0';
 			}
 			if (firstChar == '/' && !previousOperand){
 				opStack[osidx] = '`';
+				opStackFollow[osidx] = '0';
 			}
 			osidx++;
 			previousOperand = false;
 		}
 		else {
 			postfixList[pfidx] = token;
+			postfixListFollow[pfidx] = tokenFollow;
 			pfidx++;
 			previousOperand = true;
 		}
 	}
 	while (osidx > 0){
 		topToken = opStack[osidx-1];
+		topTokenFollow = opStackFollow[osidx-1];
 		osidx--;
 		std::string s(1,topToken);
 		postfixList[pfidx] = s;
+		postfixListFollow[pfidx] = topTokenFollow;
 		pfidx++;
 	}
 	
@@ -242,25 +248,34 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	for (i=0;i<pfidx;i++){
 		
 		std::string ci = postfixList[i];
+		std::string ciFollow = postfixListFollow[i];
 		char firstChar = ci.at(0);
+		char firstCharFollow = ciFollow.at(0);
 		if (firstChar == '~'){
 			//expstr += "-";
 			expstr += "-";
+			followAMap["expstr"] += firstCharFollow;
 		}
 		else if (firstChar == '-'){
 			//expstr += "-";
 			expstr += "-+";
+			followAMap["expstr"] += firstCharFollow;
+			followAMap["expstr"] += firstCharFollow;
 		}
 		else if (firstChar == '/'){
 			//expstr += "-";
 			expstr += "/*";
+			followAMap["expstr"] += firstCharFollow;
+			followAMap["expstr"] += firstCharFollow;
 		}
 		else if (firstChar == '`'){
 			//expstr += "-";
 			expstr += "/";
+			followAMap["expstr"] += firstCharFollow;
 		}
 		else if (firstChar < 0 || firstChar == '^' || firstChar == '*' || firstChar == '+' || firstChar == '>' || firstChar == '<' || firstChar == '=' || firstChar == '!' || firstChar == '[' || firstChar == ']' || firstChar == '&' || firstChar == '|' || firstChar == '%') {
 			expstr += ci;
+			followAMap["expstr"] += ciFollow;
 		}
 		else {
 			
@@ -300,10 +315,16 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 							if (ci.at(ci.length()-3) == '\\'){
 								intstr += ci.substr(0,ci.length()-3) + "_\\pi";
 								expstr += "##*";
+								followAMap["expstr"] += ciFollow[0];
+								followAMap["expstr"] += ciFollow[ci.length()-3];
+								followAMap["expstr"] += ciFollow[ci.length()-3];
 							}
 							else {
 								intstr += ci.substr(0,ci.length()-2) + "_\\pi";
 								expstr += "##*";
+								followAMap["expstr"] += ciFollow[0];
+								followAMap["expstr"] += ciFollow[ci.length()-2];
+								followAMap["expstr"] += ciFollow[ci.length()-2];
 							}
 							addHash = false;
 						}
@@ -323,7 +344,7 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 				intstr += ci;
 			}
 			intstr += "_";
-			if (addHash){ expstr += "#"; }
+			if (addHash){ expstr += "#"; followAMap["expstr"] += ciFollow[0]; }
 			
 		}
 
@@ -1179,6 +1200,8 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
+	string_log(followAMap["original"].c_str());
+	string_log(followAMap["expstr"].c_str());
 	if (checkComputations){
 		int iii;
 		std::string checkChars = "";
