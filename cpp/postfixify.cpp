@@ -55,15 +55,13 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 	int sz = followAMap["original"].length();
 	for (i = 0; infixexpr[i]; i++) {
 		if (i >= sz){
-			followAMap["original"][i]='0';
+			followAMap["original"]+='0';
 		}
 	}
 	string_log("hi4");
 	for (i = 0; infixexpr[i]; i++) {
 		char ie = infixexpr[i];
-		console_log(i);
 		char aie = followAMap["original"].at(i);
-		console_log(i);
 		if (prec.find(ie) == prec.end()){
 			if (iidx > 0){
 				if (temptoken[iidx-1] >= '0' && temptoken[iidx-1] <= '9'){
@@ -1145,7 +1143,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	int sz = followAMap["original"].length();
 	if (sz < input_str.length()){
 		for (iii=sz;iii<input_str.length();iii++){
-			followAMap["original"][iii]='0';
+			followAMap["original"]+='0';
 		}
 	}
 	
