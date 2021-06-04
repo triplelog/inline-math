@@ -1132,7 +1132,7 @@ std::string postfixify(std::string input_str) {
 }
 
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
-
+	string_log("hi");
 	input_str = replaceFunctions(input_str);
 	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
