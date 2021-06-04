@@ -6,14 +6,18 @@ importScripts('wasmhello.js');
 importScripts('katex.min.js');
 importScripts('conversions.js');
 var lcpp = Module.cwrap("LatexIt","string",["string"]);
-var icpp = Module.cwrap("ImcssIt","string",["string"]);
+var ccpp = Module.cwrap("ImcssIt","string",["string"]);
 var pcpp = Module.cwrap("PlotIt","string",["string","number","number","number","number"]);
 var tcpp = Module.cwrap("TreeIt","string",["string"]);
+var icpp = Module.cwrap("InputIt","string",["string"]);
 
 
 
 function ljs(input){
 	lcpp(input);
+}
+function cjs(input){
+	ccpp(input);
 }
 function ijs(input){
 	icpp(input);
@@ -33,6 +37,10 @@ function addLatex(x) {
 var imcss = "";
 function addImcss(x) {
 	imcss += x;
+}
+var newInput = "";
+function addInput(x) {
+	newInput += x;
 }
 
 var inputted = "";
@@ -174,7 +182,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				inputted = "";
-				ijs("|"+varName+":="+input);
+				cjs("|"+varName+":="+input);
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
 			}
@@ -228,14 +236,14 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			else {
 				inputted = "";
 				ljs(input);
-				/*ijs(input);
+				/*cjs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				
 				inputted = "";
-				ijs(input);
+				cjs(input);
 				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
@@ -667,6 +675,11 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];
+	}
+	else if (message[0] == "toInput"){
+		newInput = "":
+		ijs(message[1]);
+		result = ["input",message[1],newInput];
 	}
 	postMessage(result);
 }
