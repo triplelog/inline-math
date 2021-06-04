@@ -30,6 +30,9 @@ function getImcss(parent,parents) {
 
 	return "";
 }
+function updateTEI(evt) {
+	console.log(evt.target);
+}
 
 function getLatex(parent,parents) {
 	var children = parent.childNodes;

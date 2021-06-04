@@ -172,7 +172,10 @@
 		}
 		else if (e.data[0] == "input"){
 			var el = document.getElementById(e.data[2]);
-			el.outerHTML = "<div class='text'><input type='text' value='"+e.data[3]+"'></input></div>";
+			el.outerHTML = "<div class='text' id='"+e.data[2]+"'><input id='temp-edit-input' type='text' value='"+e.data[3]+"'></input></div>";
+			var tei = document.getElementById('temp-edit-input');
+			tei.addEventListener('change',updateTEI);
+			console.log(tei.value);
 		}
 	}
 	function updateInputValue(evt){
