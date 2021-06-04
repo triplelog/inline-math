@@ -27,6 +27,7 @@ std::string doCalculus(std::string s);
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations);
 int maxDigits;
 int exactDigits;
+std::map<std::string,std::string> followAMap;
 #include <emscripten/emscripten.h>
 
 EM_JS(void, console_log, (int x), {
@@ -73,13 +74,14 @@ EM_JS(void, send_ready, (), {
   cpp_ready();
 });
 
+
 #include "partialstuff.cpp"
 
 
 #include "removeIdentities.cpp"
 
 
-std::map<std::string,std::string> followAMap;
+
 std::string prepareIt(std::string a){
 	dependentChars.clear();
 	int i;
