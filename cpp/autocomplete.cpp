@@ -227,6 +227,39 @@ std::string codify(std::string pfstr) {
 
 }
 
+char charFromIntString(bool neg, std::string x) {
+	int i = 0;
+	i += 100*(x.at(0)-'0');
+	i += 10*(x.at(1)-'0');
+	i += 1*(x.at(2)-'0');
+	if (neg){
+		i *= -1;
+	}
+	char c{i};
+	return c;
+}
+std::string charredPost(std::string pfstr) {
+	std::string outString = "";
+	for (i=0;i<pfstr.length();i++){
+		if (pfstr.at(i) == '@'){
+			outString += pfstr.substr(i,pfstr.length()-i);
+			break;
+		}
+		else if (pfstr.at(i) == '#'){
+			outString += '#';
+		}
+		else if (pfstr.at(i) == '-'){
+			outString += charFromIntString(true,pfstr.substr(i+1,3));
+			i+=3;
+		}
+		else if (pfstr.at(i) == '+'){
+			outString += charFromIntString(false,pfstr.substr(i+1,3));
+			i+=3;
+		}
+	}
+	return outString;
+}
+
 std::string inputifyOne(std::string pfstr) {
 	int i; int ii; int iii;
 	std::map<std::string,std::string> listMap;
