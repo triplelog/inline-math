@@ -1200,8 +1200,9 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
-	string_log(followAMap["original"].c_str());
-	string_log(followAMap["expstr"].c_str());
+	
+	//string_log(followAMap["original"].c_str());
+	//string_log(followAMap["expstr"].c_str());
 	if (checkComputations){
 		int iii;
 		std::string checkChars = "";
