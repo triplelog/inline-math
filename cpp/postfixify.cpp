@@ -1349,7 +1349,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		}
 	}
 	
-	bool showFAM = false;
+	showFAM = false;
 	
 	if (followAMap["original"].length() > 2){
 		for (iii=0;iii<followAMap["original"].length();iii++){
