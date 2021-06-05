@@ -1225,6 +1225,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				std::string inside = "";
 				std::string insideFollow = "";
 				std::string type = "Q";
+				std::string typeFollow = "0";
 				for (ii=i+1;ii<input_str.length();ii++){
 					if (input_str.at(ii) == '('){
 						if (openPar > 0){
@@ -1249,9 +1250,11 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 							if (input_str.at(ii+1) == '['){
 								int ci;
 								type = "";
+								typeFollow = "";
 								for (ci=ii+2;ci<input_str.length();ci++){
 									if (input_str.at(ci) >= 'A' && input_str.at(ci) <= 'Z'){
 										type += input_str.at(ci);
+										typeFollow += followAMap["original"].at(ci);
 									}
 									else if (input_str.at(ci) == ']'){
 										ii = ci;
@@ -1259,6 +1262,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 									}
 									else {
 										type = "";
+										typeFollow = "";
 										break;
 									}
 								}
@@ -1269,10 +1273,12 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 					}
 				}
 				std::string key = type;
+				std::string keyFollow = typeFollow;
 				key += repl;
+				keyFollow += "0";
 				repl++;
 				input_str.replace(i,ii+1-i,key);
-				followAMap["original"].replace(i,ii+1-i,"0");
+				followAMap["original"].replace(i,ii+1-i,keyFollow);
 				repMap[key]=inside;
 				followAMap[key]=insideFollow;
 				//std::cout << "found: " << input_str << "\n";
@@ -1290,6 +1296,32 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 
+	
+	
+	if (checkComputations){
+		std::string checkChars = "";
+		for (iii=0;iii<postVector[1].length();iii++){
+			if (postVector[1].at(iii) < 'A' || postVector[1].at(iii) > 'Z' ){
+				
+				if (checkChars.length()>1 && repMap.find(checkChars) != repMap.end()){
+					//std::cout << "rmtc: " << repMap[twoChars] << "\n";
+					std::string repText = postfixify(repMap[checkChars]);
+					if (checkChars.at(0) != 'Q'){
+						repText.replace(0,0,checkChars.substr(0,checkChars.length()-1));
+					}
+				
+					postVector[1].replace(iii-checkChars.length(),checkChars.length(),"("+repText+")");
+					iii += 2+repText.length() - checkChars.length();
+				}
+				checkChars = "";
+			}
+			else {
+				checkChars += postVector[1].at(iii);
+			}
+			
+		}
+	}
+	
 	bool showFAM = false;
 	
 	if (followAMap["original"].length() > 2){
@@ -1318,29 +1350,6 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		string_log(postVector[0].c_str());
 	}
 	
-	if (checkComputations){
-		std::string checkChars = "";
-		for (iii=0;iii<postVector[1].length();iii++){
-			if (postVector[1].at(iii) < 'A' || postVector[1].at(iii) > 'Z' ){
-				
-				if (checkChars.length()>1 && repMap.find(checkChars) != repMap.end()){
-					//std::cout << "rmtc: " << repMap[twoChars] << "\n";
-					std::string repText = postfixify(repMap[checkChars]);
-					if (checkChars.at(0) != 'Q'){
-						repText.replace(0,0,checkChars.substr(0,checkChars.length()-1));
-					}
-				
-					postVector[1].replace(iii-checkChars.length(),checkChars.length(),"("+repText+")");
-					iii += 2+repText.length() - checkChars.length();
-				}
-				checkChars = "";
-			}
-			else {
-				checkChars += postVector[1].at(iii);
-			}
-			
-		}
-	}
 	//std::cout <<"pv: "<< postVector[1] << "\n";
 	return postVector;
 }
