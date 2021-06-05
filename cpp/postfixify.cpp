@@ -1327,7 +1327,38 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	std::vector<std::string> postVector = makePostVector(infixexpr);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 
+	showFAM = false;
 	
+	if (followAMap["original"].length() > 2){
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			if (followAMap["original"].at(iii) != '0'){
+				showFAM = true;
+				break;
+			}
+		}
+	}
+	if (showFAM){
+		std::string visOriginal = "";
+		std::string visNew = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;iii<followAMap["expstr"].length();iii++){
+			int s000 = followAMap["expstr"].at(iii);
+			visNew += std::to_string(s000)+",";
+		}
+		for (iii=0;infixexpr[iii];iii++){
+			int s000 = infixexpr[iii];
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero1");
+		string_log(visOriginal.c_str());
+		string_log(visNew.c_str());
+		string_log(visIn.c_str());
+		string_log(postVector[0].c_str());
+	}
 	
 	if (checkComputations){
 		std::string checkChars = "";
