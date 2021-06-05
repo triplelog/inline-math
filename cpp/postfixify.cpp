@@ -1317,7 +1317,6 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		string_log(visOriginal.c_str());
 		string_log(visNew.c_str());
 		string_log(infixexpr);
-		string_log(postVector[0].c_str());
 	}
 	
 	std::vector<std::string> postVector = makePostVector(infixexpr);
