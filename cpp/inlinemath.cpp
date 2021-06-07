@@ -157,37 +157,23 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	
 	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
-	string_log("NonZero2a");
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
+
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
 	sz = dependentFunctions.size();
 	
-	string_log("NonZero2b");
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
-	
+
 	for (i=0;i<sz;i++){
 		//string_log(dependentFunctions[i].c_str());
 		add_dependent_function(dependentFunctions[i].c_str());
 	}
 	dependentFunctions.resize(0);
-	
-	
-	string_log("NonZero2c");
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
-	
+
 	
 	dependentChars = getDependents(postfixedV[1]);
 	
-	
-	string_log("NonZero2d");
-	string_log(postfixedV[0].c_str());
-	string_log(postfixedV[1].c_str());
-	
+
 	
 	sz = dependentChars.size();
 	char* dc = new char[sz];
