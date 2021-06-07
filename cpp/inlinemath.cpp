@@ -468,7 +468,6 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	int i;
 	std::map<std::string, std::string> followAMap;
 	followAMap["original"]="";
-	int i;
 	for (i=0;i<fn.length();i++){
 		char c = i+1;
 		if (i > 126){
