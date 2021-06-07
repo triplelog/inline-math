@@ -694,7 +694,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	std::string fullUser = "";
 	std::map<int,int> fullUserMap;
 	
-	std::strinf followOut = "":
+	std::string followOut = "":
 	for (ii=0;ii<followA.length();ii++){
 		int c = followA.at(ii);
 		followOut += std::to_string(c)+",";
