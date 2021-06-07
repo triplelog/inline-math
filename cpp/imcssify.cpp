@@ -966,30 +966,38 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	}
 	
 	
-	
+	int inTag = 0;
 	for (i=lastInput.length()-1;i>=0;i--){
-		if (lastInput.at(i) == ')'){
-			lastInput.replace(i,1,parend);
+		if (lastInput.at(i) == '<'){
+			inTag++;
 		}
-		else if (lastInput.at(i) == '('){
-			lastInput.replace(i,1,parstart);
+		else if (lastInput.at(i) == '>'){
+			inTag--;
 		}
-		else if (lastInput.at(i) == ']'){
-			lastInput.replace(i,1,bracketend);
-		}
-		else if (lastInput.at(i) == '['){
-			lastInput.replace(i,1,bracketstart);
-		}
-		else if (lastInput.at(i) == '\\'){
-			std::string greek = "";
-			for (ii=i;ii<i+8 && ii < lastInput.length();ii++){
-				greek += lastInput.at(ii);
-				if (greekHTML.find(greek) != greekHTML.end()){
-					lastInput.replace(i,ii-i+1,greekHTML[greek]);
-					break;
-				}
+		else if (inTag == 0){
+			if (lastInput.at(i) == ')'){
+				lastInput.replace(i,1,parend);
 			}
+			else if (lastInput.at(i) == '('){
+				lastInput.replace(i,1,parstart);
+			}
+			else if (lastInput.at(i) == ']'){
+				lastInput.replace(i,1,bracketend);
+			}
+			else if (lastInput.at(i) == '['){
+				lastInput.replace(i,1,bracketstart);
+			}
+			else if (lastInput.at(i) == '\\'){
+				std::string greek = "";
+				for (ii=i;ii<i+8 && ii < lastInput.length();ii++){
+					greek += lastInput.at(ii);
+					if (greekHTML.find(greek) != greekHTML.end()){
+						lastInput.replace(i,ii-i+1,greekHTML[greek]);
+						break;
+					}
+				}
 			
+			}
 		}
 	}
 	
