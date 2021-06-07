@@ -842,7 +842,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	update_currentF(functionName.c_str());
 	
 }
-std::string removeSolves(std::string input, std::map<std::string, std::string>& followAMap) {
+std::string removeSolves(std::string input, std::map<std::string, std::string> &followAMap) {
 	string_log("NonZero3aaa");
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
