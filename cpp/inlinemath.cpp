@@ -197,12 +197,12 @@ std::string prepareIt(std::string a){
 	//	std::string ssi(1,postfixed.at(si));
 	//	string_log(ssi.c_str());
 	//}
-	postfixed = removeSolves(postfixed);
+	postfixed = removeSolves(postfixed, followAMap);
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
 	}
 
-	postfixed = removeBracketsOne(postfixed);
+	postfixed = removeBracketsOne(postfixed, followAMap);
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
 	}
@@ -269,7 +269,7 @@ void ImcssIt(char* aa) {
 		out[1] = '\0';
 		a = a.substr(4,a.length()-4);
 	}
-	
+	std::map<std::string, std::string> followAMap;
 	std::string postfixed = prepareIt(a);
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
@@ -282,7 +282,7 @@ void ImcssIt(char* aa) {
 	}
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
-		currentV[varName]=removeBORP(postfixed);
+		currentV[varName]=removeBORP(postfixed, followAMap);
 	}
 	
 	
@@ -328,7 +328,7 @@ void LatexIt(char* aa) {
 		out[1] = '\0';
 		a = a.substr(4,a.length()-4);
 	}
-	
+	std::map<std::string, std::string> followAMap;
 	std::string postfixed = prepareIt(a);
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
@@ -341,7 +341,7 @@ void LatexIt(char* aa) {
 	}
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
-		currentV[varName]=removeBORP(postfixed);
+		currentV[varName]=removeBORP(postfixed, followAMap);
 	}
 	
 	
@@ -373,7 +373,7 @@ void TreeIt(char* aa) {
 		out[1] = '\0';
 		a = a.substr(4,a.length()-4);
 	}
-	
+	std::map<std::string, std::string> followAMap;
 	std::string postfixed = prepareIt(a);
 
 	if (postfixed.substr(0,5) == "error"){
@@ -403,7 +403,7 @@ void TreeIt(char* aa) {
 	
 	//string_log(postfixed.c_str());
 	if (varName >= 'A' && varName <= 'Z'){
-		currentV[varName]=removeBORP(postfixed);
+		currentV[varName]=removeBORP(postfixed, followAMap);
 	}
 	
 

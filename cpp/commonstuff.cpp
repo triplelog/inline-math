@@ -418,7 +418,7 @@ std::string maxDepth;
 std::string maxDepthn1;
 
 
-std::string removeBracketsOne(std::string input) {
+std::string removeBracketsOne(std::string input, std::map<std::string, std::string>& followAMap) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
@@ -427,12 +427,26 @@ std::string removeBracketsOne(std::string input) {
 	int iidx = 0;
 	std::vector<std::string> bracketStrings;
 	std::string tempString = "";
+	std::vector<std::string> bracketStringsFollow;
+	std::string tempStringFollow = "";
+	if (followAMap.find("original") == followAMap.end()){
+		followAMap["original"]="";
+	}
+	int sz = followAMap["original"].length();
+	if (sz < input.length()){
+		for (iii=sz;iii<input.length();iii++){
+			followAMap["original"]+='0';
+			
+		}
+	}
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
+	char mycharFollow;
 	int len = input.length();
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
+		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '{'){
 			foundBracket = true;
 			bracketLength = 1;
@@ -440,6 +454,7 @@ std::string removeBracketsOne(std::string input) {
 		}
 		else if (mychar == '}') {
 			bracketStrings.push_back(tempString);
+			bracketStringsFollow.push_back(tempStringFollow);
 			bracketLength++;
 			break;
 		}
@@ -456,11 +471,14 @@ std::string removeBracketsOne(std::string input) {
 		else if (mychar == '@' && foundBracket) {
 			//tempString += input.at(iii);
 			bracketStrings.push_back(tempString);
+			bracketStringsFollow.push_back(tempStringFollow);
 			tempString = "";
+			tempStringFollow = "";
 			bracketLength++;
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}
 	}
@@ -473,15 +491,16 @@ std::string removeBracketsOne(std::string input) {
 	input.replace(secondIndex,bracketLength+1,bracketStrings[1]);
 	//std::cout << input << " --b\n";
 	input.replace(firstIndex,1,bracketStrings[0]);
+	followAMap["original"].replace(firstIndex,1,bracketStringsFollow[0]);
 	//std::cout << input << " --c\n";
 	if (killNow.check()){return input;}
-	return removeBracketsOne(input);
+	return removeBracketsOne(input, followAMap);
 	
 	
 	
 }
 
-std::string removeParOne(std::string input) {
+std::string removeParOne(std::string input, std::map<std::string, std::string> followAMap) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
@@ -555,7 +574,7 @@ std::string removeParOne(std::string input) {
 	input.replace(firstIndex,1,bracketStrings[0]);
 	//std::cout << input << " --c\n";
 	if (killNow.check()){return input;}
-	return removeParOne(input);
+	return removeParOne(input, finalAMap);
 	
 	
 	
@@ -778,7 +797,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	update_currentF(functionName.c_str());
 	
 }
-std::string removeSolves(std::string input) {
+std::string removeSolves(std::string input, std::map<std::string, std::string>& followAMap) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
@@ -787,13 +806,27 @@ std::string removeSolves(std::string input) {
 	int iidx = 0;
 	std::vector<std::string> bracketStrings;
 	std::string tempString = "";
+	std::vector<std::string> bracketStringsFollow;
+	std::string tempStringFollow = "";
+	if (followAMap.find("original") == followAMap.end()){
+		followAMap["original"]="";
+	}
+	int sz = followAMap["original"].length();
+	if (sz < input.length()){
+		for (iii=sz;iii<input.length();iii++){
+			followAMap["original"]+='0';
+			
+		}
+	}
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
+	char mycharFollow;
 	int len = input.length();
 	bool interiorBrackets = false;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
+		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '('){
 			foundBracket = true;
 			bracketLength = 1;
@@ -801,17 +834,20 @@ std::string removeSolves(std::string input) {
 		}
 		else if (mychar == ')') {
 			bracketStrings.push_back(tempString);
+			bracketStringsFollow.push_back(tempStringFollow);
 			bracketLength++;
 			break;
 		}
 		else if (mychar == '{' && foundBracket){ //Must always be inside of a par
 			interiorBrackets = true;
 			tempString += mychar;
+			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}
 		else if (mychar == '}' && foundBracket) {
 			interiorBrackets = false;
 			tempString += mychar;
+			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}
 		else if (mychar == '{' && !foundBracket){ //Must always be inside of a par
@@ -833,11 +869,14 @@ std::string removeSolves(std::string input) {
 		else if (mychar == '@' && foundBracket && !interiorBrackets) {
 			//tempString += input.at(iii);
 			bracketStrings.push_back(tempString);
+			bracketStringsFollow.push_back(tempStringFollow);
 			tempString = "";
+			tempStringFollow = "";
 			bracketLength++;
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}
 	}
@@ -851,9 +890,11 @@ std::string removeSolves(std::string input) {
 	while (0 < bracketStrings[0].length() && bracketStrings[0].at(0) >= 'A' && bracketStrings[0].at(0) <= 'Z'){
 		solveTypes.push_back(bracketStrings[0].at(0));
 		bracketStrings[0].replace(0,1,"");
+		bracketStringsFollow[0].replace(0,1,"");
 	}
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
-	oldPostfix = removeBracketsOne(oldPostfix);
+
+	oldPostfix = removeBracketsOne(oldPostfix, followAMap);
 	int i;
 	for (i=0;i<solveTypes.size();i++){
 		if (killNow.check()){break;}
@@ -903,28 +944,28 @@ std::string removeSolves(std::string input) {
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
 	if (killNow.check()){return input;}
-	return removeSolves(input);
+	return removeSolves(input, followAMap);
 	
 	
 	
 }
 
-std::string removeBORP(std::string input){
+std::string removeBORP(std::string input, std::map<std::string, std::string>& followAMap){
 	int len = input.length();
 	int iii;
 	for (iii=0;iii<len;iii++){
 		char mychar = input.at(iii);
 		if (mychar == '{'){
 			if (killNow.check()){return input;}
-			std::string newInput = removeBracketsOne(input);
+			std::string newInput = removeBracketsOne(input,followAMap);
 			if (killNow.check()){return newInput;}
-			return removeBORP(newInput);
+			return removeBORP(newInput,followAMap);
 		}
 		else if (mychar == '('){
 			if (killNow.check()){return input;}
-			std::string newInput = removeParOne(input);
+			std::string newInput = removeParOne(input,followAMap);
 			if (killNow.check()){return newInput;}
-			return removeBORP(newInput);
+			return removeBORP(newInput,followAMap);
 		}
 	}
 	return input;
@@ -1075,7 +1116,8 @@ std::string displayOne(Step step,std::string start,std::string end){
 	if (step.endNodes.size() > 0){
 		eNode = step.endNodes[step.endNodes.size()-1];
 	}
-	oneStep += "\"final\":\""+latexOne(removeBracketsOne(end),eNode,{})+"\"}";
+	std::map<std::string, std::string> followBMap;
+	oneStep += "\"final\":\""+latexOne(removeBracketsOne(end,followBMap),eNode,{})+"\"}";
 	
 	return oneStep;
 }
