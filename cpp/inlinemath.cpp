@@ -90,8 +90,9 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	}
 	
 	int openPar = 0;
-
-	for (i=0;i<a.length();i++){
+	int sz = followAMap["original"].length();
+	
+	for (i=sz;i<a.length();i++){
 		char c = i+1;
 		if (i > 126){
 			c = i - 256;
