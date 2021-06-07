@@ -379,7 +379,10 @@ void LatexIt(char* aa) {
 		}
 		followAMap["original"]+=c;
 	}
+	string_log("latex1");
+	string_log(a.c_str());
 	std::string postfixed = prepareIt(a, followAMap);
+	string_log("latex2");
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
 		latexed += "\0";
