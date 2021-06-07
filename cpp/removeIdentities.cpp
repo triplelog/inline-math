@@ -42,7 +42,7 @@ std::string removeIdentities(std::string s, std::map<std::string, std::string>& 
 			
 			std::map<std::string, std::string> followBMap;
 			followBMap["original"]=someStrings[0].next;
-			newPostfix = removeBracketsOne(someStrings[0].next, followAMap);
+			newPostfix = removeBracketsOne(someStrings[0].next, followBMap);
 		}
 		counter++;
 	}
