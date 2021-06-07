@@ -74,8 +74,8 @@ bool solveConstraintFix(std::string input){
 		}
 
 	}
-	
-	Number n = solvePostfix(removeBracketsOne(input));
+	std::map<std::string, std::string> followAMap;
+	Number n = solvePostfix(removeBracketsOne(input, followAMap));
 	if (n.type == 1){
 		if (n.top == "1"){
 			return true;
@@ -101,7 +101,7 @@ bool solveConstraintFix(std::string input){
 			idx++;
 		}
 	}
-	std::map<std::string, std::string> followAMap;
+
 	firstExp = removeBracketsOne(firstExp,followAMap);
 	secondExp = removeBracketsOne(secondExp,followAMap);
 	//std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";

@@ -1456,7 +1456,8 @@ bool getAnswerList(std::string s, int nSteps) {
 	std::string newPostfix = pfstr;
 
 	////std::cout << "npf1: "<< newPostfix << "\n";
-	newPostfix = removeBracketsOne(newPostfix);
+	std::map<std::string, std::string> followAMap;
+	newPostfix = removeBracketsOne(newPostfix, followAMap);
 	////std::cout << "npf2: "<< newPostfix << "\n";
 	
 	////std::cout << s << " before pl\n";
@@ -1981,7 +1982,6 @@ bool getOneAnswer(std::string s, int nSteps, std::string oquestion) {
 	std::vector<Step> allStrings; //vector of the next step
 	std::map<std::string,bool> uniqueStrings;
 
-	std::map<std::string, std::string> followAMap;
 	for (iii=0;iii<someStrings[0].size();iii++){
 		someStrings[0][iii].next = removeBracketsOne(someStrings[0][iii].next, followAMap);
 		if (uniqueStrings.find(someStrings[0][iii].next) != uniqueStrings.end()){

@@ -37,7 +37,7 @@ std::string removeIdentities(std::string s){
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
 			foundNext = true;
-			newPostfix = removeBracketsOne(someStrings[0].next);
+			newPostfix = removeBracketsOne(someStrings[0].next, followAMap);
 		}
 		counter++;
 	}
@@ -73,8 +73,8 @@ std::string solveArithmetic(std::string s){
 	foundOneAnswer = false;
 	startedWrong = false;
 	
-	
-	std::string newPostfix = removeBracketsOne(s);
+	std::map<std::string, std::string> followAMap;
+	std::string newPostfix = removeBracketsOne(s, followAMap);
 
 	bool foundNext = true;
 	int counter = 0; int ii; int iii;
@@ -90,8 +90,7 @@ std::string solveArithmetic(std::string s){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
-				
-				std::string tempPF = removeBracketsOne(someStrings[ii].next);
+				std::string tempPF = removeBracketsOne(someStrings[ii].next, followAMap);
 				for (iii=0;iii<tempPF.length();iii++){
 					if (tempPF.at(iii)=='@'){
 						if (iii<minLeft){
@@ -138,8 +137,8 @@ std::string toCanonical(std::string s){
 	foundOneAnswer = false;
 	startedWrong = false;
 	
-	
-	std::string newPostfix = removeBracketsOne(s);
+	std::map<std::string, std::string> followAMap;
+	std::string newPostfix = removeBracketsOne(s, followAMap);
 
 	bool foundNext = true;
 	int counter = 0;
@@ -153,7 +152,7 @@ std::string toCanonical(std::string s){
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
 			foundNext = true;
-			newPostfix = removeBracketsOne(someStrings[0].next);
+			newPostfix = removeBracketsOne(someStrings[0].next, followAMap);
 		}
 		else if (maxDepth == "4"){
 			maxDepth = "5";
