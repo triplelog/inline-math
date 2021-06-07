@@ -1318,7 +1318,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			int s000 = infixexpr[iii];
 			visIn += std::to_string(s000)+",";
 		}
-		string_log("NonZero1");
+		string_log("NonZero1a");
 		string_log(visOriginal.c_str());
 		string_log(visNew.c_str());
 		string_log(visIn.c_str());
@@ -1353,7 +1353,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			int s000 = infixexpr[iii];
 			visIn += std::to_string(s000)+",";
 		}
-		string_log("NonZero1");
+		string_log("NonZero1b");
 		string_log(visOriginal.c_str());
 		string_log(visNew.c_str());
 		string_log(visIn.c_str());
@@ -1411,7 +1411,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 			int s000 = infixexpr[iii];
 			visIn += std::to_string(s000)+",";
 		}
-		string_log("NonZero1");
+		string_log("NonZero1c");
 		string_log(visOriginal.c_str());
 		string_log(visNew.c_str());
 		string_log(visIn.c_str());

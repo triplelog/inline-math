@@ -231,7 +231,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 		string_log(visIn.c_str());
 	}
 	
-	postfixed = removeSolves(postfixed, followAMap);
+	postfixed = removeSolves(postfixed, followAMap["original"]);
 	
 	showFAM = true;
 	if (showFAM){

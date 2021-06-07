@@ -842,7 +842,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	update_currentF(functionName.c_str());
 	
 }
-std::string removeSolves(std::string input, std::map<std::string, std::string> &followAMap) {
+std::string removeSolves(std::string input, std::string& followA) {
 	string_log("NonZero3aaa");
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
@@ -855,8 +855,9 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 		string_log("NonZero3aab");
 		std::string visOriginal = "";
 		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
+		for (iii=0;iii<followA.length();iii++){
+			string_log("NonZero3aac");
+			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
 		for (iii=0;input.length();iii++){
@@ -876,8 +877,8 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	if (2 == 2){
 		std::string visOriginal = "";
 		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
 		for (iii=0;input.length();iii++){
@@ -889,32 +890,13 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 		string_log(visIn.c_str());
 	}
 	
-	
-	if (followAMap.find("original") == followAMap.end()){
-		followAMap["original"]="";
-	}
-	
-	if (2 == 2){
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		for (iii=0;input.length();iii++){
-			int s000 = input.at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero3ac");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
+
 	
 	
-	int sz = followAMap["original"].length();
+	int sz = followA.length();
 	if (sz < input.length()){
 		for (iii=sz;iii<input.length();iii++){
-			followAMap["original"]+='0';
+			followA+='0';
 			
 		}
 	}
@@ -927,8 +909,8 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	if (2 == 2){
 		std::string visOriginal = "";
 		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
 		for (iii=0;input.length();iii++){
@@ -941,7 +923,7 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	}
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
-		mycharFollow = followAMap["original"].at(iii);
+		mycharFollow = followA.at(iii);
 		if (mychar == '('){
 			foundBracket = true;
 			bracketLength = 1;
@@ -1002,8 +984,8 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	if (2 == 2){
 		std::string visOriginal = "";
 		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
 		for (iii=0;input.length();iii++){
@@ -1028,8 +1010,8 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	if (2 == 2){
 		std::string visOriginal = "";
 		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
 		for (iii=0;input.length();iii++){
@@ -1095,10 +1077,10 @@ std::string removeSolves(std::string input, std::map<std::string, std::string> &
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
-	followAMap["original"] = input;
+	followA = input;
 	//followAMap["original"].replace(firstIndex,1,newLeftFollow);
 	if (killNow.check()){return input;}
-	return removeSolves(input, followAMap);
+	return removeSolves(input, followA);
 	
 	
 	
