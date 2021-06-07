@@ -155,9 +155,10 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 		openPar--;
 	}
 	
-	
+	string_log("followAMap["original"].c_str()");
+	string_log(followAMap["original"].c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
-
+	string_log(followAMap["original"].c_str());
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
@@ -172,7 +173,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 
 	
 	dependentChars = getDependents(postfixedV[1]);
-	
+	string_log(followAMap["original"].c_str());
 
 	
 	sz = dependentChars.size();
@@ -182,7 +183,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	}
 	dc[sz]='\0';
 	output_dependents(dc);
-	
+	string_log(followAMap["original"].c_str());
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
