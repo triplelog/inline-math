@@ -961,7 +961,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				}
 			}
 			std::string outputID = std::to_string(i)+"-"+std::to_string(i+1)+"-"+std::to_string(idx)+"-"+std::to_string(idx+1);
-			std::string s = "":
+			std::string s = "";
 			if (userStr.length()> 0){
 				s = "<div class=\"number\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
 			}
