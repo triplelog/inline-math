@@ -879,13 +879,13 @@ std::string removeSolves(std::string input, std::string& followA) {
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
-	char mycharFollow;
+	char mycharFollow = '0';
 	int len = input.length();
 	bool interiorBrackets = false;
 	
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
-		mycharFollow = followA.at(iii);
+		//mycharFollow = followA.at(iii);
 		if (mychar == '('){
 			foundBracket = true;
 			bracketLength = 1;
@@ -935,6 +935,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			mycharFollow = followA.at(operandToIndex[iidx]);
 			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}

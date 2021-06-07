@@ -1254,7 +1254,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 								for (ci=ii+2;ci<input_str.length();ci++){
 									if (input_str.at(ci) >= 'A' && input_str.at(ci) <= 'Z'){
 										type += input_str.at(ci);
-										typeFollow += followAMap["original"].at(ci);
+										typeFollow += followAMap["original"].at(iii);//iii for first char (=) of nested computation
 									}
 									else if (input_str.at(ci) == ']'){
 										ii = ci;
