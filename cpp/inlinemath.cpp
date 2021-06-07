@@ -333,7 +333,7 @@ void ImcssIt(char* aa) {
 	}
 	
 	
-	std::string imcssed = imcssOne(postfixed);
+	std::string imcssed = imcssOne(postfixed, followAMap["original"], a);
 	
 	//noIdentities = "\0";
 	imcssed += "\0";

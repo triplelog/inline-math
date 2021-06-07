@@ -682,7 +682,7 @@ std::map<std::string,std::string> toImcss(std::vector<std::string> input){
 	return imcssMap;
 }
 
-std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
+std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, std::string followA, std::string userInput) {
 
 	int i; int ii; int iii; int idx = 0;
 	bool startOperands = false;
@@ -691,6 +691,21 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 	int iidx = 0;
 	std::string pfstr = input;
 	int startAt =0;
+	std::string fullUser = "";
+	std::map<int,int> fullUserMap;
+	
+	for (i=userInput.length()-1;i>=0;i--){
+		int largestLess = 0;
+		if (i == userInput.length()-1){fullUserMap[i]=0;}
+		else {fullUserMap[i]=fullUserMap[i+1];}
+		for (ii=0;ii<followA.length();ii++){
+			if (followA.at(ii) - '0' < i+2 && followA.at(ii) - '0' > largestLess){
+				fullUserMap[i]=ii;
+				largestLess = followA.at(ii) - '0';
+			}
+		}
+		console_log(fullUserMap[i]);
+	}
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
 			startOperands = true;
@@ -982,15 +997,15 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap) {
 			outFull += '#';
 		}
 	}
-	lastInput = "<div class=\"imcss\" data-original=\""+outFull+"\">" +lastInput+ "\n</div>";
+	lastInput = "<div class=\"imcss\" data-user=\""+userInput+"\" data-original=\""+outFull+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
 
 }
 
-std::string imcssOne(std::string input){
-	return imcssOne(input,-1,{});
+std::string imcssOne(std::string input, std::string followA, std::string userInput){
+	return imcssOne(input,-1,{}, followA, userInput);
 }
 
 
