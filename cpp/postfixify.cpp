@@ -7,7 +7,7 @@ std::string arrayToString(int n, char input[]) {
     return s; 
 }
 
-std::vector<std::string> makePostVector(char infixexpr[]) {
+std::vector<std::string> makePostVector(char infixexpr[], std::map<std::string,std::string> followAMap) {
 	int i;
 	
 	//std::string displayinp = "";
@@ -371,8 +371,8 @@ std::vector<std::string> makePostVector(char infixexpr[]) {
 
 }
 
-std::string makePost(char infixexpr[]) {
-	std::vector<std::string> v = makePostVector(infixexpr);
+std::string makePost(char infixexpr[], std::map<std::string, std::string> followAMap) {
+	std::vector<std::string> v = makePostVector(infixexpr, followAMap);
 	
 	std::string retstr = v[0]+ "@" + v[1];
 	return retstr;
@@ -380,7 +380,7 @@ std::string makePost(char infixexpr[]) {
 
 }
 
-std::string replaceFunctions(std::string input_str){
+std::string replaceFunctions(std::string input_str, std::map<std::string, std::string> followAMap){
 
 	if (followAMap.find("original") == followAMap.end()){
 		followAMap["original"]="";
@@ -1172,7 +1172,7 @@ std::string replaceFunctions(std::string input_str){
 
 
 
-std::string postfixify(std::string input_str) {
+std::string postfixify(std::string input_str, std::map<std::string, std::string> followAMap) {
 	/*input_str = input_str.toUpperCase();
 	input_str = input_str.replace(/\[/g,'(');
 	input_str = input_str.replace(/]/g,')');
@@ -1181,7 +1181,7 @@ std::string postfixify(std::string input_str) {
 	input_str = input_str.replace(/\+-/g,'-');
 	input_str = input_str.replace(/--/g,'+');*/
 	
-	input_str = replaceFunctions(input_str);
+	input_str = replaceFunctions(input_str, followAMap);
 	
 	char infixexpr[input_str.length() + 1]; 
     strcpy(infixexpr, input_str.c_str()); 
@@ -1190,10 +1190,10 @@ std::string postfixify(std::string input_str) {
 	//std::cout << makePost(infixexpr) << '\n';
 	
 
-	return makePost(infixexpr);
+	return makePost(infixexpr, followAMap);
 }
 
-std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations){
+std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations, std::map<std::string,std::string> followAMap){
 
 	
 	int iii;
@@ -1208,7 +1208,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		}
 	}
 	
-	input_str = replaceFunctions(input_str);
+	input_str = replaceFunctions(input_str, followAMap);
 	
 	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
@@ -1324,7 +1324,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 		string_log(visIn.c_str());
 	}
 	
-	std::vector<std::string> postVector = makePostVector(infixexpr);
+	std::vector<std::string> postVector = makePostVector(infixexpr, followAMap);
 	//std::cout <<"pv: "<< postVector[0] << " and " << postVector[1] << "\n";
 
 	showFAM = false;
@@ -1367,7 +1367,8 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 				
 				if (checkChars.length()>1 && repMap.find(checkChars) != repMap.end()){
 					//std::cout << "rmtc: " << repMap[twoChars] << "\n";
-					std::string repText = postfixify(repMap[checkChars]);
+					std::map<std::string,std::string> followBMap;
+					std::string repText = postfixify(repMap[checkChars],followBMap);
 					if (checkChars.at(0) != 'Q'){
 						repText.replace(0,0,checkChars.substr(0,checkChars.length()-1));
 					}

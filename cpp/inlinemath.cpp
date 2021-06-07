@@ -24,10 +24,10 @@ std::string solveArithmetic(std::string s);
 std::string removeIdentities(std::string s);
 std::string toCanonical(std::string s);
 std::string doCalculus(std::string s);
-std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations);
+std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations, std::map<std::string,std::string> followAMap);
 int maxDigits;
 int exactDigits;
-std::map<std::string,std::string> followAMap;
+
 #include <emscripten/emscripten.h>
 
 EM_JS(void, console_log, (int x), {
@@ -85,15 +85,18 @@ EM_JS(void, send_ready, (), {
 std::string prepareIt(std::string a){
 	dependentChars.clear();
 	int i;
-	if (a.length()>288){
+	if (a.length()>254){
 		return "error";
 	}
 	
 	int openPar = 0;
-	followAMap.clear();
+	std::map<std::string,std::string> followAMap;
 	followAMap["original"]="";
 	for (i=0;i<a.length();i++){
 		char c = i+1;
+		if (i > 126){
+			c = i - 256;
+		}
 		followAMap["original"]+=c;
 	}
 	for (i=0;i<a.length();i++){
@@ -157,7 +160,7 @@ std::string prepareIt(std::string a){
 	}
 	
 	
-	std::vector<std::string> postfixedV = postfixifyVector(a,true);
+	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
