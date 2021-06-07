@@ -942,7 +942,22 @@ std::string removeSolves(std::string input, std::string& followA) {
 	if (!foundBracket){
 		return input;
 	}
-
+	
+	if (2==2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<bracketStringsFollow[0].length();iii++){
+			int s000 = bracketStringsFollow[0].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;iii<bracketStrings[0].length();iii++){
+			int s000 = bracketStrings[0].at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero6c");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
 	
 	int firstIndex = operandToIndex[iidx];
 	

@@ -1419,7 +1419,7 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	}
 	
 	//std::cout <<"pv: "<< postVector[1] << "\n";
-	//followAMap["original"]=followAMap["original"].substr(0,postVector[0].length());
+	followAMap["original"]=followAMap["expstr"].substr(0,postVector[0].length());
 	return postVector;
 }
 
