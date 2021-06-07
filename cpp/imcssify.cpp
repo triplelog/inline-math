@@ -885,7 +885,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			std::string fullStr =  "";
 			std::string outputStr =  "";
 			std::string userStr =  "";
-			for (ii=0;ii<userInput.lengths();ii++){
+			for (ii=0;ii<userInput.length();ii++){
 				if (fullUserMap[ii]>= maxi && fullUserMap[ii]< i+1){
 					userStr += userInput.at(ii);
 				}
