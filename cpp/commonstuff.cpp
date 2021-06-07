@@ -974,7 +974,7 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	}
 	
 	std::string newLeft = "";
-	std::string newLeftFollow = "";
+	//std::string newLeftFollow = "";
 	std::string newRight = "";
 	bool pastKey = false;
 	for (iii=0;iii<oldPostfix.length();iii++){
@@ -986,12 +986,12 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 		}
 		else {
 			newLeft += oldPostfix.at(iii);
-			newLeftFollow += followBMap["original"].at(iii);
+			//newLeftFollow += followBMap["original"].at(iii);
 		}
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
-	followAMap["original"].replace(firstIndex,1,newLeftFollow);
+	//followAMap["original"].replace(firstIndex,1,newLeftFollow);
 	if (killNow.check()){return input;}
 	return removeSolves(input, followAMap);
 	
