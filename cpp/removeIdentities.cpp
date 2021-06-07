@@ -104,7 +104,7 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 		}
 		counter++;
 	}
-	newPostfix = removeType11(newPostfix);
+	newPostfix = removeType11(newPostfix, followAMap);
 	newPostfix = removeIdentities(newPostfix);
 	return newPostfix;
 }
@@ -143,7 +143,7 @@ std::string toCanonical(std::string s){
 	int counter = 0;
 	while (foundNext){
 		if (killNow.check() || counter >100){
-			newPostfix = removeType11(newPostfix);
+			newPostfix = removeType11(newPostfix, followAMap);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
 		}
@@ -160,7 +160,7 @@ std::string toCanonical(std::string s){
 		}
 		counter++;
 	}
-	newPostfix = removeType11(newPostfix);
+	newPostfix = removeType11(newPostfix, followAMap);
 	newPostfix = removeIdentities(newPostfix);
 	return newPostfix;
 }
