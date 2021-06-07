@@ -849,13 +849,66 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	bool foundAt = false;
 	int idx = 0;
 	int iidx = 0;
+	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3aa");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
 	std::vector<std::string> bracketStrings;
 	std::string tempString = "";
 	std::vector<std::string> bracketStringsFollow;
 	std::string tempStringFollow = "";
+	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3ab");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
+	
 	if (followAMap.find("original") == followAMap.end()){
 		followAMap["original"]="";
 	}
+	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3ac");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
+	
 	int sz = followAMap["original"].length();
 	if (sz < input.length()){
 		for (iii=sz;iii<input.length();iii++){
