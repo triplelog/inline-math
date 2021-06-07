@@ -696,7 +696,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	
 	string_log(followA.c_str());
 	for (ii=0;ii<followA.length();ii++){
-		int c = followA.at(ii) - '0';
+		int c = followA.at(ii);
 		console_log(c);
 	}
 	for (i=userInput.length()-1;i>=0;i--){
@@ -704,7 +704,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 		if (i == userInput.length()-1){fullUserMap[i]=0;}
 		else {fullUserMap[i]=fullUserMap[i+1];}
 		for (ii=0;ii<followA.length();ii++){
-			int c = followA.at(ii) - '0';
+			int c = followA.at(ii);
 			if (c < i+2 && c > largestLess){
 				fullUserMap[i]=ii;
 				largestLess = c;
