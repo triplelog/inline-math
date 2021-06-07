@@ -197,7 +197,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	//	string_log(ssi.c_str());
 	//}
 	
-	bool showFAM = true;
+	bool showFAM = true; int iii;
 	if (showFAM){
 		std::string visOriginal = "";
 		std::string visIn = "";
@@ -216,7 +216,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	
 	postfixed = removeSolves(postfixed, followAMap);
 	
-	bool showFAM = true;
+	showFAM = true;
 	if (showFAM){
 		std::string visOriginal = "";
 		std::string visIn = "";
