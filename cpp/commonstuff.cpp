@@ -991,6 +991,7 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
+	followAMap["original"] = input;
 	//followAMap["original"].replace(firstIndex,1,newLeftFollow);
 	if (killNow.check()){return input;}
 	return removeSolves(input, followAMap);
