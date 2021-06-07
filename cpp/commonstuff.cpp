@@ -860,6 +860,8 @@ std::string removeSolves(std::string input, std::string& followA) {
 			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
+		string_log("NonZero3aad");
+		string_log(visOriginal.c_str());
 		for (iii=0;input.length();iii++){
 			int s000 = input.at(iii);
 			visIn += std::to_string(s000)+",";
