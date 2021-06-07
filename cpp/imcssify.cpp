@@ -694,14 +694,20 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	std::string fullUser = "";
 	std::map<int,int> fullUserMap;
 	
+	string_log(followA.c_str());
+	for (ii=0;ii<followA.length();ii++){
+		int c = followA.at(ii) - '0';
+		console_log(c);
+	}
 	for (i=userInput.length()-1;i>=0;i--){
 		int largestLess = 0;
 		if (i == userInput.length()-1){fullUserMap[i]=0;}
 		else {fullUserMap[i]=fullUserMap[i+1];}
 		for (ii=0;ii<followA.length();ii++){
-			if (followA.at(ii) - '0' < i+2 && followA.at(ii) - '0' > largestLess){
+			int c = followA.at(ii) - '0';
+			if (c < i+2 && c > largestLess){
 				fullUserMap[i]=ii;
-				largestLess = followA.at(ii) - '0';
+				largestLess = c;
 			}
 		}
 		console_log(fullUserMap[i]);
