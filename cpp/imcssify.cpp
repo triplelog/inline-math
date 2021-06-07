@@ -890,6 +890,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 					userStr += userInput.at(ii);
 				}
 			}
+			string_log(userStr.c_str());
 			std::string outputID = std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
@@ -932,7 +933,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], userStr,outputID);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputID);
 			}
 			//s += "\n</div>";
 			if (i == startNode){
