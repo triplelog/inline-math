@@ -850,27 +850,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 	bool foundAt = false;
 	int idx = 0;
 	int iidx = 0;
-	
-	if (2 == 2){
-		string_log("NonZero3aab");
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<followA.length();iii++){
-			string_log("NonZero3aac");
-			int s000 = followA.at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		string_log("NonZero3aad");
-		string_log(visOriginal.c_str());
-		for (iii=0;input.length();iii++){
-			int s000 = input.at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero3aa");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
-	
+		
 	std::vector<std::string> bracketStrings;
 	std::string tempString = "";
 	std::vector<std::string> bracketStringsFollow;
@@ -883,7 +863,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
-		for (iii=0;input.length();iii++){
+		for (iii=0;iii<input.length();iii++){
 			int s000 = input.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
@@ -915,7 +895,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
-		for (iii=0;input.length();iii++){
+		for (iii=0;iii<input.length();iii++){
 			int s000 = input.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
@@ -990,7 +970,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
-		for (iii=0;input.length();iii++){
+		for (iii=0;iii<input.length();iii++){
 			int s000 = input.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
@@ -1016,7 +996,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 			int s000 = followA.at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
-		for (iii=0;input.length();iii++){
+		for (iii=0;iii<input.length();iii++){
 			int s000 = input.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
