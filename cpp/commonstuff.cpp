@@ -843,6 +843,7 @@ void grabFunction(std::string input){ //should have no brackets when inputting
 	
 }
 std::string removeSolves(std::string input, std::map<std::string, std::string>& followAMap) {
+	string_log("NonZero3aaa");
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundBracket = false;
@@ -851,6 +852,7 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	int iidx = 0;
 	
 	if (2 == 2){
+		string_log("NonZero3aab");
 		std::string visOriginal = "";
 		std::string visIn = "";
 		for (iii=0;iii<followAMap["original"].length();iii++){
