@@ -714,6 +714,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 		else if (pfstr.at(i) == '('){
 			std::map<int,int> m = removeParList({},pfstr);
 			std::map<std::string, std::string> followAMap;
+			followAMap["original"]=followA;
 			pfstr = removeParOne(pfstr,followAMap);
 			
 			int offset = 0;
@@ -725,7 +726,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				}
 			}
 					
-			return imcssOne(pfstr,-1,mm);
+			return imcssOne(pfstr,-1,mm,followAMap["original"],userInput);
 		}
 		else if (startOperands){
 			if (pfstr.at(i) == '_'){
