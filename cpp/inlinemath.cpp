@@ -155,7 +155,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 		openPar--;
 	}
 	
-	string_log("followAMap["original"].c_str()");
+	string_log("followAMap.c_str()");
 	string_log(followAMap["original"].c_str());
 	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
 	string_log(followAMap["original"].c_str());
