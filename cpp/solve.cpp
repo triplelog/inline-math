@@ -3142,7 +3142,7 @@ std::string solveFunction(std::string input){
 						std::string fnstr(1,fnc);
 						std::string fpostfix = "##"+fnstr+"@"+functionName+"_"+std::to_string(ci)+"_";
 						finput = "#@"+std::to_string(ci)+"_";
-						std::string solved = solveArithmetic(fpostfix);
+						std::string solved = solveArithmetic(fpostfix, followAMap);
 						functionMap[functionName].computed["#@"+std::to_string(ci)+"_"] = solved;
 					}
 					return "("+functionMap[functionName].computed[finput]+")";
@@ -3197,7 +3197,7 @@ std::string solveFunction(std::string input){
 						//string_log(fpostfix.c_str());
 						finput = "#@"+std::to_string(ci)+"_";
 						//string_log(finput.c_str());
-						std::string solved = solveArithmetic(fpostfix);
+						std::string solved = solveArithmetic(fpostfix, followAMap);
 						//string_log(solved.c_str());
 						//string_log("function computed");
 						functionMap[functionName].computed["#@"+std::to_string(ci)+"_"] = solved;

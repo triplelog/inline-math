@@ -20,7 +20,7 @@
 
 
 using namespace std::chrono;
-std::string solveArithmetic(std::string s);
+std::string solveArithmetic(std::string s, std::map<std::string,std::string>& followAMap);
 std::string removeIdentities(std::string s);
 std::string toCanonical(std::string s);
 std::string doCalculus(std::string s);

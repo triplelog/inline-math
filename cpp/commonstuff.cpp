@@ -950,11 +950,11 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 			//	std::string ssi(1,oldPostfix.at(si));
 			//	string_log(ssi.c_str());
 			//}
-			oldPostfix = solveArithmetic(oldPostfix);
+			oldPostfix = solveArithmetic(oldPostfix, followAMap);
 		}
 		else if (solveType == 'R'){
 			maxDigits = 2;
-			oldPostfix = solveArithmetic(oldPostfix);
+			oldPostfix = solveArithmetic(oldPostfix, followAMap);
 			maxDigits = -1;
 		}
 		else if (solveType == 'I'){
