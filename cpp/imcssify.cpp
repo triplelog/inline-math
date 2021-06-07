@@ -694,11 +694,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	std::string fullUser = "";
 	std::map<int,int> fullUserMap;
 	
-	string_log(followA.c_str());
-	for (ii=0;ii<followA.length();ii++){
-		int c = followA.at(ii);
-		console_log(c);
-	}
+	
 	for (i=userInput.length()-1;i>=0;i--){
 		int largestLess = 0;
 		if (i == userInput.length()-1){fullUserMap[i]=0;}
@@ -710,7 +706,6 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				largestLess = c;
 			}
 		}
-		console_log(fullUserMap[i]);
 	}
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
@@ -889,6 +884,12 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			
 			std::string fullStr =  "";
 			std::string outputStr =  "";
+			std::string userStr =  "";
+			for (ii=0;ii<userInput.lengths();ii++){
+				if (fullUserMap[ii]>= maxi && fullUserMap[ii]< i+1){
+					userStr += userInput.at(ii);
+				}
+			}
 			std::string outputID = std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
@@ -931,7 +932,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputID);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], userStr,outputID);
 			}
 			//s += "\n</div>";
 			if (i == startNode){

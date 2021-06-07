@@ -80,16 +80,7 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 	
 	std::string newPostfix = removeBracketsOne(s, followAMap);
 	
-	if (2 ==2 ){
-		std::string visOriginal = "";
-		int iii;
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		string_log("NonZero5a");
-		string_log(visOriginal.c_str());
-	}
+	
 	
 	bool foundNext = true;
 	int counter = 0; int ii; int iii;

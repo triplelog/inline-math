@@ -866,15 +866,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 		}
 	}
 	
-	if (2==2){
-		std::string visOriginal = "";
-		for (iii=0;iii<followA.length();iii++){
-			int s000 = followA.at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		string_log("NonZero6a");
-		string_log(visOriginal.c_str());
-	}
+	
 	
 	int bracketLength = 0;
 	int secondIndex;
@@ -944,21 +936,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 		return input;
 	}
 	
-	if (2==2){
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<bracketStringsFollow[0].length();iii++){
-			int s000 = bracketStringsFollow[0].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		for (iii=0;iii<bracketStrings[0].length();iii++){
-			int s000 = bracketStrings[0].at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero6c");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
+	
 	
 	int firstIndex = operandToIndex[iidx];
 	
@@ -970,21 +948,7 @@ std::string removeSolves(std::string input, std::string& followA) {
 	}
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
 
-	if (2==2){
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<bracketStringsFollow[0].length();iii++){
-			int s000 = bracketStringsFollow[0].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		for (iii=0;iii<bracketStrings[0].length();iii++){
-			int s000 = bracketStrings[0].at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero6");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
+	
 	std::map<std::string, std::string> followBMap;
 	followBMap["original"]= bracketStringsFollow[0];
 	oldPostfix = removeBracketsOne(oldPostfix, followBMap);

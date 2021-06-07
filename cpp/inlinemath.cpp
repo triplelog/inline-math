@@ -200,41 +200,11 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	//	string_log(ssi.c_str());
 	//}
 	
-	bool showFAM = true; int iii;
-	if (showFAM){
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		for (iii=0;iii<postfixedV[0].length();iii++){
-			int s000 = postfixedV[0].at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero2e");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
+	
 	
 	postfixed = removeSolves(postfixed, followAMap["original"]);
 	
-	showFAM = true;
-	if (showFAM){
-		std::string visOriginal = "";
-		std::string visIn = "";
-		for (iii=0;iii<followAMap["original"].length();iii++){
-			int s000 = followAMap["original"].at(iii);
-			visOriginal += std::to_string(s000)+",";
-		}
-		for (iii=0;iii<postfixed.length();iii++){
-			int s000 = postfixed.at(iii);
-			visIn += std::to_string(s000)+",";
-		}
-		string_log("NonZero2b");
-		string_log(visOriginal.c_str());
-		string_log(visIn.c_str());
-	}
+	
 	
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
@@ -385,11 +355,9 @@ void LatexIt(char* aa) {
 		}
 		followAMap["original"]+=c;
 	}
-	string_log("latex1");
-	string_log(a.c_str());
-	string_log(followAMap["original"].c_str());
+	
 	std::string postfixed = prepareIt(a, followAMap);
-	string_log("latex2");
+	
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
 		latexed += "\0";
