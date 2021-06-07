@@ -869,6 +869,21 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	char mycharFollow;
 	int len = input.length();
 	bool interiorBrackets = false;
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3a");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		mycharFollow = followAMap["original"].at(iii);
@@ -929,6 +944,22 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 		return input;
 	}
 	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3b");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
 	int firstIndex = operandToIndex[iidx];
 	
 	std::vector<char> solveTypes;
@@ -938,6 +969,24 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 		bracketStringsFollow[0].replace(0,1,"");
 	}
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
+	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3c");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
+	
 	std::map<std::string, std::string> followBMap;
 	followBMap["original"]= bracketStringsFollow[0];
 	oldPostfix = removeBracketsOne(oldPostfix, followBMap);
