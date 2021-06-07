@@ -36,9 +36,12 @@ std::string removeIdentities(std::string s, std::map<std::string, std::string>& 
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
 			foundNext = true;
-			char rep = followAMap["original"].at(someStrings[0].startNode);
-			std::string repText = std::string(someStrings[0].endNode-someStrings[0].startL+1,rep);
-			followAMap["original"].replace(someStrings[0].startL,someStrings[0].startNode-someStrings[0].startL+1,repText);
+			//char rep = followAMap["original"].at(someStrings[0].startNode);
+			//std::string repText = std::string(someStrings[0].endNode-someStrings[0].startL+1,rep);
+			//followAMap["original"].replace(someStrings[0].startL,someStrings[0].startNode-someStrings[0].startL+1,repText);
+			
+			std::map<std::string, std::string> followBMap;
+			followBMap["original"]=someStrings[0].next;
 			newPostfix = removeBracketsOne(someStrings[0].next, followAMap);
 		}
 		counter++;
@@ -93,10 +96,11 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
 				std::map<std::string, std::string> followBMap;
-				followBMap["original"]=followAMap["original"];
-				char rep = followBMap["original"].at(someStrings[ii].startNode);
-				std::string repText = std::string(someStrings[ii].endNode-someStrings[ii].startL+1,rep);
-				followBMap["original"].replace(someStrings[ii].startL,someStrings[ii].startNode-someStrings[ii].startL+1,repText);
+				followBMap["original"]=someStrings[ii].next;
+				//followBMap["original"]=followAMap["original"];
+				//char rep = followBMap["original"].at(someStrings[ii].startNode);
+				//std::string repText = std::string(someStrings[ii].endNode-someStrings[ii].startL+1,rep);
+				//followBMap["original"].replace(someStrings[ii].startL,someStrings[ii].startNode-someStrings[ii].startL+1,repText);
 				
 				std::string tempPF = removeBracketsOne(someStrings[ii].next, followBMap);
 				for (iii=0;iii<tempPF.length();iii++){
@@ -104,7 +108,7 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 						if (iii<minLeft){
 							foundNext = true;
 							newPostfix = tempPF;
-							newPostfixFollow=followBMap["original"];
+							//newPostfixFollow=followBMap["original"];
 							minLeft = iii;
 							break;
 						}
