@@ -381,6 +381,7 @@ void LatexIt(char* aa) {
 	}
 	string_log("latex1");
 	string_log(a.c_str());
+	string_log(followAMap["original"].c_str());
 	std::string postfixed = prepareIt(a, followAMap);
 	string_log("latex2");
 	if (postfixed.substr(0,5) == "error"){
