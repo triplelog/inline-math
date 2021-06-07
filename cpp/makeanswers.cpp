@@ -111,7 +111,8 @@ std::string solveInsideQuestion(std::string input) {
 		}
 			
 	}
-	return removeBracketsOne(newPostfix);
+	std::map<std::string, std::string> followAMap;
+	return removeBracketsOne(newPostfix, followAMap);
 }
 Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::string> rangeMap){
 	Question question;

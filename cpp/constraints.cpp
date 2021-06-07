@@ -101,8 +101,9 @@ bool solveConstraintFix(std::string input){
 			idx++;
 		}
 	}
-	firstExp = removeBracketsOne(firstExp);
-	secondExp = removeBracketsOne(secondExp);
+	std::map<std::string, std::string> followAMap;
+	firstExp = removeBracketsOne(firstExp,followAMap);
+	secondExp = removeBracketsOne(secondExp,followAMap);
 	//std::cout << "constraint: "<< input << " and " << firstExp << " and " << secondExp << " and " << lastOp << "\n";
 
 	if (lastOp == -94){ //does not contain--secondExp must be single operand

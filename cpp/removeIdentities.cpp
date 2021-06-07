@@ -24,8 +24,8 @@ std::string removeIdentities(std::string s){
 	foundOneAnswer = false;
 	startedWrong = false;
 	
-	
-	std::string newPostfix = removeBracketsOne(s);
+	std::map<std::string, std::string> followAMap;
+	std::string newPostfix = removeBracketsOne(s, followAMap);
 
 	bool foundNext = true;
 	int counter = 0;

@@ -597,7 +597,8 @@ std::vector<std::vector<Step>> partialTree(std::string pfstr){
 			
 		}
 		else {
-			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_');
+			std::map<std::string, std::string> followAMap;
+			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_', followAMap);
 			std::string firstRemed = "";
 			std::string secondRemed = "";
 			bool isSecondPart = false;

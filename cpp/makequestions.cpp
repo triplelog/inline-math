@@ -628,7 +628,8 @@ std::vector<std::vector<Step>> makeTree(std::string pfstr, int maxList){
 			
 		}
 		else {
-			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_');
+		 	std::map<std::string, std::string> followAMap;
+			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_',followAMap);
 			std::string firstRemed = "";
 			std::string secondRemed = "";
 			bool isSecondPart = false;
@@ -1370,7 +1371,8 @@ bool doubleCheckAnswer(std::string pfstr){
 			
 		}
 		else {
-			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_');
+			std::map<std::string, std::string> followAMap;
+			std::string remed = removeBracketsOne("#@"+originalMap[idx]+'_', followAMap);
 			std::string firstRemed = "";
 			std::string secondRemed = "";
 			bool isSecondPart = false;
@@ -1511,7 +1513,8 @@ bool getAnswerList(std::string s, int nSteps) {
 
 		
 	for (iii=0;iii<someStrings[0].size();iii++){
-		someStrings[0][iii].next = removeBracketsOne(someStrings[0][iii].next);
+		std::map<std::string, std::string> followAMap;
+		someStrings[0][iii].next = removeBracketsOne(someStrings[0][iii].next, followAMap);
 		if (uniqueStrings.find(someStrings[0][iii].next) != uniqueStrings.end()){
 	
 		}
@@ -1608,7 +1611,8 @@ bool getAnswerList(std::string s, int nSteps) {
 	
 	//allStrings.resize(0);
 	for (iii=0;iii<someStrings[1].size();iii++){
-		someStrings[1][iii].next = removeBracketsOne(someStrings[1][iii].next);
+		std::map<std::string, std::string> followAMap;
+		someStrings[1][iii].next = removeBracketsOne(someStrings[1][iii].next,followAMap);
 		if (uniqueStrings.find(someStrings[1][iii].next) != uniqueStrings.end()){
 	
 		}
@@ -1942,8 +1946,8 @@ bool getOneAnswer(std::string s, int nSteps, std::string oquestion) {
 
 	std::string newPostfix = pfstr;
 
-	
-	newPostfix = removeBracketsOne(newPostfix);
+	std::map<std::string, std::string> followAMap;
+	newPostfix = removeBracketsOne(newPostfix, followAMap);
 	
 	////std::cout << s << " before pl\n";
 	auto a1 = std::chrono::high_resolution_clock::now();
@@ -1977,9 +1981,9 @@ bool getOneAnswer(std::string s, int nSteps, std::string oquestion) {
 	std::vector<Step> allStrings; //vector of the next step
 	std::map<std::string,bool> uniqueStrings;
 
-	
+	std::map<std::string, std::string> followAMap;
 	for (iii=0;iii<someStrings[0].size();iii++){
-		someStrings[0][iii].next = removeBracketsOne(someStrings[0][iii].next);
+		someStrings[0][iii].next = removeBracketsOne(someStrings[0][iii].next, followAMap);
 		if (uniqueStrings.find(someStrings[0][iii].next) != uniqueStrings.end()){
 	
 		}
@@ -2029,7 +2033,8 @@ bool getOneAnswer(std::string s, int nSteps, std::string oquestion) {
 }
 
 std::string oneAnswer(std::string s){
-	std::string newPostfix = removeBracketsOne(s);
+	std::map<std::string, std::string> followAMap;
+	std::string newPostfix = removeBracketsOne(s, followAMap);
 	//std::cout << "\n\nStarting the Loop @$*&^@$*&^@*$&^@*$&^\n\n";
 	reverseMap.clear();
 	reverseMapCorrect.clear();

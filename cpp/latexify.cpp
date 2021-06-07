@@ -601,7 +601,8 @@ std::string latexOne(std::string input,int startNode,std::map<int,bool> bMap) {
 		}
 		else if (pfstr.at(i) == '('){
 			std::map<int,int> m = removeParList({},pfstr);
-			pfstr = removeParOne(pfstr);
+			std::map<std::string, std::string> followAMap;
+			pfstr = removeParOne(pfstr, followAMap);
 			
 			int offset = 0;
 			std::map<int,bool> mm;

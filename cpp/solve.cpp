@@ -3059,7 +3059,8 @@ std::string solveFunction(std::string input){
 	}
 	std::string var = "";
 	int i;
-	input = removeBracketsOne(input);
+	std::map<std::string, std::string> followAMap;
+	input = removeBracketsOne(input, followAMap);
 	std::string functionName = "";
 	int idx = 0;
 	int iidx = 0;
