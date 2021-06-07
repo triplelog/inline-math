@@ -44,7 +44,7 @@ std::string removeIdentities(std::string s){
 	return newPostfix;
 }
 
-std::string solveArithmetic(std::string s){
+std::string solveArithmetic(std::string s, std::map<std::string, std::string>& followAMap){
 	auto a1 = std::chrono::high_resolution_clock::now();
 	
 	clearRules();
@@ -73,14 +73,13 @@ std::string solveArithmetic(std::string s){
 	foundOneAnswer = false;
 	startedWrong = false;
 	
-	std::map<std::string, std::string> followAMap;
 	std::string newPostfix = removeBracketsOne(s, followAMap);
 
 	bool foundNext = true;
 	int counter = 0; int ii; int iii;
 	while (foundNext){
 		if (killNow.check() || counter >100){
-			newPostfix = removeType11(newPostfix);
+			newPostfix = removeType11(newPostfix, followAMap);
 			newPostfix = removeIdentities(newPostfix);
 			return newPostfix;
 		}

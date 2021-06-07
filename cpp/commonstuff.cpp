@@ -529,6 +529,7 @@ std::string removeParOne(std::string input, std::map<std::string, std::string>& 
 	bool interiorBrackets = false;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
+		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '('){
 			foundBracket = true;
 			bracketLength = 1;
@@ -600,7 +601,7 @@ std::string removeParOne(std::string input, std::map<std::string, std::string>& 
 	
 }
 
-std::string removeType11(std::string input) {
+std::string removeType11(std::string input, std::map<std::string, std::string>& followAMap) {
 	std::map<int,int> operandToIndex;
 	int iii; int iiii;
 	bool foundAt = false;
@@ -609,14 +610,27 @@ std::string removeType11(std::string input) {
 	std::string tempString = "";
 	std::string leftString = "";
 	std::string rightString = "";
+	std::string tempStringFollow = "";
+	std::string leftStringFollow = "";
+	if (followAMap.find("original") == followAMap.end()){
+		followAMap["original"]="";
+	}
+	int sz = followAMap["original"].length();
+	if (sz < input.length()){
+		for (iii=sz;iii<input.length();iii++){
+			followAMap["original"]+='0';
+			
+		}
+	}
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
+	char mycharFollow;
 	int len = input.length();
 	bool foundBracket = false;
-	std::map<std::string,std::string> followAMap;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
+		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '#') {
 			operandToIndex[idx]=iii;
 			idx++;
@@ -631,9 +645,15 @@ std::string removeType11(std::string input) {
 					if (n.type == 11){
 						std::string newOut = outputNumber(n);
 						int i;
-						std::vector<std::string> postfixedV = postfixifyVector(newOut,false,followAMap);
+						std::map<std::string, std::string> followBMap;
+						followBMap["original"]="";
+						for (i=0;i<newOut.length();i++){
+							followBMap["original"]+= followAMap["original"].at(operandToIndex[iidx]);
+						}
+						std::vector<std::string> postfixedV = postfixifyVector(newOut,false,followBMap);
 						leftString = postfixedV[0];
 						rightString = postfixedV[1];
+						leftStringFollow = followBMap["original"];
 						bracketLength = tempString.length();
 						foundBracket = true;
 						break;
@@ -642,15 +662,18 @@ std::string removeType11(std::string input) {
 			}
 			iidx++;
 			tempString = "";
+			tempStringFollow = "";
 			secondIndex = iii+1;
 		}
 		else if (mychar == '@') {
 			tempString = "";
+			tempStringFollow = "";
 			foundAt = true;
 			secondIndex = iii+1;
 		}
 		else {
 			tempString += mychar;
+			tempStringFollow += mycharFollow;
 		}
 	}
 	if (!foundBracket){
@@ -661,9 +684,10 @@ std::string removeType11(std::string input) {
 	std::string retInput = input;
 	input.replace(secondIndex,bracketLength+1,rightString);
 	input.replace(firstIndex,1,leftString);
+	followAMap["original"].replace(firstIndex,1,leftStringFollow);
 	//return retInput;
 	if (killNow.check()){return input;}
-	return removeType11(input);
+	return removeType11(input,followAMap);
 	
 	
 	
