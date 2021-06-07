@@ -936,6 +936,9 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
+				if (userStr.length() == 0){
+					outputID = "";
+				}
 				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], userStr,outputID);
 			}
 			//s += "\n</div>";
@@ -958,8 +961,14 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				}
 			}
 			std::string outputID = std::to_string(i)+"-"+std::to_string(i+1)+"-"+std::to_string(idx)+"-"+std::to_string(idx+1);
+			std::string s = "":
+			if (userStr.length()> 0){
+				s = "<div class=\"number\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
+			}
+			else {
+				s = "<div class=\"number\">"+originalMap[idx]+"</div>";
+			}
 			
-			std::string s = "<div class=\"number\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
 			if (i == startNode){
 				s = "\\boxed{"+s+"}";
 			}
