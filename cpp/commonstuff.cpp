@@ -865,6 +865,17 @@ std::string removeSolves(std::string input, std::string& followA) {
 			
 		}
 	}
+	
+	if (2==2){
+		std::string visOriginal = "";
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		string_log("NonZero6a");
+		string_log(visOriginal.c_str());
+	}
+	
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
