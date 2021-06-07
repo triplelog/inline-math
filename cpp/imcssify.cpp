@@ -694,7 +694,11 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 	std::string fullUser = "";
 	std::map<int,int> fullUserMap;
 	
-	
+	std::strinf followOut = "":
+	for (ii=0;ii<followA.length();ii++){
+		int c = followA.at(ii);
+		followOut += std::to_string(c)+",";
+	}
 	for (i=userInput.length()-1;i>=0;i--){
 		int largestLess = 0;
 		if (i == userInput.length()-1){fullUserMap[i]=0;}
@@ -1034,7 +1038,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			outFull += '#';
 		}
 	}
-	lastInput = "<div class=\"imcss\" data-follow=\""+followA+"\" data-user=\""+userInput+"\" data-original=\""+userInput+"\">" +lastInput+ "\n</div>";
+	lastInput = "<div class=\"imcss\" data-follow=\""+followOut+"\" data-user=\""+userInput+"\" data-original=\""+userInput+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
