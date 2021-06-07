@@ -532,7 +532,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						}
 						//child = \\frac{1}{denom}
 						//s = numer
-						s = "<div class=\"fraction\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
+						s = "<div class=\"fraction\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
 						s += denom;
 						s += "\n</div>\n</div>";
 					
@@ -1034,7 +1034,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			outFull += '#';
 		}
 	}
-	lastInput = "<div class=\"imcss\" data-user=\""+userInput+"\" data-original=\""+outFull+"\">" +lastInput+ "\n</div>";
+	lastInput = "<div class=\"imcss\" data-follow=\""+followA+"\" data-user=\""+userInput+"\" data-original=\""+userInput+"\">" +lastInput+ "\n</div>";
 	//std::cout << lastInput << "\n";
 	return lastInput;
 
