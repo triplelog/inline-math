@@ -959,6 +959,23 @@ std::string removeSolves(std::string input, std::string& followA) {
 			bracketLength++;
 		}
 	}
+	
+	if (2 == 2){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followA.length();iii++){
+			int s000 = followA.at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;iii<input.length();iii++){
+			int s000 = input.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero3bb");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
 	if (!foundBracket){
 		return input;
 	}

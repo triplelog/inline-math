@@ -241,7 +241,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 			int s000 = followAMap["original"].at(iii);
 			visOriginal += std::to_string(s000)+",";
 		}
-		for (iii=0;postfixed.length();iii++){
+		for (iii=0;iii<postfixed.length();iii++){
 			int s000 = postfixed.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
