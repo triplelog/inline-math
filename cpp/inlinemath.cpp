@@ -160,7 +160,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
-	int sz = dependentFunctions.size();
+	sz = dependentFunctions.size();
 	for (i=0;i<sz;i++){
 		//string_log(dependentFunctions[i].c_str());
 		add_dependent_function(dependentFunctions[i].c_str());
