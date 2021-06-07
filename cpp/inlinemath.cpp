@@ -229,10 +229,26 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	//	string_log(ssi.c_str());
 	//}
 	
+	if (2==2){
+		std::string fout = "";
+		for (i=0;i<followAMap["original"].length();i++){
+			int s0 = followAMap["original"].at(i);
+			fout += std::to_string(s0)+",";
+		}
+		string_log(fout.c_str());
+	}
 	
 	
 	postfixed = removeSolves(postfixed, followAMap["original"]);
 	
+	if (2==2){
+		std::string fout = "";
+		for (i=0;i<followAMap["original"].length();i++){
+			int s0 = followAMap["original"].at(i);
+			fout += std::to_string(s0)+",";
+		}
+		string_log(fout.c_str());
+	}
 	
 	
 	if (!checkPostfix(postfixed)){
@@ -242,6 +258,15 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	postfixed = removeBracketsOne(postfixed, followAMap);
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
+	}
+	
+	if (2==2){
+		std::string fout = "";
+		for (i=0;i<followAMap["original"].length();i++){
+			int s0 = followAMap["original"].at(i);
+			fout += std::to_string(s0)+",";
+		}
+		string_log(fout.c_str());
 	}
 	return postfixed;
 }
