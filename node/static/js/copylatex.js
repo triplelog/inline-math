@@ -26,7 +26,12 @@ function getImcss(parent,parents) {
 	}
 	
 
-	myWorker.postMessage(["toInput",formula,idParent.id]);
+	idParent.outerHTML = "<div class='text' id='"+idParent.id+"'><input id='temp-edit-input' type='text' value='"+formula+"'></input></div>";
+	var tei = document.getElementById('temp-edit-input');
+	tei.addEventListener('change',updateTEI);
+	console.log(tei.value);
+
+	//myWorker.postMessage(["toInput",formula,idParent.id]);
 
 	return "";
 }

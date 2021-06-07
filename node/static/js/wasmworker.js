@@ -692,11 +692,6 @@ onmessage = function(e) {
 	else if (message[0] == "inputValue"){
 		inputV[message[1]]=message[2];
 	}
-	else if (message[0] == "toInput"){
-		newInput = "";
-		ijs(message[1]);
-		result = ["input",message[1],message[2],newInput];
-	}
 	postMessage(result);
 }
 
