@@ -934,7 +934,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 				else if (ii==1 && firstChild.size() == 2){
 					child = firstChild[0];
 				}
-				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], outputStr,outputID);
+				s = imcssLogic(pfstr.at(i), s, ii, listMap[child],lastOpMap[child], userStr,outputID);
 			}
 			//s += "\n</div>";
 			if (i == startNode){
