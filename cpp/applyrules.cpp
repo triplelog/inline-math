@@ -507,6 +507,7 @@ std::vector<Step> applyRulesVectorOnePart(std::string onePart,std::vector<int> o
 					step.partMap = partMap;
 					step.startNode = oneIndex[0]+oneIndex[1]-1;
 					step.endNode = oneIndex[0]+newPostfixFirst.length()-1;
+					step.startL = oneIndex[0];
 					step.endNodes = {};
 					int offset = 0;
 					for (iii=oneIndex[0];iii<oneIndex[0]+newPostfixFirst.length();iii++){

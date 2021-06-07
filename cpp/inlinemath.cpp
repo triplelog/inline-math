@@ -21,7 +21,7 @@
 
 using namespace std::chrono;
 std::string solveArithmetic(std::string s, std::map<std::string,std::string>& followAMap);
-std::string removeIdentities(std::string s);
+std::string removeIdentities(std::string s, std::map<std::string,std::string>& followAMap);
 std::string toCanonical(std::string s);
 std::string doCalculus(std::string s);
 std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations, std::map<std::string,std::string>& followAMap);
@@ -196,7 +196,43 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	//	std::string ssi(1,postfixed.at(si));
 	//	string_log(ssi.c_str());
 	//}
+	
+	bool showFAM = true;
+	if (showFAM){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;postfixedV[0].length();iii++){
+			int s000 = postfixedV[0].at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero2");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
 	postfixed = removeSolves(postfixed, followAMap);
+	
+	bool showFAM = true;
+	if (showFAM){
+		std::string visOriginal = "";
+		std::string visIn = "";
+		for (iii=0;iii<followAMap["original"].length();iii++){
+			int s000 = followAMap["original"].at(iii);
+			visOriginal += std::to_string(s000)+",";
+		}
+		for (iii=0;postfixed.length();iii++){
+			int s000 = postfixed.at(iii);
+			visIn += std::to_string(s000)+",";
+		}
+		string_log("NonZero2");
+		string_log(visOriginal.c_str());
+		string_log(visIn.c_str());
+	}
+	
 	if (!checkPostfix(postfixed)){
 		return "error"+postfixed;
 	}

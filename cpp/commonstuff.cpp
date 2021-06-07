@@ -57,6 +57,7 @@ struct Step {
 	int rule;
 	int startNode;
 	int endNode;
+	int startL;
 	std::vector<int> endNodes;
 	std::vector<int> startNodes;
 	std::map<char,std::string> partMap;
@@ -937,8 +938,9 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 		bracketStringsFollow[0].replace(0,1,"");
 	}
 	std::string oldPostfix = bracketStrings[0] + "@" + bracketStrings[1];
-
-	oldPostfix = removeBracketsOne(oldPostfix, followAMap);
+	std::map<std::string, std::string> followBMap;
+	followBMap["original"]= bracketStringsFollow[0];
+	oldPostfix = removeBracketsOne(oldPostfix, followBMap);
 	int i;
 	for (i=0;i<solveTypes.size();i++){
 		if (killNow.check()){break;}
@@ -950,15 +952,15 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 			//	std::string ssi(1,oldPostfix.at(si));
 			//	string_log(ssi.c_str());
 			//}
-			oldPostfix = solveArithmetic(oldPostfix, followAMap);
+			oldPostfix = solveArithmetic(oldPostfix, followBMap);
 		}
 		else if (solveType == 'R'){
 			maxDigits = 2;
-			oldPostfix = solveArithmetic(oldPostfix, followAMap);
+			oldPostfix = solveArithmetic(oldPostfix, followBMap);
 			maxDigits = -1;
 		}
 		else if (solveType == 'I'){
-			oldPostfix = removeIdentities(oldPostfix);
+			oldPostfix = removeIdentities(oldPostfix, followBMap);
 		}
 		else if (solveType == 'C'){
 			oldPostfix = toCanonical(oldPostfix);
@@ -972,6 +974,7 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 	}
 	
 	std::string newLeft = "";
+	std::string newLeftFollow = "";
 	std::string newRight = "";
 	bool pastKey = false;
 	for (iii=0;iii<oldPostfix.length();iii++){
@@ -983,10 +986,12 @@ std::string removeSolves(std::string input, std::map<std::string, std::string>& 
 		}
 		else {
 			newLeft += oldPostfix.at(iii);
+			newLeftFollow += followBMap["original"].at(iii);
 		}
 	}
 	input.replace(secondIndex,bracketLength+1,newRight);
 	input.replace(firstIndex,1,newLeft);
+	followAMap["original"].replace(firstIndex,1,newLeftFollow);
 	if (killNow.check()){return input;}
 	return removeSolves(input, followAMap);
 	

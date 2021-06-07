@@ -1,6 +1,6 @@
 #include "graphing.cpp"
 
-std::string removeIdentities(std::string s){
+std::string removeIdentities(std::string s, std::map<std::string, std::string>& followAMap){
 	
 	clearRules();
 	rules = rulesMap["identities"];
@@ -23,8 +23,7 @@ std::string removeIdentities(std::string s){
 	unfinishedOptions.clear();
 	foundOneAnswer = false;
 	startedWrong = false;
-	
-	std::map<std::string, std::string> followAMap;
+
 	std::string newPostfix = removeBracketsOne(s, followAMap);
 
 	bool foundNext = true;
@@ -37,6 +36,9 @@ std::string removeIdentities(std::string s){
 		std::vector<Step> someStrings = makeTree(newPostfix,1)[0];
 		if (someStrings.size()>0){
 			foundNext = true;
+			char rep = followAMap["original"].at(someStrings[0].startNode);
+			std::string repText = std::string(someStrings[0].endNode-someStrings[0].startL+1,rep);
+			followAMap["original"].replace(someStrings[0].startL,someStrings[0].startNode-someStrings[0].startL+1,repText);
 			newPostfix = removeBracketsOne(someStrings[0].next, followAMap);
 		}
 		counter++;
@@ -80,21 +82,29 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 	while (foundNext){
 		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix, followAMap);
-			newPostfix = removeIdentities(newPostfix);
+			newPostfix = removeIdentities(newPostfix, followAMap);
 			return newPostfix;
 		}
 		foundNext = false;
 		std::vector<Step> someStrings = makeTree(newPostfix,10)[0];
+		std::string newPostfixFollow = followAMap["original"];
 		if (someStrings.size()>0){
 			
 			int minLeft = 1000;
 			for (ii=0;ii<someStrings.size();ii++){
-				std::string tempPF = removeBracketsOne(someStrings[ii].next, followAMap);
+				std::map<std::string, std::string> followBMap;
+				followBMap["original"]=followAMap["original"];
+				char rep = followBMap["original"].at(someStrings[ii].startNode);
+				std::string repText = std::string(someStrings[ii].endNode-someStrings[ii].startL+1,rep);
+				followBMap["original"].replace(someStrings[ii].startL,someStrings[ii].startNode-someStrings[ii].startL+1,repText);
+				
+				std::string tempPF = removeBracketsOne(someStrings[ii].next, followBMap);
 				for (iii=0;iii<tempPF.length();iii++){
 					if (tempPF.at(iii)=='@'){
 						if (iii<minLeft){
 							foundNext = true;
 							newPostfix = tempPF;
+							newPostfixFollow=followBMap["original"];
 							minLeft = iii;
 							break;
 						}
@@ -102,10 +112,11 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 				}
 			}
 		}
+		followAMap["original"] = newPostfixFollow;
 		counter++;
 	}
 	newPostfix = removeType11(newPostfix, followAMap);
-	newPostfix = removeIdentities(newPostfix);
+	newPostfix = removeIdentities(newPostfix, followAMap);
 	return newPostfix;
 }
 
@@ -144,7 +155,7 @@ std::string toCanonical(std::string s){
 	while (foundNext){
 		if (killNow.check() || counter >100){
 			newPostfix = removeType11(newPostfix, followAMap);
-			newPostfix = removeIdentities(newPostfix);
+			newPostfix = removeIdentities(newPostfix, followAMap);
 			return newPostfix;
 		}
 		foundNext = false;
@@ -161,7 +172,7 @@ std::string toCanonical(std::string s){
 		counter++;
 	}
 	newPostfix = removeType11(newPostfix, followAMap);
-	newPostfix = removeIdentities(newPostfix);
+	newPostfix = removeIdentities(newPostfix, followAMap);
 	return newPostfix;
 }
 
