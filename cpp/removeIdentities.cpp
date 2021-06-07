@@ -80,7 +80,7 @@ std::string solveArithmetic(std::string s, std::map<std::string, std::string>& f
 	
 	std::string newPostfix = removeBracketsOne(s, followAMap);
 	
-	if (showFAM){
+	if (2 ==2 ){
 		std::string visOriginal = "";
 		int iii;
 		for (iii=0;iii<followAMap["original"].length();iii++){
