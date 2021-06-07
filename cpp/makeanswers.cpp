@@ -41,7 +41,8 @@ std::vector<std::string> makeAnswer(std::string input){
     strcpy(infixexpr, input.c_str()); 
 
 	infixexpr[input.length()] = '\0';
-	std::vector<std::string> postfixed = postfixifyVector(infixexpr,true);
+	std::map<std::string,std::string> followAMap;
+	std::vector<std::string> postfixed = postfixifyVector(infixexpr,true,followAMap);
 	return postfixed;
 	//return makeTree(postfixed)[0];
 }
@@ -122,7 +123,8 @@ Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::str
 	//std::string q = postfixify(qRow);
 	int i;
 	//std::string newQ = replaceVars(q,varMap);
-	std::vector<std::string> qv = postfixifyVector(qRow,true);
+	std::map<std::string,std::string> followAMap;
+	std::vector<std::string> qv = postfixifyVector(qRow,true,followAMap);
 	//std::cout << "qv: " << qv[0] << " and " << qv[1] << "\n";
 	std::string q = replaceVars(qv[0] + "@"+qv[1],varMap);
 	//std::cout << "q: " << q << "\n";
@@ -141,7 +143,7 @@ Question makeQuestion(std::string qRow, std::string qText,std::map<char,std::str
 				isMath = false;
 				//std::cout << "cm: " << currentMath << "\n";
 				//std::string pf = postfixify(currentMath);
-				std::vector<std::string> pv = postfixifyVector(currentMath,true);
+				std::vector<std::string> pv = postfixifyVector(currentMath,true,followAMap);
 				std::string pvv = replaceVars(pv[0] + "@"+pv[1],varMap);
 				std::string pf = solveInsideQuestion(pvv);
 				//std::cout << "pf: " << pf << "\n";
@@ -181,6 +183,7 @@ Question chooseQuestion(std::vector<RawQuestion> questions){
 	std::string val1;
 	std::string out;
 	answerConstraints.clear();
+	std::map<std::string,std::string> followAMap;
 	int i; int ii;
 	for (i=0;i<q.rawRules.size();i++){
 		Rule rule;
@@ -199,7 +202,7 @@ Question chooseQuestion(std::vector<RawQuestion> questions){
 		if (q.rawRules[i].size()>4){
 			for (ii=4;ii<q.rawRules[i].size();ii++){
 				std::string constraint = constraintify(q.rawRules[i][ii]);
-				std::string postfixed = postfixify(constraint);
+				std::string postfixed = postfixify(constraint,followAMap);
 				//std::cout <<" postfixed " << postfixed << "\n";
 				rule.constraints.push_back(postfixed);
 			}

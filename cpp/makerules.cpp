@@ -5,7 +5,8 @@ std::vector<std::string> makeRule(std::string input){
     strcpy(infixexpr, input.c_str()); 
 
 	infixexpr[input.length()] = '\0';
-	std::vector<std::string> postfixed = postfixifyVector(infixexpr,true);
+	std::map<std::string,std::string> followAMap;
+	std::vector<std::string> postfixed = postfixifyVector(infixexpr,true,followAMap);
 	//std::cout << postfixed;
 	return postfixed;
 	//return makeTree(postfixed)[0];
@@ -130,11 +131,11 @@ void makeRulesNew(std::vector<std::string> rows){
 		
 
 		//TODO: add more constraint options
-		
+		std::map<std::string,std::string> followAMap;
 		if (rawRules[i].size()>4){
 			for (ii=4;ii<rawRules[i].size();ii++){
 				std::string constraint = constraintify(rawRules[i][ii]);
-				std::string postfixed = postfixify(constraint);
+				std::string postfixed = postfixify(constraint,followAMap);
 				/*std::string dpostfixed = "";
 				int pii;
 				for (pii=0;pii<postfixed.length();pii++){

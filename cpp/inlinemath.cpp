@@ -220,8 +220,8 @@ void MakeLesson(char* aa) {
 
 void OneRule(char* aa) {
 	std::string a = std::string(aa);
-
-	std::string postfixed = postfixify(a);
+	std::map<std::string,std::string> followAMap;
+	std::string postfixed = postfixify(a,followAMap);
 	std::vector<std::vector<Step>> steps = partialTree(postfixed);
 	std::string jsonmessage = "[";
 	int i;

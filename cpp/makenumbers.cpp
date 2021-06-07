@@ -329,8 +329,8 @@ Range makeRange(std::string input){
 			}
 		}
 	}
-
-	std::string postfixed = postfixify(input);
+	std::map<std::string,std::string> followAMap;
+	std::string postfixed = postfixify(input,followAMap);
 	//std::cout << postfixed << "\n";
 	for (i=0;i<rangeList.size();i++){
 		Range r;

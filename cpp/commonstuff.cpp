@@ -575,6 +575,7 @@ std::string removeType11(std::string input) {
 	char mychar;
 	int len = input.length();
 	bool foundBracket = false;
+	std::map<std::string,std::string> followAMap;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
 		if (mychar == '#') {
@@ -591,7 +592,7 @@ std::string removeType11(std::string input) {
 					if (n.type == 11){
 						std::string newOut = outputNumber(n);
 						int i;
-						std::vector<std::string> postfixedV = postfixifyVector(newOut,false);
+						std::vector<std::string> postfixedV = postfixifyVector(newOut,false,followAMap);
 						leftString = postfixedV[0];
 						rightString = postfixedV[1];
 						bracketLength = tempString.length();
