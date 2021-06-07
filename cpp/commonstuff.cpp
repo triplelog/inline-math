@@ -443,11 +443,10 @@ std::string removeBracketsOne(std::string input, std::map<std::string, std::stri
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
-	char mycharFollow;
+	char mycharFollow = 0;
 	int len = input.length();
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
-		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '{'){
 			foundBracket = true;
 			bracketLength = 1;
@@ -479,6 +478,7 @@ std::string removeBracketsOne(std::string input, std::map<std::string, std::stri
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			mycharFollow = followAMap["original"].at(operandToIndex[iidx]);
 			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}
@@ -525,12 +525,11 @@ std::string removeParOne(std::string input, std::map<std::string, std::string>& 
 	int bracketLength = 0;
 	int secondIndex;
 	char mychar;
-	char mycharFollow;
+	char mycharFollow = 0;
 	int len = input.length();
 	bool interiorBrackets = false;
 	for (iii=0;iii<len;iii++){
 		mychar = input.at(iii);
-		mycharFollow = followAMap["original"].at(iii);
 		if (mychar == '('){
 			foundBracket = true;
 			bracketLength = 1;
@@ -580,6 +579,7 @@ std::string removeParOne(std::string input, std::map<std::string, std::string>& 
 		}
 		else if (foundBracket){
 			tempString += mychar;
+			mycharFollow = followAMap["original"].at(operandToIndex[iidx]);
 			tempStringFollow += mycharFollow;
 			bracketLength++;
 		}

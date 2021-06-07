@@ -155,24 +155,10 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 		openPar--;
 	}
 	
-	string_log("followAMap.c_str()");
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
+	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
@@ -187,14 +173,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 
 	
 	dependentChars = getDependents(postfixedV[1]);
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
 
 	
 	sz = dependentChars.size();
@@ -204,14 +183,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	}
 	dc[sz]='\0';
 	output_dependents(dc);
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
@@ -229,18 +201,12 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	//	string_log(ssi.c_str());
 	//}
 	
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
 	
 	
 	postfixed = removeSolves(postfixed, followAMap["original"]);
 	
+	string_log("followAMap.c_str()");
 	if (2==2){
 		std::string fout = "";
 		for (i=0;i<followAMap["original"].length();i++){
@@ -248,6 +214,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 			fout += std::to_string(s0)+",";
 		}
 		string_log(fout.c_str());
+		string_log(postfixed.c_str());
 	}
 	
 	
