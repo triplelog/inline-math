@@ -82,7 +82,7 @@ EM_JS(void, send_ready, (), {
 
 
 
-std::string prepareIt(std::string a){
+std::string prepareIt(std::string a, std::map<std::string,std::string>& followAMap){
 	dependentChars.clear();
 	int i;
 	if (a.length()>254){
@@ -90,8 +90,7 @@ std::string prepareIt(std::string a){
 	}
 	
 	int openPar = 0;
-	std::map<std::string,std::string> followAMap;
-	followAMap["original"]="";
+
 	for (i=0;i<a.length();i++){
 		char c = i+1;
 		if (i > 126){
@@ -270,7 +269,16 @@ void ImcssIt(char* aa) {
 		a = a.substr(4,a.length()-4);
 	}
 	std::map<std::string, std::string> followAMap;
-	std::string postfixed = prepareIt(a);
+	followAMap["original"]="";
+	int i;
+	for (i=0;i<a.length();i++){
+		char c = i+1;
+		if (i > 126){
+			c = i - 256;
+		}
+		followAMap["original"]+=c;
+	}
+	std::string postfixed = prepareIt(a, followAMap);
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
 		latexed += "\0";
@@ -329,7 +337,16 @@ void LatexIt(char* aa) {
 		a = a.substr(4,a.length()-4);
 	}
 	std::map<std::string, std::string> followAMap;
-	std::string postfixed = prepareIt(a);
+	followAMap["original"]="";
+	int i;
+	for (i=0;i<a.length();i++){
+		char c = i+1;
+		if (i > 126){
+			c = i - 256;
+		}
+		followAMap["original"]+=c;
+	}
+	std::string postfixed = prepareIt(a, followAMap);
 	if (postfixed.substr(0,5) == "error"){
 		std::string latexed = latexOne(postfixed.substr(5));
 		latexed += "\0";
@@ -374,7 +391,16 @@ void TreeIt(char* aa) {
 		a = a.substr(4,a.length()-4);
 	}
 	std::map<std::string, std::string> followAMap;
-	std::string postfixed = prepareIt(a);
+	followAMap["original"]="";
+	int i;
+	for (i=0;i<a.length();i++){
+		char c = i+1;
+		if (i > 126){
+			c = i - 256;
+		}
+		followAMap["original"]+=c;
+	}
+	std::string postfixed = prepareIt(a, followAMap);
 
 	if (postfixed.substr(0,5) == "error"){
 		postfixed = "\0";
@@ -440,7 +466,17 @@ void PlotIt(char* aa,double left,double right, double bottom, double top) {
 	}
 	
 	int i;
-	std::string postfixed = prepareIt(fn);
+	std::map<std::string, std::string> followAMap;
+	followAMap["original"]="";
+	int i;
+	for (i=0;i<fn.length();i++){
+		char c = i+1;
+		if (i > 126){
+			c = i - 256;
+		}
+		followAMap["original"]+=c;
+	}
+	std::string postfixed = prepareIt(fn, followAMap);
 
 	if (postfixed.substr(0,5) == "error"){
 		postfixed = "\0";
