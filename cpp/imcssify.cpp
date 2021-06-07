@@ -699,13 +699,17 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 		int largestLess = 0;
 		if (i == userInput.length()-1){fullUserMap[i]=0;}
 		else {fullUserMap[i]=fullUserMap[i+1];}
-		for (ii=0;ii<followA.length();ii++){
-			int c = followA.at(ii);
-			if (c < i+2 && c > largestLess){
-				fullUserMap[i]=ii;
-				largestLess = c;
+		
+		if (userInput.at(i) != '(' && userInput.at(i) != '[' && userInput.at(i) != '{'){
+			for (ii=0;ii<followA.length();ii++){
+				int c = followA.at(ii);
+				if (c < i+2 && c > largestLess){
+					fullUserMap[i]=ii;
+					largestLess = c;
+				}
 			}
 		}
+		
 	}
 	for (i=0;i<pfstr.length();i++){
 		if (pfstr.at(i) == '@'){
@@ -955,7 +959,7 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			}
 			std::string outputID = std::to_string(i)+"-"+std::to_string(i+1)+"-"+std::to_string(idx)+"-"+std::to_string(idx+1);
 			
-			std::string s = "<div class=\"number\" data-id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
+			std::string s = "<div class=\"number\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
 			if (i == startNode){
 				s = "\\boxed{"+s+"}";
 			}
