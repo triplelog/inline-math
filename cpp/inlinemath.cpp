@@ -157,6 +157,8 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	
 	
 	std::vector<std::string> postfixedV = postfixifyVector(a,true,followAMap);
+	string_log("NonZero2a");
+	string_log(postfixedV[0].c_str());
 	if (!checkPostfix(postfixedV[0]+"@"+postfixedV[1])){
 		return "error"+postfixedV[0]+"@"+postfixedV[1];
 	}
@@ -225,7 +227,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 			int s000 = postfixed.at(iii);
 			visIn += std::to_string(s000)+",";
 		}
-		string_log("NonZero2");
+		string_log("NonZero2b");
 		string_log(visOriginal.c_str());
 		string_log(visIn.c_str());
 	}
