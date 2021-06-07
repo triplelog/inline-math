@@ -7,7 +7,7 @@ std::string arrayToString(int n, char input[]) {
     return s; 
 }
 
-std::vector<std::string> makePostVector(char infixexpr[], std::map<std::string,std::string> followAMap) {
+std::vector<std::string> makePostVector(char infixexpr[], std::map<std::string,std::string>& followAMap) {
 	int i;
 	
 	//std::string displayinp = "";
@@ -371,7 +371,7 @@ std::vector<std::string> makePostVector(char infixexpr[], std::map<std::string,s
 
 }
 
-std::string makePost(char infixexpr[], std::map<std::string, std::string> followAMap) {
+std::string makePost(char infixexpr[], std::map<std::string, std::string>& followAMap) {
 	std::vector<std::string> v = makePostVector(infixexpr, followAMap);
 	
 	std::string retstr = v[0]+ "@" + v[1];
@@ -380,7 +380,7 @@ std::string makePost(char infixexpr[], std::map<std::string, std::string> follow
 
 }
 
-std::string replaceFunctions(std::string input_str, std::map<std::string, std::string> followAMap){
+std::string replaceFunctions(std::string input_str, std::map<std::string, std::string>& followAMap){
 
 	if (followAMap.find("original") == followAMap.end()){
 		followAMap["original"]="";
@@ -1172,7 +1172,7 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 
 
 
-std::string postfixify(std::string input_str, std::map<std::string, std::string> followAMap) {
+std::string postfixify(std::string input_str, std::map<std::string, std::string>& followAMap) {
 	/*input_str = input_str.toUpperCase();
 	input_str = input_str.replace(/\[/g,'(');
 	input_str = input_str.replace(/]/g,')');
@@ -1193,7 +1193,7 @@ std::string postfixify(std::string input_str, std::map<std::string, std::string>
 	return makePost(infixexpr, followAMap);
 }
 
-std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations, std::map<std::string,std::string> followAMap){
+std::vector<std::string> postfixifyVector(std::string input_str, bool checkComputations, std::map<std::string,std::string>& followAMap){
 
 	
 	int iii;
