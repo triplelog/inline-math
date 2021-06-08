@@ -1599,6 +1599,8 @@ void initialRun(){
 	prec[-98]=7;//perm/comb
 	prec[-69]=7;//ddx
 	prec[-85]=7;//idx
+	prec[-93]=7;//log
+	prec[-112]=7;//underscore
 	prec['%'] = 6;
     prec['^'] = 5;
 	prec['*'] = 4;

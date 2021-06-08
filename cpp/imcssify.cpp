@@ -163,6 +163,16 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case -112: { //underscore
+			if (ii > 0){
+				s += "<sub>";
+				s += child+"</sub>";
+			}
+			else {
+				s += child; 
+			}
+			break;
+		}
 		case -34: {//absolute value
 			//s += "|"+child+"|";
 			s += "<div class=\"abs margin\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child+"\n</div>";

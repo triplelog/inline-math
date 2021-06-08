@@ -413,6 +413,7 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 	std::map<std::string,std::string> query4;
 	std::map<std::string,std::string> query3;
 	std::map<std::string,std::string> query2;
+	std::map<std::string,std::string> query1;
 	
 	char ddx{-69};
 	char idx{-85};
@@ -437,6 +438,9 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 	query3["int"]+=idx;
 	query3["sub"]="";
 	query3["sub"]+=sub;
+	char und{-112};
+	query1["_"]="";
+	query1["_"]+=und;
 	
 	std::vector<std::string> trigFunctions;
 	trigFunctions.push_back("sin");
@@ -546,6 +550,7 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 	rawrep5[" gcd "]= gcdstr;
 	rawrep5[" mod "]= "%";
 	
+	std::string oneChar = ".";
 	std::string twoChars = "..";
 	std::string threeChars = "...";
 	std::string fourChars = "....";
@@ -570,6 +575,8 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 		sevenChars += input_str.at(i);
 		eightChars.replace(0,1,"");
 		eightChars += input_str.at(i);
+		oneChar = "";
+		oneChar += input_str.at(i);
 		
 		
 		if (query4.find(fourChars) != query4.end() && query4[fourChars].at(0) == element){
@@ -1139,6 +1146,14 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 					//std::cout << i << " : " << input_str << " char: " << query2[twoChars] << '\n';
 				}
 			}
+			
+		}
+		else if (query1.find(oneChar) != query1.end()){
+			input_str.replace(i,1,query1[oneChar]);
+			std::string sNew = std::string(query1[oneChar].length(),followAMap["original"].at(i));
+			followAMap["original"].replace(i,1,sNew);
+			oneChar = ".";
+			i += 0;
 			
 		}
 	}
