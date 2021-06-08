@@ -442,6 +442,10 @@ std::string replaceFunctions(std::string input_str, std::map<std::string, std::s
 	query1["_"]="";
 	query1["_"]+=und;
 	
+	char sum{-121};
+	query3["sub"]="";
+	query3["sub"]+=sub;
+	
 	std::vector<std::string> trigFunctions;
 	trigFunctions.push_back("sin");
 	trigFunctions.push_back("cos");
