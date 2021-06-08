@@ -146,7 +146,7 @@ http://www.gust.org.pl/projects/e-foundry/
 	position: relative;
 }
 
-.imcss .parentheses > svg:nth-child(1) {
+.imcss .parentheses svg {
 	position:absolute;
     top:0px;
     right: 100%;
