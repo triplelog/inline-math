@@ -141,11 +141,15 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -98: { //permutations
 			if (ii > 0){
-				s += "}\\!P_{";
-				s += child+"}";
+				//s += "}\\!P_{";
+				//s += child+"}";
+				s += child;
+				s += "</sub>\n</div>";
 			}
 			else {
-				s += "{}^{"+child;
+				//s += "{}^{"+child;
+				s += "<div class=\"permutation\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><sub>" + child + "</sub><div class=\"operator\">P</div><sub>";
+
 			}
 			break;
 		}
