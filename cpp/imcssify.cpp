@@ -505,10 +505,10 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						string_log(s.c_str());
 						int inTag = 0;
 						for (iii=0;iii<s.length();iii++){
-							if (s.at(i) == '<'){
+							if (s.at(iii) == '<'){
 								inTag++;
 							}
-							else if (s.at(i) == '>'){
+							else if (s.at(iii) == '>'){
 								inTag--;
 							}
 							else if (inTag == 0){
