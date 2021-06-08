@@ -564,13 +564,13 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += child;
 					}
 					else if (c == '+'){
-						s += "<div class=\"termns" + c + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+						s += "<div class=\"termns" + std::to_string(c) + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
 					
 						s += child;
 					}
 					else {
 						//s += "("+child+")";
-						s += "<div class=\"termps" + c + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+						s += "<div class=\"termps" + std::to_string(c) + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
 					
 						s += "("+child+")";
 					}
@@ -615,7 +615,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					s += divend;
 				}
 				else {
-					s += "<div class=\"termms" + c + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+					s += "<div class=\"termms" + std::to_string(c) + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
 					s += child;
 				}
 			}
