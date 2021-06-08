@@ -1336,7 +1336,8 @@ std::vector<std::string> postfixifyVector(std::string input_str, bool checkCompu
 	}
 	
 	input_str = replaceFunctions(input_str, followAMap);
-	
+	string_log("replaced");
+	string_log(input_str.c_str());
 	std::map<std::string,std::string> repMap;
 	//std::cout <<"pv: "<< input_str << "\n";
 	
