@@ -131,11 +131,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 				//s += child+"}";
 				
 				s += child;
-				s += "\n</div>\n</div>";
+				s += "\n</div>\n</div>)";
 			}
 			else {
 				//s += "{"+child;
-				s += "("+"<div class=\"combination\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+child+"</div><div class=\"nobar\"></div><div class=\"number margin denom1\">";
+				s += "(<div class=\"combination\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">" + std::to_string(child) + "</div><div class=\"nobar\"></div><div class=\"number margin denom1\">";
 			}
 			break;
 		}
