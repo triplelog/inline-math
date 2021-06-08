@@ -1,8 +1,5 @@
-function fixBaseline(){
-	const start = Date.now();
-	var lineHeight = 18;
-	var superScriptBase = 12;
-	var root = document.querySelector(".imcss");
+function fixBaselineOne(root){
+	
 	var divs = [root, ...root.querySelectorAll("div")];
 	var divInfo = [];
 	var divRun = {};
@@ -197,9 +194,17 @@ function fixBaseline(){
 		if (!again){break}
 	}
 	//root.style.marginBottom = (divInfo[0].mpb/2)+"px";
-	console.log(divInfo);
+	//console.log(divInfo);
+	
+}
+function fixBaseline() {
+	const start = Date.now();
+	var lineHeight = 18;
+	var superScriptBase = 12;
+	var rootAll = document.querySelectorAll(".imcss");
+	for (var i=0;i<rootAll.length;i++){
+		fixBaselineOne(rootAll[i]);
+	}
 	const millis = Date.now() - start;
 	console.log(`milliseconds elapsed = ${millis}`);
 }
-
-fixBaseline();

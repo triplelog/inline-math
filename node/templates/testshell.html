@@ -207,6 +207,7 @@
   	function chgAuto(input) {
 		var el = document.getElementById('output-math');
 		el.innerHTML = autoComplete[input];
+		fixBaseline();
 		Prism.highlightAll();
 		var els = document.querySelectorAll('input.inline-radio, input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
