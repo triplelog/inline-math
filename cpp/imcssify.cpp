@@ -127,11 +127,15 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -97: { //combinations
 			if (ii > 0){
-				s += " \\choose ";
-				s += child+"}";
+				//s += " \\choose ";
+				//s += child+"}";
+				
+				s += child;
+				s += "\n</div>\n</div>";
 			}
 			else {
-				s += "{"+child;
+				//s += "{"+child;
+				s += "("+"<div class=\"combination\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"nobar\"></div><div class=\"number margin denom1\">";
 			}
 			break;
 		}
@@ -506,9 +510,15 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						int inTag = 0;
 						for (iii=0;iii<s.length();iii++){
 							if (s.at(iii) == '<'){
+								if (iii == 0 || iii == s.length()-1){
+									break;
+								}
 								inTag++;
 							}
 							else if (s.at(iii) == '>'){
+								if (iii == 0 || iii == s.length()-1){
+									break;
+								}
 								inTag--;
 							}
 							else if (inTag == 0){

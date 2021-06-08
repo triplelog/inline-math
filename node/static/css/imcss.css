@@ -108,16 +108,25 @@ http://www.gust.org.pl/projects/e-foundry/
 	display: block;
 	text-align: center;
 }
-.imcss .fraction > div:nth-child(1){
-	border-bottom: 0px solid black;
-}
 .imcss .fraction > div:nth-child(2){
 	border-bottom: 0px solid black;
 	border: 1px solid black;
 }
-.imcss .fraction > div:nth-child(3){
-	border-top: 0px solid black;
+
+.imcss div.combination {
+	vertical-align: middle;
+	margin-left: 2px;
+	margin-right: 2px;
 }
+.imcss .combination > div{
+	display: block;
+	text-align: center;
+}
+.imcss .combination > div:nth-child(2){
+	border-bottom: 0px solid black;
+	border: 1px solid transparent;
+}
+
 
 .imcss .limit {
 	display: inline-grid;
