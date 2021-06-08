@@ -70,7 +70,11 @@ http://www.gust.org.pl/projects/e-foundry/
 }
 .imcss .power > div:nth-child(2){
 	vertical-align: super;
-  	font-size: smaller;
+  	font-size: 70%;
+  	line-height: 70%;
+}
+.imcss .power > div:nth-child(2) > div{
+	vertical-align: baseline;
 }
 .imcss div.root {
 	display: inline-block;
