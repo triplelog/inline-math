@@ -597,11 +597,36 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					}
 					else {
 						//s += c+child;
-						s += opstart + c + divend;
-						s += child;
+						
+						if (child.length() > 0 && child.at(0) == '<'){
+							int inTag = 1;
+							int endStart = 0;
+							for (i=1;i<child.length();i++){
+								if (lastInput.at(i) == '<'){
+									inTag++;
+								}
+								else if (lastInput.at(i) == '>'){
+									inTag--;
+								}
+								else if (inTag == 0){
+									endStart = i;
+									break;
+								}
+						
+							}
+							child.replace(0,endStart+1,"");
+							s += opstart + c + divend;
+							s += child;
+						}
+						else {
+							s += opstart + c + divend;
+							s += child;
+						}
 					}
+					s += "\n</div>";
 				}
 				else {
+					s += "<div>";
 					s += child;
 				}
 			}
