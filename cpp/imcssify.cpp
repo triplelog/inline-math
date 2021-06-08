@@ -601,6 +601,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						if (child.length() > 0 && child.at(0) == '<'){
 							int inTag = 1;
 							int endStart = 0;
+							int i;
 							for (i=1;i<child.length();i++){
 								if (lastInput.at(i) == '<'){
 									inTag++;
