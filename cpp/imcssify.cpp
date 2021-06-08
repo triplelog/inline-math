@@ -612,11 +612,24 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						s += child;
 						
 					}
-					s += divend;
+					
+					if (c == '*'){
+					
+					}
+					else {
+						s += divend;
+					}
+					
 				}
 				else {
-					s += "<div class=\"termms" + std::to_string(c) + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
-					s += child;
+					if (c == '*'){
+						s += child;
+					}
+					else {
+						s += "<div class=\"termms" + std::to_string(c) + "\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+						s += child;
+					}
+					
 				}
 			}
 		}
