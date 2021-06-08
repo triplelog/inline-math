@@ -603,10 +603,10 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							int endStart = 0;
 							int i;
 							for (i=1;i<child.length();i++){
-								if (lastInput.at(i) == '<'){
+								if (child.at(i) == '<'){
 									inTag++;
 								}
-								else if (lastInput.at(i) == '>'){
+								else if (child.at(i) == '>'){
 									inTag--;
 								}
 								else if (inTag == 0){
