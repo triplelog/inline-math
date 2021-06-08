@@ -24,7 +24,16 @@ $(p choose 2)*x^2*y^(p-2)-1/(1-x)*(1/(1-x^2))$
 
 $sum_()(i perm j)$
 
+$x^(2*y)$
 
+$sum_()$
 
+$sqrt(1+sqrt(1+sqrt(1+x)))$
+
+$partials$
+
+$2^(2^(2^x))$
+
+$idt(1/t)$
 
 {% endblock %}
