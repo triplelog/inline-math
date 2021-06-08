@@ -503,11 +503,20 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						int iii; int openBracket = 0;
 						string_log("division");
 						string_log(s.c_str());
+						int inTag = 0;
 						for (iii=0;iii<s.length();iii++){
-							if (s.at(iii) == ')' && iii != 0){openBracket--;}
-							else if (s.at(iii) == '(' && iii < s.length()-1){openBracket++;}
-							else if (iii == 0 || iii == s.length()-1){
-								break;
+							if (s.at(i) == '<'){
+								inTag++;
+							}
+							else if (s.at(i) == '>'){
+								inTag--;
+							}
+							else if (inTag == 0){
+								if (s.at(iii) == ')' && iii != 0){openBracket--;}
+								else if (s.at(iii) == '(' && iii < s.length()-1){openBracket++;}
+								else if (iii == 0 || iii == s.length()-1){
+									break;
+								}
 							}
 							
 							if (openBracket == 0 && iii == s.length()-1){
@@ -517,7 +526,6 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							}
 						}
 						string_log(s.c_str());
-						string_log(child.c_str());
 						std::string numer = s;
 						std::string denom = "1";
 						openBracket = 1;
