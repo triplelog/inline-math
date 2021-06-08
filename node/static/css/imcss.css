@@ -112,6 +112,17 @@ http://www.gust.org.pl/projects/e-foundry/
 	border-bottom: 0px solid black;
 	border: 1px solid black;
 }
+.imcss .fraction .fraction > div{
+	display: inline-block;
+	text-align: center;
+}
+.imcss .fraction .fraction > div:nth-child(2){
+	border-bottom: 0px solid black;
+	border: 0px solid black;
+}
+.imcss .fraction .fraction > div:nth-child(2)::before{
+	content: "/";
+}
 
 .imcss div.combination {
 	vertical-align: middle;
