@@ -75,6 +75,17 @@ http://www.gust.org.pl/projects/e-foundry/
 .imcss .power > div:nth-child(2) > div:nth-child(1) {
 	vertical-align: baseline;
 }
+.imcss .subscript {
+	margin-left: 2px;
+	margin-right: 2px;
+}
+.imcss .subscript > div:nth-child(2){
+	vertical-align: sub;
+  	font-size: 70%;
+}
+.imcss .subscript > div:nth-child(2) > div:nth-child(1) {
+	vertical-align: baseline;
+}
 .imcss div.root {
 	display: inline-block;
 	margin-left: 0.5rem;

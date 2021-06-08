@@ -165,11 +165,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 		}
 		case -112: { //underscore
 			if (ii > 0){
-				s += "<sub>";
-				s += child+"</sub>";
+				s += "<div class=\"noflow\">";
+				s += child+"</div>\n</div>";
 			}
 			else {
-				s += child; 
+				s += "<div class=\"subscript\" id=\""+outputID+"\" data-original=\""+outputStr+"\">"+child; 
 			}
 			break;
 		}
