@@ -501,7 +501,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						//TODO: deal with fraction in s
 						//TODO: deal with non-1 in numerator of child
 						int iii; int openBracket = 0;
-						
+						string_log("division");
+						string_log(s.c_str());
 						for (iii=0;iii<s.length();iii++){
 							if (s.at(iii) == ')' && iii != 0){openBracket--;}
 							else if (s.at(iii) == '(' && iii < s.length()-1){openBracket++;}
@@ -515,6 +516,8 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								break;
 							}
 						}
+						string_log(s.c_str());
+						string_log(child.c_str());
 						std::string numer = s;
 						std::string denom = "1";
 						openBracket = 1;
