@@ -616,6 +616,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						
 							}
 							child.replace(0,endStart+1,"");
+							child.replace(child.length()-7,7,"");
 							s += opstart + c + divend;
 							s += child;
 						}
