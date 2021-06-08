@@ -318,7 +318,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			else {
 				
-				s += "<div class=\"sum\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">sum<sub>"+child+"</sub>";
+				s += "<div class=\"sum\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><sub>"+child+"</sub>";
 				
 			}
 			break;

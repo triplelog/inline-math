@@ -296,4 +296,10 @@ http://www.gust.org.pl/projects/e-foundry/
 	grid-gap: 2px;
 }
 
+.imcss div.sum::before {
+    content: '\2211';
+    float: left;
+    font-size: 5rem;
+}
+
 

@@ -136,12 +136,12 @@ std::vector<std::string> makePostVector(char infixexpr[], std::map<std::string,s
 						if (commas>0){
 							std::string s(1,-126);
 							tokenList[idx] = s;
-							tokenListFollow[idx] = "0";
+							tokenListFollow[idx] = temptokenFollow[iidx-1];
 						}
 						else {
 							std::string s(1,-125);
 							tokenList[idx] = s;
-							tokenListFollow[idx] = "0";
+							tokenListFollow[idx] = temptokenFollow[iidx-1];
 						}
 						idx++;
 					}
