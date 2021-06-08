@@ -1,4 +1,4 @@
-function fixBaselineOne(root){
+function fixBaselineOne(root,lineHeight,superScriptBase){
 	
 	var divs = [root, ...root.querySelectorAll("div")];
 	var divInfo = [];
@@ -203,7 +203,7 @@ function fixBaseline() {
 	var superScriptBase = 12;
 	var rootAll = document.querySelectorAll(".imcss");
 	for (var i=0;i<rootAll.length;i++){
-		fixBaselineOne(rootAll[i]);
+		fixBaselineOne(rootAll[i],lineHeight,superScriptBase);
 	}
 	const millis = Date.now() - start;
 	console.log(`milliseconds elapsed = ${millis}`);
