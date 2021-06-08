@@ -626,11 +626,12 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							s += child;
 						}
 					}
-					s += "\n</div>";
+					s += "</div>";
 				}
 				else {
 					s += "<div>";
 					s += child;
+					s += "</div>";
 				}
 			}
 		}
