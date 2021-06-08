@@ -17,6 +17,7 @@ std::string charCodeToString(int x){
 	return s;
 }
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
+	int pc = prec[c];
 	switch (c){
 		case '^': {
 			if (ii > 0){
@@ -28,11 +29,11 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			else {
 				if (prec[lastOp] < 100){
 					//s += "("+child+")";
-					s += "<div class=\"power\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n("+child+")";
+					s += "<div class=\"power\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n("+child+")";
 				}
 				else {
 					//s += child;
-					s += "<div class=\"power\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
+					s += "<div class=\"power\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">\n<div class=\"number\">"+child+"\n</div>";
 				}
 			}
 			break;
@@ -893,12 +894,18 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			std::string fullStr =  "";
 			std::string outputStr =  "";
 			std::string userStr =  "";
+			int minOut = -1;
+			int maxOut = -1;
 			for (ii=0;ii<userInput.length();ii++){
 				if (fullUserMap[ii]>= maxi && fullUserMap[ii]< i+1){
 					userStr += userInput.at(ii);
+					if (minOut == -1){minOut = ii;}
+					maxOut = ii+1;
 				}
 			}
-			std::string outputID = std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
+			
+			std::string outputID = std::to_string(minOut)+"-"+std::to_string(maxOut);
+			//std::string outputID = std::to_string(maxi)+"-"+std::to_string(i+1)+"-"+std::to_string(rightStart)+"-"+std::to_string(rightEnd+1);
 			if (firstTtr.size() == 2){
 				fullStr += firstTtr[1];
 				fullStr += firstTtr[0];
@@ -973,10 +980,10 @@ std::string imcssOne(std::string input,int startNode,std::map<int,bool> bMap, st
 			//std::string outputID = std::to_string(i)+"-"+std::to_string(i+1)+"-"+std::to_string(idx)+"-"+std::to_string(idx+1);
 			std::string s = "";
 			if (userStr.length()> 0){
-				s = "<div class=\"number\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
+				s = "<div class=\"number\" data-op=\"100\" id=\""+outputID+"\" data-original=\""+userStr+"\">"+originalMap[idx]+"</div>";
 			}
 			else {
-				s = "<div class=\"number\">"+originalMap[idx]+"</div>";
+				s = "<div class=\"number\" data-op=\"100\">"+originalMap[idx]+"</div>";
 			}
 			
 			if (i == startNode){
