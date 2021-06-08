@@ -533,7 +533,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 						}
 						//child = \\frac{1}{denom}
 						//s = numer
-						s = "<div class=\"fraction\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
+						s = "<div class=\"fraction\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\"><div class=\"number margin numer1\">"+numer+"</div><div class=\"bar\"></div><div class=\"number margin denom1\">";
 						s += denom;
 						s += "\n</div>\n</div>";
 					
@@ -541,28 +541,37 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					else if (c == '+'){
 						//s += child;
 						s += child;
+						s += divend;
 					}
 					else if (c == '&'){
 						s += "<div class=\"text\"> AND </div>("+child+")";
+						s += divend;
 					}
 					else if (c == '|'){
 						s += "<div class=\"text\"> OR </div>("+child+")";
+						s += divend;
 					}
 					else {
 						s += "<div class=\"operation\">";
 						s += c+"\n</div>";
 						s += "("+child+")";
+						s += divend;
 					}
+					
 				}
 				else {
 					if (c == '*'){
 						s += child;
 					}
 					else if (c == '+'){
+						s += "<div class=\"terms\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+					
 						s += child;
 					}
 					else {
 						//s += "("+child+")";
+						s += "<div class=\"terms\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
+					
 						s += "("+child+")";
 					}
 				}
@@ -598,39 +607,16 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 					else {
 						//s += c+child;
 						
-						if (s.length() > 0 && s.at(s.length()-1) == '>'){
-							int inTag = -1;
-							int endStart = 0;
-							int i;
-							for (i=s.length()-2;i>=0;i--){
-								if (s.at(i) == '<'){
-									inTag++;
-								}
-								else if (s.at(i) == '>'){
-									inTag--;
-								}
-								if (inTag == 0){
-									endStart = i;
-									break;
-								}
 						
-							}
-							s.replace(endStart,0,opstart + c + divend + child);
-							//child.replace(0,endStart,"");
-							//child.replace(child.length()-7,7,"");
-							//s += opstart + c + divend;
-							//s += child;
-						}
-						else {
-							s += opstart + c + divend;
-							s += child;
-						}
+						s += opstart + c + divend;
+						s += child;
+						
 					}
+					s += divend;
 				}
 				else {
-					s += "<div>";
+					s += "<div class=\"terms\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">";
 					s += child;
-					s += "</div>";
 				}
 			}
 		}
