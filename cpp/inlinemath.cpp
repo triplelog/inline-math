@@ -206,16 +206,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 	
 	postfixed = removeSolves(postfixed, followAMap["original"]);
 	
-	string_log("followAMap.c_str()");
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-		string_log(postfixed.c_str());
-	}
+	
 	
 	
 	if (!checkPostfix(postfixed)){
@@ -227,14 +218,7 @@ std::string prepareIt(std::string a, std::map<std::string,std::string>& followAM
 		return "error"+postfixed;
 	}
 	
-	if (2==2){
-		std::string fout = "";
-		for (i=0;i<followAMap["original"].length();i++){
-			int s0 = followAMap["original"].at(i);
-			fout += std::to_string(s0)+",";
-		}
-		string_log(fout.c_str());
-	}
+	
 	return postfixed;
 }
 
