@@ -615,7 +615,7 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 								}
 						
 							}
-							s.replace(endStart,s.length()-endStart,opstart + c + divend + child);
+							s.replace(endStart,0,opstart + c + divend + child);
 							//child.replace(0,endStart,"");
 							//child.replace(child.length()-7,7,"");
 							//s += opstart + c + divend;
@@ -626,7 +626,6 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 							s += child;
 						}
 					}
-					s += "</div>";
 				}
 				else {
 					s += "<div>";
