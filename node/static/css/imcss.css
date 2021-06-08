@@ -126,15 +126,15 @@ http://www.gust.org.pl/projects/e-foundry/
 	border-bottom: 0px solid black;
 	border: 1px solid black;
 }
-.imcss .fraction > .fraction:only-child > div{
+.imcss .fraction > div > .fraction:only-child > div{
 	display: inline-block;
 	text-align: center;
 }
-.imcss .fraction > .fraction:only-child > div:nth-child(2){
+.imcss .fraction > div > .fraction:only-child > div:nth-child(2){
 	border-bottom: 0px solid black;
 	border: 0px solid black;
 }
-.imcss .fraction > .fraction:only-child > div:nth-child(2)::before{
+.imcss .fraction > div > .fraction:only-child > div:nth-child(2)::before{
 	content: "/";
 }
 
