@@ -17,7 +17,7 @@ std::string charCodeToString(int x){
 	return s;
 }
 std::string imcssLogic(char c, std::string s, int ii, std::string child, char lastOp, std::string outputStr, std::string outputID){
-	int pc = prec[c];
+	std::string pc = std::to_string(prec[c]);
 	switch (c){
 		case '^': {
 			if (ii > 0){
