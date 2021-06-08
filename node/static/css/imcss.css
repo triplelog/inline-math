@@ -147,6 +147,10 @@ http://www.gust.org.pl/projects/e-foundry/
 }
 
 .imcss .parentheses svg {
+	display: none;
+}
+
+.imcss .parentheses svg {
 	position:absolute;
     top:0px;
     right: 100%;
