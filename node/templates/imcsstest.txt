@@ -28,7 +28,7 @@ $sum_()(i perm j)$
 
 $x^(2*y)$
 
-$sum_0^3(f(x))$
+$sum_0(f(x))$
 
 $sqrt(1+sqrt(1+sqrt(1+x)))$
 

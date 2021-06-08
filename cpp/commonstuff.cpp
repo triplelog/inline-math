@@ -1592,6 +1592,7 @@ void initialRun(){
 		prec[i]=7;
 	}
 	prec[-125]=7;//function
+	prec[-121]=7;//sum
 	prec[-101]=7;//max
 	prec[-100]=7;//min
 	prec[-97]=7;//gcd

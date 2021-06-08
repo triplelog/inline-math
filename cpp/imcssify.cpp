@@ -306,6 +306,24 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 			}
 			break;
 		}
+		case -121: { //sum
+			if (ii > 0){
+				if (prec[lastOp] < 100){
+					s += "("+child+")"+divend;
+				}
+				else {
+					s += child+divend;
+				}
+	
+			}
+			else {
+				
+				s += "<div class=\"sum\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">sum<sub>"+child+"</sub>";
+				
+			}
+			break;
+
+		}
 		case -93: {
 			if (ii > 0){
 				if (prec[lastOp] < 100){
@@ -317,13 +335,25 @@ std::string imcssLogic(char c, std::string s, int ii, std::string child, char la
 	
 			}
 			else {
-				if (child == "<div class=\"number\">e</div>"){
+				int inTag = 0; int i; std::string base = "";
+				for (i=0;i<child.length();i++){
+					if (child.at(i) == '<'){
+						inTag++;
+					}
+					else if (child.at(i) == '>'){
+						inTag--;
+					}
+					else if (inTag == 0){
+						base += child.at(i);
+					}
+				}
+				if (base == "e"){
 					//s += "\\ln ";
-					s += "<div class=\"log\" id=\""+outputID+"\" data-original=\""+outputStr+"\">ln";
+					s += "<div class=\"log\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">ln";
 				}
 				else {
 					//s += "\\log_{"+child+"} ";
-					s += "<div class=\"log\" id=\""+outputID+"\" data-original=\""+outputStr+"\">log<sub>"+child+"</sub>";
+					s += "<div class=\"log\" data-op=\""+pc+"\" id=\""+outputID+"\" data-original=\""+outputStr+"\">log<sub>"+child+"</sub>";
 				}
 			}
 			break;
