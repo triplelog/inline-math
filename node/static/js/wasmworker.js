@@ -245,7 +245,6 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				inputted = "";
 				cjs(input);
 				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
-				console.log(k);
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
