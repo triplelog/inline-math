@@ -15,6 +15,7 @@
   			setTimeout(startMarkdown,50);
   		}
 		else if (e.data[0] == "markdown"){
+			console.log(e.data);
 			var html = e.data[2];
 			autoComplete[e.data[3]][e.data[1]] = html;
 			if (autoNow[e.data[3]] == e.data[1]){
