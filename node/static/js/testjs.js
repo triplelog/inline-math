@@ -94,6 +94,9 @@
 	}
   	function chgAuto(input,id) {
 		var el = document.getElementById('out-'+id);
+		console.log("out-"+id);
+		console.log(el);
+		console.log(autoComplete[id]);
 		el.innerHTML = autoComplete[id][input];
 		fixBaseline();
 		Prism.highlightAll();
