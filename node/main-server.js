@@ -58,7 +58,7 @@ wss.on('connection', function connection(ws) {
 
 var startTime = performance.now();
 
-
+console.log(startTime);
 
 app.get('/wasm',
 	function(req, res){
