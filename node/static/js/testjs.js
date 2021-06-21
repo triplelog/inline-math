@@ -20,6 +20,7 @@
 			autoComplete[e.data[3]][e.data[1]] = html;
 			console.log(autoNow);
 			console.log(e.data[1]);
+			console.log(e.data[3]);
 			console.log(autoNow[e.data[3]]);
 			if (autoNow[e.data[3]] == e.data[1]){
   				chgAuto(e.data[1],e.data[3]);
@@ -92,8 +93,10 @@
 		console.log(id);
 		console.log(document.getElementById(""+id));
 		var answer = document.getElementById(""+id).value;
+		console.log(answer);
 		myWorker.postMessage(["markdown",answer,id]);
 		autoNow[id] = answer;
+		console.log(autoNow);
 	}
   	function chgAuto(input,id) {
   		var outId = id.replace("in","out");
