@@ -29,6 +29,8 @@ function tjs(input){
 	tcpp(input);
 }
 
+
+
 var latex = "";
 function addLatex(x) {
 	latex += x;
@@ -75,6 +77,8 @@ var inputV = {};
 var plotid = 0;
 importScripts('marked.js');
 var renderIdx = 0;
+
+
 
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
@@ -657,7 +661,7 @@ onmessage = function(e) {
 		catch(err){
 			html = "";
 		}
-		result = ["markdown",message[1],html];
+		result = ["markdown",message[1],html,message[2]];
 	}
 	else if (message[0] == "code"){
 		var input;

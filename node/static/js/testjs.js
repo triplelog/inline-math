@@ -1,7 +1,11 @@
 
   	autosize(document.getElementById('inline-rules'));
   	
-  	
+  	function startMarkdown() {
+  		updateMarkdown("1");
+  		autoNow["1"]="";
+  		autoComplete["1"]={};
+  	}
 	
 	
   	var myWorker = new Worker('js/wasmworker.js');
@@ -12,9 +16,9 @@
   		}
 		else if (e.data[0] == "markdown"){
 			var html = e.data[2];
-			autoComplete[e.data[1]] = html;
-			if (autoNow == e.data[1]){
-  				chgAuto(e.data[1]);
+			autoComplete[e.data[3]][e.data[1]] = html;
+			if (autoNow[e.data[3]] == e.data[1]){
+  				chgAuto(e.data[1],e.data[3]);
 			}
 		}
 		else if (e.data[0] == "code"){
@@ -48,58 +52,64 @@
 		
 	}
 	function updateInputValue(evt){
+		var t = evt.target;
+		while (!t.classList || !t.classList.contains('inline-math') ){
+			if (t.parentNode){t = t.parentNode;}
+			else {break;}
+		}
+		console.log(t);
 		//TODO: restrct to radios of same name as event
-		var els = document.querySelectorAll('input.inline-radio:checked, input.inline-input, input.inline-number, input.inline-range');
+		var els = t.querySelectorAll('input.inline-radio:checked, input.inline-input, input.inline-number, input.inline-range');
 
 		for (var i=0;i<els.length;i++){
 			var varName = els[i].getAttribute('name').substr(7);
-			myWorker.postMessage(["inputValue",varName,els[i].value]);
+			myWorker.postMessage(["inputValue",varName,els[i].value,t.id]);
 		}
 		
-		els = document.querySelectorAll('input.inline-checkbox');
+		els = t.querySelectorAll('input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
 			//console.log(els[i]);
 			//console.log(els[i].checked);
 			var varName = els[i].getAttribute('name').substr(7);
 			if (els[i].checked){
 				//console.log("checked");
-				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes')]);
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes'),t.id]);
 			}
 			else {
-				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-no')]);
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-no'),t.id]);
 			}
 			
 		}
 		
-		updateMarkdown();
+		updateMarkdown(t.id);
 		
 	}
-	function updateMarkdown(){
-		var answer = document.getElementById("inline-math").value;
-		myWorker.postMessage(["markdown",answer]);
-		autoNow = answer;
+	function updateMarkdown(id){
+		var answer = document.getElementById(id).value;
+		myWorker.postMessage(["markdown",answer,id]);
+		autoNow[id] = answer;
 	}
-  	function chgAuto(input) {
-		var el = document.getElementById('output-math');
-		el.innerHTML = autoComplete[input];
+  	function chgAuto(input,id) {
+		var el = document.getElementById('out-'+id);
+		el.innerHTML = autoComplete[id][input];
 		fixBaseline();
 		Prism.highlightAll();
-		var els = document.querySelectorAll('input.inline-radio, input.inline-checkbox');
+		var els = el.querySelectorAll('input.inline-radio, input.inline-checkbox');
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('click',updateInputValue);
 		}
-		els = document.querySelectorAll('input.inline-input, input.inline-number, input.inline-range');
+		els = el.querySelectorAll('input.inline-input, input.inline-number, input.inline-range');
 		for (var i=0;i<els.length;i++){
 			els[i].addEventListener('change',updateInputValue);
 			//els[i].addEventListener('input',updateInputValue);
 		}
 		
-		var treeEls = document.querySelectorAll('.inline-tree');
+		var treeEls = el.querySelectorAll('.inline-tree');
 		for (var i=0;i<treeEls.length;i++){
 			createTree(treeEls[i],0);
 		}
 		
-		var plotEls = document.querySelectorAll('.plotSpan, .plotDiv');
+		var plotEls = el.querySelectorAll('.plotSpan, .plotDiv');
 		for (var i=0;i<plotEls.length;i++){
 			var left = parseInt(plotEls[i].getAttribute('data-left'));
 			var right = parseInt(plotEls[i].getAttribute('data-right'));
@@ -116,32 +126,46 @@
 	}
   	function answerDown(evt) {
 		var key = evt.key;
+		var t = evt.target;
+		while (!t.classList || !t.classList.contains('inline-math') ){
+			if (t.parentNode){t = t.parentNode;}
+			else {break;}
+		}
+		console.log(t);
 		if (key != 'Shift'){
-			var answer = document.getElementById("inline-math").value;
-			autoComplete[answer+key] = "in-progress";
-			myWorker.postMessage(["markdown",answer+key]);
+			var answer = t.value;
+			autoComplete[t.id][answer+key] = "in-progress";
+			myWorker.postMessage(["markdown",answer+key,t.id]);
 		}
 		
 	}
 	function answerChange(evt) {
-		var answer = document.getElementById("inline-math").value;
-		if (autoComplete[answer] == "in-progress"){
-			autoNow = answer;
+		var t = evt.target;
+		while (!t.classList || !t.classList.contains('inline-math') ){
+			if (t.parentNode){t = t.parentNode;}
+			else {break;}
 		}
-		else if (autoComplete[answer]){
-			chgAuto(answer);
+		console.log(t);
+		var answer = t.value;
+		if (autoComplete[t.id][answer] == "in-progress"){
+			autoNow[t.id] = answer;
+		}
+		else if (autoComplete[t.id][answer]){
+			chgAuto(answer,t.id);
 		}
 		else {
-			myWorker.postMessage(["markdown",answer]);
-			autoNow = answer;
+			myWorker.postMessage(["markdown",answer,t.id]);
+			autoNow[t.id] = answer;
 		}
 		
 	}
 	var autoComplete = {};
-	var autoNow = "";
-	var answerEl = document.getElementById('inline-math');
-	answerEl.addEventListener('keydown',answerDown);
-	answerEl.addEventListener('input',answerChange);
+	var autoNow = {};
+	var answerEls = document.querySelectorAll('.inline-math');
+	for (answerEl in answerEls){
+		answerEl.addEventListener('keydown',answerDown);
+		answerEl.addEventListener('input',answerChange);
+	}
 	
 	function plotChange(evt) {
 		var left = -10;
