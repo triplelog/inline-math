@@ -299,7 +299,7 @@ http://www.gust.org.pl/projects/e-foundry/
 .imcss div.sum::before {
     content: '\2211';
     float: left;
-    font-size: 5rem;
+    font-size: 2rem;
 }
 
 

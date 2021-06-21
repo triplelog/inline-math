@@ -214,6 +214,17 @@ app.get(['/imcsstest','/imcsstest.html'],
 	}
 );
 
+app.get(['/home','/home.html'],
+	function(req, res){
+		
+		
+		res.write(nunjucks.render('templates/landingpage.html',{
+
+		}));
+		res.end();
+	}
+);
+
 app.get(['/variables','/variables.html'],
 	function(req, res){
 		
