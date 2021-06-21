@@ -85,7 +85,9 @@
 		
 	}
 	function updateMarkdown(id){
-		var answer = document.getElementById(id).value;
+		console.log(id);
+		console.log(document.getElementById(""+id));
+		var answer = document.getElementById(""+id).value;
 		myWorker.postMessage(["markdown",answer,id]);
 		autoNow[id] = answer;
 	}
