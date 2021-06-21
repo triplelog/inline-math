@@ -5,6 +5,9 @@
   		autoNow["in-1"]="";
   		autoComplete["in-1"]={};
   		updateMarkdown("in-1");
+  		autoNow["in-2"]="";
+  		autoComplete["in-2"]={};
+  		updateMarkdown("in-2");
   		
   	}
 	
