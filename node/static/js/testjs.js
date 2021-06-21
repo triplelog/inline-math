@@ -12,7 +12,7 @@
   	
   	myWorker.onmessage = function(e) {
   		if (e.data == "ready"){
-  			setTimeout(updateMarkdown,50);
+  			setTimeout(startMarkdown,50);
   		}
 		else if (e.data[0] == "markdown"){
 			var html = e.data[2];
