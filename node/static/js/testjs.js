@@ -162,7 +162,8 @@
 	var autoComplete = {};
 	var autoNow = {};
 	var answerEls = document.querySelectorAll('.inline-math');
-	for (answerEl in answerEls){
+	for (var i=0;i<answerEls.length;i++){
+		answerEl = answerEls[i];
 		answerEl.addEventListener('keydown',answerDown);
 		answerEl.addEventListener('input',answerChange);
 	}
