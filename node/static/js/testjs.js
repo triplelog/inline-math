@@ -2,9 +2,10 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	function startMarkdown() {
-  		updateMarkdown("in-1");
   		autoNow["in-1"]="";
   		autoComplete["in-1"]={};
+  		updateMarkdown("in-1");
+  		
   	}
 	
 	
