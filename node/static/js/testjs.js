@@ -18,6 +18,9 @@
 			console.log(e.data);
 			var html = e.data[2];
 			autoComplete[e.data[3]][e.data[1]] = html;
+			console.log(autoNow);
+			console.log(e.data[1]);
+			console.log(autoNow[e.data[3]]);
 			if (autoNow[e.data[3]] == e.data[1]){
   				chgAuto(e.data[1],e.data[3]);
 			}
