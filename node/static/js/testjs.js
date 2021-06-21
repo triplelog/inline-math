@@ -2,9 +2,9 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	function startMarkdown() {
-  		updateMarkdown("1");
-  		autoNow["1"]="";
-  		autoComplete["1"]={};
+  		updateMarkdown("in-1");
+  		autoNow["in-1"]="";
+  		autoComplete["in-1"]={};
   	}
 	
 	
@@ -96,8 +96,9 @@
 		autoNow[id] = answer;
 	}
   	function chgAuto(input,id) {
-		var el = document.getElementById('out-'+id);
-		console.log("out-"+id);
+  		var outId = id.replace("in","out");
+		var el = document.getElementById(outId);
+		console.log(outId);
 		console.log(el);
 		console.log(autoComplete[id]);
 		el.innerHTML = autoComplete[id][input];
