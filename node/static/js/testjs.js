@@ -2,12 +2,11 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	function startMarkdown() {
-  		autoNow["in-1"]="";
-  		autoComplete["in-1"]={};
-  		updateMarkdown("in-1");
-  		autoNow["in-2"]="";
-  		autoComplete["in-2"]={};
-  		updateMarkdown("in-2");
+  		for (var i=1;i<6;i++){
+			autoNow["in-"+i]="";
+			autoComplete["in-"+i]={};
+			updateMarkdown("in-"+i);
+  		}
   		
   	}
 	
