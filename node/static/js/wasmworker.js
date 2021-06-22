@@ -613,6 +613,7 @@ const renderer = {
 			
 		}
 		else {
+			console.log(input);
 			k = mapOrNew(input,varName,false,false,isDisplay);
 			//var uniqueId = 'imcss-'+(10000+Math.floor(Math.random() * 90000));
 			var uniqueId = 'imcss-'+renderIdx[currentId];
