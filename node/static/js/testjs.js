@@ -74,12 +74,13 @@
 		}
 		
 		console.log(t);
+		var tid = t.id.replace("out","in");
 		//TODO: restrct to radios of same name as event
 		var els = t.querySelectorAll('input.inline-radio:checked, input.inline-input, input.inline-number, input.inline-range');
 
 		for (var i=0;i<els.length;i++){
 			var varName = els[i].getAttribute('name').substr(7);
-			myWorker.postMessage(["inputValue",varName,els[i].value,t.id]);
+			myWorker.postMessage(["inputValue",varName,els[i].value,tid]);
 		}
 		
 		els = t.querySelectorAll('input.inline-checkbox');
@@ -89,15 +90,15 @@
 			var varName = els[i].getAttribute('name').substr(7);
 			if (els[i].checked){
 				//console.log("checked");
-				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes'),t.id]);
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-yes'),tid]);
 			}
 			else {
-				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-no'),t.id]);
+				myWorker.postMessage(["inputValue",varName,els[i].getAttribute('data-no'),tid]);
 			}
 			
 		}
 		
-		updateMarkdown(t.id.replace("out","in"));
+		updateMarkdown(tid);
 		
 	}
 	function updateMarkdown(id){

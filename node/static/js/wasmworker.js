@@ -725,6 +725,7 @@ onmessage = function(e) {
 		result = ["svg",message[1],svg[currentId],message[2],inputted[currentId],latex[currentId]];
 	}
 	else if (message[0] == "inputValue"){
+		currentId = message[3];
 		inputV[currentId][message[1]]=message[2];
 	}
 	postMessage(result);
