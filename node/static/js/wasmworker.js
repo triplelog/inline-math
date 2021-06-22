@@ -61,6 +61,7 @@ function addId(id){
 	renderIdx[id] = 0;
 	
 	currentId = id;
+	console.log(currentId);
 }
 
 function addLatex(x) {
@@ -656,6 +657,7 @@ onmessage = function(e) {
 	}
 	else if (message[0] == "markdown"){
 		currentId = message[2];
+		console.log(currentId);
 		var markdown = message[1];
 		originalMarkdown = message[1];
 		originalMarkdownMap = [];
