@@ -20,8 +20,6 @@
 	gap: 1rem 1rem;
 }
 .gridHolder > div {
-	min-width: 2rem;
-	min-height: 2rem;
 	border: 1px solid black;
 }
 .editDiv {
@@ -39,9 +37,7 @@
 <div class="gridHolder">
 	<div style="grid-column: 1; grid-row: 1;">
 		<div class="editDiv">
-			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">a $2+2$ a 
-				 b $3+3$ b
-				 c $4+4$ c</textarea>
+			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">$ddx(x^2)=2x$</textarea>
 		</div>
 		<div class="outputDiv" id="out-1" class="output-math">
 		
@@ -58,8 +54,11 @@
 		</div>
 	</div>
 	<div style="grid-column: 6 / 10; grid-row: 4 / 6;">FAQ
+		<ul>
+			<li>What is Inline Math? This website.</li>
+		</ul>
 	</div>
-	<div style="grid-column: 14; grid-row: 8;">
+	<div style="grid-column: 13 / 15; grid-row: 7 / 9;">
 		<div class="editDiv">
 			<textarea id="in-2" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">aa $2+2$ a 
 				 b $3+3$ b
