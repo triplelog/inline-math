@@ -2,7 +2,7 @@
   	autosize(document.getElementById('inline-rules'));
   	
   	function startMarkdown() {
-  		for (var i=1;i<2;i++){
+  		for (var i=1;i<6;i++){
 			autoNow["in-"+i]="";
 			autoComplete["in-"+i]={};
 			updateMarkdown("in-"+i);
@@ -11,7 +11,7 @@
   	}
   	
   	function startId() {
-  		for (var i=1;i<2;i++){
+  		for (var i=1;i<6;i++){
   			myWorker.postMessage(["id","in-"+i]);
   		}
   		setTimeout(startMarkdown,100);
