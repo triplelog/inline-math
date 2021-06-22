@@ -20,7 +20,8 @@
 	gap: 1rem 1rem;
 }
 .gridHolder > div {
-	border: 1px solid black;
+	border: 2px solid black;
+	position: relative;
 }
 .editDiv {
 	display: none;
@@ -30,7 +31,7 @@
 }
 .header {
 	position: absolute;
-	left: 0px;
+	left: 0.5rem;
 	top: -0.5rem;
 	height: 1rem;
 	background: white;
@@ -42,7 +43,8 @@
 <body>
 
 <div class="gridHolder">
-	<div style="grid-column: 1 / 4; grid-row: 1;">
+	<div style="grid-column: 1 / 3; grid-row: 1 / 3; border-color: green;">
+		<span class="header">Derivatives</span>
 		<div class="editDiv">
 			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">$ddx(x^2)=2x$</textarea>
 		</div>
@@ -50,7 +52,16 @@
 		
 		</div>
 	</div>
-	<div style="grid-column: 1 / 3; grid-row: 2;">
+	<div style="grid-column: 3 / 6; grid-row: 1 / 3; border-color: yellow;">
+		<span class="header">Arithmetic</span>
+		<div class="editDiv">
+			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">$ddx(x^2)=2x$</textarea>
+		</div>
+		<div class="outputDiv" id="out-1" class="output-math">
+		
+		</div>
+	</div>
+	<div style="grid-column: 1 / 3; grid-row: 3 / 5;">
 		<div class="editDiv">
 			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">a $2+2$ a 
 				 b $3+3$ b
