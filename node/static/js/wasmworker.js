@@ -31,61 +31,77 @@ function tjs(input){
 
 
 
-var latex = "";
-function addLatex(x) {
-	latex += x;
-}
-
-var imcss = "";
-function addImcss(x) {
-	imcss += x;
-}
-var newInput = "";
-function addInput(x) {
-	newInput += x;
-}
-
-var inputted = "";
-function addInputted(x) {
-	inputted += x;
-}
-
-var svg = "";
-function addSVG(x) {
-	svg += x;
-}
-
-var dependents = "";
-function setDependents(x) {
-	dependents = x;
-}
-var dependentfunctions = [];
-function addDependentFunction(x) {
-	dependentfunctions.push(x);
-}
-
+var latex = {};
+var imcss = {};
+//var newInput = {};
+var inputted = {};
+var svg = {};
+var dependents = {};
+var dependentfunctions = {};
 var currentF = {};
-function updateCurrentFunctions(x) {
-	const y = Date.now();
-	currentF[x]=y;
-}
-
 var latexedInputs = {};
 var currentV = {};
-
 var inputV = {};
-var plotid = 0;
+var plotid = {};
+var renderIdx = {};
+
+function addId(id){
+	latex[id] = "";
+	imcss[id] = "";
+	//newInput[id] = "";
+	inputted[id] = "";
+	svg[id] = "";
+	dependents[id] = "";
+	dependentfunctions[id] = [];
+	currentF[id] = {};
+	latexedInputs[id] = {};
+	currentV[id] = {};
+	inputV[id] = {};
+	plotid[id] = 0;
+	renderIdx[id] = 0;
+	
+	currentId = id;
+}
+
+function addLatex(x) {
+	latex[currentId] += x;
+}
+function addImcss(x) {
+	imcss[currentId] += x;
+}
+/*function addInput(x) {
+	newInput[currentId] += x;
+}*/
+function addInputted(x) {
+	inputted[currentId] += x;
+}
+function addSVG(x) {
+	svg[currentId] += x;
+}
+function setDependents(x) {
+	dependents[currentId] = x;
+}
+
+function addDependentFunction(x) {
+	dependentfunctions[currentId].push(x);
+}
+function updateCurrentFunctions(x) {
+	const y = Date.now();
+	currentF[currentId][x]=y;
+}
+
+
 importScripts('marked.js');
-var renderIdx = 0;
+
 
 
 
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
-	latex = "";
-	imcss = "";
-	dependentfunctions = [];
+	latex[currentId] = "";
+	imcss[currentId] = "";
+	dependentFunctions[currentId] = [];
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
 		type = 'tree';
@@ -97,30 +113,30 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			inputFull.push(input[i]);
 		}
 		input = inputFull[0];
-		svg = "";
+		svg[currentId] = "";
 	}
 	var foundMatch = false;
 	input = cleanInput(input);
-	if (latexedInputs[type+input]){
+	if (latexedInputs[currentId][type+input]){
 		foundMatch = true;
-		if (latexedInputs[type+input].varName != varName){
+		if (latexedInputs[currentId][type+input].varName != varName){
 			foundMatch = false;
 		}
-		else if (latexedInputs[type+input].display != isDisplay){
+		else if (latexedInputs[currentId][type+input].display != isDisplay){
 			foundMatch = false;
 		}
-		else if (latexedInputs[type+input].dependents || latexedInputs[type+input].dependentfunctions){
-			if (latexedInputs[type+input].dependents){
-				for (var i in latexedInputs[type+input].dependents){
-					if (latexedInputs[type+input].dependents[i] != currentV[i]){
+		else if (latexedInputs[currentId][type+input].dependents || latexedInputs[currentId][type+input].dependentfunctions){
+			if (latexedInputs[currentId][type+input].dependents){
+				for (var i in latexedInputs[currentId][type+input].dependents){
+					if (latexedInputs[currentId][type+input].dependents[i] != currentV[currentId][i]){
 						foundMatch = false;
 						break;
 					}
 				}
 			}
-			if (latexedInputs[type+input].dependentfunctions){
-				for (var i in latexedInputs[type+input].dependentfunctions){
-					if (latexedInputs[type+input].dependentfunctions[i] != currentF[i]){
+			if (latexedInputs[currentId][type+input].dependentfunctions){
+				for (var i in latexedInputs[currentId][type+input].dependentfunctions){
+					if (latexedInputs[currentId][type+input].dependentfunctions[i] != currentF[currentId][i]){
 						foundMatch = false;
 						break;
 					}
@@ -129,7 +145,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		}
 		if (isTreePlot == 'plot'){
 			for (var i=0;i<5;i++){
-				if (latexedInputs[type+input].options.dr[i] != inputFull[i]) {
+				if (latexedInputs[currentId][type+input].options.dr[i] != inputFull[i]) {
 					foundMatch = false;
 					break;
 				}
@@ -139,23 +155,23 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 	}
 	var k;
 	if (foundMatch && !forceNew){
-		inputted = latexedInputs[type+input].inputted;
-		latex = latexedInputs[type+input].latex;
-		imcss = latexedInputs[type+input].imcss;
-		k = latexedInputs[type+input].output;
+		inputted[currentId] = latexedInputs[currentId][type+input].inputted;
+		latex[currentId] = latexedInputs[currentId][type+input].latex;
+		imcss[currentId] = latexedInputs[currentId][type+input].imcss;
+		k = latexedInputs[currentId][type+input].output;
 	}
 	else{
 		if (varName != ""){
 			if (isTreePlot == 'tree'){
 				tjs("|"+varName+":="+input);
-				latex = latex.replace(/\\/g,'\\\\');
+				latex[currentId] = latex[currentId].replace(/\\/g,'\\\\');
 				var tree;
-				if (latex == "???"){
+				if (latex[currentId] == "???"){
 					tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
 				}
 				else {
 					try {
-						tree = JSON.parse('{'+latex+'}');
+						tree = JSON.parse('{'+latex[currentId]+'}');
 					}
 					catch(err){
 						tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
@@ -179,30 +195,30 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			//	pjs(inputFull[0],inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
 			//}
 			else {
-				inputted = "";
+				inputted[currentId] = "";
 				ljs("|"+varName+":="+input);
 				/*katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
-				inputted = "";
+				inputted[currentId] = "";
 				cjs("|"+varName+":="+input);
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
-				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
+				k = imcss[currentId].replace('class="imcss"','class="imcss" data-input="'+inputted[currentId]+'" data-latex="'+latex[currentId]+'"');
 			}
 			
 		}
 		else{
 			if (isTreePlot == 'tree'){
 				tjs(input);
-				latex = latex.replace(/\\/g,'\\\\');
+				latex[currentId] = latex[currentId].replace(/\\/g,'\\\\');
 				var tree;
-				if (latex == "???"){
+				if (latex[currentId] == "???"){
 					tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
 				}
 				else {
 					try {
-						tree = JSON.parse('{'+latex+'}');
+						tree = JSON.parse('{'+latex[currentId]+'}');
 					}
 					catch(err){
 						tree = {'nodes':{'node0':{'text':'error','op':'x','parent':'' }},'allNodes':['node0']};
@@ -223,22 +239,22 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				k = outText;
 			}
 			else if (isTreePlot == 'plot'){
-				inputted = "";
-				latex = "";
-				imcss = "";
+				inputted[currentId] = "";
+				latex[currentId] = "";
+				imcss[currentId] = "";
 				pjs(input,inputFull[1],inputFull[2],inputFull[3],inputFull[4]);
-				if (svg == "???"){
-					latex = "";
-					imcss = "";
-					inputted = "";
+				if (svg[currentId] == "???"){
+					latex[currentId] = "";
+					imcss[currentId] = "";
+					inputted[currentId] = "";
 					k = "";
 				}
 				else {
-					k = svg;
+					k = svg[currentId];
 				}
 			}
 			else {
-				inputted = "";
+				inputted[currentId] = "";
 				ljs(input);
 				/*cjs(input);
 				katexOptions.displayMode = isDisplay;
@@ -246,22 +262,22 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				katexOptions.displayMode = false;
 				k = k.replace('class="katex"','class="katex" data-input="'+inputted+'" data-latex="'+latex+'"');*/
 				
-				inputted = "";
+				inputted[currentId] = "";
 				cjs(input);
-				k = imcss.replace('class="imcss"','class="imcss" data-input="'+inputted+'" data-latex="'+latex+'"');
+				k = imcss[currentId].replace('class="imcss"','class="imcss" data-input="'+inputted[currentId]+'" data-latex="'+latex[currentId]+'"');
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
-		latexedInputs[type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex,imcss:imcss,inputted:inputted,display:isDisplay,options:{}};
-		for (var i=0;i<dependents.length;i++){
-			latexedInputs[type+input].dependents[dependents[i]] = currentV[dependents[i]];
+		latexedInputs[currentId][type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex[currentId],imcss:imcss[currentId],inputted:inputted[currentId],display:isDisplay,options:{}};
+		for (var i=0;i<dependents[currentId].length;i++){
+			latexedInputs[currentId][type+input].dependents[dependents[currentId][i]] = currentV[currentId][dependents[currentId][i]];
 		}
-		for (var i=0;i<dependentfunctions.length;i++){
-			latexedInputs[type+input].dependentfunctions[dependentfunctions[i]] = currentF[dependentfunctions[i]];
+		for (var i=0;i<dependentFunctions[currentId].length;i++){
+			latexedInputs[currentId][type+input].dependentfunctions[dependentFunctions[currentId][i]] = currentF[currentId][dependentFunctions[currentId][i]];
 		}
 		if (isTreePlot == 'plot'){
-			latexedInputs[type+input].options.dr = inputFull; 
+			latexedInputs[currentId][type+input].options.dr = inputFull; 
 		}
 		
 	}
@@ -287,11 +303,11 @@ function createInputs(input,varName,isDisplay) {
 		
 		
 		defaultValue = dataYes;
-		if (inputV[varName]){
-			if (inputV[varName] == dataYes){
+		if (inputV[currentId][varName]){
+			if (inputV[currentId][varName] == dataYes){
 				selected = "checked";
 			}
-			else if (inputV[varName] == dataNo){
+			else if (inputV[currentId][varName] == dataNo){
 				selected = "";
 			}
 			else {
@@ -314,8 +330,8 @@ function createInputs(input,varName,isDisplay) {
 			if (options[i] != ""){
 				k = mapOrNew(options[i],"",false,false,isDisplay);
 				var selected = "";
-				if (inputV[varName]){
-					if (inputV[varName] == options[i]){selected = "checked";}
+				if (inputV[currentId][varName]){
+					if (inputV[currentId][varName] == options[i]){selected = "checked";}
 				}
 				else {
 					if (defaultValue == options[i]){selected = "checked";}
@@ -330,8 +346,8 @@ function createInputs(input,varName,isDisplay) {
 		input = input.substr(0,input.length-1);
 		defaultValue = "";
 		
-		if (inputV[varName]){
-			defaultValue = inputV[varName];
+		if (inputV[currentId][varName]){
+			defaultValue = inputV[currentId][varName];
 		}
 		html += '<label for="inline-'+varName+'">'+input+'</label>';
 		html += '<input type="text" class="inline-input" name="inline-'+varName+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
@@ -349,8 +365,8 @@ function createInputs(input,varName,isDisplay) {
 		}
 		defaultValue = ""+Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
 		
-		if (inputV[varName]){
-			defaultValue = inputV[varName];
+		if (inputV[currentId][varName]){
+			defaultValue = inputV[currentId][varName];
 		}
 		html += '<input type="number" class="inline-number" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
 
@@ -367,21 +383,21 @@ function createInputs(input,varName,isDisplay) {
 			maxRange = options[1];
 		}
 		defaultValue = ""+Math.floor((parseInt(maxRange) + parseInt(minRange) + 1) / 2);
-		if (inputV[varName]){
-			defaultValue = inputV[varName];
+		if (inputV[currentId][varName]){
+			defaultValue = inputV[currentId][varName];
 		}
 		html += '<input type="range" class="inline-range" name="inline-'+varName+'" min="'+minRange+'" max="'+maxRange+'" value="'+defaultValue+'" id="inline-'+varName+'"></input>';
 
 	}
 	if (varName != ""){
-		if (!inputV[varName]){
-			inputV[varName]=defaultValue;
+		if (!inputV[currentId][varName]){
+			inputV[currentId][varName]=defaultValue;
 			var j = mapOrNew(defaultValue,varName,true,false,isDisplay);
-			currentV[varName]=j;
+			currentV[currentId][varName]=j;
 		}
 		else {
-			var j = mapOrNew(inputV[varName],varName,true,false,isDisplay);
-			currentV[varName]=j;
+			var j = mapOrNew(inputV[currentId][varName],varName,true,false,isDisplay);
+			currentV[currentId][varName]=j;
 		}
 	}
 	return html;
@@ -412,7 +428,7 @@ const renderer = {
   	text = text.replace(/=([^\( =])/g,'= '+'$1');
   	text = text.replace(/!([^\=])/g,'!!'+'$1');
   	text = text.replace(/!$/,'!!');
-  	renderIdx++;
+  	renderIdx[currentId]++;
   	try{
 		var matchDisplay = text.match(/\$\$+([^\$\n]+?)\$\$+/);
 		var match = text.match(/\$+([^\$\n]+?)\$+/);
@@ -502,16 +518,16 @@ const renderer = {
 			}
 			
 			if (isDisplay){
-				svg = '<div class="plotDiv" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
-				svg += '</div>';
+				svg[currentId] = '<div class="plotDiv" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid[currentId]+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg[currentId] += '</div>';
 			}
 			else {
-				svg = '<span class="plotSpan" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
-				svg += '</span>';
+				svg[currentId] = '<span class="plotSpan" data-input="" data-latex="" data-sliders="'+dr+'" id="plot-'+plotid[currentId]+'" data-formula="'+fn+'" data-left="'+left+'" data-right="'+right+'" data-bottom="'+bottom+'" data-top="'+top+'" >';
+				svg[currentId] += '</span>';
 			}
-			plotid++;
+			plotid[currentId]++;
 			
-			return svg;
+			return svg[currentId];
 		}
 		else if (input.search(/tree\(/)==0){
 			input = input.replace('tree(','');
@@ -547,10 +563,10 @@ const renderer = {
 				if (inp.length > 0){
 					mapOrNew(inputs[i].trim(),"",false,false,isDisplay);
 					for (var ii=0;ii<aligners.length;ii++){
-						latex = latex.replace(aligners[ii],'&'+aligners[ii]+'&');
+						latex[currentId] = latex[currentId].replace(aligners[ii],'&'+aligners[ii]+'&');
 					}
 				
-					outText += latex + "\\\\\n";
+					outText += latex[currentId] + "\\\\\n";
 				}
 			
 			}
@@ -588,21 +604,21 @@ const renderer = {
 			//latex = "";
 			var k = mapOrNew(input,varName,false,false,isDisplay);
 			if (isDisplay){
-				return '<div>'+latex+'</div>';
+				return '<div>'+latex[currentId]+'</div>';
 			}
 			else {
-				return '<span>'+latex+'</span>';
+				return '<span>'+latex[currentId]+'</span>';
 			}
 			
 		}
 		else {
 			k = mapOrNew(input,varName,false,false,isDisplay);
 			//var uniqueId = 'imcss-'+(10000+Math.floor(Math.random() * 90000));
-			var uniqueId = 'imcss-'+renderIdx;
-			console.log(originalMarkdown.substr(originalMarkdownMap[2*renderIdx],originalMarkdownMap[2*renderIdx+1]));
+			var uniqueId = 'imcss-'+renderIdx[currentId];
+			console.log(originalMarkdown.substr(originalMarkdownMap[2*renderIdx[currentId]],originalMarkdownMap[2*renderIdx[currentId]+1]));
 			k = k.replace('class="imcss"','class="imcss" id="'+uniqueId+'"');
 			if (varName != ""){
-				currentV[varName]=k;
+				currentV[currentId][varName]=k;
 			}
 			if (matchInvisible && matchInvisible.index == 0){
 				return "";
@@ -635,7 +651,11 @@ function justTrack(match,p1,offset,string){
 onmessage = function(e) {
 	var message = e.data;
 	var result = [];
-	if (message[0] == "markdown"){
+	if (message[0] == "id"){
+		addId(message[1]);
+	}
+	else if (message[0] == "markdown"){
+		currentId = message[2];
 		var markdown = message[1];
 		originalMarkdown = message[1];
 		originalMarkdownMap = [];
@@ -652,10 +672,10 @@ onmessage = function(e) {
 		markdown = markdown.replace(/\$`!\[[A-Z]\]`/g,replacer);
 		markdown = markdown.replace(/\$`!/g,'$&`');
 		markdown = markdown.replace(/\$`!/g,replacer);
-		plotid = 0;
+		plotid[currentId] = 0;
 		var html;
 		try {
-			renderIdx = -1;
+			renderIdx[currentId] = -1;
 			html = marked(markdown);
 		}
 		catch(err){
@@ -677,24 +697,24 @@ onmessage = function(e) {
 			input = jsToMath(message[1]);
 		}
 		k = mapOrNew(input,"",false,false,false);
-		result = ["code",message[1],k,message[2],latex,message[3]];
+		result = ["code",message[1],k,message[2],latex[currentId],message[3]];
 	}
 	else if (message[0] == "plot"){
 		
 		k = mapOrNew([message[1],message[3],message[4],message[5],message[6]],"",false,'plot',false);
-		svg = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">";
-		svg += k;
-		svg += "</svg>";
+		svg[currentId] = "<svg version=\"1.1\" baseProfile=\"full\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">";
+		svg[currentId] += k;
+		svg[currentId] += "</svg>";
 		if (message[9].search('D')>-1){
-			svg += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
+			svg[currentId] += '<br><input type="range" data-formula="'+message[1]+'" id="domainSlider-'+message[2]+'" min="0" max="'+(message[7]*2)+'" value="'+message[7]+'"></input>';	
 		}
 		if (message[9].search('R')>-1){
-			svg += '<br><input type="range" data-formula="'+message[1]+'" id="rangeSlider-'+message[2]+'" min="0" max="'+(message[8]*2)+'" value="'+message[8]+'"></input>';	
+			svg[currentId] += '<br><input type="range" data-formula="'+message[1]+'" id="rangeSlider-'+message[2]+'" min="0" max="'+(message[8]*2)+'" value="'+message[8]+'"></input>';	
 		}
-		result = ["svg",message[1],svg,message[2],inputted,latex];
+		result = ["svg",message[1],svg[currentId],message[2],inputted[currentId],latex[currentId]];
 	}
 	else if (message[0] == "inputValue"){
-		inputV[message[1]]=message[2];
+		inputV[currentId][message[1]]=message[2];
 	}
 	postMessage(result);
 }

@@ -3,6 +3,7 @@
   	
   	function startMarkdown() {
   		for (var i=1;i<6;i++){
+  			myWorker.postMessage(["id","in-"+i]);
 			autoNow["in-"+i]="";
 			autoComplete["in-"+i]={};
 			updateMarkdown("in-"+i);
