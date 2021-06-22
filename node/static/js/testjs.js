@@ -3,12 +3,18 @@
   	
   	function startMarkdown() {
   		for (var i=1;i<2;i++){
-  			myWorker.postMessage(["id","in-"+i]);
 			autoNow["in-"+i]="";
 			autoComplete["in-"+i]={};
 			updateMarkdown("in-"+i);
   		}
   		
+  	}
+  	
+  	function startId() {
+  		for (var i=1;i<2;i++){
+  			myWorker.postMessage(["id","in-"+i]);
+  		}
+  		setTimeout(startMarkdown,100);
   	}
 	
 	
@@ -16,7 +22,7 @@
   	
   	myWorker.onmessage = function(e) {
   		if (e.data == "ready"){
-  			setTimeout(startMarkdown,50);
+  			setTimeout(startId,50);
   		}
 		else if (e.data[0] == "markdown"){
 			console.log(e.data);
