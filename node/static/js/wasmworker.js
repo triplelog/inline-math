@@ -100,9 +100,10 @@ importScripts('marked.js');
 var katexOptions = {throwOnError: false, macros: {'\\pluseq':'\\mathrel{{+}{=}}','\\minuseq':'\\mathrel{{-}{=}}'}};
 
 function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false){
+	console.log(currentId);
 	latex[currentId] = "";
 	imcss[currentId] = "";
-	dependentFunctions[currentId] = [];
+	dependentfunctions[currentId] = [];
 	console.log(currentId);
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
@@ -281,8 +282,8 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		for (var i=0;i<dependents[currentId].length;i++){
 			latexedInputs[currentId][type+input].dependents[dependents[currentId][i]] = currentV[currentId][dependents[currentId][i]];
 		}
-		for (var i=0;i<dependentFunctions[currentId].length;i++){
-			latexedInputs[currentId][type+input].dependentfunctions[dependentFunctions[currentId][i]] = currentF[currentId][dependentFunctions[currentId][i]];
+		for (var i=0;i<dependentfunctions[currentId].length;i++){
+			latexedInputs[currentId][type+input].dependentfunctions[dependentfunctions[currentId][i]] = currentF[currentId][dependentfunctions[currentId][i]];
 		}
 		if (isTreePlot == 'plot'){
 			latexedInputs[currentId][type+input].options.dr = inputFull; 
