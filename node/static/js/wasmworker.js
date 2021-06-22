@@ -103,6 +103,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 	latex[currentId] = "";
 	imcss[currentId] = "";
 	dependentFunctions[currentId] = [];
+	console.log(currentId);
 	var type = 'latex';
 	if (isTreePlot == 'tree'){
 		type = 'tree';
@@ -154,6 +155,7 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 		}
 		
 	}
+	console.log(currentId);
 	var k;
 	if (foundMatch && !forceNew){
 		inputted[currentId] = latexedInputs[currentId][type+input].inputted;
@@ -256,7 +258,9 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 			}
 			else {
 				inputted[currentId] = "";
+				console.log(currentId);
 				ljs(input);
+				console.log(currentId);
 				/*cjs(input);
 				katexOptions.displayMode = isDisplay;
 				k = katex.renderToString(latex, katexOptions);
@@ -265,11 +269,14 @@ function mapOrNew(input,varName,forceNew=false,isTreePlot=false,isDisplay=false)
 				
 				inputted[currentId] = "";
 				cjs(input);
+				console.log(currentId);
 				k = imcss[currentId].replace('class="imcss"','class="imcss" data-input="'+inputted[currentId]+'" data-latex="'+latex[currentId]+'"');
+				console.log(currentId);
 				//k ='<div class=\"imcss\" data-input="'+inputted+'" data-latex="'+latex+'">' +imcss+ "\n</div>";
 			}
 			
 		}
+		console.log(currentId);
 		latexedInputs[currentId][type+input]={dependents:{},dependentfunctions:{},output:k,varName:varName,latex:latex[currentId],imcss:imcss[currentId],inputted:inputted[currentId],display:isDisplay,options:{}};
 		for (var i=0;i<dependents[currentId].length;i++){
 			latexedInputs[currentId][type+input].dependents[dependents[currentId][i]] = currentV[currentId][dependents[currentId][i]];
