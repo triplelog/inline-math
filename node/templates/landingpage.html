@@ -15,6 +15,8 @@
 	height: calc(100vh - 2rem);
 	display: grid;
 	grid-auto-flow: row | column | row dense | column dense;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .gridHolder > div {
 	min-width: 2rem;
@@ -44,9 +46,9 @@
 		
 		</div>
 	</div>
-	<div style="grid-column: 2; grid-row: 2;">FAQ
+	<div style="grid-column: 6 / 10; grid-row: 5 / 7;">FAQ
 	</div>
-	<div style="grid-column: 3; grid-row: 3;">
+	<div style="grid-column: 10; grid-row: 10;">
 		<div class="editDiv">
 			<textarea id="in-2" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">aa $2+2$ a 
 				 b $3+3$ b
