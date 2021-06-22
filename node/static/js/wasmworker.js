@@ -69,9 +69,9 @@ function addLatex(x) {
 function addImcss(x) {
 	imcss[currentId] += x;
 }
-/*function addInput(x) {
+function addInput(x) {
 	newInput[currentId] += x;
-}*/
+}
 function addInputted(x) {
 	inputted[currentId] += x;
 }
