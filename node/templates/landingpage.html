@@ -42,14 +42,43 @@ body {
 	left: 0.5rem;
 	top: -0.6rem;
 	height: 1.2rem;
-	background: white;
 	padding-left: 0.25rem;
 	padding-right: 0.25rem;
 	padding-top: 0.1rem;
 	padding-bottom: 0.1rem;
 	border: 2px solid black;
 	border-color: inherit;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
+}
+.gridHolder > div.level-5 {
+	border-color: #0F0;
+}
+.level-5 > .header {
+	background: #DFD;
+}
+.gridHolder > div.level-4 {
+	border-color: #8F0;
+}
+.level-4 > .header {
+	background: #EFD;
+}
+.gridHolder > div.level-3 {
+	border-color: #FF0;
+}
+.level-3 > .header {
+	background: #FFD;
+}
+.gridHolder > div.level-2 {
+	border-color: #F80;
+}
+.level-2 > .header {
+	background: #FED;
+}
+.gridHolder > div.level-1 {
+	border-color: #F00;
+}
+.level-1 > .header {
+	background: #FDD;
 }
 </style>
 
@@ -58,7 +87,7 @@ body {
 <body>
 
 <div class="gridHolder">
-	<div style="grid-column: 1 / 3; grid-row: 1 / 3; border-color: green;">
+	<div class="level-5" style="grid-column: 1 / 3; grid-row: 1 / 3;">
 		<span class="header">Derivatives</span>
 		<div class="editDiv">
 			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">$ddx(x^2)=2x$</textarea>
@@ -67,7 +96,7 @@ body {
 		
 		</div>
 	</div>
-	<div style="grid-column: 3 / 6; grid-row: 1 / 3; border-color: yellow;">
+	<div class="level-4" style="grid-column: 3 / 6; grid-row: 1 / 3;">
 		<span class="header">Arithmetic</span>
 		<div class="editDiv">
 			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">$ddx(x^2)=2x$</textarea>
@@ -76,7 +105,8 @@ body {
 		
 		</div>
 	</div>
-	<div style="grid-column: 1 / 3; grid-row: 3 / 5; border-color: red;">
+	<div class="level-3" style="grid-column: 1 / 3; grid-row: 3 / 5;">
+		<span class="header">Arith</span>
 		<div class="editDiv">
 			<textarea id="in-1" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">a $2+2$ a 
 				 b $3+3$ b
@@ -86,13 +116,14 @@ body {
 		
 		</div>
 	</div>
-	<div style="grid-column: 6 / 10; grid-row: 4 / 6; border-color: red;">
+	<div class="level-2" style="grid-column: 6 / 10; grid-row: 4 / 6;">
 		<span class="header">FAQ</span>
 		<ul>
 			<li>What is Inline Math? This website.</li>
 		</ul>
 	</div>
-	<div style="grid-column: 13 / 15; grid-row: 7 / 9; border-color: red;">
+	<div class="level-1" style="grid-column: 13 / 15; grid-row: 7 / 9;">
+		<span class="header">Arith</span>
 		<div class="editDiv">
 			<textarea id="in-2" class="inline-math" style="height: 100%; padding: .5rem; width: 100%;">aa $2+2$ a 
 				 b $3+3$ b
