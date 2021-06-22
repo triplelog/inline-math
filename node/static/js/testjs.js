@@ -68,10 +68,11 @@
 	}
 	function updateInputValue(evt){
 		var t = evt.target;
-		while (!t.classList || !t.classList.contains('inline-math') ){
+		while (!t.classList || !t.classList.contains('outputDiv') ){
 			if (t.parentNode){t = t.parentNode;}
 			else {break;}
 		}
+		
 		console.log(t);
 		//TODO: restrct to radios of same name as event
 		var els = t.querySelectorAll('input.inline-radio:checked, input.inline-input, input.inline-number, input.inline-range');
@@ -96,7 +97,7 @@
 			
 		}
 		
-		updateMarkdown(t.id);
+		updateMarkdown(t.id.replace("out","in"));
 		
 	}
 	function updateMarkdown(id){
